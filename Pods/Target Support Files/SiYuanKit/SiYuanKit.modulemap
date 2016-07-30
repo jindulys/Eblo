@@ -1,0 +1,6 @@
+framework module SiYuanKit {
+  umbrella header "SiYuanKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_EbloUITests {
+  umbrella header "Pods-EbloUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
