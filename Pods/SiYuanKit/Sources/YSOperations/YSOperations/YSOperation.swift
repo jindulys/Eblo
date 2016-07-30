@@ -1,5 +1,6 @@
 //
 //  YSOperation.swift
+//  SiYuanKit
 //
 //  Created by yansong li on 2016-07-16.
 //  Copyright © 2016 YANSONG LI. All rights reserved.
@@ -174,6 +175,13 @@ public class YSOperation: Operation {
     conditions.append(condition)
   }
   
+  private(set) var observers = [OperationObserver]()
+  
+  func addObserver(observer: OperationObserver) {
+    assert(state < .Executing, "Cannot modify observers after execution has begun.")
+    observers.append(observer)
+  }
+  
   private var _internalErrors = [ErrorProtocol]()
   
   /// Cancel this operation with \a error.
@@ -235,7 +243,13 @@ public class YSOperation: Operation {
       state = .Finished
     }
   }
-  
+
+  final func produceOperation(operation: Operation) {
+    for observer in observers {
+      observer.operation(operation: self, didProduceOperation: operation)
+    }
+  }
+
   /**
     Subclasses may override `finished(_:)` if they wish to react to the operation
     finishing with errors. For example, the `LoadModelOperation` implements
