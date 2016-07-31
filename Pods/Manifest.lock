@@ -1,11 +1,22 @@
 PODS:
-  - SiYuanKit (1.0.4)
+  - SiYuanKit (1.0.9):
+    - SiYuanKit/Core (= 1.0.9)
+  - SiYuanKit/Core (1.0.9):
+    - SiYuanKit/Then
+    - SiYuanKit/Utilities
+    - SiYuanKit/YSOperations
+  - SiYuanKit/DispatchQueue (1.0.9)
+  - SiYuanKit/Then (1.0.9)
+  - SiYuanKit/Utilities (1.0.9):
+    - SiYuanKit/DispatchQueue
+  - SiYuanKit/YSOperations (1.0.9):
+    - SiYuanKit/DispatchQueue
 
 DEPENDENCIES:
   - SiYuanKit (~> 1.0)
 
 SPEC CHECKSUMS:
-  SiYuanKit: 1061fcf9ad9e9b40681a066d486b2de1fa307eb4
+  SiYuanKit: b81f74e6ec9d7605ae222d8f462677aae05e298c
 
 PODFILE CHECKSUM: 01ca2f251a41bfa3f980de7cac0b4eeed6f88f7c
 
