@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
+		0E8BF04E1D6138FF00E0AA08 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04D1D6138FF00E0AA08 /* LoadingViewController.swift */; };
 		0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574031D4CDDCA00703C3A /* AppDelegate.swift */; };
 		0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574051D4CDDCA00703C3A /* ViewController.swift */; };
-		0E9574091D4CDDCA00703C3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9574071D4CDDCA00703C3A /* Main.storyboard */; };
 		0E95740B1D4CDDCA00703C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740A1D4CDDCA00703C3A /* Assets.xcassets */; };
 		0E95740E1D4CDDCA00703C3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */; };
 		0E9574191D4CDDCA00703C3A /* EbloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574181D4CDDCA00703C3A /* EbloTests.swift */; };
@@ -38,10 +39,11 @@
 
 /* Begin PBXFileReference section */
 		011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eblo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		0E8BF04D1D6138FF00E0AA08 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		0E9574001D4CDDCA00703C3A /* Eblo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eblo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574031D4CDDCA00703C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9574051D4CDDCA00703C3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0E9574081D4CDDCA00703C3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E95740A1D4CDDCA00703C3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E95740D1D4CDDCA00703C3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E95740F1D4CDDCA00703C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +91,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E8BF0491D61321D00E0AA08 /* AppManagement */ = {
+			isa = PBXGroup;
+			children = (
+				0E8BF04A1D61323D00E0AA08 /* AppManager.swift */,
+			);
+			path = AppManagement;
+			sourceTree = "<group>";
+		};
+		0E8BF04C1D6138D500E0AA08 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0E8BF04D1D6138FF00E0AA08 /* LoadingViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		0E9573F71D4CDDCA00703C3A = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +132,10 @@
 		0E9574021D4CDDCA00703C3A /* Eblo */ = {
 			isa = PBXGroup;
 			children = (
+				0E8BF0491D61321D00E0AA08 /* AppManagement */,
+				0E8BF04C1D6138D500E0AA08 /* UI */,
 				0E9574031D4CDDCA00703C3A /* AppDelegate.swift */,
 				0E9574051D4CDDCA00703C3A /* ViewController.swift */,
-				0E9574071D4CDDCA00703C3A /* Main.storyboard */,
 				0E95740A1D4CDDCA00703C3A /* Assets.xcassets */,
 				0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */,
 				0E95740F1D4CDDCA00703C3A /* Info.plist */,
@@ -288,7 +307,6 @@
 			files = (
 				0E95740E1D4CDDCA00703C3A /* LaunchScreen.storyboard in Resources */,
 				0E95740B1D4CDDCA00703C3A /* Assets.xcassets in Resources */,
-				0E9574091D4CDDCA00703C3A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,8 +454,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
+				0E8BF04E1D6138FF00E0AA08 /* LoadingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,14 +493,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0E9574071D4CDDCA00703C3A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0E9574081D4CDDCA00703C3A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -511,7 +523,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: liyansong.sdu@gmail.com (PP57D7Z94E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: liyansong.sdu@gmail.com (PP57D7Z94E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -559,7 +572,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: liyansong.sdu@gmail.com (PP57D7Z94E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: liyansong.sdu@gmail.com (PP57D7Z94E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
