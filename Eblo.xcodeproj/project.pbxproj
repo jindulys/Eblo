@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */; };
 		0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
@@ -40,6 +41,10 @@
 
 /* Begin PBXFileReference section */
 		011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eblo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
+		0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Eblo.xcconfig; sourceTree = "<group>"; };
+		0E69FFBF1D689D5600D6C2E9 /* Eblo-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Debug.xcconfig"; sourceTree = "<group>"; };
+		0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Release.xcconfig"; sourceTree = "<group>"; };
 		0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBLoadingViewController.swift; sourceTree = "<group>"; };
 		0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPortalViewController.swift; sourceTree = "<group>"; };
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -93,6 +98,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E554FA61D680020009F4AE5 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		0E69FFBD1D689CAD00D6C2E9 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */,
+				0E69FFBF1D689D5600D6C2E9 /* Eblo-Debug.xcconfig */,
+				0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		0E6BA7791D67F5C400B7575C /* Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				0E8BF04A1D61323D00E0AA08 /* AppManager.swift */,
+				0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */,
 			);
 			path = AppManagement;
 			sourceTree = "<group>";
@@ -120,6 +143,7 @@
 		0E8BF04C1D6138D500E0AA08 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0E554FA61D680020009F4AE5 /* Test */,
 				0E6BA77E1D67F62100B7575C /* SignIn */,
 				0E6BA7791D67F5C400B7575C /* Loading */,
 			);
@@ -129,6 +153,7 @@
 		0E9573F71D4CDDCA00703C3A = {
 			isa = PBXGroup;
 			children = (
+				0E69FFBD1D689CAD00D6C2E9 /* Config */,
 				0E9574021D4CDDCA00703C3A /* Eblo */,
 				0E9574171D4CDDCA00703C3A /* EbloTests */,
 				0E9574221D4CDDCA00703C3A /* EbloUITests */,
@@ -478,6 +503,7 @@
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
 				0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */,
+				0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +552,7 @@
 /* Begin XCBuildConfiguration section */
 		0E9574261D4CDDCA00703C3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -575,6 +602,7 @@
 		};
 		0E9574271D4CDDCA00703C3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -645,7 +673,6 @@
 		};
 		0E95742C1D4CDDCA00703C3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE1BFF70D9451D2C1079822E /* Pods-EbloTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = EbloTests/Info.plist;
@@ -659,7 +686,6 @@
 		};
 		0E95742D1D4CDDCA00703C3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4821C5D6DD910A74659DE23 /* Pods-EbloTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = EbloTests/Info.plist;
@@ -673,7 +699,6 @@
 		};
 		0E95742F1D4CDDCA00703C3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD0DF962E27AB253C947D099 /* Pods-EbloUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = EbloUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -686,7 +711,6 @@
 		};
 		0E9574301D4CDDCA00703C3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 413048EE4F3C7FD3A886F081 /* Pods-EbloUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = EbloUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

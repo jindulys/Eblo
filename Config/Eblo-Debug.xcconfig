@@ -1,0 +1,10 @@
+//
+//  Eblo-Debug.xcconfig
+//  Eblo
+//
+//  Created by yansong li on 2016-08-20.
+//  Copyright © 2016 YANSONG LI. All rights reserved.
+//
+
+GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1 $(inherited)
+
