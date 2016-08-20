@@ -10,7 +10,7 @@ import UIKit
 import SiYuanKit
 
 /// View Controller showing an activity indicator at the center.
-class LoadingViewController: UIViewController {
+class EBLoadingViewController: UIViewController {
   
   /// The activity indicator view.
   let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()

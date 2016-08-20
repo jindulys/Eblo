@@ -12,11 +12,9 @@ import SiYuanKit
  This AppManager is responsible for manage the screens of this app.
  Its responsibility includes:
  
- - create root view controller for this app.
+ - create root view controller(Navigation) for this app.
  
  - transfer view controller hierarchy.
- 
- NOTE: I decided to use Navigation Controller as a root view controller.
  */
 public final class AppManager: NSObject {
   
@@ -40,7 +38,7 @@ public final class AppManager: NSObject {
   func createRootNavigationControllerWithAppDelegate(_ appdelegate: UIApplicationDelegate) {
     let creatRootNav = {
       self.rootController = self.createRootNavigationController()
-      self.rootController?.setViewControllers([ViewController()], animated: true)
+      self.rootController?.setViewControllers([EBPortalViewController()], animated: true)
       appdelegate.window??.rootViewController = self.rootController!
       appdelegate.window??.makeKeyAndVisible()
     }
