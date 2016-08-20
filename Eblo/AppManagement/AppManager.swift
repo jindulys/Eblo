@@ -64,6 +64,7 @@ public final class AppManager: NSObject {
       print("Should call `allowNavigation()` before doing any UI related operation.")
       return
     }
+    // Add in loading view controller to smooth the screen transition.
     self.waitForAnimationAndExecute { 
       if self.rootController?.viewControllers.count == 1 &&
         self.rootController?.viewControllers[0] is EBLoadingViewController {
@@ -82,6 +83,31 @@ public final class AppManager: NSObject {
       // COFIGURE POINT
       self.waitForAnimationAndExecute(block: { 
         self.replaceRootWithControllers([EBPortalViewController()], animated: true)
+      })
+    }
+  }
+  
+  /// Nav to main Screen and Nav to URI if presents.
+  // CONFIGURE POINT
+  public func goToMainWith(URI: URISource?) {
+    guard self.canNavigate else {
+      // TODO(simonli): log system.
+      print("Should call `allowNavigation()` before doing any UI related operation.")
+      return
+    }
+    // Try to find a kind of `mainController`.
+    var mainController: UIViewController = (self.rootController?.viewControllers.first!)!
+    if (mainController is ViewController) == false {
+      // CONFIGURE POINT
+      mainController = ViewController()
+    }
+    // TODO(simonli): Following part might involve network request to get correct
+    // instructions about next step. Stay tuned.
+    // NOTE: for now I am using a fake wait then navigate to Main Screen.
+    GCDQueue.main.after(when: 1.2) {
+      let newControllers: [UIViewController] = [mainController]
+      self.waitForAnimationAndExecute(block: { 
+        self.replaceRootWithControllers(newControllers, animated: false)
       })
     }
   }

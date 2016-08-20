@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main().bounds)
     AppManager.sharedInstance.createRootNavigationControllerWithAppDelegate(self)
     AppManager.sharedInstance.allowNavigation()
+    AppManager.sharedInstance.goToMainWith(URI: nil)
     return true
   }
 
