@@ -28,12 +28,16 @@ class ViewController: UIViewController {
     let row1:Row = Row(title:"Hello World" ,
                        description:"World is big",
                        cellType: ItemCell.self,
-                       image: nil, action: {
-                         print("Log out")
+                       image: nil,
+                       action: {
+                         AppManager.sharedInstance.goToPortalWith(URI: nil)
                        },
                        cellIdentifier: "item")
     
-    let row2 = Row(title: "Swift", description: "This is a quite long sentence and i hope that this sentence could be truncated if needed, this means that I could happily go to sleep without any worries", cellType: ItemCell.self, cellIdentifier: "item")
+    let row2 = Row(title: "Swift",
+                   description: "This is a quite long sentence and i hope that this sentence could be truncated if needed, this means that I could happily go to sleep without any worries",
+                   cellType: ItemCell.self,
+                   cellIdentifier: "item")
     
     let testRows = [row1, row2]
     tableManager.data = .SingleSection(testRows)
