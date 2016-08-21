@@ -101,6 +101,16 @@ public final class AppManager: NSObject {
       // CONFIGURE POINT
       mainController = ViewController()
     }
+    // Top most view controller dismiss itself.
+    // Usually do not need to do this.
+    // The special case here is that:
+    // A view controller custom presents an other view controller
+    // use the following method to find the top most non-nav view controller(since this is the 
+    // view controller take over the full screen). then let it do custom dismiss.
+    // Otherwise we will get a black screen since view hierarchy is not add to window.(Weired though)
+    if let topVisibleViewController = self.topVisibleController() {
+      topVisibleViewController.dismiss(animated: true, completion: nil)
+    }
     // TODO(simonli): Following part might involve network request to get correct
     // instructions about next step. Stay tuned.
     // NOTE: for now I am using a fake wait then navigate to Main Screen.
@@ -143,6 +153,21 @@ public final class AppManager: NSObject {
       topViewController = topNavController.topViewController
     }
     return topViewController
+  }
+  
+  /// Return the topVisibleController, which is the top most visible one.
+  private func topVisibleController() -> UIViewController? {
+    var topVisibleViewController = self.rootController?.topViewController
+    while let topController = topVisibleViewController,
+      let topPresentedController = topController.presentedViewController,
+      (topPresentedController is UIAlertController) == false {
+        if let topNavController = topPresentedController as? UINavigationController {
+          topVisibleViewController = topNavController.topViewController
+        } else {
+          topVisibleViewController = topPresentedController
+        }
+    }
+    return topVisibleViewController
   }
 
   // MARK: - UI Helpers

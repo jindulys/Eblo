@@ -59,6 +59,7 @@ class AnimationViewController: UIViewController {
   
   func upVote() {
     print("upVote Tapped")
+    //self.dismiss(animated: true, completion: nil)
     AppManager.sharedInstance.goToMainWith(URI: nil)
   }
   

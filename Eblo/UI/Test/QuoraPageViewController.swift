@@ -104,4 +104,8 @@ extension QuoraPageViewController: UIViewControllerTransitioningDelegate {
                            source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return QuoraAnimationController()
   }
+  
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return QuoraDismissAnimationController()
+  }
 }
