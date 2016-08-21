@@ -25,11 +25,11 @@ class ViewController: UIViewController {
     self.view.backgroundColor = UIColor.white
     tableManager.tableView = tableView
     tableView.estimatedRowHeight = 40
-    let row1:Row = Row(title:"Hello World" ,
-                       description:"World is big",
+    let row1:Row = Row(title:"UIViewPropertyAnimator" ,
+                       description:"Try New UIViewPropertyAnimator in iOS 10",
                        image: nil,
                        action: {
-                        AppManager.sharedInstance.goToPortalWith(URI: nil)
+                        self.navigationController?.pushViewController(QuoraPageViewController(), animated: true)
       },
                        cellType: ItemCell.self,
                        cellIdentifier: "item")
