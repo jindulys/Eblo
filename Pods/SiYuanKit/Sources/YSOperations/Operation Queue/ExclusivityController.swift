@@ -9,10 +9,10 @@
 import Foundation
 
 /**
-  `ExclusivityController` is a singleton to keep track of all the in-flight
-  `Operation` instances that have declared themselves as requiring mutual exclusivity.
-  We use a singleton because mutual exclusivity must be enforced across the entire app,
-  regardless of the `OperationQueue` on which an `Operation` was executed.
+ `ExclusivityController` is a singleton to keep track of all the in-flight
+ `Operation` instances that have declared themselves as requiring mutual exclusivity.
+ We use a singleton because mutual exclusivity must be enforced across the entire app,
+ regardless of the `OperationQueue` on which an `Operation` was executed.
  */
 class ExclusivityController {
   /// Singleton instance.
@@ -26,7 +26,7 @@ class ExclusivityController {
   
   /// Add operation with categories which are exclusive one.
   func add(operation: YSOperation, categories:[String]) {
-    serialQueue.sync { 
+    serialQueue.sync {
       for category in categories {
         self.add(operation: operation, category: category)
       }
@@ -34,7 +34,7 @@ class ExclusivityController {
   }
   
   func remove(operation: YSOperation, categories:[String]) {
-    serialQueue.async { 
+    serialQueue.async {
       for category in categories {
         self.remove(operation: operation, category: category)
       }

@@ -12,98 +12,103 @@ import Foundation
 public enum GCDQueue: Comparable {
   /// The main queue
   case main
-
+  
   /// The default QOS
   case `default`
-
+  
   /// Use for user initiated tasks which do not impact the UI. Such as data processing.
   case initiated
-
+  
   /// Use for user initiated tasks which do impact the UI - e.g. a rendering pipeline.
   case interactive
-
+  
   /// Use for non-user initiated task.
   case utility
-
+  
   /// Background QOS is a severly limited class, should not be used for anything
   /// when the app is active.
   case background
-
+  
   /// A serial queue, with a name and QOS class.
   indirect case serial(String, GCDQueue)
-
+  
   /// A concurrent queue, which a name and QOS class.
   indirect case concurrent(String, GCDQueue)
-
+  
   /// DummySerial queue for comparison.
   private var dummySerial: GCDQueue {
     return .serial("dummy", .background)
   }
-
+  
   /// DummyConcurrent queue for comparison.
   private var dummyConcurrent: GCDQueue {
     return .concurrent("dummy", .background)
   }
-
+  
   /// queue attribute.
-  private var qos_attributes: DispatchQueueAttributes {
+  private var qos_attributes: DispatchQoS {
     switch self {
     case .initiated:
-      return .qosUserInitiated
+      return DispatchQoS.userInitiated
     case .interactive:
-      return .qosUserInteractive
+      return DispatchQoS.userInteractive
     case .utility:
-      return .qosUtility
+      return DispatchQoS.utility
     case .background:
-      return .qosBackground
+      return DispatchQoS.background
     default:
-      return .qosDefault
+      return DispatchQoS.default
     }
   }
-
+  
   /// global queue attribute.
-  private var qos_global_attributes: DispatchQueue.GlobalAttributes {
+  private var qos_global_attributes: DispatchQoS.QoSClass {
     switch self {
     case .initiated:
-      return .qosUserInitiated
+      return .userInitiated
     case .interactive:
-      return .qosUserInteractive
+      return .userInteractive
     case .utility:
-      return .qosUtility
+      return .utility
     case .background:
-      return .qosBackground
+      return .background
     default:
-      return .qosDefault
+      return .default
     }
   }
-
+  
   /// The DispatchQueue.
   public var queue: DispatchQueue {
     switch self {
     case .main:
       return .main
     case .interactive, .initiated, .background, .utility:
-      return DispatchQueue.global(attributes: qos_global_attributes)
+      return DispatchQueue.global(qos: qos_global_attributes)
     case let .serial(name, qos) where qos < dummySerial:
-      return DispatchQueue(label: name, attributes: [.serial, qos_attributes])
+      if #available(iOS 10.0, *) {
+        return DispatchQueue(label: name, qos: qos.qos_attributes)
+      } else {
+        // Fallback on earlier versions
+        return .main
+      }
     case let .concurrent(name, qos) where qos < dummyConcurrent:
-      return DispatchQueue(label: name, attributes: [.concurrent, qos_attributes])
+      return DispatchQueue(label: name, qos: qos.qos_attributes, attributes: .concurrent)
     default:
       return .main
     }
   }
-
+  
   // TODO(simonli): for now only support async with work block, the other potential
   // parameters use Default value.
   /**
-    Async takes a block parameter and run asynchronously.
-    
-    - parameter execute: the block to be executed.
-  */
-  public func async(execute: () -> Void) {
+   Async takes a block parameter and run asynchronously.
+   
+   - parameter execute: the block to be executed.
+   */
+  public func async(execute: @escaping () -> Void) {
     self.queue.async(execute: execute)
   }
-
+  
   /**
    Sync takes a block parameter and run asynchronously.
    - NOTE: carefully use sync, do not sync on serial queue.
@@ -113,16 +118,16 @@ public enum GCDQueue: Comparable {
   public func sync(execute: () -> Void) {
     self.queue.sync(execute: execute)
   }
-
-  public func after(when: Double, execute: () -> Void) {
+  
+  public func after(when: Double, execute: @escaping () -> Void) {
     let delayTime = DispatchTime.now() + when
-    self.queue.after(when: delayTime, execute: execute)
+    self.queue.asyncAfter(deadline: delayTime, execute: execute)
   }
-
-  /// Run the block if we are in main thread, or add this block to main queue 
+  
+  /// Run the block if we are in main thread, or add this block to main queue
   /// asynchronously.
-  static public func runOrAddMainQueue(block: () -> Void) {
-    if Thread.isMainThread() {
+  static public func runOrAddMainQueue(block: @escaping () -> Void) {
+    if Thread.isMainThread {
       block()
     } else {
       GCDQueue.main.async(execute: block)
@@ -170,4 +175,3 @@ public func ==(lhs: GCDQueue, rhs: GCDQueue) -> Bool {
     return false
   }
 }
-

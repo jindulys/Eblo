@@ -22,16 +22,16 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = UIColor.white()
+    self.view.backgroundColor = UIColor.white
     tableManager.tableView = tableView
     tableView.estimatedRowHeight = 40
     let row1:Row = Row(title:"Hello World" ,
                        description:"World is big",
-                       cellType: ItemCell.self,
                        image: nil,
                        action: {
-                         AppManager.sharedInstance.goToPortalWith(URI: nil)
-                       },
+                        AppManager.sharedInstance.goToPortalWith(URI: nil)
+      },
+                       cellType: ItemCell.self,
                        cellIdentifier: "item")
     
     let row2 = Row(title: "Swift",

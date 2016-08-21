@@ -46,7 +46,7 @@ public class TableViewManager: NSObject {
 extension TableViewManager {
 
   /// Reload tableView and register cell.
-  private func refreshTableView(oldData: TableViewData? = nil) {
+  fileprivate func refreshTableView(oldData: TableViewData? = nil) {
     updateTableViewLayout(oldData: oldData)
     refreshRegisteredCells()
   }
@@ -102,7 +102,7 @@ extension TableViewManager {
   }
   
   /// Return row for specified index.
-  private func rowForIndexPath(_ index: IndexPath) -> Row? {
+  fileprivate func rowForIndexPath(_ index: IndexPath) -> Row? {
     switch data {
     case .SingleSection(let r):
       if r.count > index.row {

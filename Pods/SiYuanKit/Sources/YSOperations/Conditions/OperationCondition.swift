@@ -11,33 +11,33 @@ import Foundation
 let OperationConditionKey = "OperationCondition"
 
 /**
-  A protocol for defining conditions that must be satisfied in order for an 
-  operation to begin execution.
+ A protocol for defining conditions that must be satisfied in order for an
+ operation to begin execution.
  */
 public protocol OperationCondition {
   /**
-    The name of the condition. This is used in userInfo dictionaries of `.ConditionFailed`
-    errors as the value of the `OperationConditionKey` key.
+   The name of the condition. This is used in userInfo dictionaries of `.ConditionFailed`
+   errors as the value of the `OperationConditionKey` key.
    */
   static var name: String { get }
   
   /**
-    Specifies whether multiple instances of the conditionalized operation may be executing
-    simultaneously.
+   Specifies whether multiple instances of the conditionalized operation may be executing
+   simultaneously.
    */
-  static var isMutuallyExclusive: Bool { get }
+  var isMutuallyExclusive: Bool { get }
   
   /**
-    Some conditions may have the ability to satisfy the condition if another operation is
-    executed first. Use this method to return an operation that (for example) asks for
-    permission to perform the operation
+   Some conditions may have the ability to satisfy the condition if another operation is
+   executed first. Use this method to return an operation that (for example) asks for
+   permission to perform the operation
    
-    - parameter operation: The `YSOperation` to which the Condition has been added.
-    - returns: An `Operation`, if a dependency should be automatically added. Otherwise, `nil`.
-    - note: Only a single operation may be returned as a dependency. If you find that
-      you need to return multiple operations, then you should be expressing that as 
-      multiple conditions. Alternatively, you could return a single `GroupOperation` that
-      executes multiple operations internally.
+   - parameter operation: The `YSOperation` to which the Condition has been added.
+   - returns: An `Operation`, if a dependency should be automatically added. Otherwise, `nil`.
+   - note: Only a single operation may be returned as a dependency. If you find that
+   you need to return multiple operations, then you should be expressing that as
+   multiple conditions. Alternatively, you could return a single `GroupOperation` that
+   executes multiple operations internally.
    */
   func dependencyFor(operation: YSOperation) -> Operation?
   
@@ -47,9 +47,9 @@ public protocol OperationCondition {
 
 public enum OperationConditionResult {
   case Satisfied
-  case Failed(ErrorProtocol)
+  case Failed(Error)
   
-  var error: ErrorProtocol? {
+  var error: Error? {
     if case .Failed(let error) = self {
       return error
     }
@@ -60,11 +60,11 @@ public enum OperationConditionResult {
 /// Operation condition evaluator
 struct OperationConditionEvaluator {
   /**
-    static method to evaluate \a operation with \a conditions.
+   static method to evaluate \a operation with \a conditions.
    */
   static func evaluate(conditions: [OperationCondition],
                        operation: YSOperation,
-                       completion: ([ErrorProtocol]) -> Void) {
+                       completion: @escaping ([Error]) -> Void) {
     let conditionGroup = DispatchGroup()
     
     var results = [OperationConditionResult?](repeating: .none, count: conditions.count)
@@ -78,7 +78,7 @@ struct OperationConditionEvaluator {
     }
     
     conditionGroup.notify(queue: DispatchQueue.global()) {
-      var failures: [ErrorProtocol] = results.flatMap { $0?.error }
+      var failures: [Error] = results.flatMap { $0?.error }
       if operation.isCancelled {
         failures.append(YSOperationError.conditionFailed)
       }

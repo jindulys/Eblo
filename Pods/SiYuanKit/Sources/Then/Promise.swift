@@ -22,8 +22,8 @@ public typealias EmptyPromise = Promise<Void>
 /// We need class here because `Promise` is reference semantic.
 public class Promise<T> {
   public typealias ResolveCallBack = (T) -> Void
-  public typealias RejectCallBack = (ErrorProtocol) -> Void
-  public typealias PromiseCallBack = (resolve: ResolveCallBack, reject: RejectCallBack) -> Void
+  public typealias RejectCallBack = (Error) -> Void
+  public typealias PromiseCallBack = (_ resolve: ResolveCallBack, _ reject: RejectCallBack) -> Void
   
   /// Success block to be executed on success.
   private var successBlock: ResolveCallBack = { t in }
@@ -47,7 +47,7 @@ public class Promise<T> {
   private var value: T?
   
   /// The error that might occur.
-  private var error: ErrorProtocol?
+  private var error: Error?
   
   /// The preprocessed block to be executed before start.
   var prePromiseStart: (() -> Void)?
@@ -63,14 +63,14 @@ public class Promise<T> {
   /// Start this promise's operation.
   public func start() {
     promiseStarted = true
-    promiseCallBack(resolve: resolvePromise, reject: rejectPromise)
+    promiseCallBack(resolvePromise, rejectPromise)
   }
   
   // MARK: - then((T) -> X)
   // NOTE: because of `block` need to return something, block must be a sync operation instead of
   // async one, this is also the reason why result could be chained together in correct order.
   @discardableResult
-  public func then<X>(block: (T) -> X) -> Promise<X> {
+  public func then<X>(block: @escaping (T) -> X) -> Promise<X> {
     tryPreStartPromise()
     startPromiseIfNeeded()
     return registerThen(block: block)
@@ -79,17 +79,17 @@ public class Promise<T> {
   /// Register a block to produce a new Promise.
   // NOTE: the purpose is actually switch the successBlock, failBlock of current one, so that when
   // current one success, the new one could execute block and set correct
-  public func registerThen<X>(block: (T) -> X) -> Promise<X> {
+  public func registerThen<X>(block: @escaping (T) -> X) -> Promise<X> {
     let p = Promise<X>{ resolve, reject in
       switch self.state {
-        case .FulFilled:
-          let x: X = block(self.value!)
-          resolve(x)
-        case .Rejected:
-          reject(self.error!)
-        case .Pending:
-          self.registerSuccess(resolve: resolve, block: block)
-          self.failBlock = reject
+      case .FulFilled:
+        let x: X = block(self.value!)
+        resolve(x)
+      case .Rejected:
+        reject(self.error!)
+      case .Pending:
+        self.registerSuccess(resolve: resolve, block: block)
+        self.failBlock = reject
       }
     }
     /**
@@ -105,13 +105,13 @@ public class Promise<T> {
   
   // MARK: - then((T) -> Promise<X>)
   
-  public func then<X>(block:(T) -> Promise<X>) -> Promise<X>{
+  public func then<X>(block: @escaping (T) -> Promise<X>) -> Promise<X>{
     tryPreStartPromise()
     startPromiseIfNeeded()
     return registerThen(block: block)
   }
   
-  public func registerThen<X>(block:(T) -> Promise<X>) -> Promise<X>{
+  public func registerThen<X>(block: @escaping (T) -> Promise<X>) -> Promise<X>{
     let p = Promise<X>{ resolve, reject in
       switch self.state {
       case .FulFilled:
@@ -142,7 +142,7 @@ public class Promise<T> {
   
   //MARK: - Error
   @discardableResult
-  public func onError(block:(ErrorProtocol) -> Void) -> Self  {
+  public func onError(block:@escaping (Error) -> Void) -> Self  {
     startPromiseIfNeeded()
     if state == .Rejected { block(error!) }
     else { failBlock = block }
@@ -167,27 +167,28 @@ public class Promise<T> {
       // If self is not the first Promise, propagate it.
       next.prePromiseStart = preStartBlock
     } else {
-      // If set is the first promise, pass it start to next one, so next one could call start of 
+      // If set is the first promise, pass it start to next one, so next one could call start of
       // the first one if needed.
       next.prePromiseStart = self.start
     }
     next.prePromiseStarted = self.prePromiseStarted
   }
   
-  private func registerSuccess<X>(resolve:(X) -> Void, block: (T) -> X) {
+  private func registerSuccess<X>(resolve:@escaping (X) -> Void,
+                               block: @escaping (T) -> X) {
     self.successBlock = { r in
       resolve(block(r))
     }
   }
   
   private func registerNextPromise<X>(block:(T) -> Promise<X>,
-                                     result:T,
-                                    resolve:(X) -> Void,
-                                     reject:RejectCallBack) {
+                                   result:T,
+                                   resolve: @escaping (X) -> Void,
+                                   reject:RejectCallBack) {
     let nextPromise:Promise<X> = block(result)
     nextPromise.then { x in
       resolve(x)
-    }.onError(block: reject)
+      }.onError(block: reject)
   }
   
   /// Called on success
@@ -199,7 +200,7 @@ public class Promise<T> {
   }
   
   /// Called on failure
-  private func rejectPromise(e: ErrorProtocol) {
+  private func rejectPromise(e: Error) {
     state = .Rejected
     error = e
     failBlock(e)

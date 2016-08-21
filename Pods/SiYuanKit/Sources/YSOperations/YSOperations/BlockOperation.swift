@@ -8,19 +8,19 @@
 
 import Foundation
 
-public typealias OperationBlock = ((Void) -> Void) -> Void
+public typealias OperationBlock = (@escaping (Void) -> Void) -> Void
 
 public class BlockOperation: YSOperation {
   private let block: OperationBlock?
   
   /**
-    The designated initializer.
+   The designated initializer.
    
-    - parameter block: The closure to run when the operation executes. This
-    closure will be run on an arbitrary queue. The parameter passed to the
-    block **MUST** be invoked by your code, or else the `BlockOperation`
-    will never finish executing. If this parameter is `nil`, the operation
-    will immediately finish.
+   - parameter block: The closure to run when the operation executes. This
+   closure will be run on an arbitrary queue. The parameter passed to the
+   block **MUST** be invoked by your code, or else the `BlockOperation`
+   will never finish executing. If this parameter is `nil`, the operation
+   will immediately finish.
    */
   init(block: OperationBlock? = nil) {
     self.block = block
@@ -28,14 +28,14 @@ public class BlockOperation: YSOperation {
   }
   
   /**
-    A convenience initializer to execute a block on the main queue.
+   A convenience initializer to execute a block on the main queue.
    
-    - parameter mainQueueBlock: The block to execute on the main queue. Note
-    that this block does not have a "continuation" block to execute (unlike
-    the designated initializer). The operation will be automatically ended
-    after the `mainQueueBlock` is executed.
+   - parameter mainQueueBlock: The block to execute on the main queue. Note
+   that this block does not have a "continuation" block to execute (unlike
+   the designated initializer). The operation will be automatically ended
+   after the `mainQueueBlock` is executed.
    */
-  convenience init(mainQueueBlock: (Void) -> Void) {
+  convenience init(mainQueueBlock: @escaping (Void) -> Void) {
     self.init(block: { continuation in
       DispatchQueue.main.async {
         mainQueueBlock()
@@ -55,6 +55,6 @@ public class BlockOperation: YSOperation {
     }
   }
   
-  override func finished(errors: [ErrorProtocol]) {
+  override func finished(errors: [Error]) {
   }
 }

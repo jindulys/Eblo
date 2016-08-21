@@ -9,7 +9,7 @@
 import Foundation
 
 /**
-  The `BlockObserver` is a way to attach arbitrary blocks to significant events in an 
+ The `BlockObserver` is a way to attach arbitrary blocks to significant events in an
  `Operation`'s lifecycle.
  */
 struct BlockObserver: OperationObserver {
@@ -17,11 +17,11 @@ struct BlockObserver: OperationObserver {
   
   private let startHandler: ((YSOperation) -> Void)?
   private let produceHandler: ((YSOperation, Operation) -> Void)?
-  private let finishHandler: ((YSOperation, [ErrorProtocol]) -> Void)?
+  private let finishHandler: ((YSOperation, [Error]) -> Void)?
   
   init(startHandler: ((YSOperation) -> Void)? = nil,
        produceHandler: ((YSOperation, Operation) -> Void)? = nil,
-       finishHandler:((YSOperation, [ErrorProtocol]) -> Void)? = nil) {
+       finishHandler:((YSOperation, [Error]) -> Void)? = nil) {
     self.startHandler = startHandler
     self.produceHandler = produceHandler
     self.finishHandler = finishHandler
@@ -37,7 +37,7 @@ struct BlockObserver: OperationObserver {
     self.produceHandler?(operation, newOperation)
   }
   
-  func operationDidFinish(operation: YSOperation, errors: [ErrorProtocol]) {
+  func operationDidFinish(operation: YSOperation, errors: [Error]) {
     self.finishHandler?(operation, errors)
   }
 }

@@ -139,7 +139,7 @@ public final class AppManager: NSObject {
   private func topController() -> UIViewController? {
     var topViewController = self.rootController?.topViewController
     while let topController = topViewController,
-      topNavController = topController.presentedViewController as? UINavigationController {
+      let topNavController = topController.presentedViewController as? UINavigationController {
       topViewController = topNavController.topViewController
     }
     return topViewController
@@ -157,14 +157,14 @@ public final class AppManager: NSObject {
     self.animating = true
     // We are about to replace the controllers. let's ensure the keyboard is dismissed
     // first.
-    UIApplication.shared().resignFirstResponder()
+    UIApplication.shared.resignFirstResponder()
     GCDQueue.main.after(when: 0.2) {
       // Reset animation.
       self.resetAnimateTimer()
       // Dismiss any presented view controller.
       self.rootController?.topViewController?.dismiss(animated: false, completion: nil)
       if let existingControllers = self.rootController?.viewControllers
-        where existingControllers != controllers {
+        , existingControllers != controllers {
         self.rootController?.setViewControllers(controllers, animated: animated)
       }
       completion?()
@@ -172,7 +172,7 @@ public final class AppManager: NSObject {
   }
   
   /// Executing a block when no animation happenning.
-  private func waitForAnimationAndExecute(block: () -> ()) {
+  private func waitForAnimationAndExecute(block: @escaping () -> ()) {
     let wrapper = {
       if (self.animating) {
         print("Potentially dangerous while animation occuring!")
