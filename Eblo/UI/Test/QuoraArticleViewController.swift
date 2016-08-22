@@ -8,12 +8,14 @@
 
 import UIKit
 
-class AnimationViewController: UIViewController {
-  
+/// A view controller to show content that like Quora Article screen.
+class QuoraArticleViewController: UIViewController {
   let titleLabel = UILabel()
   let paragraphLabel = UILabel()
   let upVoteButton = UIButton()
   let commentLabel = UILabel()
+
+  var normalConstraints: [NSLayoutConstraint] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,9 +60,7 @@ class AnimationViewController: UIViewController {
   }
   
   func upVote() {
-    print("upVote Tapped")
-    //self.dismiss(animated: true, completion: nil)
-    AppManager.sharedInstance.goToMainWith(URI: nil)
+    self.dismiss(animated: true, completion: nil)
   }
   
   func buildContraints() {
@@ -79,18 +79,41 @@ class AnimationViewController: UIViewController {
     let upVoteCenter = upVoteButton.centerYAnchor.constraint(equalTo: commentLabel.centerYAnchor)
     
     let commentTrailing = commentLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0)
-    NSLayoutConstraint.activate([titleLeading,
-                                 titleTrailing,
-                                 titleTop,
-                                 paraLeading,
-                                 paraTrailing,
-                                 paraTop,
-                                 paraBottom,
-                                 upVoteLeading,
-                                 upVoteWidth,
-                                 upVoteBottom,
-                                 upVoteCenter,
-                                 commentTrailing])
+
+    normalConstraints = [titleLeading,
+                         titleTrailing,
+                         titleTop,
+                         paraLeading,
+                         paraTrailing,
+                         paraTop,
+                         paraBottom,
+                         upVoteLeading,
+                         upVoteWidth,
+                         upVoteBottom,
+                         upVoteCenter,
+                         commentTrailing]
+    NSLayoutConstraint.activate(normalConstraints)
+  }
+}
+
+extension QuoraArticleViewController: EBPresentationDestinationViewController {
+
+  func preparePreTransitionState() {
+    self.titleLabel.alpha = 0.0
+    self.titleLabel.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1)
+    self.paragraphLabel.alpha = 0.0
+    self.paragraphLabel.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1)
+    self.upVoteButton.alpha = 0.0
+    self.upVoteButton.layer.transform = CATransform3DTranslate(CATransform3DMakeScale(0.8, 0.8, 1), 30, -30, 0)
+  }
+
+  func setAnimationState() {
+    self.titleLabel.alpha = 1.0
+    self.titleLabel.layer.transform = CATransform3DIdentity
+    self.paragraphLabel.alpha = 1.0
+    self.paragraphLabel.layer.transform = CATransform3DIdentity
+    self.upVoteButton.layer.transform = CATransform3DIdentity
+    self.upVoteButton.alpha = 1.0
   }
 }
 

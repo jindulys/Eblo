@@ -61,7 +61,7 @@ class QuoraPageViewController: UIViewController {
   
   func upVote() {
     print("upVote Tapped")
-    let nextVC = AnimationViewController()
+    let nextVC = QuoraArticleViewController()
     nextVC.transitioningDelegate = self
     nextVC.modalPresentationStyle = .fullScreen
     self.present(nextVC, animated: true, completion: nil)

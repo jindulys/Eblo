@@ -11,7 +11,7 @@ import UIKit
 class QuoraDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
   
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-    return 1.0
+    return 0.3
   }
   
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -22,9 +22,9 @@ class QuoraDismissAnimationController: NSObject, UIViewControllerAnimatedTransit
     //let containerView = transitionContext.containerView
     //UIApplication.shared.keyWindow?.addSubview(toVC.view)
     // Setup To VC.
-    toVC.view.alpha = 0.0
+    toVC.view.alpha = 0.6
     toVC.view.frame = transitionContext.finalFrame(for: toVC)
-    toVC.view.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1)
+    //toVC.view.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1)
     transitionContext.containerView.addSubview(toVC.view)
     
     let duration = transitionDuration(using: transitionContext)
