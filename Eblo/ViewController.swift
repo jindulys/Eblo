@@ -29,7 +29,11 @@ class ViewController: UIViewController {
                        description:"Try New UIViewPropertyAnimator in iOS 10",
                        image: nil,
                        action: {
-                        self.navigationController?.pushViewController(QuoraPageViewController(), animated: true)
+                        //self.navigationController?.pushViewController(QuoraPageViewController(), animated: true)
+                        let nextVC = QuoraArticleViewController()
+                        nextVC.transitioningDelegate = self
+                        nextVC.modalPresentationStyle = .fullScreen
+                        self.present(nextVC, animated: true, completion: nil)
       },
                        cellType: ItemCell.self,
                        cellIdentifier: "item")
@@ -46,6 +50,18 @@ class ViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+}
+
+extension ViewController: UIViewControllerTransitioningDelegate {
+  func animationController(forPresented presented: UIViewController,
+                           presenting: UIViewController,
+                           source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return QuoraAnimationController()
+  }
+  
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return QuoraDismissAnimationController()
   }
 }
 
