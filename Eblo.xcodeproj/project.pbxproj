@@ -301,6 +301,7 @@
 				0E95741C1D4CDDCA00703C3A /* Frameworks */,
 				0E95741D1D4CDDCA00703C3A /* Resources */,
 				3A73FCCB03D3DD1FC8C92C40 /* [CP] Copy Pods Resources */,
+				4343819BD6ABBFE82B1C4168 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -403,7 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1E88D288D74E1565F76292FB /* [CP] Check Pods Manifest.lock */ = {
@@ -418,7 +419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		2FA792BB4658261DE66DC3E5 /* [CP] Embed Pods Frameworks */ = {
@@ -481,6 +482,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eblo/Pods-Eblo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4343819BD6ABBFE82B1C4168 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EbloUITests/Pods-EbloUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7E512735B0BAE317EAE36BA3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -508,7 +524,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -699,6 +715,7 @@
 		};
 		0E95742C1D4CDDCA00703C3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE1BFF70D9451D2C1079822E /* Pods-EbloTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = EbloTests/Info.plist;
@@ -712,6 +729,7 @@
 		};
 		0E95742D1D4CDDCA00703C3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4821C5D6DD910A74659DE23 /* Pods-EbloTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = EbloTests/Info.plist;
@@ -725,6 +743,7 @@
 		};
 		0E95742F1D4CDDCA00703C3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD0DF962E27AB253C947D099 /* Pods-EbloUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = EbloUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -737,6 +756,7 @@
 		};
 		0E9574301D4CDDCA00703C3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 413048EE4F3C7FD3A886F081 /* Pods-EbloUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = EbloUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

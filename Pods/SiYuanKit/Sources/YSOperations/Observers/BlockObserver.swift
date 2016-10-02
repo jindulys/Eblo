@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- The `BlockObserver` is a way to attach arbitrary blocks to significant events in an
+  The `BlockObserver` is a way to attach arbitrary blocks to significant events in an 
  `Operation`'s lifecycle.
  */
 struct BlockObserver: OperationObserver {

@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- The State enum which defines state an operation could be in.
+  The State enum which defines state an operation could be in.
  */
 private enum State: Int, Comparable {
   /// The initial state of an `Operation`.
@@ -62,10 +62,10 @@ private func ==(lhs: State, rhs: State) -> Bool {
 }
 
 /**
- The subclass of `Operation` from which all other operations should be derived.
- This class adds both Conditions and Observers, which allow the operation to define
- extended readiness requirements, as well as notify many interested parties about
- interesting operation state changes
+  The subclass of `Operation` from which all other operations should be derived.
+  This class adds both Conditions and Observers, which allow the operation to define
+  extended readiness requirements, as well as notify many interested parties about
+  interesting operation state changes
  */
 public class YSOperation: Operation {
   
@@ -96,11 +96,11 @@ public class YSOperation: Operation {
     
     set(newState) {
       /**
-       It's important to note that the KVO notifications are NOT called from inside
-       the lock. If they were, the app would deadlock, because in the middle of calling the
-       `didChangeValueForKey()` method, the observers try to access properties like "isReady"
-       or "isFinished". Since those methods also acquire the lock, then we'd be stuck waiting
-       on our own lock. It's the classic definition of deadlock.
+        It's important to note that the KVO notifications are NOT called from inside 
+        the lock. If they were, the app would deadlock, because in the middle of calling the
+        `didChangeValueForKey()` method, the observers try to access properties like "isReady"
+        or "isFinished". Since those methods also acquire the lock, then we'd be stuck waiting
+        on our own lock. It's the classic definition of deadlock.
        */
       willChangeValue(forKey: "state")
       stateLock.withCriticalScope {
@@ -162,8 +162,8 @@ public class YSOperation: Operation {
     self.state = .EvaluatingConditions
     OperationConditionEvaluator.evaluate(conditions: conditions,
                                          operation: self) { errors in
-                                          self._internalErrors.append(contentsOf: errors)
-                                          self.state = .Ready
+      self._internalErrors.append(contentsOf: errors)
+      self.state = .Ready
     }
   }
   
@@ -216,14 +216,14 @@ public class YSOperation: Operation {
   }
   
   /**
-   `execute()` is the entry point of execution for all `Operation` subclasses.
-   If you subclass `Operation` and wish to customize its execution, you would
-   do so by overriding the `execute()` method.
+    `execute()` is the entry point of execution for all `Operation` subclasses.
+    If you subclass `Operation` and wish to customize its execution, you would
+    do so by overriding the `execute()` method.
    
-   At some point, your `Operation` subclass must call one of the "finish"
-   methods defined below; this is how you indicate that your operation has
-   finished its execution, and that operations dependent on yours can re-evaluate
-   their readiness state.
+    At some point, your `Operation` subclass must call one of the "finish"
+    methods defined below; this is how you indicate that your operation has
+    finished its execution, and that operations dependent on yours can re-evaluate
+    their readiness state.
    */
   func execute() {
     print("\(type(of: self)) must override `execute()`")
@@ -243,18 +243,18 @@ public class YSOperation: Operation {
       state = .Finished
     }
   }
-  
+
   final func produceOperation(operation: Operation) {
     for observer in observers {
       observer.operation(operation: self, didProduceOperation: operation)
     }
   }
-  
+
   /**
-   Subclasses may override `finished(_:)` if they wish to react to the operation
-   finishing with errors. For example, the `LoadModelOperation` implements
-   this method to potentially inform the user about an error when trying to
-   bring up the Core Data stack.
+    Subclasses may override `finished(_:)` if they wish to react to the operation
+    finishing with errors. For example, the `LoadModelOperation` implements
+    this method to potentially inform the user about an error when trying to
+    bring up the Core Data stack.
    */
   func finished(errors: [Error]) {
     // No op.
@@ -262,7 +262,7 @@ public class YSOperation: Operation {
 }
 
 /**
- A common error type for YSOperations.
+  A common error type for YSOperations.
  */
 public enum YSOperationError: Error {
   /// Indicates that a condition of the Operation failed.

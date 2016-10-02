@@ -9,12 +9,12 @@
 import Foundation
 
 /**
- `YSOperationQueue` is an `OperationQueue` subclass that implements a large
- number of "extra features" related to the `YSOperation` class:
+  `YSOperationQueue` is an `OperationQueue` subclass that implements a large
+  number of "extra features" related to the `YSOperation` class:
  
- - Notifying a delegate of all operation completion
- - Extracting generated dependencies from operation conditions
- - Setting up dependencies to enforce mutual exclusivity
+  - Notifying a delegate of all operation completion
+  - Extracting generated dependencies from operation conditions
+  - Setting up dependencies to enforce mutual exclusivity
  */
 public class YSOperationQueue: OperationQueue {
   
@@ -22,8 +22,8 @@ public class YSOperationQueue: OperationQueue {
     if let op = op as? YSOperation {
       let delegate = BlockObserver(startHandler: nil,
                                    produceHandler: { [weak self] in
-                                    self?.addOperation($1)
-        },
+                                     self?.addOperation($1)
+                                   },
                                    finishHandler: nil)
       op.addObserver(observer: delegate)
       
@@ -44,7 +44,7 @@ public class YSOperationQueue: OperationQueue {
         let exclusivityController = ExclusivityController.sharedExclusivityController
         exclusivityController.add(operation: op, categories: concurrencyCategories)
         op.addObserver(observer: BlockObserver { operation, _ in
-          ExclusivityController.sharedExclusivityController.remove(operation: operation, categories: concurrencyCategories)
+            ExclusivityController.sharedExclusivityController.remove(operation: operation, categories: concurrencyCategories)
         })
       }
       op.willEnqueue()
