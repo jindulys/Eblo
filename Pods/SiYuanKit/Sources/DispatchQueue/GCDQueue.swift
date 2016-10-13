@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// Enumaration to conveniently operate on GCDQueue.
 public enum GCDQueue: Comparable {
   /// The main queue
   case main
