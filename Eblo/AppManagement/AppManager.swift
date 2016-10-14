@@ -96,10 +96,10 @@ public final class AppManager: NSObject {
       return
     }
     // Try to find a kind of `mainController`.
-    var mainController: UIViewController = (self.rootController?.viewControllers.first!)!
-    if (mainController is ViewController) == false {
+    var mainController: UIViewController = (self.rootController?.viewControllers.first)!
+    if (mainController is EBMainViewController) == false {
       // CONFIGURE POINT
-      mainController = ViewController()
+      mainController = EBMainViewController()
     }
     // Top most view controller dismiss itself.
     // Usually do not need to do this.
@@ -121,9 +121,49 @@ public final class AppManager: NSObject {
       })
     }
   }
+	
+/** UNComment Following to do some test work.
+	
+	/// Nav to main Screen and Nav to URI if presents.
+	// CONFIGURE POINT
+	public func goToMainWith(URI: URISource?) {
+		guard self.canNavigate else {
+			// TODO(simonli): log system.
+			print("Should call `allowNavigation()` before doing any UI related operation.")
+			return
+		}
+		// Try to find a kind of `mainController`.
+		var mainController: UIViewController = (self.rootController?.viewControllers.first)!
+		if (mainController is ViewController) == false {
+			// CONFIGURE POINT
+			mainController = ViewController()
+		}
+		// Top most view controller dismiss itself.
+		// Usually do not need to do this.
+		// The special case here is that:
+		// A view controller custom presents an other view controller
+		// use the following method to find the top most non-nav view controller(since this is the
+		// view controller take over the full screen). then let it do custom dismiss.
+		// Otherwise we will get a black screen since view hierarchy is not add to window.(Weired though)
+		if let topVisibleViewController = self.topVisibleController() {
+			topVisibleViewController.dismiss(animated: true, completion: nil)
+		}
+		// TODO(simonli): Following part might involve network request to get correct
+		// instructions about next step. Stay tuned.
+		// NOTE: for now I am using a fake wait then navigate to Main Screen.
+		GCDQueue.main.after(when: 1.2) {
+			let newControllers: [UIViewController] = [mainController]
+			self.waitForAnimationAndExecute(block: {
+				self.replaceRootWithControllers(newControllers, animated: false)
+			})
+		}
+	}
+
+*/
+
 
   // MARK: Private
-  
+	
   private func createRootNavigationController() -> UINavigationController {
     let nav = UINavigationController(navigationBarClass: nil, toolbarClass: nil)
     return nav

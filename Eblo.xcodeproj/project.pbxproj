@@ -10,6 +10,7 @@
 		0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */; };
 		0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */; };
 		0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */; };
+		0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */; };
 		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */; };
 		0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */; };
@@ -48,6 +49,7 @@
 		0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraPageViewController.swift; sourceTree = "<group>"; };
 		0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraAnimationController.swift; sourceTree = "<group>"; };
 		0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraDismissAnimationController.swift; sourceTree = "<group>"; };
+		0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBMainViewController.swift; sourceTree = "<group>"; };
 		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
 		0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraArticleViewController.swift; sourceTree = "<group>"; };
 		0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Eblo.xcconfig; sourceTree = "<group>"; };
@@ -58,7 +60,7 @@
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		0E9574001D4CDDCA00703C3A /* Eblo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eblo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574031D4CDDCA00703C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E9574051D4CDDCA00703C3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0E9574051D4CDDCA00703C3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../ViewController.swift; sourceTree = "<group>"; };
 		0E95740A1D4CDDCA00703C3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E95740D1D4CDDCA00703C3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E95740F1D4CDDCA00703C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,9 +117,18 @@
 			path = AnimationTransition;
 			sourceTree = "<group>";
 		};
+		0E54D0A01DB091E600DD7650 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		0E554FA61D680020009F4AE5 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				0E9574051D4CDDCA00703C3A /* ViewController.swift */,
 				0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */,
 				0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */,
 			);
@@ -163,9 +174,10 @@
 			isa = PBXGroup;
 			children = (
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
-				0E554FA61D680020009F4AE5 /* Test */,
-				0E6BA77E1D67F62100B7575C /* SignIn */,
 				0E6BA7791D67F5C400B7575C /* Loading */,
+				0E54D0A01DB091E600DD7650 /* Main */,
+				0E6BA77E1D67F62100B7575C /* SignIn */,
+				0E554FA61D680020009F4AE5 /* Test */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -199,7 +211,6 @@
 				0E8BF0491D61321D00E0AA08 /* AppManagement */,
 				0E8BF04C1D6138D500E0AA08 /* UI */,
 				0E9574031D4CDDCA00703C3A /* AppDelegate.swift */,
-				0E9574051D4CDDCA00703C3A /* ViewController.swift */,
 				0E95740A1D4CDDCA00703C3A /* Assets.xcassets */,
 				0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */,
 				0E95740F1D4CDDCA00703C3A /* Info.plist */,
@@ -535,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */,
+				0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */,
 				0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */,

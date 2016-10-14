@@ -34,7 +34,7 @@ class ViewController: UIViewController {
                         nextVC.transitioningDelegate = self
                         nextVC.modalPresentationStyle = .fullScreen
                         self.present(nextVC, animated: true, completion: nil)
-      },
+											 },
                        cellType: ItemCell.self,
                        cellIdentifier: "item")
     
