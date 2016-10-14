@@ -27,7 +27,7 @@ public final class AppManager: NSObject {
   private var animating: Bool = false
 
   /// The rootController which is this App's root navigation controller.
-  /// This guys is the boss who decides app's screen.
+  /// This guys is the boss who manages this App's screen.
   private var rootController: UINavigationController?
   
   /// The animationTimer to reset `animating` after a short period of time.
@@ -145,7 +145,7 @@ public final class AppManager: NSObject {
   
   // MARK: - View Controller Hierarchy Helpers
   
-  /// Return the topViewController of current view controller stack.
+  /// Return the topViewController, which is the toppest navigation stack's topViewController.                         
   private func topController() -> UIViewController? {
     var topViewController = self.rootController?.topViewController
     while let topController = topViewController,
@@ -186,7 +186,7 @@ public final class AppManager: NSObject {
     GCDQueue.main.after(when: 0.2) {
       // Reset animation.
       self.resetAnimateTimer()
-      // Dismiss any presented view controller.
+      // Dismiss any presented view controller from current top most nav stack's top view controller.
       self.rootController?.topViewController?.dismiss(animated: false, completion: nil)
       if let existingControllers = self.rootController?.viewControllers
         , existingControllers != controllers {
