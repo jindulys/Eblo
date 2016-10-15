@@ -21,6 +21,14 @@ class EBMainViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.view.backgroundColor = UIColor.yellow
+    self.navigationItem.rightBarButtonItem =
+      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
+    self.navigationItem.backBarButtonItem =
+      UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+  }
+  
+  func addNewRecord() {
+    print("Add a new record")
+    self.navigationController?.pushViewController(EBEditRecordViewController(), animated: true)
   }
 }

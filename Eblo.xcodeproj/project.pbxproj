@@ -13,6 +13,7 @@
 		0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */; };
 		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */; };
+		0E5FC56F1DB28419003DF396 /* EBEditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */; };
 		0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */; };
 		0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
@@ -52,6 +53,7 @@
 		0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBMainViewController.swift; sourceTree = "<group>"; };
 		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
 		0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraArticleViewController.swift; sourceTree = "<group>"; };
+		0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBEditRecordViewController.swift; sourceTree = "<group>"; };
 		0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Eblo.xcconfig; sourceTree = "<group>"; };
 		0E69FFBF1D689D5600D6C2E9 /* Eblo-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Debug.xcconfig"; sourceTree = "<group>"; };
 		0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +137,14 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		0E5FC56D1DB283D3003DF396 /* EditRecord */ = {
+			isa = PBXGroup;
+			children = (
+				0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */,
+			);
+			path = EditRecord;
+			sourceTree = "<group>";
+		};
 		0E69FFBD1D689CAD00D6C2E9 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
+				0E5FC56D1DB283D3003DF396 /* EditRecord */,
 				0E6BA7791D67F5C400B7575C /* Loading */,
 				0E54D0A01DB091E600DD7650 /* Main */,
 				0E6BA77E1D67F62100B7575C /* SignIn */,
@@ -545,6 +556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E5FC56F1DB28419003DF396 /* EBEditRecordViewController.swift in Sources */,
 				0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */,
 				0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
