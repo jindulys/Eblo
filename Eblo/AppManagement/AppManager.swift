@@ -46,8 +46,10 @@ public final class AppManager: NSObject {
   public func createRootNavigationControllerWithAppDelegate(_ appdelegate: UIApplicationDelegate) {
     let creatRootNav = {
       self.rootController = self.createRootNavigationController()
-      // CONFIGURE POINT: set the view controller you want as the first view controller
-      // on screen.
+      self.rootController?.setNavigationBarHidden(false, animated: false)
+      self.rootController?.navigationBar.isTranslucent = false
+			// CONFIGURE POINT: set the view controller you want as the first view controller
+			// on screen.
       self.rootController?.setViewControllers([EBLoadingViewController()],
                                               animated: true)
       appdelegate.window??.rootViewController = self.rootController!
