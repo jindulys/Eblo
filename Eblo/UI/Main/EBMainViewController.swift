@@ -27,6 +27,14 @@ class EBMainViewController: UIViewController {
       UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    let myCurrentCompanies = EBRealmManager.sharedInstance.allCompanies()
+    if let c = myCurrentCompanies {
+      print(c.count)
+    }
+    EBRealmManager.sharedInstance.deleteAllCompanies()
+  }
+  
   func addNewRecord() {
     print("Add a new record")
     self.navigationController?.pushViewController(EBEditRecordViewController(), animated: true)

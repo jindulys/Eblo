@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EBEditRecordViewController: UIViewController {
 
@@ -52,9 +53,15 @@ class EBEditRecordViewController: UIViewController {
   }
 
   func finishedEditting() {
-    print("Finished")
-    print(companyNameTextField.text)
-    print(urlTextField.text)
+    guard let company = companyNameTextField.text, let url = urlTextField.text else {
+      return
+    }
+    EBRealmManager.sharedInstance.writeWithBlock { realm in
+      let createdCompany = EBCompany()
+      createdCompany.name = company
+      createdCompany.blogURL = url
+      realm.add(createdCompany)
+    }
   }
 }
 
