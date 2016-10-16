@@ -22,7 +22,7 @@ class EBRealmManager {
     let realm = try! Realm()
     return realm.objects(EBCompany.self)
   }
-  
+
   // MARK: - Delete
   func deleteAllCompanies() {
     realmQueue.async {
@@ -42,9 +42,9 @@ class EBRealmManager {
       }
     }
   }
-  
+
   // MARK: - Write
-  
+
   /// Write transction with block
   func writeWithBlock(_ block: @escaping (Realm) -> ()) {
     realmQueue.async {
@@ -59,6 +59,41 @@ class EBRealmManager {
         print("Realm Write Error!")
       }
 
+    }
+  }
+  
+  // MARK: - Helper
+  func writeWithLocalFile() {
+    if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
+      do {
+        let data = try NSData(contentsOfFile: path ,options: .dataReadingMapped)
+        let jsonResult = try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as? NSDictionary
+        if let companies = jsonResult?["companies"] as? NSArray {
+          realmQueue.async {
+            let realm = try! Realm()
+            try! realm.write {
+              for company in companies {
+                if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String,
+                  let url = aCompany["blogURL"] as? String {
+                  let createdCompany = EBCompany()
+                  createdCompany.companyName = name
+                  createdCompany.blogURL = url
+                  createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
+                  createdCompany.blogTitle = name
+                  realm.add(createdCompany, update: true)
+                }
+              }
+            }
+          }
+          for company in companies {
+            if let aCompany = company as? NSDictionary {
+              print(aCompany["blogURL"])
+            }
+          }
+        }
+      } catch {
+        // TODO(simonli:) handle local file error.
+      }
     }
   }
 }

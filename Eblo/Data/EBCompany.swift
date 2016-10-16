@@ -10,7 +10,13 @@ import RealmSwift
 import Foundation
 
 class EBCompany: Object {
-  dynamic var name = ""
+  dynamic var companyName = ""
   dynamic var blogURL = ""
+  dynamic var UUID = ""
+  dynamic var blogTitle = ""
+
+  override static func primaryKey() -> String? {
+    return "UUID"
+  }
 }
 

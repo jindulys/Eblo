@@ -32,7 +32,8 @@ class EBMainViewController: UIViewController {
     if let c = myCurrentCompanies {
       print(c.count)
     }
-    EBRealmManager.sharedInstance.deleteAllCompanies()
+    //EBRealmManager.sharedInstance.deleteAllCompanies()
+    EBRealmManager.sharedInstance.writeWithLocalFile()
   }
   
   func addNewRecord() {

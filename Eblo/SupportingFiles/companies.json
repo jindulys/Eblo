@@ -1,0 +1,12 @@
+{
+	"companies" : [
+		{
+			"name" : "Facebook",
+			"blogURL" : "https://code.facebook.com/posts/"
+		},
+		{
+			"name" : "Yelp",
+			"blogURL" : "http://engineeringblog.yelp.com/"
+		}
+	]
+}

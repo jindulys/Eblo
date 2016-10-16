@@ -58,9 +58,11 @@ class EBEditRecordViewController: UIViewController {
     }
     EBRealmManager.sharedInstance.writeWithBlock { realm in
       let createdCompany = EBCompany()
-      createdCompany.name = company
+      createdCompany.companyName = company
       createdCompany.blogURL = url
-      realm.add(createdCompany)
+      createdCompany.UUID = company + url
+      createdCompany.blogTitle = company
+      realm.add(createdCompany, update: true)
     }
   }
 }
