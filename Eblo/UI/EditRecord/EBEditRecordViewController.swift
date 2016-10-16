@@ -56,7 +56,7 @@ class EBEditRecordViewController: UIViewController {
     guard let company = companyNameTextField.text, let url = urlTextField.text else {
       return
     }
-    EBRealmManager.sharedInstance.writeWithBlock { realm in
+    EBRealmCompanyManager.sharedInstance.writeWithBlock { realm in
       let createdCompany = EBCompany()
       createdCompany.companyName = company
       createdCompany.blogURL = url

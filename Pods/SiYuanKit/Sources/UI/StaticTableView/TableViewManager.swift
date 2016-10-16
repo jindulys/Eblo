@@ -8,6 +8,12 @@
 
 import Foundation
 
+/// A Protocol Defines a data source that provides data to display for this tableViewManager.
+public protocol TableViewManagerDataSource: class {
+  /// The data that is needed by a tableViewManager.
+  func fetchedData() -> TableViewData
+}
+
 /// Representation of the style of tableViewData.
 public enum TableViewData {
   case SingleSection([Row])
@@ -19,6 +25,9 @@ public class TableViewManager: NSObject {
   
   /// The Identifiers registered to the `tableView`.
   public var registeredCellIdentifiers: [String] = []
+
+  /// The potential data source that provide data to this table view manager.
+  public weak var dataSource: TableViewManagerDataSource?
   
   /**
     tableView object managed by this Manager.
@@ -39,6 +48,14 @@ public class TableViewManager: NSObject {
     didSet {
       refreshTableView(oldData: oldValue)
     }
+  }
+  
+  /// Require this table view manager to refresh its data.
+  public func refreshData() {
+    guard let dataSource = dataSource else {
+      return
+    }
+    self.data = dataSource.fetchedData()
   }
 }
 

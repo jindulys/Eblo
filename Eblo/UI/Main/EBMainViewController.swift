@@ -25,19 +25,26 @@ class EBMainViewController: UIViewController {
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
     self.navigationItem.backBarButtonItem =
       UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+    // 1. Set tableView property on for tableManager. so view controller could use its lower
+    // level (tableManager) to manage the tableView's events.
+    tableManager.tableView = self.tableView
+    // 2. Set tableManager's dataSource to its lower level to get the data.
+    tableManager.dataSource = EBRealmCompanyManager.sharedInstance
+    // 3. Set dataSource's subscriber to its upper level to initiatively report data change.
+    EBRealmCompanyManager.sharedInstance.subscriber = tableManager
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    let myCurrentCompanies = EBRealmManager.sharedInstance.allCompanies()
+    let myCurrentCompanies = EBRealmCompanyManager.sharedInstance.allCompanies()
     if let c = myCurrentCompanies {
       print(c.count)
     }
     //EBRealmManager.sharedInstance.deleteAllCompanies()
-    EBRealmManager.sharedInstance.writeWithLocalFile()
+    EBRealmCompanyManager.sharedInstance.writeWithLocalFile()
+    //tableManager.refreshData()
   }
   
   func addNewRecord() {
-    print("Add a new record")
     self.navigationController?.pushViewController(EBEditRecordViewController(), animated: true)
   }
 }

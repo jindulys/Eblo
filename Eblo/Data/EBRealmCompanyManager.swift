@@ -9,13 +9,21 @@
 import RealmSwift
 import SiYuanKit
 
-/// The realm manager which is responsible for read/write management of a realm file.
-class EBRealmManager {
+/// Protocol to notify the subscripter the event of this Manager.
+protocol EBRealmCompanyManagerDelegate: class {
+  /// This company manager has produced a new set of data.
+  func hasNewDataSet() -> Void
+}
 
-  static let sharedInstance = EBRealmManager()
+/// The realm manager which is responsible for read/write management of a realm file.
+class EBRealmCompanyManager {
+
+  static let sharedInstance = EBRealmCompanyManager()
 
   /// Use a serial Queue as the write queue.
   let realmQueue = GCDQueue.serial("Realm", .initiated)
+  
+  weak var subscriber: EBRealmCompanyManagerDelegate?
 
   // MARK: - Queries
   func allCompanies() -> Results<EBCompany>? {
@@ -35,6 +43,7 @@ class EBRealmManager {
               realm.delete(company)
             }
           }
+          self.notifySubscriber()
         }
       } catch {
         // TODO(simonli): fix error case
@@ -54,6 +63,7 @@ class EBRealmManager {
           block(realm)
         }
         try realm.write(writeWrapper)
+        self.notifySubscriber()
       } catch {
         // TODO(simonli): fix error case
         print("Realm Write Error!")
@@ -73,8 +83,7 @@ class EBRealmManager {
             let realm = try! Realm()
             try! realm.write {
               for company in companies {
-                if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String,
-                  let url = aCompany["blogURL"] as? String {
+                if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String, let url = aCompany["blogURL"] as? String {
                   let createdCompany = EBCompany()
                   createdCompany.companyName = name
                   createdCompany.blogURL = url
@@ -84,16 +93,45 @@ class EBRealmManager {
                 }
               }
             }
-          }
-          for company in companies {
-            if let aCompany = company as? NSDictionary {
-              print(aCompany["blogURL"])
-            }
+            self.notifySubscriber()
           }
         }
       } catch {
         // TODO(simonli:) handle local file error.
       }
     }
+  }
+
+  /// Notify the subscriber that data has changed.
+  func notifySubscriber() {
+    GCDQueue.main.async {
+      if let subscriber = self.subscriber {
+        subscriber.hasNewDataSet()
+      }
+    }
+  }
+}
+
+extension EBRealmCompanyManager: TableViewManagerDataSource {
+  // TODO(simonli): for now everytime we want to update tableViewManager's data we
+  // fetch all the data. Need to figure out a more efficient way if needed.
+  // E.g. Has an id and only fetch that data related to this id then add it to the table view
+  // manager.
+  func fetchedData() -> TableViewData {
+    var result: [Row] = []
+    if let companies = self.allCompanies() {
+      for company in companies {
+        let currentRow =
+          Row(title: company.companyName,
+              description: company.blogURL,
+              image: nil,
+              action: nil,
+              cellType: ItemCell.self,
+              cellIdentifier: "company",
+              UUID: company.UUID)
+        result.append(currentRow)
+      }
+    }
+    return .SingleSection(result)
   }
 }

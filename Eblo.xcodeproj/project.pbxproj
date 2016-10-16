@@ -20,9 +20,10 @@
 		0E5FC5761DB28EB0003DF396 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */; };
 		0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */; };
-		0E7A60CA1DB2C19A003EB738 /* EBRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* EBRealmManager.swift */; };
+		0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */; };
 		0E7A60CC1DB2C577003EB738 /* EBCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60CB1DB2C577003EB738 /* EBCompany.swift */; };
 		0E7A60D11DB3EA2A003EB738 /* companies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A60D01DB3EA2A003EB738 /* companies.json */; };
+		0E7A60D61DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
 		0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574031D4CDDCA00703C3A /* AppDelegate.swift */; };
 		0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574051D4CDDCA00703C3A /* ViewController.swift */; };
@@ -83,9 +84,10 @@
 		0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Release.xcconfig"; sourceTree = "<group>"; };
 		0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBLoadingViewController.swift; sourceTree = "<group>"; };
 		0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPortalViewController.swift; sourceTree = "<group>"; };
-		0E7A60C91DB2C19A003EB738 /* EBRealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBRealmManager.swift; sourceTree = "<group>"; };
+		0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBRealmCompanyManager.swift; sourceTree = "<group>"; };
 		0E7A60CB1DB2C577003EB738 /* EBCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCompany.swift; sourceTree = "<group>"; };
 		0E7A60D01DB3EA2A003EB738 /* companies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = companies.json; sourceTree = "<group>"; };
+		0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewManager+EBRealmCompanyManager.swift"; sourceTree = "<group>"; };
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		0E9574001D4CDDCA00703C3A /* Eblo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eblo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574031D4CDDCA00703C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -203,7 +205,7 @@
 		0E7A60C81DB2C157003EB738 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0E7A60C91DB2C19A003EB738 /* EBRealmManager.swift */,
+				0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */,
 				0E7A60CB1DB2C577003EB738 /* EBCompany.swift */,
 			);
 			path = Data;
@@ -215,6 +217,14 @@
 				0E7A60D01DB3EA2A003EB738 /* companies.json */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		0E7A60D21DB43092003EB738 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		0E8BF0491D61321D00E0AA08 /* AppManagement */ = {
@@ -267,6 +277,7 @@
 		0E9574021D4CDDCA00703C3A /* Eblo */ = {
 			isa = PBXGroup;
 			children = (
+				0E7A60D21DB43092003EB738 /* Extension */,
 				0E7A60CD1DB3E8D4003EB738 /* SupportingFiles */,
 				0E7A60C81DB2C157003EB738 /* Data */,
 				0E8BF0491D61321D00E0AA08 /* AppManagement */,
@@ -623,6 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E5FC56F1DB28419003DF396 /* EBEditRecordViewController.swift in Sources */,
+				0E7A60D61DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift in Sources */,
 				0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */,
 				0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
@@ -632,7 +644,7 @@
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
-				0E7A60CA1DB2C19A003EB738 /* EBRealmManager.swift in Sources */,
+				0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */,
 				0E7A60CC1DB2C577003EB738 /* EBCompany.swift in Sources */,
 				0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */,
 				0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */,

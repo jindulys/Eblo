@@ -1,26 +1,26 @@
 PODS:
-  - SiYuanKit (1.2.6):
-    - SiYuanKit/DispatchQueue (= 1.2.6)
-    - SiYuanKit/Extension (= 1.2.6)
-    - SiYuanKit/StaticTableView (= 1.2.6)
-    - SiYuanKit/Then (= 1.2.6)
-    - SiYuanKit/Utilities (= 1.2.6)
-    - SiYuanKit/YSOperations (= 1.2.6)
-  - SiYuanKit/DispatchQueue (1.2.6)
-  - SiYuanKit/Extension (1.2.6)
-  - SiYuanKit/StaticTableView (1.2.6):
+  - SiYuanKit (1.2.7):
+    - SiYuanKit/DispatchQueue (= 1.2.7)
+    - SiYuanKit/Extension (= 1.2.7)
+    - SiYuanKit/StaticTableView (= 1.2.7)
+    - SiYuanKit/Then (= 1.2.7)
+    - SiYuanKit/Utilities (= 1.2.7)
+    - SiYuanKit/YSOperations (= 1.2.7)
+  - SiYuanKit/DispatchQueue (1.2.7)
+  - SiYuanKit/Extension (1.2.7)
+  - SiYuanKit/StaticTableView (1.2.7):
     - SiYuanKit/Extension
-  - SiYuanKit/Then (1.2.6)
-  - SiYuanKit/Utilities (1.2.6):
+  - SiYuanKit/Then (1.2.7)
+  - SiYuanKit/Utilities (1.2.7):
     - SiYuanKit/DispatchQueue
-  - SiYuanKit/YSOperations (1.2.6):
+  - SiYuanKit/YSOperations (1.2.7):
     - SiYuanKit/DispatchQueue
 
 DEPENDENCIES:
   - SiYuanKit (~> 1.0)
 
 SPEC CHECKSUMS:
-  SiYuanKit: 374e060edafd337d64a0c0050345d123d3f78ff6
+  SiYuanKit: 5c6011bf77e78944142022ecd0b58eb029a34aac
 
 PODFILE CHECKSUM: 01ca2f251a41bfa3f980de7cac0b4eeed6f88f7c
 
