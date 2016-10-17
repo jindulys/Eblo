@@ -21,7 +21,7 @@ class EBMainViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-    self.title = "Engineering Blogs"
+    self.title = "Eng Blogs"
     self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
     self.navigationItem.backBarButtonItem =
