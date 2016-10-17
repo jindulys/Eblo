@@ -21,6 +21,7 @@ class EBMainViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+    self.title = "Engineering Blogs"
     self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
     self.navigationItem.backBarButtonItem =
@@ -34,6 +35,11 @@ class EBMainViewController: UIViewController {
     EBRealmCompanyManager.sharedInstance.subscriber = tableManager
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.setNavigationBarHidden(false, animated: false)
+  }
+
   override func viewDidAppear(_ animated: Bool) {
     let myCurrentCompanies = EBRealmCompanyManager.sharedInstance.allCompanies()
     if let c = myCurrentCompanies {

@@ -17,7 +17,7 @@ class EBLoadingViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = UIColor.red
+    self.view.backgroundColor = UIColor.white
     self.setupSubViews()
     self.buildConstraints()
   }
@@ -25,6 +25,8 @@ class EBLoadingViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.activityIndicator.startAnimating()
+    // TODO(simonli): Find a better way to set navigation bar's behaviour.
+    self.navigationController?.setNavigationBarHidden(true, animated: false)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -33,6 +35,7 @@ class EBLoadingViewController: UIViewController {
   }
   
   func setupSubViews() {
+    self.activityIndicator.color = UIColor.gray
     self.view.addAutoLayoutSubView(self.activityIndicator)
   }
   

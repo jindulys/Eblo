@@ -126,6 +126,7 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
       for company in companies {
         let rowAction = {
           let svc = SFSafariViewController(url: NSURL(string: company.blogURL)! as URL)
+          svc.title = company.companyName
           AppManager.sharedInstance.pushToNavTop(controller: svc)
         }
         let currentRow =
