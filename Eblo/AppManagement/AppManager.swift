@@ -123,6 +123,11 @@ public final class AppManager: NSObject {
       })
     }
   }
+
+  /// Push `controller` to the top of Nav Stack.
+  public func pushToNavTop(controller: UIViewController) {
+    self.topController()?.navigationController?.pushViewController(controller, animated: true)
+  }
 	
 /** UNComment Following to do some test work.
 	
@@ -164,7 +169,7 @@ public final class AppManager: NSObject {
 */
 
 
-  // MARK: Private
+  // MARK: - Private
 	
   private func createRootNavigationController() -> UINavigationController {
     let nav = UINavigationController(navigationBarClass: nil, toolbarClass: nil)

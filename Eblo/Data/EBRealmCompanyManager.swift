@@ -9,6 +9,8 @@
 import RealmSwift
 import SiYuanKit
 
+import SafariServices
+
 /// Protocol to notify the subscripter the event of this Manager.
 protocol EBRealmCompanyManagerDelegate: class {
   /// This company manager has produced a new set of data.
@@ -119,13 +121,18 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
   // manager.
   func fetchedData() -> TableViewData {
     var result: [Row] = []
+    // TODO(simonli): move tableViewCell action logic out of this data model.
     if let companies = self.allCompanies() {
       for company in companies {
+        let rowAction = {
+          let svc = SFSafariViewController(url: NSURL(string: company.blogURL)! as URL)
+          AppManager.sharedInstance.pushToNavTop(controller: svc)
+        }
         let currentRow =
           Row(title: company.companyName,
               description: company.blogURL,
               image: nil,
-              action: nil,
+              action: rowAction,
               cellType: ItemCell.self,
               cellIdentifier: "company",
               UUID: company.UUID)
