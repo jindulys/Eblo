@@ -8,8 +8,9 @@
 
 import RealmSwift
 import SiYuanKit
-
 import SafariServices
+
+let localJSONGotIn = "localJSONGotIn"
 
 /// Protocol to notify the subscripter the event of this Manager.
 protocol EBRealmCompanyManagerDelegate: class {
@@ -76,31 +77,35 @@ class EBRealmCompanyManager {
   
   // MARK: - Helper
   func writeWithLocalFile() {
-    if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
-      do {
-        let data = try NSData(contentsOfFile: path ,options: .dataReadingMapped)
-        let jsonResult = try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as? NSDictionary
-        if let companies = jsonResult?["companies"] as? NSArray {
-          realmQueue.async {
-            let realm = try! Realm()
-            try! realm.write {
-              for company in companies {
-                if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String, let url = aCompany["blogURL"] as? String {
-                  let createdCompany = EBCompany()
-                  createdCompany.companyName = name
-                  createdCompany.blogURL = url
-                  createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
-                  createdCompany.blogTitle = name
-                  realm.add(createdCompany, update: true)
+    let userDefault = UserDefaults.standard
+    if !userDefault.bool(forKey: localJSONGotIn) {
+      if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
+        do {
+          let data = try NSData(contentsOfFile: path ,options: .dataReadingMapped)
+          let jsonResult = try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as? NSDictionary
+          if let companies = jsonResult?["companies"] as? NSArray {
+            realmQueue.async {
+              let realm = try! Realm()
+              try! realm.write {
+                for company in companies {
+                  if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String, let url = aCompany["blogURL"] as? String {
+                    let createdCompany = EBCompany()
+                    createdCompany.companyName = name
+                    createdCompany.blogURL = url
+                    createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
+                    createdCompany.blogTitle = name
+                    realm.add(createdCompany, update: true)
+                  }
                 }
               }
+              self.notifySubscriber()
             }
-            self.notifySubscriber()
           }
+        } catch {
+          // TODO(simonli:) handle local file error.
         }
-      } catch {
-        // TODO(simonli:) handle local file error.
       }
+      userDefault.set(true, forKey: localJSONGotIn)
     }
   }
 

@@ -33,6 +33,9 @@ class EBMainViewController: UIViewController {
     tableManager.dataSource = EBRealmCompanyManager.sharedInstance
     // 3. Set dataSource's subscriber to its upper level to initiatively report data change.
     EBRealmCompanyManager.sharedInstance.subscriber = tableManager
+
+    // TODO(simonli): might need to remove this one.
+    EBRealmCompanyManager.sharedInstance.writeWithLocalFile()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -41,13 +44,8 @@ class EBMainViewController: UIViewController {
   }
 
   override func viewDidAppear(_ animated: Bool) {
-    let myCurrentCompanies = EBRealmCompanyManager.sharedInstance.allCompanies()
-    if let c = myCurrentCompanies {
-      print(c.count)
-    }
-    //EBRealmManager.sharedInstance.deleteAllCompanies()
-    EBRealmCompanyManager.sharedInstance.writeWithLocalFile()
-    //tableManager.refreshData()
+    //EBRealmCompanyManager.sharedInstance.deleteAllCompanies()
+    tableManager.refreshData()
   }
   
   func addNewRecord() {
