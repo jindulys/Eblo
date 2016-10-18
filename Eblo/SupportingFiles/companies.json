@@ -84,6 +84,86 @@
                  "name" : "Foursquare",
                  "blogURL" : "http://engineering.foursquare.com/"
                  },
+                 {
+                 "name" : "Foursquare",
+                 "blogURL" : "http://engineering.foursquare.com/"
+                 },
+                 {
+                 "name" : "Funding Circle",
+                 "blogURL" : "https://engineering.fundingcircle.com/"
+                 },
+                 {
+                 "name" : "Future Processing",
+                 "blogURL" : "https://www.future-processing.pl/technical-blog/"
+                 },
+                 {
+                 "name" : "Galois",
+                 "blogURL" : "https://galois.com/blog/"
+                 },
+                 {
+                 "name" : "GameChanger",
+                 "blogURL" : "http://tech.gc.com/"
+                 },
+                 {
+                 "name" : "Gilt",
+                 "blogURL" : "http://tech.gilt.com"
+                 },
+                 {
+                 "name" : "Github",
+                 "blogURL" : "http://githubengineering.com/"
+                 },
+                 {
+                 "name" : "Good Eggs",
+                 "blogURL" : "http://bites.goodeggs.com/"
+                 },
+                 {
+                 "name" : "Grouper",
+                 "blogURL" : "http://eng.joingrouper.com/"
+                 },
+                 {
+                 "name" : "Groupon",
+                 "blogURL" : "https://engineering.groupon.com/"
+                 },
+                 {
+                 "name" : "Gusto",
+                 "blogURL" : "http://engineering.gusto.com/"
+                 },
+                 {
+                 "name" : "HackerEarth",
+                 "blogURL" : "http://engineering.hackerearth.com/"
+                 },
+                 {
+                 "name" : "Harry's",
+                 "blogURL" : "http://engineering.harrys.com/"
+                 },
+                 {
+                 "name" : "Housing.com",
+                 "blogURL" : "https://medium.com/engineering-housing"
+                 },
+                 {
+                 "name" : "IMVU",
+                 "blogURL" : "http://engineering.imvu.com/"
+                 },
+                 {
+                 "name" : "Indeed",
+                 "blogURL" : "http://engineering.indeedblog.com/blog/"
+                 },
+                 {
+                 "name" : "Instagram",
+                 "blogURL" : "http://engineering.instagram.com/"
+                 },
+                 {
+                 "name" : "Just Eat",
+                 "blogURL" : "http://tech.just-eat.com/"
+                 },
+                 {
+                 "name" : "Kogan.com",
+                 "blogURL" : "http://devblog.kogan.com/"
+                 },
+                 {
+                 "name" : "LinkedIn",
+                 "blogURL" : "https://engineering.linkedin.com/blog"
+                 }
                  
 	]
 }
