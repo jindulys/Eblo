@@ -128,6 +128,13 @@ public final class AppManager: NSObject {
   public func pushToNavTop(controller: UIViewController) {
     self.topController()?.navigationController?.pushViewController(controller, animated: true)
   }
+
+  /// Present `controller` to the top of Nav Stack.
+  public func presentToNavTop(controller: UIViewController) {
+    /// Dismiss the potential alert view controller first.
+    self.topVisibleController()?.dismiss(animated: true, completion: nil)
+    self.topVisibleController()?.present(controller, animated: true, completion: nil)
+  }
 	
 /** UNComment Following to do some test work.
 	
