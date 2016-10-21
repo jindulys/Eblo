@@ -1,4 +1,9 @@
 PODS:
+  - Ji (2.0.1):
+    - Ji/Ji (= 2.0.1)
+  - Ji/Ji (2.0.1):
+    - Ji/Ji-libxml
+  - Ji/Ji-libxml (2.0.1)
   - SiYuanKit (1.2.8):
     - SiYuanKit/DispatchQueue (= 1.2.8)
     - SiYuanKit/Extension (= 1.2.8)
@@ -17,11 +22,13 @@ PODS:
     - SiYuanKit/DispatchQueue
 
 DEPENDENCIES:
+  - Ji (~> 2.0.0)
   - SiYuanKit (~> 1.0)
 
 SPEC CHECKSUMS:
+  Ji: 6bb602a28dd08b804158f64990e6051ed5de0110
   SiYuanKit: 6cb4be7fac1ac7ffc5c23c0f2a1c0a506647584c
 
-PODFILE CHECKSUM: 01ca2f251a41bfa3f980de7cac0b4eeed6f88f7c
+PODFILE CHECKSUM: f3618ffc91f1e648363f734802d60e8131162d51
 
 COCOAPODS: 1.1.0.rc.2
