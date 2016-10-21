@@ -208,7 +208,9 @@ public class YSOperation: Operation {
     assert(state == .Ready, "This operation must be performed on an operation queue.")
     state = .Executing
     if _internalErrors.isEmpty && !self.isCancelled {
-      // TODO(simonli): add observation operation.
+      observers.forEach { observer in
+        observer.operationDidStart(operation: self)
+      }
       self.execute()
     } else {
       finish()
@@ -239,7 +241,9 @@ public class YSOperation: Operation {
       state = .Finishing
       let combinedErrors = _internalErrors + errors
       finished(errors: combinedErrors)
-      // TODO(simonli): add observer notification
+      observers.forEach { observer in
+        observer.operationDidFinish(operation: self, errors: combinedErrors)
+      }
       state = .Finished
     }
   }

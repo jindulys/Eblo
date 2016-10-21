@@ -8,6 +8,13 @@
 
 import Foundation
 
+@objc public protocol YSOperationQueueDelegate: NSObjectProtocol {
+  @objc optional func operationQueue(operationQueue: YSOperationQueue, willAddOperation: Operation)
+  @objc optional func operationQueue(operationQueue: YSOperationQueue,
+                               operationDidFinish operation: Operation,
+                               withErrors errors: [Error])
+}
+
 /**
   `YSOperationQueue` is an `OperationQueue` subclass that implements a large
   number of "extra features" related to the `YSOperation` class:
@@ -17,6 +24,8 @@ import Foundation
   - Setting up dependencies to enforce mutual exclusivity
  */
 public class YSOperationQueue: OperationQueue {
+
+  public weak var delegate: YSOperationQueueDelegate?
   
   public override func addOperation(_ op: Operation) {
     if let op = op as? YSOperation {
@@ -37,7 +46,7 @@ public class YSOperationQueue: OperationQueue {
       }
       
       let concurrencyCategories: [String] = op.conditions.flatMap { condition in
-        if condition.isMutuallyExclusive { return nil }
+        if !condition.isMutuallyExclusive { return nil }
         return "\(type(of: condition))"
       }
       if !concurrencyCategories.isEmpty {
@@ -49,10 +58,20 @@ public class YSOperationQueue: OperationQueue {
       }
       op.willEnqueue()
     } else {
-      op.addCompletionBlock {
+      op.addCompletionBlock { [weak self, weak op] in
         // TODO(simonli): notify delegate about the completion of this operation
+        guard let queue = self, let operation = op else {
+          return
+        }
+        queue.delegate?.operationQueue?(operationQueue: queue,
+          operationDidFinish: operation,
+          withErrors: [])
+        operation.dependencies.forEach {
+          operation.removeDependency($0)
+        }
       }
     }
+    delegate?.operationQueue?(operationQueue: self, willAddOperation: op)
     super.addOperation(op)
   }
 }

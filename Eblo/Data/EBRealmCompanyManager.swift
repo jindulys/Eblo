@@ -25,7 +25,7 @@ class EBRealmCompanyManager {
 
   /// Use a serial Queue as the write queue.
   let realmQueue = GCDQueue.serial("Realm", .initiated)
-  
+
   weak var subscriber: EBRealmCompanyManagerDelegate?
 
   // MARK: - Queries

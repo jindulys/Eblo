@@ -175,14 +175,13 @@ public final class AppManager: NSObject {
 
 */
 
-
   // MARK: - Private
 	
   private func createRootNavigationController() -> UINavigationController {
     let nav = UINavigationController(navigationBarClass: nil, toolbarClass: nil)
     return nav
   }
-  
+
   // MARK: - Helpers
   private func resetAnimateTimer() {
     self.animationTimer.invalidate()
@@ -192,13 +191,13 @@ public final class AppManager: NSObject {
                                                userInfo: nil,
                                                repeats: false)
   }
-  
+
   @objc private func turnOffAnimate() {
     self.animating = false
   }
-  
+
   // MARK: - View Controller Hierarchy Helpers
-  
+
   /// Return the topViewController, which is the toppest navigation stack's topViewController.                         
   private func topController() -> UIViewController? {
     var topViewController = self.rootController?.topViewController
@@ -208,7 +207,7 @@ public final class AppManager: NSObject {
     }
     return topViewController
   }
-  
+
   /// Return the topVisibleController, which is the top most visible one.
   private func topVisibleController() -> UIViewController? {
     var topVisibleViewController = self.rootController?.topViewController
@@ -225,7 +224,7 @@ public final class AppManager: NSObject {
   }
 
   // MARK: - UI Helpers
-  
+
   /// Replace root controller(Nav Controller) stack.
   /// - parameter controllers: controllers to replace.
   /// - parameter animated: whether or not you want to animated.
@@ -249,7 +248,7 @@ public final class AppManager: NSObject {
       completion?()
     }
   }
-  
+
   /// Executing a block when no animation happenning.
   private func waitForAnimationAndExecute(block: @escaping () -> ()) {
     let wrapper = {
