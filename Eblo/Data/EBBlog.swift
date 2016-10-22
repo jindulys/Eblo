@@ -13,6 +13,12 @@ import Foundation
 class EBBlog: Object {
   dynamic var blogTitle = ""
   dynamic var blogURL = ""
+  // Primary Key, an auto-incremented key.
+  dynamic var blogID = 0
+
+  override class func primaryKey() -> String? {
+    return "blogID"
+  }
 
   /// Extension defines String Keys.
   static let BLOGTITLE = "blogTitle"

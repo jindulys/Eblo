@@ -18,13 +18,13 @@ protocol EBRealmCompanyManagerDelegate: class {
   func hasNewDataSet() -> Void
 }
 
-/// The realm manager which is responsible for read/write management of a realm file.
+/// The realm manager which is responsible for read/write management of Company Object.
 class EBRealmCompanyManager {
 
   static let sharedInstance = EBRealmCompanyManager()
 
   /// Use a serial Queue as the write queue.
-  let realmQueue = GCDQueue.serial("Realm", .initiated)
+  private let realmQueue = GCDQueue.serial("RealmCompany", .initiated)
 
   weak var subscriber: EBRealmCompanyManagerDelegate?
 

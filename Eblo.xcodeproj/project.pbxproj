@@ -18,6 +18,7 @@
 		0E5FC5721DB28EA5003DF396 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5701DB28EA5003DF396 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E5FC5751DB28EB0003DF396 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */; };
 		0E5FC5761DB28EB0003DF396 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E5FE1761DBBA51100FC2906 /* EBRealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */; };
 		0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */; };
 		0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */; };
 		0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */; };
@@ -81,6 +82,7 @@
 		0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBEditRecordViewController.swift; sourceTree = "<group>"; };
 		0E5FC5701DB28EA5003DF396 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBRealmBlogManager.swift; sourceTree = "<group>"; };
 		0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Eblo.xcconfig; sourceTree = "<group>"; };
 		0E69FFBF1D689D5600D6C2E9 /* Eblo-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Debug.xcconfig"; sourceTree = "<group>"; };
 		0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				0EB5AC7A1DB9C87300ACD9EE /* EBBlog.swift */,
 				0E7A60CB1DB2C577003EB738 /* EBCompany.swift */,
 				0EB5AC7C1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift */,
+				0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */,
 				0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */,
 			);
 			path = Data;
@@ -655,6 +658,7 @@
 				0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */,
 				0E7A60CC1DB2C577003EB738 /* EBCompany.swift in Sources */,
 				0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */,
+				0E5FE1761DBBA51100FC2906 /* EBRealmBlogManager.swift in Sources */,
 				0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
