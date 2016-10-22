@@ -31,6 +31,8 @@
 		0E95740E1D4CDDCA00703C3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */; };
 		0E9574191D4CDDCA00703C3A /* EbloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574181D4CDDCA00703C3A /* EbloTests.swift */; };
 		0E9574241D4CDDCA00703C3A /* EbloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574231D4CDDCA00703C3A /* EbloUITests.swift */; };
+		0EB5AC7B1DB9C87300ACD9EE /* EBBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7A1DB9C87300ACD9EE /* EBBlog.swift */; };
+		0EB5AC7D1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7C1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift */; };
 		62723F355E76895E6881CC81 /* Pods_Eblo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */; };
 		DEEA18CAF66C5B6F4F10CE8C /* Pods_EbloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7482E46ADC65D359853C5 /* Pods_EbloTests.framework */; };
 		F9F4CE422CC52F07DF145C4C /* Pods_EbloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */; };
@@ -101,6 +103,8 @@
 		0E95741F1D4CDDCA00703C3A /* EbloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EbloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574231D4CDDCA00703C3A /* EbloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbloUITests.swift; sourceTree = "<group>"; };
 		0E9574251D4CDDCA00703C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EB5AC7A1DB9C87300ACD9EE /* EBBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBBlog.swift; sourceTree = "<group>"; };
+		0EB5AC7C1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCompanyArticleFetchOperation.swift; sourceTree = "<group>"; };
 		17990CD8E61CD9A6FC2580ED /* Pods-Eblo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eblo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eblo/Pods-Eblo.release.xcconfig"; sourceTree = "<group>"; };
 		413048EE4F3C7FD3A886F081 /* Pods-EbloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EbloUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EbloUITests/Pods-EbloUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EbloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,8 +209,10 @@
 		0E7A60C81DB2C157003EB738 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */,
+				0EB5AC7A1DB9C87300ACD9EE /* EBBlog.swift */,
 				0E7A60CB1DB2C577003EB738 /* EBCompany.swift */,
+				0EB5AC7C1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift */,
+				0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 			files = (
 				0E5FC56F1DB28419003DF396 /* EBEditRecordViewController.swift in Sources */,
 				0E7A60D61DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift in Sources */,
+				0EB5AC7B1DB9C87300ACD9EE /* EBBlog.swift in Sources */,
 				0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */,
 				0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
@@ -643,6 +650,7 @@
 				0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
+				0EB5AC7D1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
 				0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */,
 				0E7A60CC1DB2C577003EB738 /* EBCompany.swift in Sources */,

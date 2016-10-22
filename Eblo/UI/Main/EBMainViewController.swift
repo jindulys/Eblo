@@ -8,6 +8,8 @@
 
 import UIKit
 import SiYuanKit
+import Ji
+
 
 class EBMainViewController: UIViewController {
 	var tableView: UITableView = UITableView()
@@ -41,6 +43,8 @@ class EBMainViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
+    //self.testJi()
+    EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID:"Yelphttp://engineeringblog.yelp.com/", blogInfos: [String: [String]]())
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -50,5 +54,13 @@ class EBMainViewController: UIViewController {
   
   func addNewRecord() {
     self.navigationController?.pushViewController(EBEditRecordViewController(), animated: true)
+  }
+  
+  func testJi() {
+    let testDoc = Ji(htmlURL: URL(string: "https://engineeringblog.yelp.com/")!)
+    let titleNode = testDoc?.xPath("//article//h3//a")
+    for title in titleNode! {
+      print("\(title.content)")
+    }
   }
 }

@@ -71,10 +71,33 @@ class EBRealmCompanyManager {
         // TODO(simonli): fix error case
         print("Realm Write Error!")
       }
-
     }
   }
   
+  /// Update a company's blogs information with blogInfos, which is specified by UUID.
+  ///
+  /// - parameter UUID: UUID for a company
+  ///
+  /// - parameter blogInfos: EBBlog.BLOGTITLE stores blogTitles.
+  ///                        EBBlog.BLOGURL stores blogURLs.
+  func updateCompanyWith(UUID: String, blogInfos: [String: [String]]) {
+    do {
+      let realm = try Realm()
+      guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+        return
+      }
+      // TODO(simonli): update the company's information with blogInfos.
+      //self.notifySubscriber()
+    } catch {
+      // TODO(simonli): fix error case
+      print("Realm Write Error!")
+    }
+  }
+
+  // MARK: - Update Data
+  func fetchArticleUpdates() {
+  }
+
   // MARK: - Helper
   func writeWithLocalFile() {
     let userDefault = UserDefaults.standard
@@ -94,6 +117,7 @@ class EBRealmCompanyManager {
                     createdCompany.blogURL = url
                     createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
                     createdCompany.blogTitle = name
+                    createdCompany.xPathArticleTitle = aCompany["xPathArticleTitle"] as? String
                     realm.add(createdCompany, update: true)
                   }
                 }
@@ -103,6 +127,7 @@ class EBRealmCompanyManager {
           }
         } catch {
           // TODO(simonli:) handle local file error.
+          print("Error happened")
         }
       }
       userDefault.set(true, forKey: localJSONGotIn)
@@ -136,7 +161,7 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
         }
         let currentRow =
           Row(title: company.companyName,
-              description: company.blogURL,
+              description: company.blogs.first?.blogTitle,
               image: nil,
               action: rowAction,
               cellType: ItemCell.self,

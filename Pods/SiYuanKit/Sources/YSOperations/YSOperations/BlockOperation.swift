@@ -44,7 +44,7 @@ public class BlockOperation: YSOperation {
     })
   }
   
-  override func execute() {
+  override public func execute() {
     guard let block = block else {
       finish()
       return
