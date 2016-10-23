@@ -15,12 +15,12 @@ class EBCompanyArticleFetchOperation: YSOperation {
   let xPathArticleTitle: String
   let companyName: String
   let companyBlogURL: String
-  var xPathArticleURL: String?
+  var xPathArticleURL: String
 
   init(companyName: String,
        companyBlogURL: String,
        xPathArticleTitle: String,
-       xPathArticleURL: String? = nil) {
+       xPathArticleURL: String) {
     self.companyName = companyName
     self.companyBlogURL = companyBlogURL
     self.xPathArticleURL = xPathArticleURL
@@ -31,13 +31,32 @@ class EBCompanyArticleFetchOperation: YSOperation {
     // TODO(simonli): according to the info we have to fetch the article titles && urls
     let blogDoc = Ji(htmlURL: URL(string: companyBlogURL)!)
     let titleNodes = blogDoc?.xPath(xPathArticleTitle)
-    guard let resultNodes = titleNodes else {
+    let urlNodes = blogDoc?.xPath(xPathArticleURL)
+    guard let resultNodes = titleNodes,
+      let resultURLs = urlNodes,
+      resultNodes.count == resultURLs.count else {
       return
     }
-    let freshTitles = resultNodes.flatMap {
-      $0.content
+
+    // Remove nil.
+    let freshTitles = resultNodes.flatMap { $0.content }
+    let freshURLs = resultURLs.flatMap { $0.content }
+
+    guard freshTitles.count == freshURLs.count else {
+      return
     }
-    print(freshTitles.count)
+
+    var freshBlogs: [EBBlog] = []
+    for i in 0..<freshTitles.count {
+      let blog = EBBlog()
+      blog.blogTitle = freshTitles[i]
+      blog.blogURL = self.companyBlogURL + freshURLs[i]
+      freshBlogs.append(blog)
+    }
+    print(freshBlogs.count)
     // TODO(simonli): update the object with the info we have
+    EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID: companyName + companyBlogURL, blogInfos: freshBlogs) { 
+      self.finish()
+    }
   }
 }

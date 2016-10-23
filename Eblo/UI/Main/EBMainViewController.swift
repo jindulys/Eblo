@@ -43,8 +43,11 @@ class EBMainViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-    //self.testJi()
-    EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID:"Yelphttp://engineeringblog.yelp.com/", blogInfos: [String: [String]]())
+//    self.testJi()
+//    let testBlog = EBBlog()
+//    testBlog.blogTitle = "Yelp Test"
+//    testBlog.blogURL = "Yelp URL"
+//    EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID:"Yelphttp://engineeringblog.yelp.com/", blogInfos: [testBlog])
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +61,8 @@ class EBMainViewController: UIViewController {
   
   func testJi() {
     let testDoc = Ji(htmlURL: URL(string: "https://engineeringblog.yelp.com/")!)
-    let titleNode = testDoc?.xPath("//article//h3//a")
+    //let titleNode = testDoc?.xPath("//article//h3//a")
+    let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
     for title in titleNode! {
       print("\(title.content)")
     }

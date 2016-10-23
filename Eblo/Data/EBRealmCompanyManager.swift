@@ -26,11 +26,15 @@ class EBRealmCompanyManager {
   /// Use a serial Queue as the write queue.
   private let realmQueue = GCDQueue.serial("RealmCompany", .initiated)
 
+  /// An operation Queue used for company's update.
+  private let companyUpdateOperationQueue = YSOperationQueue()
+
   weak var subscriber: EBRealmCompanyManagerDelegate?
 
   // MARK: - Queries
   func allCompanies() -> Results<EBCompany>? {
     let realm = try! Realm()
+    realm.refresh()
     return realm.objects(EBCompany.self)
   }
 
@@ -51,6 +55,31 @@ class EBRealmCompanyManager {
       } catch {
         // TODO(simonli): fix error case
         print("Realm Write Error!")
+      }
+    }
+  }
+
+  /// This method updates the company's information(Blog).
+  /// Current Design like this:
+  ///
+  /// Each app launch time, this method will be called, and this method should not block UI operation.
+  /// I'll use operation to update each company's info serially and run in back ground.
+  /// Each time a company's update finished, it will be update UI.
+  ///
+  /// Future work. 1. Batch Update.
+  ///              2. A notification when all the update finished.
+  ///              3. Refresh update.(which might be called by View Controller)
+
+  func updateCompanyArticles() {
+    realmQueue.async {
+      if let allCompanies = self.allCompanies() {
+        for company in allCompanies {
+          if let titlePath = company.xPathArticleTitle,
+            let urlPath = company.xPathArticleURL {
+            let updateOperation = EBCompanyArticleFetchOperation(companyName: company.companyName, companyBlogURL: company.blogURL, xPathArticleTitle: titlePath, xPathArticleURL: urlPath)
+            self.companyUpdateOperationQueue.addOperation(updateOperation)
+          }
+        }
       }
     }
   }
@@ -80,17 +109,35 @@ class EBRealmCompanyManager {
   ///
   /// - parameter blogInfos: EBBlog.BLOGTITLE stores blogTitles.
   ///                        EBBlog.BLOGURL stores blogURLs.
-  func updateCompanyWith(UUID: String, blogInfos: [String: [String]]) {
-    do {
-      let realm = try Realm()
-      guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
-        return
+  func updateCompanyWith(UUID: String,
+                         blogInfos: [EBBlog],
+                         completion: @escaping (()->()) = {}) {
+    realmQueue.async {
+      do {
+        let realm = try Realm()
+        guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+          return
+        }
+        // TODO(simonli): update the company's information with blogInfos.
+        let currentBlogsTitles = updateCompany.blogs.map { $0.blogTitle }
+        let newBlogs: [EBBlog] = blogInfos.filter {
+          !currentBlogsTitles.contains($0.blogTitle)
+        }
+        try realm.write {
+          newBlogs.forEach {
+            $0.blogID = EBRealmBlogManager.nextBlogID()
+            realm.add($0, update: true)
+            updateCompany.blogs.append($0)
+          }
+        }
+        completion()
+        if newBlogs.count > 0 {
+          self.notifySubscriber()
+        }
+      } catch {
+        // TODO(simonli): fix error case
+        print("Realm Write Error!")
       }
-      // TODO(simonli): update the company's information with blogInfos.
-      //self.notifySubscriber()
-    } catch {
-      // TODO(simonli): fix error case
-      print("Realm Write Error!")
     }
   }
 
@@ -118,6 +165,7 @@ class EBRealmCompanyManager {
                     createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
                     createdCompany.blogTitle = name
                     createdCompany.xPathArticleTitle = aCompany["xPathArticleTitle"] as? String
+                    createdCompany.xPathArticleURL = aCompany["xPathArticleURL"] as? String
                     realm.add(createdCompany, update: true)
                   }
                 }

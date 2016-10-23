@@ -87,6 +87,9 @@ open class YSOperation: Operation {
   
   /// A lock to guard reads and writes to the `_state` property.
   private let stateLock = NSLock()
+
+  /// Internal Errors
+  private var _internalErrors = [Error]()
   
   /// The computed variable of current state.
   private var state: State {
@@ -170,22 +173,21 @@ open class YSOperation: Operation {
   private(set) var conditions = [OperationCondition]()
   
   /// Add \a condition for this operation.
-  func add(condition: OperationCondition) {
+  open func add(condition: OperationCondition) {
     assert(state < .EvaluatingConditions,"Cannot modify conditions after execution has begun.")
     conditions.append(condition)
   }
   
   private(set) var observers = [OperationObserver]()
   
-  func addObserver(observer: OperationObserver) {
+  open func addObserver(observer: OperationObserver) {
     assert(state < .Executing, "Cannot modify observers after execution has begun.")
     observers.append(observer)
   }
   
-  private var _internalErrors = [Error]()
   
   /// Cancel this operation with \a error.
-  func cancelWithError(error: Error? = nil) {
+  open func cancelWithError(error: Error? = nil) {
     if let error = error {
       _internalErrors.append(error)
     }
@@ -235,7 +237,7 @@ open class YSOperation: Operation {
   private var hasFinishedAlready = false
   
   /// finish method need to be called when you finish.
-  final func finish(errors: [Error] = []) {
+  public final func finish(errors: [Error] = []) {
     if !hasFinishedAlready {
       hasFinishedAlready = true
       state = .Finishing
@@ -248,7 +250,7 @@ open class YSOperation: Operation {
     }
   }
 
-  final func produceOperation(operation: Operation) {
+  public final func produceOperation(operation: Operation) {
     for observer in observers {
       observer.operation(operation: self, didProduceOperation: operation)
     }

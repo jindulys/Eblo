@@ -6,8 +6,9 @@
                  },
                  {
                  "name" : "Yelp",
-                 "blogURL" : "http://engineeringblog.yelp.com/",
-                 "xPathArticleTitle" : "//article//h3//a"
+                 "blogURL" : "https://engineeringblog.yelp.com/",
+                 "xPathArticleTitle" : "//article//h3//a",
+                 "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href"
                  },
                  {
                  "name" : "500px",

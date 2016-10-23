@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     AppManager.sharedInstance.createRootNavigationControllerWithAppDelegate(self)
     AppManager.sharedInstance.allowNavigation()
     AppManager.sharedInstance.goToMainWith(URI: nil)
+    // TODO(simonli): move company update to correct place
+    EBRealmCompanyManager.sharedInstance.updateCompanyArticles()
     return true
   }
 
