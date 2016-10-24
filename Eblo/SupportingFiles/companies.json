@@ -40,7 +40,9 @@
                  },
                  {
                  "name" : "Box",
-                 "blogURL" : "https://www.box.com/blog/engineering/"
+                 "blogURL" : "https://www.box.com/blog/engineering/",
+                 "xPathArticleTitle" : "/html//div[@class='entry']//div[@class='title']/a",
+                 "xPathArticleURL" : "/html//div[@class='entry']//div[@class='title']/a/@href"
                  },
                  {
                  "name" : "Buzzfeed",
@@ -64,7 +66,9 @@
                  },
                  {
                  "name" : "Dropbox",
-                 "blogURL" : "https://blogs.dropbox.com/tech/"
+                 "blogURL" : "https://blogs.dropbox.com/tech/",
+                 "xPathArticleTitle" : "/html//article//h1[@class='entry-title']/a",
+                 "xPathArticleURL" : "/html//article//h1[@class='entry-title']/a/@href"
                  },
                  {
                  "name" : "Ebay",
@@ -168,11 +172,9 @@
                  },
                  {
                  "name" : "LinkedIn",
-                 "blogURL" : "https://engineering.linkedin.com/blog"
-                 },
-                 {
-                 "name" : "LinkedIn",
-                 "blogURL" : "https://engineering.linkedin.com/blog"
+                 "blogURL" : "https://engineering.linkedin.com/blog",
+                 "xPathArticleTitle" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a",
+                 "xPathArticleURL" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a/@href"
                  }
                  
 	]
