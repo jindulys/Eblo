@@ -31,6 +31,8 @@ class EBMainViewController: UIViewController {
     // 1. Set tableView property on for tableManager. so view controller could use its lower
     // level (tableManager) to manage the tableView's events.
     tableManager.tableView = self.tableView
+    // Set estimatedRowHeight if you want to get a variant height.
+    tableView.estimatedRowHeight = 40
     // 2. Set tableManager's dataSource to its lower level to get the data.
     tableManager.dataSource = EBRealmCompanyManager.sharedInstance
     // 3. Set dataSource's subscriber to its upper level to initiatively report data change.
