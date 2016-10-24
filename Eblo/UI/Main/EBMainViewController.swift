@@ -43,7 +43,7 @@ class EBMainViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-//    self.testJi()
+    self.testJi()
 //    let testBlog = EBBlog()
 //    testBlog.blogTitle = "Yelp Test"
 //    testBlog.blogURL = "Yelp URL"
@@ -60,11 +60,15 @@ class EBMainViewController: UIViewController {
   }
   
   func testJi() {
-    let testDoc = Ji(htmlURL: URL(string: "https://engineeringblog.yelp.com/")!)
+    let testDoc = Ji(htmlURL: URL(string: "https://code.facebook.com/posts/")!)
     //let titleNode = testDoc?.xPath("//article//h3//a")
-    let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
-    for title in titleNode! {
-      print("\(title.content)")
+    //let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
+    let testNode = testDoc?.xPath("//*[@id='facebook']/body/div[4]/div/div[2]/div/a/@href")
+    for t in testNode! {
+      print("\(t.content)")
     }
+//    for title in titleNode! {
+//      print("\(title.content)")
+//    }
   }
 }

@@ -2,7 +2,9 @@
 	"companies" : [
                  {
                  "name" : "Facebook",
-                 "blogURL" : "https://code.facebook.com/posts/"
+                 "blogURL" : "https://code.facebook.com/posts/",
+                 "xPathArticleTitle" : "//*[@id='facebook']/body/div[4]/div/div[2]/div/a/h2",
+                 "xPathArticleURL" : "//*[@id='facebook']/body/div[4]/div/div[2]/div/a/@href"
                  },
                  {
                  "name" : "Yelp",
@@ -24,7 +26,9 @@
                  },
                  {
                  "name" : "Artsy",
-                 "blogURL" : "http://artsy.github.io/"
+                 "blogURL" : "https://artsy.github.io/",
+                 "xPathArticleTitle" : "//*[@id='content']/div/article/div/div[1]/header/a/h2",
+                 "xPathArticleURL" : "//*[@id='content']/div/article/div/div[1]/header/a/@href"
                  },
                  {
                  "name" : "Badoo",

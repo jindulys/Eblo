@@ -141,10 +141,6 @@ class EBRealmCompanyManager {
     }
   }
 
-  // MARK: - Update Data
-  func fetchArticleUpdates() {
-  }
-
   // MARK: - Helper
   func writeWithLocalFile() {
     let userDefault = UserDefaults.standard
