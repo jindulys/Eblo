@@ -50,10 +50,17 @@ class EBCompanyArticleFetchOperation: YSOperation {
     for i in 0..<freshTitles.count {
       let blog = EBBlog()
       blog.blogTitle = freshTitles[i]
-      blog.blogURL = self.companyBlogURL + freshURLs[i]
+      // TODO(simonli): find a more general way to do this.
+      if self.companyBlogURL.hasSuffix("/blog") && freshURLs[i].hasPrefix("/blog"),
+        let companyBlogRange = self.companyBlogURL.range(of: "/blog") {
+        var removedURL = self.companyBlogURL
+        removedURL.removeSubrange(companyBlogRange)
+        blog.blogURL = removedURL + freshURLs[i]
+      } else {
+        blog.blogURL = self.companyBlogURL + freshURLs[i]
+      }
       freshBlogs.append(blog)
     }
-    print(freshBlogs.count)
     // TODO(simonli): update the object with the info we have
     EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID: companyName + companyBlogURL, blogInfos: freshBlogs) { 
       self.finish()
