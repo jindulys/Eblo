@@ -62,10 +62,10 @@ class EBMainViewController: UIViewController {
   }
   
   func testJi() {
-    let testDoc = Ji(htmlURL: URL(string: "https://engineering.linkedin.com/blog")!)
+    let testDoc = Ji(htmlURL: URL(string: "http://tech.gilt.com/")!)
     //let titleNode = testDoc?.xPath("//article//h3//a")
     //let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
-    let testNode = testDoc?.xPath("//*[@id=\'post-list-component\']/ul/li/div[2]/div[1]/div[1]/h2/a")
+    let testNode = testDoc?.xPath("//*[@id='main']/div[2]/div/article[2]/h1/a")
     for t in testNode! {
       print("\(t.content)")
     }

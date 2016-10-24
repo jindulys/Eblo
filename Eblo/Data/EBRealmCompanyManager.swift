@@ -76,7 +76,12 @@ class EBRealmCompanyManager {
         for company in allCompanies {
           if let titlePath = company.xPathArticleTitle,
             let urlPath = company.xPathArticleURL {
-            let updateOperation = EBCompanyArticleFetchOperation(companyName: company.companyName, companyBlogURL: company.blogURL, xPathArticleTitle: titlePath, xPathArticleURL: urlPath)
+            let updateOperation =
+                EBCompanyArticleFetchOperation(companyName: company.companyName,
+                                               companyBlogURL: company.blogURL,
+                                               xPathArticleTitle: titlePath,
+                                               xPathArticleURL: urlPath,
+                                               needBlogBaseURL: company.articleURLNeedBlogURL)
             self.companyUpdateOperationQueue.addOperation(updateOperation)
           }
         }
@@ -162,6 +167,10 @@ class EBRealmCompanyManager {
                     createdCompany.blogTitle = name
                     createdCompany.xPathArticleTitle = aCompany["xPathArticleTitle"] as? String
                     createdCompany.xPathArticleURL = aCompany["xPathArticleURL"] as? String
+                    if let needBaseURL = aCompany["needBaseBlogURL"] as? String,
+                      needBaseURL == "1" {
+                      createdCompany.articleURLNeedBlogURL = true
+                    }
                     realm.add(createdCompany, update: true)
                   }
                 }

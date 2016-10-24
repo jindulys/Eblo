@@ -4,13 +4,15 @@
                  "name" : "Facebook",
                  "blogURL" : "https://code.facebook.com/",
                  "xPathArticleTitle" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/h2",
-                 "xPathArticleURL" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/@href"
+                 "xPathArticleURL" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/@href",
+                 "needBaseBlogURL" : "1"
                  },
                  {
                  "name" : "Yelp",
                  "blogURL" : "https://engineeringblog.yelp.com/",
                  "xPathArticleTitle" : "//article//h3//a",
-                 "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href"
+                 "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
+                 "needBaseBlogURL" : "1"
                  },
                  {
                  "name" : "500px",
@@ -28,7 +30,8 @@
                  "name" : "Artsy",
                  "blogURL" : "https://artsy.github.io/",
                  "xPathArticleTitle" : "//*[@id='content']/div/article/div/div[1]/header/a/h2",
-                 "xPathArticleURL" : "//*[@id='content']/div/article/div/div[1]/header/a/@href"
+                 "xPathArticleURL" : "//*[@id='content']/div/article/div/div[1]/header/a/@href",
+                 "needBaseBlogURL" : "1"
                  },
                  {
                  "name" : "Badoo",
@@ -41,8 +44,6 @@
                  {
                  "name" : "Box",
                  "blogURL" : "https://www.box.com/blog/engineering/",
-                 "xPathArticleTitle" : "/html//div[@class='entry']//div[@class='title']/a",
-                 "xPathArticleURL" : "/html//div[@class='entry']//div[@class='title']/a/@href"
                  },
                  {
                  "name" : "Buzzfeed",
@@ -68,7 +69,7 @@
                  "name" : "Dropbox",
                  "blogURL" : "https://blogs.dropbox.com/tech/",
                  "xPathArticleTitle" : "/html//article//h1[@class='entry-title']/a",
-                 "xPathArticleURL" : "/html//article//h1[@class='entry-title']/a/@href"
+                 "xPathArticleURL" : "/html//article//h1[@class='entry-title']/a/@href",
                  },
                  {
                  "name" : "Ebay",
@@ -116,7 +117,9 @@
                  },
                  {
                  "name" : "Gilt",
-                 "blogURL" : "http://tech.gilt.com"
+                 "blogURL" : "http://tech.gilt.com",
+                 "xPathArticleTitle" : "//*[@id='main']/div[2]/div/article/h1/a",
+                 "xPathArticleURL" : "//*[@id='main']/div[2]/div/article/h1/a/@href",
                  },
                  {
                  "name" : "Github",
@@ -174,7 +177,8 @@
                  "name" : "LinkedIn",
                  "blogURL" : "https://engineering.linkedin.com/blog",
                  "xPathArticleTitle" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a",
-                 "xPathArticleURL" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a/@href"
+                 "xPathArticleURL" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
                  
 	]
