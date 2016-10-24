@@ -2,9 +2,9 @@
 	"companies" : [
                  {
                  "name" : "Facebook",
-                 "blogURL" : "https://code.facebook.com/posts/",
-                 "xPathArticleTitle" : "//*[@id='facebook']/body/div[4]/div/div[2]/div/a/h2",
-                 "xPathArticleURL" : "//*[@id='facebook']/body/div[4]/div/div[2]/div/a/@href"
+                 "blogURL" : "https://code.facebook.com/",
+                 "xPathArticleTitle" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/h2",
+                 "xPathArticleURL" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/@href"
                  },
                  {
                  "name" : "Yelp",

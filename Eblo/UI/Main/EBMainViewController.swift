@@ -43,7 +43,7 @@ class EBMainViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-    self.testJi()
+//    self.testJi()
 //    let testBlog = EBBlog()
 //    testBlog.blogTitle = "Yelp Test"
 //    testBlog.blogURL = "Yelp URL"
