@@ -209,7 +209,7 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
               description: company.blogs.first?.blogTitle,
               image: nil,
               action: rowAction,
-              cellType: ItemCell.self,
+              cellType: CompanyCell.self,
               cellIdentifier: "company",
               UUID: company.UUID)
         result.append(currentRow)
