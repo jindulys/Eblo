@@ -20,6 +20,7 @@
 		0E5FC5761DB28EB0003DF396 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E5FE1761DBBA51100FC2906 /* EBRealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */; };
 		0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */; };
+		0E65CC791DBDCF2300C47E1B /* companiesBackup.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E65CC781DBDCF2300C47E1B /* companiesBackup.json */; };
 		0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */; };
 		0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */; };
 		0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */; };
@@ -85,6 +86,7 @@
 		0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBRealmBlogManager.swift; sourceTree = "<group>"; };
 		0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
+		0E65CC781DBDCF2300C47E1B /* companiesBackup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = companiesBackup.json; sourceTree = "<group>"; };
 		0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Eblo.xcconfig; sourceTree = "<group>"; };
 		0E69FFBF1D689D5600D6C2E9 /* Eblo-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Debug.xcconfig"; sourceTree = "<group>"; };
 		0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Release.xcconfig"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		0E7A60CD1DB3E8D4003EB738 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				0E65CC781DBDCF2300C47E1B /* companiesBackup.json */,
 				0E7A60D01DB3EA2A003EB738 /* companies.json */,
 			);
 			path = SupportingFiles;
@@ -468,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E95740E1D4CDDCA00703C3A /* LaunchScreen.storyboard in Resources */,
+				0E65CC791DBDCF2300C47E1B /* companiesBackup.json in Resources */,
 				0E7A60D11DB3EA2A003EB738 /* companies.json in Resources */,
 				0E95740B1D4CDDCA00703C3A /* Assets.xcassets in Resources */,
 			);

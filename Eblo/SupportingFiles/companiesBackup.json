@@ -1,0 +1,195 @@
+{
+	"companies" : [
+                 {
+                 "name" : "Facebook",
+                 "blogURL" : "https://code.facebook.com/",
+                 "xPathArticleTitle" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/h2",
+                 "xPathArticleURL" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Yelp",
+                 "blogURL" : "https://engineeringblog.yelp.com/",
+                 "xPathArticleTitle" : "//article//h3//a",
+                 "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "500px",
+                 "blogURL" : "https://developers.500px.com/"
+                 },
+                 {
+                 "name" : "AdRoll",
+                 "blogURL" : "http://tech.adroll.com/blog/"
+                 },
+                 {
+                 "name" : "AirBnb",
+                 "blogURL" : "http://nerds.airbnb.com/"
+                 },
+                 {
+                 "name" : "Artsy",
+                 "blogURL" : "https://artsy.github.io/",
+                 "xPathArticleTitle" : "//*[@id='content']/div/article/div/div[1]/header/a/h2",
+                 "xPathArticleURL" : "//*[@id='content']/div/article/div/div[1]/header/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Badoo",
+                 "blogURL" : "https://techblog.badoo.com/"
+                 },
+                 {
+                 "name" : "BlackRock",
+                 "blogURL" : "http://rockthecode.io/"
+                 },
+                 {
+                 "name" : "Box",
+                 "blogURL" : "https://www.box.com/blog/engineering/",
+                 },
+                 {
+                 "name" : "Buzzfeed",
+                 "blogURL" : "https://www.buzzfeed.com/techblog"
+                 },
+                 {
+                 "name" : "Chef",
+                 "blogURL" : "https://www.chef.io/blog/"
+                 },
+                 {
+                 "name" : "ClusterHQ",
+                 "blogURL" : "https://clusterhq.com/blog/"
+                 },
+                 {
+                 "name" : "Codeship",
+                 "blogURL" : "http://blog.codeship.com/"
+                 },
+                 {
+                 "name" : "DataRank",
+                 "blogURL" : "http://engineering.datarank.com/"
+                 },
+                 {
+                 "name" : "Dropbox",
+                 "blogURL" : "https://blogs.dropbox.com/tech/",
+                 "xPathArticleTitle" : "/html//article//h1[@class='entry-title']/a",
+                 "xPathArticleURL" : "/html//article//h1[@class='entry-title']/a/@href",
+                 },
+                 {
+                 "name" : "Ebay",
+                 "blogURL" : "http://www.ebaytechblog.com/"
+                 },
+                 {
+                 "name" : "Etsy",
+                 "blogURL" : "https://codeascraft.com/"
+                 },
+                 {
+                 "name" : "Evernote",
+                 "blogURL" : "https://blog.evernote.com/tech/"
+                 },
+                 {
+                 "name" : "Finn.no",
+                 "blogURL" : "http://tech.finn.no/"
+                 },
+                 {
+                 "name" : "Flipboard",
+                 "blogURL" : "http://engineering.flipboard.com/"
+                 },
+                 {
+                 "name" : "Foursquare",
+                 "blogURL" : "http://engineering.foursquare.com/"
+                 },
+                 {
+                 "name" : "Foursquare",
+                 "blogURL" : "http://engineering.foursquare.com/"
+                 },
+                 {
+                 "name" : "Funding Circle",
+                 "blogURL" : "https://engineering.fundingcircle.com/"
+                 },
+                 {
+                 "name" : "Future Processing",
+                 "blogURL" : "https://www.future-processing.pl/technical-blog/"
+                 },
+                 {
+                 "name" : "Galois",
+                 "blogURL" : "https://galois.com/blog/"
+                 },
+                 {
+                 "name" : "GameChanger",
+                 "blogURL" : "http://tech.gc.com/"
+                 },
+                 {
+                 "name" : "Gilt",
+                 "blogURL" : "http://tech.gilt.com",
+                 "xPathArticleTitle" : "//*[@id='main']/div[2]/div/article/h1/a",
+                 "xPathArticleURL" : "//*[@id='main']/div[2]/div/article/h1/a/@href",
+                 },
+                 {
+                 "name" : "Github",
+                 "blogURL" : "http://githubengineering.com/"
+                 },
+                 {
+                 "name" : "Good Eggs",
+                 "blogURL" : "http://bites.goodeggs.com/"
+                 },
+                 {
+                 "name" : "Grouper",
+                 "blogURL" : "http://eng.joingrouper.com/"
+                 },
+                 {
+                 "name" : "Groupon",
+                 "blogURL" : "https://engineering.groupon.com/"
+                 },
+                 {
+                 "name" : "Gusto",
+                 "blogURL" : "http://engineering.gusto.com/"
+                 },
+                 {
+                 "name" : "HackerEarth",
+                 "blogURL" : "http://engineering.hackerearth.com/"
+                 },
+                 {
+                 "name" : "Harry's",
+                 "blogURL" : "http://engineering.harrys.com/"
+                 },
+                 {
+                 "name" : "Housing.com",
+                 "blogURL" : "https://medium.com/engineering-housing"
+                 },
+                 {
+                 "name" : "IMVU",
+                 "blogURL" : "http://engineering.imvu.com/"
+                 },
+                 {
+                 "name" : "Indeed",
+                 "blogURL" : "http://engineering.indeedblog.com/blog/"
+                 },
+                 {
+                 "name" : "Instagram",
+                 "blogURL" : "https://engineering.instagram.com/",
+                 "xPathArticleTitle" : "/html//div[@class='postArticle postArticle--short is-withAccentColors']//h3",
+                 "xPathArticleURL" : "/html//div[@class='postArticle postArticle--short is-withAccentColors']//div[@class='postArticle-readMore']/a/@href",
+                 },
+                 {
+                 "name" : "Just Eat",
+                 "blogURL" : "https://tech.just-eat.com/",
+                 "xPathArticleTitle" : "/html//div[@class='desc  no-post-thumbnail']//a//h3",
+                 "xPathArticleURL" : "/html//div[@class='desc  no-post-thumbnail']/a/@href"
+                 },
+                 {
+                 "name" : "Kogan.com",
+                 "blogURL" : "http://devblog.kogan.com/"
+                 },
+                 {
+                 "name" : "LinkedIn",
+                 "blogURL" : "https://engineering.linkedin.com/blog",
+                 "xPathArticleTitle" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a",
+                 "xPathArticleURL" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Uber",
+                 "blogURL" : "http://eng.uber.com/",
+                 "xPathArticleTitle" : "/html//div[@class='post-content']//a",
+                 "xPathArticleURL" : "/html//div[@class='post-content']//a/@href"
+                 }
+                 
+	]
+}
