@@ -129,10 +129,10 @@ class EBRealmCompanyManager {
           !currentBlogsTitles.contains($0.blogTitle)
         }
         try realm.write {
-          newBlogs.forEach {
+          newBlogs.reversed().forEach {
             $0.blogID = EBRealmBlogManager.nextBlogID()
             realm.add($0, update: true)
-            updateCompany.blogs.append($0)
+            updateCompany.blogs.insert($0, at: 0)
           }
         }
         completion()
