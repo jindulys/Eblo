@@ -102,6 +102,12 @@
                  "blogURL" : "http://developers.linecorp.com/blog",
                  "xPathArticleTitle" : "/html//div[@class='post-header']/h2/a",
                  "xPathArticleURL" : "/html//div[@class='post-header']/h2/a/@href"
+                 },
+                 {
+                 "name" : "NETFLIX",
+                 "blogURL" : "http://techblog.netflix.com/",
+                 "xPathArticleTitle" : "/html//h3[@class='post-title entry-title']/a",
+                 "xPathArticleURL" : "/html//h3[@class='post-title entry-title']/a/@href"
                  }
                  
 	]
