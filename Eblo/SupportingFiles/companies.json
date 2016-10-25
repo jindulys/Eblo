@@ -70,6 +70,38 @@
                  "xPathArticleTitle" : "/html//article[not (@class='link')]/header/h1/a",
                  "xPathArticleURL" : "/html//article[not (@class='link')]/header/h1/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Huddle",
+                 "blogURL" : "http://tldr.huddle.com",
+                 "xPathArticleTitle" : "/html/body/div[2]/div/div[1]/div/div/h1/a",
+                 "xPathArticleURL" : "/html/body/div[2]/div/div[1]/div/div/h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Jane Street",
+                 "blogURL" : "https://blogs.janestreet.com/category/ocaml",
+                 "xPathArticleTitle" : "//*[@id='blog']/div[2]/div/div[1]/div/div[1]/a/h3",
+                 "xPathArticleURL" : "//*[@id='blog']/div[2]/div/div[1]/div/div[1]/a/@href"
+                 },
+                 {
+                 "name" : "Medallia",
+                 "blogURL" : "http://engineering.medallia.com/blog",
+                 "xPathArticleTitle" : "/html//article/header//h2/a",
+                 "xPathArticleURL" : "/html//article/header//h2/a/@href"
+                 },
+                 {
+                 "name" : "Made Tech",
+                 "blogURL" : "https://www.madetech.com/blog",
+                 "xPathArticleTitle" : "/html//article/h3/a",
+                 "xPathArticleURL" : "/html//article/h3/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "LINE",
+                 "blogURL" : "http://developers.linecorp.com/blog",
+                 "xPathArticleTitle" : "/html//div[@class='post-header']/h2/a",
+                 "xPathArticleURL" : "/html//div[@class='post-header']/h2/a/@href"
                  }
                  
 	]
