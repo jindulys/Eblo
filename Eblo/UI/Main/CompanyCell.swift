@@ -115,6 +115,8 @@ public class CompanyCell: UITableViewCell {
   }
 
   func animateNewArticle(_ article: String) {
+    // TODO(simonli): after test, I found that tableview cell will not update view hierarchy layout
+    // might need a way to delegate up to table view manager to trigger a specific update for this cell.
     UIView.transition(with: self,
                       duration: 0.3,
                       options: .transitionCrossDissolve,

@@ -23,6 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     GCDQueue.main.after(when: 3) {
       EBRealmCompanyManager.sharedInstance.updateCompanyArticles()
     }
+    
+    // Fake test for article update.
+//    GCDQueue.main.after(when: 15) {
+//      let testBlog = EBBlog()
+//      testBlog.blogTitle = "lololol,hahdhahahdkfjasjdfioajsdfkl"
+//      testBlog.blogURL = "test"
+//      EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID:"Yelphttps://engineeringblog.yelp.com/",blogInfos:[testBlog])
+//    }
     return true
   }
 
