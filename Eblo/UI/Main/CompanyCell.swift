@@ -29,9 +29,6 @@ public class CompanyCell: UITableViewCell {
   /// The company context for this cell.
   private var companyContext = 0
 
-  /// The constraint for new badge left.
-  var newBadgeLeftConstraint: NSLayoutConstraint? = nil
-
   public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     titleLabel = UILabel()
     bodyLabel = UILabel()
@@ -55,6 +52,7 @@ public class CompanyCell: UITableViewCell {
 
     newBadgeView.text = "新"
     newBadgeView.textColor = UIColor.black
+    newBadgeView.alpha = 0.0
     self.contentView.addAutoLayoutSubView(newBadgeView)
   }
 
@@ -69,8 +67,7 @@ public class CompanyCell: UITableViewCell {
     newBadgeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
     newBadgeView.widthAnchor.constraint(equalToConstant: 36).isActive = true
     newBadgeView.heightAnchor.constraint(equalToConstant: self.badgeSize).isActive = true
-    self.newBadgeLeftConstraint = newBadgeView.leftAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: 0)
-    self.newBadgeLeftConstraint?.isActive = true
+    newBadgeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12).isActive = true
   }
 
   // MARK: -
@@ -100,9 +97,8 @@ public class CompanyCell: UITableViewCell {
   }
 
   func animateNewBadge(on: Bool) {
-    self.newBadgeLeftConstraint?.constant = on ? -30 : 0
-    UIView.animate(withDuration: 0.6) {
-      self.layoutIfNeeded()
+    UIView.animate(withDuration: 0.3) {
+      self.newBadgeView.alpha = on ? 1.0 : 0.0
     }
   }
 }
@@ -113,8 +109,7 @@ extension CompanyCell: StaticCellType {
     self.bodyLabel.text = row.description
     if let company = row.customData as? EBCompany {
       self.configureCompany(company)
-      //self.newBadgeView.backgroundColor = company.hasNewArticlesToRead ? UIColor.red : UIColor.black
-      self.newBadgeLeftConstraint?.constant = company.hasNewArticlesToRead ? -30 : 0
+      self.newBadgeView.alpha = company.hasNewArticlesToRead ? 1.0 : 0.0
     }
   }
 }
