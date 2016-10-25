@@ -39,7 +39,7 @@ class EBMainViewController: UIViewController {
     EBRealmCompanyManager.sharedInstance.subscriber = tableManager
 
     // TODO(simonli): might need to remove this one.
-    EBRealmCompanyManager.sharedInstance.writeWithLocalFile()
+    EBRealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile()
   }
   
   override func viewWillAppear(_ animated: Bool) {

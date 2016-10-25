@@ -169,6 +169,20 @@ class EBRealmCompanyManager {
     }
   }
 
+  /// Detect whether or not a company existing.
+  func existingCompany(UUID: String) -> Bool {
+    do {
+      let realm = try Realm()
+      guard let _ = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+        return false
+      }
+      return true
+    } catch {
+      // TODO(simonli): fix error case
+      return false
+    }
+  }
+
   // MARK: - Helper
   func writeWithLocalFile() {
     let userDefault = UserDefaults.standard
@@ -207,6 +221,46 @@ class EBRealmCompanyManager {
         }
       }
       userDefault.set(true, forKey: localJSONGotIn)
+    }
+  }
+
+  func repeatedWriteWithLocalFile() {
+    if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
+      do {
+        let data = try NSData(contentsOfFile: path ,options: .dataReadingMapped)
+        let jsonResult = try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as? NSDictionary
+        if let companies = jsonResult?["companies"] as? NSArray {
+          realmQueue.async {
+            let realm = try! Realm()
+            try! realm.write {
+              for company in companies {
+                if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String, let url = aCompany["blogURL"] as? String {
+                  if self.existingCompany(UUID: name + url) {
+                    print("Existing")
+                    continue
+                  }
+                  let createdCompany = EBCompany()
+                  createdCompany.companyName = name
+                  createdCompany.blogURL = url
+                  createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
+                  createdCompany.blogTitle = name
+                  createdCompany.xPathArticleTitle = aCompany["xPathArticleTitle"] as? String
+                  createdCompany.xPathArticleURL = aCompany["xPathArticleURL"] as? String
+                  if let needBaseURL = aCompany["needBaseBlogURL"] as? String,
+                    needBaseURL == "1" {
+                    createdCompany.articleURLNeedBlogURL = true
+                  }
+                  realm.add(createdCompany, update: true)
+                }
+              }
+            }
+            self.notifySubscriber()
+          }
+        }
+      } catch {
+        // TODO(simonli:) handle local file error.
+        print("Error happened")
+      }
     }
   }
 
