@@ -29,6 +29,9 @@ public class CompanyCell: UITableViewCell {
   /// The company context for this cell.
   private var companyContext = 0
 
+  /// The company article context.
+  private var companyArticleContext = 0
+
   public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     titleLabel = UILabel()
     bodyLabel = UILabel()
@@ -75,14 +78,18 @@ public class CompanyCell: UITableViewCell {
     if let oldCompany = self.company {
       if oldCompany.UUID != company.UUID {
         oldCompany.removeObserver(self, forKeyPath: "hasNewArticlesToRead")
-        self.company = company
-        company.addObserver(self, forKeyPath: "hasNewArticlesToRead", options: .new, context: &self.companyContext)
+        self.addObserverWithCompany(company)
       }
     } else {
       // New one, we could directly add observer.
-      self.company = company
-      company.addObserver(self, forKeyPath: "hasNewArticlesToRead", options: .new, context: &self.companyContext)
+      self.addObserverWithCompany(company)
     }
+  }
+  
+  func addObserverWithCompany(_ company: EBCompany) {
+    self.company = company
+    company.addObserver(self, forKeyPath: "hasNewArticlesToRead", options: .new, context: &self.companyContext)
+    company.addObserver(self, forKeyPath: "latestArticleTitle", options: .new, context: &self.companyArticleContext)
   }
 
   public override func observeValue(forKeyPath keyPath: String?,
@@ -94,12 +101,27 @@ public class CompanyCell: UITableViewCell {
         animateNewBadge(on: newValue)
       }
     }
+    if context == &self.companyArticleContext {
+      if let newValue = change?[NSKeyValueChangeKey.newKey] as? String {
+        animateNewArticle(newValue)
+      }
+    }
   }
 
   func animateNewBadge(on: Bool) {
     UIView.animate(withDuration: 0.3) {
       self.newBadgeView.alpha = on ? 1.0 : 0.0
     }
+  }
+
+  func animateNewArticle(_ article: String) {
+    UIView.transition(with: self,
+                      duration: 0.3,
+                      options: .transitionCrossDissolve,
+                      animations: {
+                        self.bodyLabel.text = article
+                      },
+                      completion: nil)
   }
 }
 

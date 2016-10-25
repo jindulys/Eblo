@@ -131,12 +131,14 @@ class EBRealmCompanyManager {
           return
         }
         try realm.write {
+          let latestArticleTitle = newBlogs.first?.blogTitle
           newBlogs.reversed().forEach {
             $0.blogID = EBRealmBlogManager.nextBlogID()
             realm.add($0, update: true)
             updateCompany.blogs.insert($0, at: 0)
           }
           updateCompany.hasNewArticlesToRead = true
+          updateCompany.latestArticleTitle = latestArticleTitle!
           realm.add(updateCompany, update: true)
         }
         completion()
@@ -237,7 +239,7 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
         }
         let currentRow =
           Row(title: company.companyName,
-              description: company.blogs.first?.blogTitle,
+              description: company.latestArticleTitle,
               image: nil,
               action: rowAction,
               cellType: CompanyCell.self,
