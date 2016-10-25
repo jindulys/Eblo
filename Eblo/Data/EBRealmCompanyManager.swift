@@ -34,7 +34,6 @@ class EBRealmCompanyManager {
   // MARK: - Queries
   func allCompanies() -> Results<EBCompany>? {
     let realm = try! Realm()
-    realm.refresh()
     return realm.objects(EBCompany.self)
   }
 
@@ -123,10 +122,13 @@ class EBRealmCompanyManager {
         guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
           return
         }
-        // TODO(simonli): update the company's information with blogInfos.
         let currentBlogsTitles = updateCompany.blogs.map { $0.blogTitle }
         let newBlogs: [EBBlog] = blogInfos.filter {
           !currentBlogsTitles.contains($0.blogTitle)
+        }
+        // No update.
+        if newBlogs.count == 0 {
+          return
         }
         try realm.write {
           newBlogs.reversed().forEach {
@@ -134,10 +136,29 @@ class EBRealmCompanyManager {
             realm.add($0, update: true)
             updateCompany.blogs.insert($0, at: 0)
           }
+          updateCompany.hasNewArticlesToRead = true
+          realm.add(updateCompany, update: true)
         }
         completion()
-        if newBlogs.count > 0 {
-          self.notifySubscriber()
+        self.notifySubscriber()
+      } catch {
+        // TODO(simonli): fix error case
+        print("Realm Write Error!")
+      }
+    }
+  }
+
+  /// Clear a company's has new articles flag.
+  func clearNewArticlesFlagWith(UUID: String) {
+    realmQueue.async {
+      do {
+        let realm = try Realm()
+        guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+          return
+        }
+        try realm.write {
+          updateCompany.hasNewArticlesToRead = false
+          realm.add(updateCompany, update: true)
         }
       } catch {
         // TODO(simonli): fix error case
@@ -208,6 +229,7 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
     if let companies = self.allCompanies() {
       for company in companies {
         let rowAction = {
+          self.clearNewArticlesFlagWith(UUID: company.UUID)
           let openURL = company.blogs.first?.blogURL ?? company.blogURL
           let svc = SFSafariViewController(url: NSURL(string: openURL)! as URL)
           svc.title = company.companyName
@@ -220,6 +242,7 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
               action: rowAction,
               cellType: CompanyCell.self,
               cellIdentifier: "company",
+              customData: company,
               UUID: company.UUID)
         result.append(currentRow)
       }
