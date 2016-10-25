@@ -109,14 +109,12 @@ public class CompanyCell: UITableViewCell {
 
 extension CompanyCell: StaticCellType {
   public func configure(row: Row) {
-    UIView.transition(with: self, duration: 0.3, options: .transitionCrossDissolve, animations: {
-      self.titleLabel.text = row.title
-      self.bodyLabel.text = row.description
-      if let company = row.customData as? EBCompany {
-        self.configureCompany(company)
-        //self.newBadgeView.backgroundColor = company.hasNewArticlesToRead ? UIColor.red : UIColor.black
-        self.newBadgeLeftConstraint?.constant = company.hasNewArticlesToRead ? -30 : 0
-      }
-      })
+    self.titleLabel.text = row.title
+    self.bodyLabel.text = row.description
+    if let company = row.customData as? EBCompany {
+      self.configureCompany(company)
+      //self.newBadgeView.backgroundColor = company.hasNewArticlesToRead ? UIColor.red : UIColor.black
+      self.newBadgeLeftConstraint?.constant = company.hasNewArticlesToRead ? -30 : 0
+    }
   }
 }
