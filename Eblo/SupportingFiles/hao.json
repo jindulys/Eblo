@@ -31,6 +31,12 @@
                  "blogURL" : "http://nordicapis.com/blog/",
                  "xPathArticleTitle" : "/html//article/header/h1/a",
                  "xPathArticleURL" : "/html//article/header/h1/a/@href"
+                 },
+                 {
+                 "name" : "NPR Apps",
+                 "blogURL" : "http://blog.apps.npr.org/",
+                 "xPathArticleTitle" : "/html//article/h3/a",
+                 "xPathArticleURL" : "/html//article/h3/a/@href"
                  }
              ]
 }
