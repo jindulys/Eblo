@@ -1,0 +1,18 @@
+{
+	"companies" : [
+                 {
+                 "name" : "Facebook",
+                 "blogURL" : "https://code.facebook.com/",
+                 "xPathArticleTitle" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/h2",
+                 "xPathArticleURL" : "//*[@id='facebook']/body/div[4]/div/div[1]/div/div/div/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Yelp",
+                 "blogURL" : "https://engineeringblog.yelp.com/",
+                 "xPathArticleTitle" : "//article//h3//a",
+                 "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
+                 "needBaseBlogURL" : "1"
+                 }      
+	]
+}
