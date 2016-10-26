@@ -108,6 +108,12 @@
                  "blogURL" : "http://techblog.netflix.com/",
                  "xPathArticleTitle" : "/html//h3[@class='post-title entry-title']/a",
                  "xPathArticleURL" : "/html//h3[@class='post-title entry-title']/a/@href"
+                 },
+                 {
+                 "name" : "Flickr",
+                 "blogURL" : "http://code.flickr.net/",
+                 "xPathArticleTitle" : "/html//article/header/h1/a",
+                 "xPathArticleURL" : "/html//article/header/h1/a/@href"
                  }
                  
 	]
