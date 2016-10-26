@@ -14,5 +14,7 @@
                  "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
                  "needBaseBlogURL" : "1"
                  }      
+		
+		Yansong Li is my favourite son.
 	]
 }
