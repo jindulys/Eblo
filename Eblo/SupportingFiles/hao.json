@@ -23,8 +23,14 @@
                  {
                  "name" : "Netflix",
                  "blogURL" : "http://techblog.netflix.com/",
-                 "xPathArticleTitle" : "/html//article/body//h3/a",
-                 "xPathArticleURL" : "/html//article/body//h3/a/@href"
+                 "xPathArticleTitle" : "/html/body//h3/a",
+                 "xPathArticleURL" : "/html/body//h3/a/@href"
+                 },
+                 {
+                 "name" : "Nordic APIs",
+                 "blogURL" : "http://nordicapis.com/blog/",
+                 "xPathArticleTitle" : "/html//article/header/h1/a",
+                 "xPathArticleURL" : "/html//article/header/h1/a/@href"
                  }
              ]
 }
