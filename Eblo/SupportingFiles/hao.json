@@ -13,14 +13,6 @@
                  "xPathArticleTitle" : "//article//h3//a",
                  "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
                  "needBaseBlogURL" : "1"
-                 },
-				 {
-				 "name" : "Yelp",
-                 "blogURL" : "https://engineeringblog.yelp.com/",
-                 "xPathArticleTitle" : "//article//h3//a",
-                 "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
-                 "needBaseBlogURL" : "1"
-                 }  
-				 
+                 }      
 	]
 }
