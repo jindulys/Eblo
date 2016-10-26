@@ -29,6 +29,8 @@ public struct Row {
   public let cellType: StaticCellType.Type
   /// The identifier to for cell type.
   public let cellIdentifier: String
+  /// The customData for this row.
+  public let customData: Any?
   
   public init(title: String,
        description: String? = nil,
@@ -36,6 +38,7 @@ public struct Row {
        action: RowAction? = nil,
        cellType: StaticCellType.Type = Value1Cell.self,
        cellIdentifier: String = "cell",
+       customData: Any? = nil,
        UUID: String = NSUUID().uuidString) {
     self.UUID = UUID
     self.title = title
@@ -44,6 +47,7 @@ public struct Row {
     self.action = action
     self.cellType = cellType
     self.cellIdentifier = cellIdentifier
+    self.customData = customData
   }
 }
 

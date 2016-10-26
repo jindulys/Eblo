@@ -34,7 +34,6 @@ class EBRealmCompanyManager {
   // MARK: - Queries
   func allCompanies() -> Results<EBCompany>? {
     let realm = try! Realm()
-    realm.refresh()
     return realm.objects(EBCompany.self)
   }
 
@@ -76,7 +75,12 @@ class EBRealmCompanyManager {
         for company in allCompanies {
           if let titlePath = company.xPathArticleTitle,
             let urlPath = company.xPathArticleURL {
-            let updateOperation = EBCompanyArticleFetchOperation(companyName: company.companyName, companyBlogURL: company.blogURL, xPathArticleTitle: titlePath, xPathArticleURL: urlPath)
+            let updateOperation =
+                EBCompanyArticleFetchOperation(companyName: company.companyName,
+                                               companyBlogURL: company.blogURL,
+                                               xPathArticleTitle: titlePath,
+                                               xPathArticleURL: urlPath,
+                                               needBlogBaseURL: company.articleURLNeedBlogURL)
             self.companyUpdateOperationQueue.addOperation(updateOperation)
           }
         }
@@ -118,21 +122,45 @@ class EBRealmCompanyManager {
         guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
           return
         }
-        // TODO(simonli): update the company's information with blogInfos.
         let currentBlogsTitles = updateCompany.blogs.map { $0.blogTitle }
         let newBlogs: [EBBlog] = blogInfos.filter {
           !currentBlogsTitles.contains($0.blogTitle)
         }
+        // No update.
+        if newBlogs.count == 0 {
+          return
+        }
         try realm.write {
-          newBlogs.forEach {
+          let latestArticleTitle = newBlogs.first?.blogTitle
+          newBlogs.reversed().forEach {
             $0.blogID = EBRealmBlogManager.nextBlogID()
             realm.add($0, update: true)
-            updateCompany.blogs.append($0)
+            updateCompany.blogs.insert($0, at: 0)
           }
+          updateCompany.hasNewArticlesToRead = true
+          updateCompany.latestArticleTitle = latestArticleTitle!
+          realm.add(updateCompany, update: true)
         }
         completion()
-        if newBlogs.count > 0 {
-          self.notifySubscriber()
+        self.notifySubscriber()
+      } catch {
+        // TODO(simonli): fix error case
+        print("Realm Write Error!")
+      }
+    }
+  }
+
+  /// Clear a company's has new articles flag.
+  func clearNewArticlesFlagWith(UUID: String) {
+    realmQueue.async {
+      do {
+        let realm = try Realm()
+        guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+          return
+        }
+        try realm.write {
+          updateCompany.hasNewArticlesToRead = false
+          realm.add(updateCompany, update: true)
         }
       } catch {
         // TODO(simonli): fix error case
@@ -141,8 +169,18 @@ class EBRealmCompanyManager {
     }
   }
 
-  // MARK: - Update Data
-  func fetchArticleUpdates() {
+  /// Detect whether or not a company existing.
+  func existingCompany(UUID: String) -> Bool {
+    do {
+      let realm = try Realm()
+      guard let _ = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+        return false
+      }
+      return true
+    } catch {
+      // TODO(simonli): fix error case
+      return false
+    }
   }
 
   // MARK: - Helper
@@ -166,6 +204,10 @@ class EBRealmCompanyManager {
                     createdCompany.blogTitle = name
                     createdCompany.xPathArticleTitle = aCompany["xPathArticleTitle"] as? String
                     createdCompany.xPathArticleURL = aCompany["xPathArticleURL"] as? String
+                    if let needBaseURL = aCompany["needBaseBlogURL"] as? String,
+                      needBaseURL == "1" {
+                      createdCompany.articleURLNeedBlogURL = true
+                    }
                     realm.add(createdCompany, update: true)
                   }
                 }
@@ -179,6 +221,46 @@ class EBRealmCompanyManager {
         }
       }
       userDefault.set(true, forKey: localJSONGotIn)
+    }
+  }
+
+  func repeatedWriteWithLocalFile() {
+    if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
+      do {
+        let data = try NSData(contentsOfFile: path ,options: .dataReadingMapped)
+        let jsonResult = try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as? NSDictionary
+        if let companies = jsonResult?["companies"] as? NSArray {
+          realmQueue.async {
+            let realm = try! Realm()
+            try! realm.write {
+              for company in companies {
+                if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String, let url = aCompany["blogURL"] as? String {
+                  if self.existingCompany(UUID: name + url) {
+                    print("Existing")
+                    continue
+                  }
+                  let createdCompany = EBCompany()
+                  createdCompany.companyName = name
+                  createdCompany.blogURL = url
+                  createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
+                  createdCompany.blogTitle = name
+                  createdCompany.xPathArticleTitle = aCompany["xPathArticleTitle"] as? String
+                  createdCompany.xPathArticleURL = aCompany["xPathArticleURL"] as? String
+                  if let needBaseURL = aCompany["needBaseBlogURL"] as? String,
+                    needBaseURL == "1" {
+                    createdCompany.articleURLNeedBlogURL = true
+                  }
+                  realm.add(createdCompany, update: true)
+                }
+              }
+            }
+            self.notifySubscriber()
+          }
+        }
+      } catch {
+        // TODO(simonli:) handle local file error.
+        print("Error happened")
+      }
     }
   }
 
@@ -203,17 +285,20 @@ extension EBRealmCompanyManager: TableViewManagerDataSource {
     if let companies = self.allCompanies() {
       for company in companies {
         let rowAction = {
-          let svc = SFSafariViewController(url: NSURL(string: company.blogURL)! as URL)
+          self.clearNewArticlesFlagWith(UUID: company.UUID)
+          let openURL = company.blogs.first?.blogURL ?? company.blogURL
+          let svc = SFSafariViewController(url: NSURL(string: openURL)! as URL)
           svc.title = company.companyName
           AppManager.sharedInstance.presentToNavTop(controller: svc)
         }
         let currentRow =
           Row(title: company.companyName,
-              description: company.blogs.first?.blogTitle,
+              description: company.latestArticleTitle,
               image: nil,
               action: rowAction,
-              cellType: ItemCell.self,
+              cellType: CompanyCell.self,
               cellIdentifier: "company",
+              customData: company,
               UUID: company.UUID)
         result.append(currentRow)
       }

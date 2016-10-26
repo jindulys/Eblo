@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SiYuanKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     AppManager.sharedInstance.allowNavigation()
     AppManager.sharedInstance.goToMainWith(URI: nil)
     // TODO(simonli): move company update to correct place
-    EBRealmCompanyManager.sharedInstance.updateCompanyArticles()
+    GCDQueue.main.after(when: 3) {
+      EBRealmCompanyManager.sharedInstance.updateCompanyArticles()
+    }
+    
+    // Fake test for article update.
+//    GCDQueue.main.after(when: 15) {
+//      let testBlog = EBBlog()
+//      testBlog.blogTitle = "lololol,hahdhahahdkfjasjdfioajsdfkl"
+//      testBlog.blogURL = "test"
+//      EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID:"Yelphttps://engineeringblog.yelp.com/",blogInfos:[testBlog])
+//    }
     return true
   }
 

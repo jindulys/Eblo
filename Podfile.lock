@@ -4,21 +4,21 @@ PODS:
   - Ji/Ji (2.0.1):
     - Ji/Ji-libxml
   - Ji/Ji-libxml (2.0.1)
-  - SiYuanKit (1.2.11):
-    - SiYuanKit/DispatchQueue (= 1.2.11)
-    - SiYuanKit/Extension (= 1.2.11)
-    - SiYuanKit/StaticTableView (= 1.2.11)
-    - SiYuanKit/Then (= 1.2.11)
-    - SiYuanKit/Utilities (= 1.2.11)
-    - SiYuanKit/YSOperations (= 1.2.11)
-  - SiYuanKit/DispatchQueue (1.2.11)
-  - SiYuanKit/Extension (1.2.11)
-  - SiYuanKit/StaticTableView (1.2.11):
+  - SiYuanKit (1.2.16):
+    - SiYuanKit/DispatchQueue (= 1.2.16)
+    - SiYuanKit/Extension (= 1.2.16)
+    - SiYuanKit/StaticTableView (= 1.2.16)
+    - SiYuanKit/Then (= 1.2.16)
+    - SiYuanKit/Utilities (= 1.2.16)
+    - SiYuanKit/YSOperations (= 1.2.16)
+  - SiYuanKit/DispatchQueue (1.2.16)
+  - SiYuanKit/Extension (1.2.16)
+  - SiYuanKit/StaticTableView (1.2.16):
     - SiYuanKit/Extension
-  - SiYuanKit/Then (1.2.11)
-  - SiYuanKit/Utilities (1.2.11):
+  - SiYuanKit/Then (1.2.16)
+  - SiYuanKit/Utilities (1.2.16):
     - SiYuanKit/DispatchQueue
-  - SiYuanKit/YSOperations (1.2.11):
+  - SiYuanKit/YSOperations (1.2.16):
     - SiYuanKit/DispatchQueue
 
 DEPENDENCIES:
@@ -27,7 +27,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Ji: 6bb602a28dd08b804158f64990e6051ed5de0110
-  SiYuanKit: 92c8757e575881dbe3be046aebbd080e0649eaf8
+  SiYuanKit: bfb712efa5d644bac91ccc9e785e618d62059d06
 
 PODFILE CHECKSUM: f3618ffc91f1e648363f734802d60e8131162d51
 

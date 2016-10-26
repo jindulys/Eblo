@@ -31,19 +31,21 @@ class EBMainViewController: UIViewController {
     // 1. Set tableView property on for tableManager. so view controller could use its lower
     // level (tableManager) to manage the tableView's events.
     tableManager.tableView = self.tableView
+    // Set estimatedRowHeight if you want to get a variant height.
+    tableView.estimatedRowHeight = 40
     // 2. Set tableManager's dataSource to its lower level to get the data.
     tableManager.dataSource = EBRealmCompanyManager.sharedInstance
     // 3. Set dataSource's subscriber to its upper level to initiatively report data change.
     EBRealmCompanyManager.sharedInstance.subscriber = tableManager
 
     // TODO(simonli): might need to remove this one.
-    EBRealmCompanyManager.sharedInstance.writeWithLocalFile()
+    EBRealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-//    self.testJi()
+    self.testJi()
 //    let testBlog = EBBlog()
 //    testBlog.blogTitle = "Yelp Test"
 //    testBlog.blogURL = "Yelp URL"
@@ -60,11 +62,15 @@ class EBMainViewController: UIViewController {
   }
   
   func testJi() {
-    let testDoc = Ji(htmlURL: URL(string: "https://engineeringblog.yelp.com/")!)
+    let testDoc = Ji(htmlURL: URL(string: "http://engineering.medallia.com/blog")!)
     //let titleNode = testDoc?.xPath("//article//h3//a")
-    let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
-    for title in titleNode! {
-      print("\(title.content)")
+    //let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
+    let testNode = testDoc?.xPath("/html//article/header//h2/a")
+    for t in testNode! {
+      print("\(t.content)")
     }
+//    for title in titleNode! {
+//      print("\(title.content)")
+//    }
   }
 }

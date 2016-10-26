@@ -18,6 +18,8 @@ class EBCompany: Object {
   dynamic var xPathArticleTitle: String? = nil
   dynamic var xPathArticleURL: String? = nil
   dynamic var articleURLNeedBlogURL = false
+  dynamic var hasNewArticlesToRead = false
+  dynamic var latestArticleTitle: String? = nil
   let blogs = List<EBBlog>()
 
   override static func primaryKey() -> String? {

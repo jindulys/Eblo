@@ -16,15 +16,18 @@ class EBCompanyArticleFetchOperation: YSOperation {
   let companyName: String
   let companyBlogURL: String
   var xPathArticleURL: String
+  var needBlogBaseURL: Bool
 
   init(companyName: String,
        companyBlogURL: String,
        xPathArticleTitle: String,
-       xPathArticleURL: String) {
+       xPathArticleURL: String,
+       needBlogBaseURL: Bool = false) {
     self.companyName = companyName
     self.companyBlogURL = companyBlogURL
     self.xPathArticleURL = xPathArticleURL
     self.xPathArticleTitle = xPathArticleTitle
+    self.needBlogBaseURL = needBlogBaseURL
   }
 
   override func execute() {
@@ -50,10 +53,21 @@ class EBCompanyArticleFetchOperation: YSOperation {
     for i in 0..<freshTitles.count {
       let blog = EBBlog()
       blog.blogTitle = freshTitles[i]
-      blog.blogURL = self.companyBlogURL + freshURLs[i]
+      if self.needBlogBaseURL {
+        // TODO(simonli): find a more general way to do this.
+        if self.companyBlogURL.hasSuffix("/blog") && freshURLs[i].hasPrefix("/blog"),
+          let companyBlogRange = self.companyBlogURL.range(of: "/blog") {
+          var removedURL = self.companyBlogURL
+          removedURL.removeSubrange(companyBlogRange)
+          blog.blogURL = removedURL + freshURLs[i]
+        } else {
+          blog.blogURL = self.companyBlogURL + freshURLs[i]
+        }
+      } else {
+        blog.blogURL = freshURLs[i]
+      }
       freshBlogs.append(blog)
     }
-    print(freshBlogs.count)
     // TODO(simonli): update the object with the info we have
     EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID: companyName + companyBlogURL, blogInfos: freshBlogs) { 
       self.finish()
