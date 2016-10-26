@@ -13,6 +13,6 @@
                  "xPathArticleTitle" : "//article//h3//a",
                  "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
                  "needBaseBlogURL" : "1"
-                 },
+                 }
 	]
 }
