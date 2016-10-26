@@ -13,10 +13,6 @@
                  "xPathArticleTitle" : "//article//h3//a",
                  "xPathArticleURL" : "/html//article//div[@class='post-preview']//a/@href",
                  "needBaseBlogURL" : "1"
-<<<<<<< Updated upstream
-                 } 
-	]
-=======
                  },
                  {
                  "name" : "New York Times",
@@ -25,5 +21,4 @@
                  "xPathArticleURL" : "/html//article/header/h3/a/@href"
                  }
              ]
->>>>>>> Stashed changes
 }
