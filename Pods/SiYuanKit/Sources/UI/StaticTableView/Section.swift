@@ -11,7 +11,7 @@ import Foundation
 /// Section structure, represents a section in a tableView.
 public struct Section {
   /// rows for this section.
-  public let rows: [Row]
+  public var rows: [Row]
   
   /// Title for this section.
   public let title: String?

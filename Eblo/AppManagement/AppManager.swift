@@ -116,7 +116,7 @@ public final class AppManager: NSObject {
     // TODO(simonli): Following part might involve network request to get correct
     // instructions about next step. Stay tuned.
     // NOTE: for now I am using a fake wait then navigate to Main Screen.
-    GCDQueue.main.after(when: 1.2) {
+    GCDQueue.main.after(when: 0.2) {
       let newControllers: [UIViewController] = [mainController]
       self.waitForAnimationAndExecute(block: { 
         self.replaceRootWithControllers(newControllers, animated: false)

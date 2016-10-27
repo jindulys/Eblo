@@ -21,7 +21,7 @@ public enum TableViewData {
 }
 
 /// Manager to handle TableView related events.
-public class TableViewManager: NSObject {
+open class TableViewManager: NSObject {
   
   /// The Identifiers registered to the `tableView`.
   public var registeredCellIdentifiers: [String] = []
@@ -46,10 +46,17 @@ public class TableViewManager: NSObject {
   /// The data for this tableViewManager.
   public var data: TableViewData = .SingleSection([]) {
     didSet {
-      refreshTableView(oldData: oldValue)
+      dataValueUpdate(from: oldValue, to: data)
     }
   }
   
+  /// This method will be called every time the data of this tableViewManager changed.
+  /// SubClass could subclass this method to get the entry point to configure the data.
+  /// MUST CALL SUPER.
+  open func dataValueUpdate(from: TableViewData?, to: TableViewData?) {
+    refreshTableView(oldData: from)
+  }
+
   /// Require this table view manager to refresh its data.
   public func refreshData() {
     guard let dataSource = dataSource else {
@@ -99,6 +106,43 @@ extension TableViewManager {
     }
   }
 
+  /// Reload the staled rows once your data get stale and need refresh.
+  public func updateStaledRows() {
+    switch data {
+    case .SingleSection(var rows):
+      var staledRowIndexPaths: [IndexPath] = []
+      for i in 0..<rows.count {
+        if rows[i].getStale {
+          staledRowIndexPaths.append(IndexPath(row: i, section: 0))
+          rows[i].getStale = false
+        }
+      }
+      if staledRowIndexPaths.count == 0 {
+        break
+      }
+      tableView?.beginUpdates()
+      tableView?.reloadRows(at: staledRowIndexPaths, with: .automatic)
+      tableView?.endUpdates()
+    case .MultiSection(var sections):
+      var staledRowIndexPaths: [IndexPath] = []
+      for i in 0..<sections.count {
+        for j in 0..<sections[i].rows.count {
+          if sections[i].rows[j].getStale {
+            staledRowIndexPaths.append(IndexPath(row: j, section: i))
+            sections[i].rows[j].getStale = false
+          }
+        }
+      }
+      if staledRowIndexPaths.count == 0 {
+        break
+      }
+      tableView?.beginUpdates()
+      tableView?.reloadRows(at: staledRowIndexPaths, with: .automatic)
+      tableView?.endUpdates()
+      break
+    }
+  }
+
   private func refreshRegisteredCells() {
     var rows: [Row] = []
     switch data {
@@ -139,7 +183,7 @@ extension TableViewManager {
 
 extension TableViewManager: UITableViewDataSource {
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
       numberOfRowsInSection section: Int) -> Int {
     switch data {
     case .SingleSection(let r):
@@ -149,7 +193,7 @@ extension TableViewManager: UITableViewDataSource {
     }
   }
   
-  public func numberOfSections(in tableView: UITableView) -> Int {
+  open func numberOfSections(in tableView: UITableView) -> Int {
     switch data {
     case .SingleSection(_):
       return 1
@@ -158,7 +202,7 @@ extension TableViewManager: UITableViewDataSource {
     }
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let row = rowForIndexPath(indexPath) {
       let cell = tableView.dequeueReusableCell(withIdentifier: row.cellIdentifier,
@@ -171,7 +215,7 @@ extension TableViewManager: UITableViewDataSource {
     return UITableViewCell()
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
     titleForHeaderInSection section: Int) -> String? {
     switch data {
     case .SingleSection(_):
@@ -181,24 +225,24 @@ extension TableViewManager: UITableViewDataSource {
     }
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
    heightForHeaderInSection section: Int) -> CGFloat {
     return UITableViewAutomaticDimension
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
    heightForFooterInSection section: Int) -> CGFloat {
     return UITableViewAutomaticDimension
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
     titleForFooterInSection section: Int) -> String? {
     return nil
   }
 }
 
 extension TableViewManager: UITableViewDelegate {
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
            didSelectRowAt indexPath: IndexPath) {
     if let row = self.rowForIndexPath(indexPath) {
       row.action?()
