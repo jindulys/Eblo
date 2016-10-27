@@ -73,6 +73,11 @@ public class CompanyCell: UITableViewCell {
     newBadgeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12).isActive = true
   }
 
+  deinit {
+    self.company?.removeObserver(self, forKeyPath: "hasNewArticlesToRead")
+    self.company?.removeObserver(self, forKeyPath: "latestArticleTitle")
+  }
+
   // MARK: -
   func configureCompany(_ company : EBCompany) {
     if let oldCompany = self.company {

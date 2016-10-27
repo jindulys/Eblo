@@ -27,8 +27,8 @@ class EBMainViewController: UIViewController {
     self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
     // NOTE: uncomment following when want to test
-    self.navigationItem.rightBarButtonItem =
-      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(functionTest))
+//    self.navigationItem.rightBarButtonItem =
+//      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(functionTest))
     self.navigationItem.backBarButtonItem =
       UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
     // 1. Set tableView property on for tableManager. so view controller could use its lower
