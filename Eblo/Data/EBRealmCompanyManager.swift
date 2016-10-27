@@ -137,7 +137,8 @@ class EBRealmCompanyManager {
           realm.add(updateCompany, update: true)
         }
         completion()
-        self.notifySubscriber()
+        // We remove this for now, since we use KVO, the company tableView manager will update related cell(which get stale) correctly.
+        //self.notifySubscriber()
       } catch {
         // TODO(simonli): fix error case
         print("Realm Write Error!")
@@ -276,7 +277,7 @@ class EBRealmCompanyManager {
                 }
               }
             }
-            self.notifySubscriber()
+            //self.notifySubscriber()
           }
         }
       } catch {

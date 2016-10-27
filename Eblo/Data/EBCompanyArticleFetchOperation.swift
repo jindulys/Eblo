@@ -76,6 +76,13 @@ class EBCompanyArticleFetchOperation: YSOperation {
       }
       freshBlogs.append(blog)
     }
+    //Test Add new blog
+//    if self.companyName == "Facebook" {
+//      let testBlog = EBBlog()
+//      testBlog.blogTitle = "Right at here do you see me please see !!! "
+//      testBlog.blogURL = "http://www.google.com"
+//      freshBlogs.insert(testBlog, at: 0)
+//    }
 
     // TODO(simonli): update the object with the info we have
     EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID: companyName + companyBlogURL, blogInfos: freshBlogs) { 
