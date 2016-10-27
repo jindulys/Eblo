@@ -164,6 +164,26 @@ class EBRealmCompanyManager {
     }
   }
 
+  /// clear all companies' has new articles to read flag.
+  func clearAllNewArticlesFlag() {
+    realmQueue.async {
+      do {
+        let realm = try Realm()
+        let allCompanies = self.allCompanies()
+        if let companies = allCompanies {
+          try realm.write {
+            for company in companies {
+              company.hasNewArticlesToRead = false
+            }
+          }
+        }
+      } catch {
+        // TODO(simonli): fix error case
+        print("Realm Write Error!")
+      }
+    }
+  }
+
   // MARK: - Queries
   /// Return all companies in this data base.
   func allCompanies() -> Results<EBCompany>? {
