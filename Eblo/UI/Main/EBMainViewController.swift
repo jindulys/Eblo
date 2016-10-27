@@ -14,7 +14,7 @@ import Ji
 class EBMainViewController: UIViewController {
 	var tableView: UITableView = UITableView()
 	
-	let tableManager: TableViewManager = TableViewManager()
+	let tableManager: CompanyTableViewManager = CompanyTableViewManager()
 	
 	override func loadView() {
 		super.loadView()
