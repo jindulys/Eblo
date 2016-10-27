@@ -114,6 +114,12 @@
                  "blogURL" : "http://code.flickr.net/",
                  "xPathArticleTitle" : "/html//article/header/h1/a",
                  "xPathArticleURL" : "/html//article/header/h1/a/@href"
+                 },
+                 {
+                 "name" : "New York Times",
+                 "blogURL" : "http://open.blogs.nytimes.com/",
+                 "xPathArticleTitle" : "/html//article/header/h3/a",
+                 "xPathArticleURL" : "/html//article/header/h3/a/@href"
                  }
                  
 	]
