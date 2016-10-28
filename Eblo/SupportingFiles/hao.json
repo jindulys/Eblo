@@ -37,6 +37,12 @@
                  "blogURL" : "http://blog.apps.npr.org/",
                  "xPathArticleTitle" : "/html//article/h3/a",
                  "xPathArticleURL" : "/html//article/h3/a/@href"
+                 },
+                 {
+                 "name" : "500px",
+                 "blogURL" : "https://developers.500px.com/",
+                 "xPathArticleTitle" : "/html/body//h3/a",
+                 "xPathArticleURL" : "/html/body//h3/a/@href"
                  }
              ]
 }
