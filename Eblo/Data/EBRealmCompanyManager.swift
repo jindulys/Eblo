@@ -21,6 +21,7 @@ protocol EBRealmCompanyManagerDelegate: class {
 /// The realm manager which is responsible for read/write management of Company Object.
 class EBRealmCompanyManager {
 
+  /// The shared singleton.
   static let sharedInstance = EBRealmCompanyManager()
 
   /// Use a serial Queue as the write queue.
@@ -29,34 +30,8 @@ class EBRealmCompanyManager {
   /// An operation Queue used for company's update.
   private let companyUpdateOperationQueue = YSOperationQueue()
 
+  /// Potentional subscriber, which will be notified when there have some updates of database.
   weak var subscriber: EBRealmCompanyManagerDelegate?
-
-  // MARK: - Queries
-  func allCompanies() -> Results<EBCompany>? {
-    let realm = try! Realm()
-    return realm.objects(EBCompany.self)
-  }
-
-  // MARK: - Delete
-  func deleteAllCompanies() {
-    realmQueue.async {
-      do {
-        let realm = try Realm()
-        try realm.write {
-          let allCompanies = self.allCompanies()
-          if let companies = allCompanies {
-            for company in companies {
-              realm.delete(company)
-            }
-          }
-          self.notifySubscriber()
-        }
-      } catch {
-        // TODO(simonli): fix error case
-        print("Realm Write Error!")
-      }
-    }
-  }
 
   /// This method updates the company's information(Blog).
   /// Current Design like this:
@@ -68,7 +43,6 @@ class EBRealmCompanyManager {
   /// Future work. 1. Batch Update.
   ///              2. A notification when all the update finished.
   ///              3. Refresh update.(which might be called by View Controller)
-
   func updateCompanyArticles() {
     realmQueue.async {
       if let allCompanies = self.allCompanies() {
@@ -107,6 +81,27 @@ class EBRealmCompanyManager {
     }
   }
   
+  // Delete all companies in this data base.
+  func deleteAllCompanies() {
+    realmQueue.async {
+      do {
+        let realm = try Realm()
+        try realm.write {
+          let allCompanies = self.allCompanies()
+          if let companies = allCompanies {
+            for company in companies {
+              realm.delete(company)
+            }
+          }
+          self.notifySubscriber()
+        }
+      } catch {
+        // TODO(simonli): fix error case
+        print("Realm Write Error!")
+      }
+    }
+  }
+
   /// Update a company's blogs information with blogInfos, which is specified by UUID.
   ///
   /// - parameter UUID: UUID for a company
@@ -169,6 +164,33 @@ class EBRealmCompanyManager {
     }
   }
 
+  /// clear all companies' has new articles to read flag.
+  func clearAllNewArticlesFlag() {
+    realmQueue.async {
+      do {
+        let realm = try Realm()
+        let allCompanies = self.allCompanies()
+        if let companies = allCompanies {
+          try realm.write {
+            for company in companies {
+              company.hasNewArticlesToRead = false
+            }
+          }
+        }
+      } catch {
+        // TODO(simonli): fix error case
+        print("Realm Write Error!")
+      }
+    }
+  }
+
+  // MARK: - Queries
+  /// Return all companies in this data base.
+  func allCompanies() -> Results<EBCompany>? {
+    let realm = try! Realm()
+    return realm.objects(EBCompany.self)
+  }
+
   /// Detect whether or not a company existing.
   func existingCompany(UUID: String) -> Bool {
     do {
@@ -224,6 +246,7 @@ class EBRealmCompanyManager {
     }
   }
 
+  /// This helper method could use to add new entities from 'companies.json' repeatedly.
   func repeatedWriteWithLocalFile() {
     if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
       do {
@@ -236,7 +259,6 @@ class EBRealmCompanyManager {
               for company in companies {
                 if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String, let url = aCompany["blogURL"] as? String {
                   if self.existingCompany(UUID: name + url) {
-                    print("Existing")
                     continue
                   }
                   let createdCompany = EBCompany()

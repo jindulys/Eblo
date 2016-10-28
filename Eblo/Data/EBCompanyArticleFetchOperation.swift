@@ -49,6 +49,14 @@ class EBCompanyArticleFetchOperation: YSOperation {
       return
     }
 
+    // NOTE: Before we generate URL, make it encoded first.
+    let encodedURLs = freshURLs.map { url -> String in
+      if let encoded = url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+        return encoded
+      }
+      return self.companyBlogURL
+    }
+
     var freshBlogs: [EBBlog] = []
     for i in 0..<freshTitles.count {
       let blog = EBBlog()
@@ -59,15 +67,16 @@ class EBCompanyArticleFetchOperation: YSOperation {
           let companyBlogRange = self.companyBlogURL.range(of: "/blog") {
           var removedURL = self.companyBlogURL
           removedURL.removeSubrange(companyBlogRange)
-          blog.blogURL = removedURL + freshURLs[i]
+          blog.blogURL = removedURL + encodedURLs[i]
         } else {
-          blog.blogURL = self.companyBlogURL + freshURLs[i]
+          blog.blogURL = self.companyBlogURL + encodedURLs[i]
         }
       } else {
-        blog.blogURL = freshURLs[i]
+        blog.blogURL = encodedURLs[i]
       }
       freshBlogs.append(blog)
     }
+
     // TODO(simonli): update the object with the info we have
     EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID: companyName + companyBlogURL, blogInfos: freshBlogs) { 
       self.finish()

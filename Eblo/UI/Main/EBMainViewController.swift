@@ -26,6 +26,9 @@ class EBMainViewController: UIViewController {
     self.title = "Eng Blogs"
     self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
+    // NOTE: uncomment following when want to test
+//    self.navigationItem.rightBarButtonItem =
+//      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(functionTest))
     self.navigationItem.backBarButtonItem =
       UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
     // 1. Set tableView property on for tableManager. so view controller could use its lower
@@ -46,10 +49,6 @@ class EBMainViewController: UIViewController {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     self.testJi()
-//    let testBlog = EBBlog()
-//    testBlog.blogTitle = "Yelp Test"
-//    testBlog.blogURL = "Yelp URL"
-//    EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID:"Yelphttp://engineeringblog.yelp.com/", blogInfos: [testBlog])
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -61,6 +60,10 @@ class EBMainViewController: UIViewController {
     self.navigationController?.pushViewController(EBEditRecordViewController(), animated: true)
   }
   
+  func functionTest() {
+    EBRealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
+  }
+
   func testJi() {
     let testDoc = Ji(htmlURL: URL(string: "http://code.flickr.net")!)
     //let titleNode = testDoc?.xPath("//article//h3//a")

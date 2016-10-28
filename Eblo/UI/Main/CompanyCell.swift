@@ -73,6 +73,11 @@ public class CompanyCell: UITableViewCell {
     newBadgeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12).isActive = true
   }
 
+  deinit {
+    self.company?.removeObserver(self, forKeyPath: "hasNewArticlesToRead")
+    self.company?.removeObserver(self, forKeyPath: "latestArticleTitle")
+  }
+
   // MARK: -
   func configureCompany(_ company : EBCompany) {
     if let oldCompany = self.company {
@@ -109,29 +114,24 @@ public class CompanyCell: UITableViewCell {
   }
 
   func animateNewBadge(on: Bool) {
-    UIView.animate(withDuration: 0.3) {
-      self.newBadgeView.alpha = on ? 1.0 : 0.0
-    }
+    // NOTE: I find that animation directly inside a cell has no effect.
+    self.newBadgeView.alpha = on ? 1.0 : 0.0
   }
 
   func animateNewArticle(_ article: String) {
     // TODO(simonli): after test, I found that tableview cell will not update view hierarchy layout
     // might need a way to delegate up to table view manager to trigger a specific update for this cell.
-    UIView.transition(with: self,
-                      duration: 0.3,
-                      options: .transitionCrossDissolve,
-                      animations: {
-                        self.bodyLabel.text = article
-                      },
-                      completion: nil)
+    self.bodyLabel.text = article
   }
 }
 
 extension CompanyCell: StaticCellType {
   public func configure(row: Row) {
-    self.titleLabel.text = row.title
-    self.bodyLabel.text = row.description
     if let company = row.customData as? EBCompany {
+      // NOTE: use company as the actually data source, since company is a realm object and it is
+      // keep sync with the actually database update.
+      self.titleLabel.text = company.companyName
+      self.bodyLabel.text = company.latestArticleTitle
       self.configureCompany(company)
       self.newBadgeView.alpha = company.hasNewArticlesToRead ? 1.0 : 0.0
     }
