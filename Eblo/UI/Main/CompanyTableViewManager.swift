@@ -30,7 +30,7 @@ class CompanyTableViewManager: TableViewManager {
       }
       toRows.forEach {
         if let company = $0.customData as? EBCompany {
-          company.addObserver(self, forKeyPath: "hasNewArticlesToRead", options: .new, context: nil)
+          company.addObserver(self, forKeyPath: "hasNewArticlesToRead", options: [.new, .old], context: nil)
           company.addObserver(self, forKeyPath: "latestArticleTitle", options: .new, context: nil)
         }
       }
@@ -59,6 +59,12 @@ class CompanyTableViewManager: TableViewManager {
                                     change: [NSKeyValueChangeKey : Any]?,
                                     context: UnsafeMutableRawPointer?) {
     if let changedCompany = object as? EBCompany {
+      if keyPath == "hasNewArticlesToRead",
+        let newValue = change?[.newKey] as? Bool,
+        let oldValue = change?[.oldKey] as? Bool,
+        newValue == oldValue {
+        return
+      }
       switch data {
       case .SingleSection(let rows):
         var newRows: [Row] = rows
@@ -72,7 +78,13 @@ class CompanyTableViewManager: TableViewManager {
         // use update animation for the get stale one.
         self.banRefreshTableWhenNewDataCome = true
         self.data = .SingleSection(newRows)
-        self.updateStaledRows()
+        if keyPath == "hasNewArticlesToRead",
+          let newValue = change?[.newKey] as? Bool, newValue == false {
+          // NOTE: Instead of use reloadRow. Use tableView.reloadData directly.
+          self.updateStaledRows(byReloadTableData: true)
+        } else {
+          self.updateStaledRows()
+        }
         self.banRefreshTableWhenNewDataCome = false
       default:
         print("Should not be this case")

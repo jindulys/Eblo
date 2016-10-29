@@ -150,7 +150,7 @@ extension TableViewManager {
   }
 
   /// Reload the staled rows once your data get stale and need refresh.
-  public func updateStaledRows() {
+  public func updateStaledRows(byReloadTableData reload: Bool = false) {
     switch data {
     case .SingleSection(var rows):
       var staledRowIndexPaths: [IndexPath] = []
@@ -172,9 +172,13 @@ extension TableViewManager {
       if staledRowIndexPaths.count == 0 {
         break
       }
-      tableView?.beginUpdates()
-      tableView?.reloadRows(at: staledRowIndexPaths, with: .fade)
-      tableView?.endUpdates()
+      if !reload {
+        tableView?.beginUpdates()
+        tableView?.reloadRows(at: staledRowIndexPaths, with: .fade)
+        tableView?.endUpdates()
+      } else {
+        tableView?.reloadData()
+      }
     case .MultiSection(var sections):
       var staledRowIndexPaths: [IndexPath] = []
       for i in 0..<sections.count {
@@ -188,9 +192,13 @@ extension TableViewManager {
       if staledRowIndexPaths.count == 0 {
         break
       }
-      tableView?.beginUpdates()
-      tableView?.reloadRows(at: staledRowIndexPaths, with: .fade)
-      tableView?.endUpdates()
+      if !reload {
+        tableView?.beginUpdates()
+        tableView?.reloadRows(at: staledRowIndexPaths, with: .fade)
+        tableView?.endUpdates()
+      } else {
+        tableView?.reloadData()
+      }
       break
     }
   }

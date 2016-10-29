@@ -15,6 +15,9 @@ class EBMainViewController: UIViewController {
 	var tableView: UITableView = UITableView()
 	
 	let tableManager: CompanyTableViewManager = CompanyTableViewManager()
+
+  // This is used for whether or not we finished first time fetch to avoid repeated annoyying fetch.
+  var firstFetch: Bool = false
 	
 	override func loadView() {
 		super.loadView()
@@ -53,7 +56,10 @@ class EBMainViewController: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     //EBRealmCompanyManager.sharedInstance.deleteAllCompanies()
-    tableManager.refreshData()
+    if !self.firstFetch {
+      tableManager.refreshData()
+      self.firstFetch = true
+    }
   }
   
   func addNewRecord() {
@@ -65,14 +71,14 @@ class EBMainViewController: UIViewController {
   }
 
   func testJi() {
-    let testDoc = Ji(htmlURL: URL(string: "http://code.flickr.net")!)
+    let testDoc = Ji(htmlURL: URL(string: "https://developers.500px.com/")!)
     //let titleNode = testDoc?.xPath("//article//h3//a")
     //let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
-    let testNode = testDoc?.xPath("/html//article/header/h1/a")
+    let testNode = testDoc?.xPath("/html/body//h3/a")
     for t in testNode! {
       print("\(t.content)")
     }
-    let urlNodes = testDoc?.xPath("/html//article/header/h1/a/@href")
+    let urlNodes = testDoc?.xPath("/html/body//h3/a/@href")
     for u in urlNodes! {
       print("\(u.content)")
     }
