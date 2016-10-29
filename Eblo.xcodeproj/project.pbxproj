@@ -14,10 +14,6 @@
 		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */; };
 		0E5FC56F1DB28419003DF396 /* EBEditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */; };
-		0E5FC5711DB28EA5003DF396 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5701DB28EA5003DF396 /* Realm.framework */; };
-		0E5FC5721DB28EA5003DF396 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5701DB28EA5003DF396 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0E5FC5751DB28EB0003DF396 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */; };
-		0E5FC5761DB28EB0003DF396 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E5FE1761DBBA51100FC2906 /* EBRealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */; };
 		0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */; };
 		0E610D291DC068260005CA9C /* hao.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D251DC068260005CA9C /* hao.json */; };
@@ -63,21 +59,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0E5FC5731DB28EA5003DF396 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0E5FC5761DB28EB0003DF396 /* RealmSwift.framework in Embed Frameworks */,
-				0E5FC5721DB28EA5003DF396 /* Realm.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eblo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraPageViewController.swift; sourceTree = "<group>"; };
@@ -87,8 +68,6 @@
 		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
 		0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraArticleViewController.swift; sourceTree = "<group>"; };
 		0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBEditRecordViewController.swift; sourceTree = "<group>"; };
-		0E5FC5701DB28EA5003DF396 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBRealmBlogManager.swift; sourceTree = "<group>"; };
 		0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		0E610D251DC068260005CA9C /* hao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hao.json; sourceTree = "<group>"; };
@@ -136,9 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E5FC5711DB28EA5003DF396 /* Realm.framework in Frameworks */,
 				62723F355E76895E6881CC81 /* Pods_Eblo.framework in Frameworks */,
-				0E5FC5751DB28EB0003DF396 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,8 +259,6 @@
 		0E9573F71D4CDDCA00703C3A = {
 			isa = PBXGroup;
 			children = (
-				0E5FC5741DB28EB0003DF396 /* RealmSwift.framework */,
-				0E5FC5701DB28EA5003DF396 /* Realm.framework */,
 				0E69FFBD1D689CAD00D6C2E9 /* Config */,
 				0E9574021D4CDDCA00703C3A /* Eblo */,
 				0E9574171D4CDDCA00703C3A /* EbloTests */,
@@ -374,7 +349,6 @@
 				0E9573FE1D4CDDCA00703C3A /* Resources */,
 				2FA792BB4658261DE66DC3E5 /* [CP] Embed Pods Frameworks */,
 				3F4475592DC59F98CFF431D6 /* [CP] Copy Pods Resources */,
-				0E5FC5731DB28EA5003DF396 /* Embed Frameworks */,
 				0E5FC5771DB29066003DF396 /* ShellScript */,
 			);
 			buildRules = (
@@ -524,7 +498,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh";
+			shellScript = "";
 		};
 		18FA90EAA115E51B993743D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -833,7 +807,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1A6D301C8567DE7DA3ED4D0 /* Pods-Eblo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -851,7 +824,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17990CD8E61CD9A6FC2580ED /* Pods-Eblo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
