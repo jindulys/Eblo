@@ -68,7 +68,8 @@ class MainViewController: UIViewController {
   
   func functionTest() {
     RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
-    print(self.sourceScreenName)
+    // TEST: screenTransition manager.
+    //ScreenTransitionManager.transitionScreenWith(viewController: self, entryPoint: self.editRecordEntry)
   }
 
   func testJi() {

@@ -8,8 +8,8 @@
 
 import Foundation
 
+/// Parsing Extension
 extension String {
-  
   /// Suppose a string has a query like format, return the keys and values.
   /// E.g self = "company=Yelp&companyURL=https://engineeringblog.yelp.com"
   /// Return ["company" : "Yelp",
@@ -31,5 +31,11 @@ extension String {
       queryDicts[arr[0]] = arr[1]
     }
     return queryDicts
+  }
+}
+
+extension String: URISource {
+  public var URI: String {
+    return self
   }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 YANSONG LI. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// The protocol defines a transition view controller.
 protocol TransitionViewController {
@@ -14,8 +14,20 @@ protocol TransitionViewController {
 }
 
 enum TransitionMethod: String {
-  case navigate = "navigate"
-  case present = "present"
+  case NAV = "navigate"
+  case POP = "present"
+  case UNKNOWN = "unknown"
+
+  /// Return a transitionMethod from a string.
+  static func transitionMethodFor(str: String) -> TransitionMethod {
+    if str == "navigate" {
+      return .NAV
+    } else if str == "present" {
+      return .POP
+    } else {
+      return .UNKNOWN
+    }
+  }
 }
 
 /// A manager whose responsibility is to generate the path for screen transition.
@@ -23,14 +35,14 @@ class ScreenTransitionManager {
   /// Transition Routes Table all the transition management are here.
   static let transitionRoutesTable =
     [ "MainViewController" :
-        ["companyBlogList" : (TransitionMethod.navigate, "EditRecordViewController"),
-         "editRecord" : (TransitionMethod.present, "EditRecordViewController")]
+        ["companyBlogList" : (TransitionMethod.NAV, "EditRecordViewController"),
+         "editRecord" : (TransitionMethod.POP, "EditRecordViewController")]
   ]
 
   /// Transition screen with source view controller, entryPoint, and params.
-  public static func transitionScreenWith<T: TransitionViewController>(viewController: T,
-                                   entryPoint: String,
-                                   params: String? = nil) -> String? {
+  @discardableResult public static func transitionScreenWith(viewController: TransitionViewController,
+                                                             entryPoint: String,
+                                                             params: String? = nil) -> String? {
     guard let routesTable =
       self.transitionRoutesTable[viewController.sourceScreenName],
       let (transitionMethod, toViewController) = routesTable[entryPoint] else {
@@ -43,6 +55,9 @@ class ScreenTransitionManager {
     baseURI.append("action=\(transitionMethod.rawValue)")
     if let passedParams = params {
       baseURI.append(passedParams)
+    }
+    if let viewController = viewController as? UIViewController {
+      EBURIResolver.routeWithURI(baseURI, source: viewController)
     }
     return baseURI
   }
