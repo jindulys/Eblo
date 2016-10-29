@@ -17,11 +17,11 @@ public protocol URISource {
 /// The URIAction takes in a uiviewcontroller to use.
 /// This controller might be a controller parsed by URIMatcher.
 /// Or might be the controller to handle app interraction based on concrete situation.
-typealias URIAction = (UIViewController) -> Void
+public typealias URIAction = (UIViewController) -> Void
 
 /// The URIHandler takes in an action to perform. or passed in the view controller we get from the
 /// second parameter to perform the action defined from the source part.
-typealias URIHandler = (URIAction, UIViewController?) -> Void
+public typealias URIHandler = (URIAction, UIViewController?) -> Void
 
 /// URI Resolver.
 public class EBURIResolver {
@@ -33,7 +33,16 @@ public class EBURIResolver {
     self.routeWithURI(uri, handler: defaultHandler)
   }
 
-  private static func routeWithURI(_ uri: URISource, handler: @escaping URIHandler) -> Void {
+  public static func routeWithURI(_ uri: URISource, action: @escaping URIAction) -> Void {
+    let defaultHandler: URIHandler = { (discardOne, controller) in
+      if let validController = controller {
+        action(validController)
+      }
+    }
+    self.routeWithURI(uri, handler: defaultHandler)
+  }
+
+  private static func routeWithURI(_ uri: URISource, handler: URIHandler) -> Void {
     if !uri.URI.hasPrefix("Eblo/") {
       return
     }
