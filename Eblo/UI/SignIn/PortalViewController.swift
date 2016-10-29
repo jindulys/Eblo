@@ -10,7 +10,7 @@ import UIKit
 import SiYuanKit
 
 /// Portal View Controller is responsible for User login/signup.
-class EBPortalViewController: UIViewController {
+class PortalViewController: UIViewController {
   override func viewDidLoad() {
     self.view.backgroundColor = UIColor.blue
   }

@@ -10,7 +10,7 @@ import RealmSwift
 import Foundation
 
 /// Company Model.
-class EBCompany: Object {
+class Company: Object {
   dynamic var companyName = ""
   dynamic var blogURL = ""
   dynamic var UUID = ""
@@ -20,7 +20,7 @@ class EBCompany: Object {
   dynamic var articleURLNeedBlogURL = false
   dynamic var hasNewArticlesToRead = false
   dynamic var latestArticleTitle: String? = nil
-  let blogs = List<EBBlog>()
+  let blogs = List<CompanyBlog>()
 
   override static func primaryKey() -> String? {
     return "UUID"

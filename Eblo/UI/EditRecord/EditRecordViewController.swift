@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class EBEditRecordViewController: UIViewController {
+class EditRecordViewController: UIViewController {
 
   var companyNameTextField = UITextField()
 
@@ -56,8 +56,8 @@ class EBEditRecordViewController: UIViewController {
     guard let company = companyNameTextField.text, let url = urlTextField.text else {
       return
     }
-    EBRealmCompanyManager.sharedInstance.writeWithBlock { realm in
-      let createdCompany = EBCompany()
+    RealmCompanyManager.sharedInstance.writeWithBlock { realm in
+      let createdCompany = Company()
       createdCompany.companyName = company
       createdCompany.blogURL = url
       createdCompany.UUID = company + url
@@ -67,7 +67,7 @@ class EBEditRecordViewController: UIViewController {
   }
 }
 
-extension EBEditRecordViewController: UITextFieldDelegate {
+extension EditRecordViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true

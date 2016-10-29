@@ -23,13 +23,13 @@ class CompanyTableViewManager: TableViewManager {
       // NOTE: Important, what I learned is that realm object you should KVO the latest object, so
       // every time we get new data, we just KVO all new ones and remove old ones.
       fromRows.forEach {
-        if let company = $0.customData as? EBCompany {
+        if let company = $0.customData as? Company {
           company.removeObserver(self, forKeyPath: "hasNewArticlesToRead")
           company.removeObserver(self, forKeyPath: "latestArticleTitle")
         }
       }
       toRows.forEach {
-        if let company = $0.customData as? EBCompany {
+        if let company = $0.customData as? Company {
           company.addObserver(self, forKeyPath: "hasNewArticlesToRead", options: [.new, .old], context: nil)
           company.addObserver(self, forKeyPath: "latestArticleTitle", options: .new, context: nil)
         }
@@ -44,7 +44,7 @@ class CompanyTableViewManager: TableViewManager {
     switch data {
     case .SingleSection(let rows):
       rows.forEach {
-        if let company = $0.customData as? EBCompany {
+        if let company = $0.customData as? Company {
           company.removeObserver(self, forKeyPath: "hasNewArticlesToRead")
           company.removeObserver(self, forKeyPath: "latestArticleTitle")
         }
@@ -58,7 +58,7 @@ class CompanyTableViewManager: TableViewManager {
                                     of object: Any?,
                                     change: [NSKeyValueChangeKey : Any]?,
                                     context: UnsafeMutableRawPointer?) {
-    if let changedCompany = object as? EBCompany {
+    if let changedCompany = object as? Company {
       if keyPath == "hasNewArticlesToRead",
         let newValue = change?[.newKey] as? Bool,
         let oldValue = change?[.oldKey] as? Bool,
@@ -69,7 +69,7 @@ class CompanyTableViewManager: TableViewManager {
       case .SingleSection(let rows):
         var newRows: [Row] = rows
         for i in 0..<rows.count {
-          if let currentCompany = rows[i].customData as? EBCompany, currentCompany == changedCompany {
+          if let currentCompany = rows[i].customData as? Company, currentCompany == changedCompany {
             newRows[i].getStale = true
             break
           }

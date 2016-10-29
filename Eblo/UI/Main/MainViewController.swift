@@ -11,7 +11,7 @@ import SiYuanKit
 import Ji
 
 
-class EBMainViewController: UIViewController {
+class MainViewController: UIViewController {
 	var tableView: UITableView = UITableView()
 	
 	let tableManager: CompanyTableViewManager = CompanyTableViewManager()
@@ -40,12 +40,12 @@ class EBMainViewController: UIViewController {
     // Set estimatedRowHeight if you want to get a variant height.
     tableView.estimatedRowHeight = 40
     // 2. Set tableManager's dataSource to its lower level to get the data.
-    tableManager.dataSource = EBRealmCompanyManager.sharedInstance
+    tableManager.dataSource = RealmCompanyManager.sharedInstance
     // 3. Set dataSource's subscriber to its upper level to initiatively report data change.
-    EBRealmCompanyManager.sharedInstance.subscriber = tableManager
+    RealmCompanyManager.sharedInstance.subscriber = tableManager
 
     // TODO(simonli): might need to remove this one.
-    EBRealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile()
+    RealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -63,11 +63,11 @@ class EBMainViewController: UIViewController {
   }
   
   func addNewRecord() {
-    self.navigationController?.pushViewController(EBEditRecordViewController(), animated: true)
+    self.navigationController?.pushViewController(EditRecordViewController(), animated: true)
   }
   
   func functionTest() {
-    EBRealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
+    RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
   }
 
   func testJi() {

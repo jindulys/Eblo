@@ -10,11 +10,11 @@
 		0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */; };
 		0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */; };
 		0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */; };
-		0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */; };
+		0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D0A11DB0924900DD7650 /* MainViewController.swift */; };
 		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */; };
-		0E5FC56F1DB28419003DF396 /* EBEditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */; };
-		0E5FE1761DBBA51100FC2906 /* EBRealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */; };
+		0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */; };
+		0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */; };
 		0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */; };
 		0E610D291DC068260005CA9C /* hao.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D251DC068260005CA9C /* hao.json */; };
 		0E610D2A1DC068260005CA9C /* Lexi.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D261DC068260005CA9C /* Lexi.json */; };
@@ -22,10 +22,10 @@
 		0E610D2C1DC068260005CA9C /* xiong.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D281DC068260005CA9C /* xiong.json */; };
 		0E610D2E1DC1C65A0005CA9C /* CompanyTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E610D2D1DC1C65A0005CA9C /* CompanyTableViewManager.swift */; };
 		0E65CC791DBDCF2300C47E1B /* companiesBackup.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E65CC781DBDCF2300C47E1B /* companiesBackup.json */; };
-		0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */; };
-		0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */; };
-		0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */; };
-		0E7A60CC1DB2C577003EB738 /* EBCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60CB1DB2C577003EB738 /* EBCompany.swift */; };
+		0E6BA77D1D67F5EA00B7575C /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* LoadingViewController.swift */; };
+		0E6BA7801D67F64100B7575C /* PortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* PortalViewController.swift */; };
+		0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */; };
+		0E7A60CC1DB2C577003EB738 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60CB1DB2C577003EB738 /* Company.swift */; };
 		0E7A60D11DB3EA2A003EB738 /* companies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A60D01DB3EA2A003EB738 /* companies.json */; };
 		0E7A60D61DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
@@ -35,8 +35,8 @@
 		0E95740E1D4CDDCA00703C3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */; };
 		0E9574191D4CDDCA00703C3A /* EbloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574181D4CDDCA00703C3A /* EbloTests.swift */; };
 		0E9574241D4CDDCA00703C3A /* EbloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574231D4CDDCA00703C3A /* EbloUITests.swift */; };
-		0EB5AC7B1DB9C87300ACD9EE /* EBBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7A1DB9C87300ACD9EE /* EBBlog.swift */; };
-		0EB5AC7D1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7C1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift */; };
+		0EB5AC7B1DB9C87300ACD9EE /* CompanyBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7A1DB9C87300ACD9EE /* CompanyBlog.swift */; };
+		0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7C1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift */; };
 		62723F355E76895E6881CC81 /* Pods_Eblo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */; };
 		DEEA18CAF66C5B6F4F10CE8C /* Pods_EbloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7482E46ADC65D359853C5 /* Pods_EbloTests.framework */; };
 		F9F4CE422CC52F07DF145C4C /* Pods_EbloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */; };
@@ -64,11 +64,11 @@
 		0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraPageViewController.swift; sourceTree = "<group>"; };
 		0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraAnimationController.swift; sourceTree = "<group>"; };
 		0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraDismissAnimationController.swift; sourceTree = "<group>"; };
-		0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBMainViewController.swift; sourceTree = "<group>"; };
+		0E54D0A11DB0924900DD7650 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
 		0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraArticleViewController.swift; sourceTree = "<group>"; };
-		0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBEditRecordViewController.swift; sourceTree = "<group>"; };
-		0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBRealmBlogManager.swift; sourceTree = "<group>"; };
+		0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecordViewController.swift; sourceTree = "<group>"; };
+		0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmBlogManager.swift; sourceTree = "<group>"; };
 		0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		0E610D251DC068260005CA9C /* hao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hao.json; sourceTree = "<group>"; };
 		0E610D261DC068260005CA9C /* Lexi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Lexi.json; sourceTree = "<group>"; };
@@ -79,10 +79,10 @@
 		0E69FFBE1D689D3C00D6C2E9 /* Eblo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Eblo.xcconfig; sourceTree = "<group>"; };
 		0E69FFBF1D689D5600D6C2E9 /* Eblo-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Debug.xcconfig"; sourceTree = "<group>"; };
 		0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Release.xcconfig"; sourceTree = "<group>"; };
-		0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBLoadingViewController.swift; sourceTree = "<group>"; };
-		0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPortalViewController.swift; sourceTree = "<group>"; };
-		0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBRealmCompanyManager.swift; sourceTree = "<group>"; };
-		0E7A60CB1DB2C577003EB738 /* EBCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCompany.swift; sourceTree = "<group>"; };
+		0E6BA77C1D67F5EA00B7575C /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		0E6BA77F1D67F64100B7575C /* PortalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalViewController.swift; sourceTree = "<group>"; };
+		0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCompanyManager.swift; sourceTree = "<group>"; };
+		0E7A60CB1DB2C577003EB738 /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		0E7A60D01DB3EA2A003EB738 /* companies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = companies.json; sourceTree = "<group>"; };
 		0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewManager+EBRealmCompanyManager.swift"; sourceTree = "<group>"; };
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 		0E95741F1D4CDDCA00703C3A /* EbloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EbloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574231D4CDDCA00703C3A /* EbloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbloUITests.swift; sourceTree = "<group>"; };
 		0E9574251D4CDDCA00703C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EB5AC7A1DB9C87300ACD9EE /* EBBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBBlog.swift; sourceTree = "<group>"; };
-		0EB5AC7C1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCompanyArticleFetchOperation.swift; sourceTree = "<group>"; };
+		0EB5AC7A1DB9C87300ACD9EE /* CompanyBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyBlog.swift; sourceTree = "<group>"; };
+		0EB5AC7C1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyArticleFetchOperation.swift; sourceTree = "<group>"; };
 		17990CD8E61CD9A6FC2580ED /* Pods-Eblo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eblo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eblo/Pods-Eblo.release.xcconfig"; sourceTree = "<group>"; };
 		413048EE4F3C7FD3A886F081 /* Pods-EbloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EbloUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EbloUITests/Pods-EbloUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EbloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +150,7 @@
 		0E54D0A01DB091E600DD7650 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				0E54D0A11DB0924900DD7650 /* EBMainViewController.swift */,
+				0E54D0A11DB0924900DD7650 /* MainViewController.swift */,
 				0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */,
 				0E610D2D1DC1C65A0005CA9C /* CompanyTableViewManager.swift */,
 			);
@@ -170,7 +170,7 @@
 		0E5FC56D1DB283D3003DF396 /* EditRecord */ = {
 			isa = PBXGroup;
 			children = (
-				0E5FC56E1DB28419003DF396 /* EBEditRecordViewController.swift */,
+				0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */,
 			);
 			path = EditRecord;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 		0E6BA7791D67F5C400B7575C /* Loading */ = {
 			isa = PBXGroup;
 			children = (
-				0E6BA77C1D67F5EA00B7575C /* EBLoadingViewController.swift */,
+				0E6BA77C1D67F5EA00B7575C /* LoadingViewController.swift */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -196,7 +196,7 @@
 		0E6BA77E1D67F62100B7575C /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				0E6BA77F1D67F64100B7575C /* EBPortalViewController.swift */,
+				0E6BA77F1D67F64100B7575C /* PortalViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -204,11 +204,11 @@
 		0E7A60C81DB2C157003EB738 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0EB5AC7A1DB9C87300ACD9EE /* EBBlog.swift */,
-				0E7A60CB1DB2C577003EB738 /* EBCompany.swift */,
-				0EB5AC7C1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift */,
-				0E5FE1751DBBA51100FC2906 /* EBRealmBlogManager.swift */,
-				0E7A60C91DB2C19A003EB738 /* EBRealmCompanyManager.swift */,
+				0EB5AC7A1DB9C87300ACD9EE /* CompanyBlog.swift */,
+				0E7A60CB1DB2C577003EB738 /* Company.swift */,
+				0EB5AC7C1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift */,
+				0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */,
+				0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -642,11 +642,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E5FC56F1DB28419003DF396 /* EBEditRecordViewController.swift in Sources */,
+				0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */,
 				0E7A60D61DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift in Sources */,
-				0EB5AC7B1DB9C87300ACD9EE /* EBBlog.swift in Sources */,
-				0E6BA7801D67F64100B7575C /* EBPortalViewController.swift in Sources */,
-				0E54D0A21DB0924900DD7650 /* EBMainViewController.swift in Sources */,
+				0EB5AC7B1DB9C87300ACD9EE /* CompanyBlog.swift in Sources */,
+				0E6BA7801D67F64100B7575C /* PortalViewController.swift in Sources */,
+				0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */,
 				0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */,
@@ -655,12 +655,12 @@
 				0E610D2E1DC1C65A0005CA9C /* CompanyTableViewManager.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
-				0EB5AC7D1DB9D1D000ACD9EE /* EBCompanyArticleFetchOperation.swift in Sources */,
+				0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
-				0E7A60CA1DB2C19A003EB738 /* EBRealmCompanyManager.swift in Sources */,
-				0E7A60CC1DB2C577003EB738 /* EBCompany.swift in Sources */,
-				0E6BA77D1D67F5EA00B7575C /* EBLoadingViewController.swift in Sources */,
-				0E5FE1761DBBA51100FC2906 /* EBRealmBlogManager.swift in Sources */,
+				0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */,
+				0E7A60CC1DB2C577003EB738 /* Company.swift in Sources */,
+				0E6BA77D1D67F5EA00B7575C /* LoadingViewController.swift in Sources */,
+				0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */,
 				0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

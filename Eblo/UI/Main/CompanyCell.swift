@@ -24,7 +24,7 @@ public class CompanyCell: UITableViewCell {
   let badgeSize: CGFloat = 20
 
   /// The company data with this cell.
-  var company: EBCompany? = nil
+  var company: Company? = nil
 
   /// The company context for this cell.
   private var companyContext = 0
@@ -87,7 +87,7 @@ public class CompanyCell: UITableViewCell {
 
 extension CompanyCell: StaticCellType {
   public func configure(row: Row) {
-    if let company = row.customData as? EBCompany {
+    if let company = row.customData as? Company {
       // NOTE: use company as the actually data source, since company is a realm object and it is
       // keep sync with the actually database update.
       self.titleLabel.text = company.companyName

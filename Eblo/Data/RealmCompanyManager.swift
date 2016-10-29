@@ -13,16 +13,16 @@ import SafariServices
 let localJSONGotIn = "localJSONGotIn"
 
 /// Protocol to notify the subscripter the event of this Manager.
-protocol EBRealmCompanyManagerDelegate: class {
+protocol RealmCompanyManagerDelegate: class {
   /// This company manager has produced a new set of data.
   func hasNewDataSet() -> Void
 }
 
 /// The realm manager which is responsible for read/write management of Company Object.
-class EBRealmCompanyManager {
+class RealmCompanyManager {
 
   /// The shared singleton.
-  static let sharedInstance = EBRealmCompanyManager()
+  static let sharedInstance = RealmCompanyManager()
 
   /// Use a serial Queue as the write queue.
   private let realmQueue = GCDQueue.serial("RealmCompany", .initiated)
@@ -31,7 +31,7 @@ class EBRealmCompanyManager {
   private let companyUpdateOperationQueue = YSOperationQueue()
 
   /// Potentional subscriber, which will be notified when there have some updates of database.
-  weak var subscriber: EBRealmCompanyManagerDelegate?
+  weak var subscriber: RealmCompanyManagerDelegate?
 
   /// This method updates the company's information(Blog).
   /// Current Design like this:
@@ -50,7 +50,7 @@ class EBRealmCompanyManager {
           if let titlePath = company.xPathArticleTitle,
             let urlPath = company.xPathArticleURL {
             let updateOperation =
-                EBCompanyArticleFetchOperation(companyName: company.companyName,
+                CompanyArticleFetchOperation(companyName: company.companyName,
                                                companyBlogURL: company.blogURL,
                                                xPathArticleTitle: titlePath,
                                                xPathArticleURL: urlPath,
@@ -106,19 +106,19 @@ class EBRealmCompanyManager {
   ///
   /// - parameter UUID: UUID for a company
   ///
-  /// - parameter blogInfos: EBBlog.BLOGTITLE stores blogTitles.
-  ///                        EBBlog.BLOGURL stores blogURLs.
+  /// - parameter blogInfos: CompanyBlog.BLOGTITLE stores blogTitles.
+  ///                        CompanyBlog.BLOGURL stores blogURLs.
   func updateCompanyWith(UUID: String,
-                         blogInfos: [EBBlog],
+                         blogInfos: [CompanyBlog],
                          completion: @escaping (()->()) = {}) {
     realmQueue.async {
       do {
         let realm = try Realm()
-        guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+        guard let updateCompany = realm.objects(Company.self).filter("UUID = '\(UUID)'").first else {
           return
         }
         let currentBlogsTitles = updateCompany.blogs.map { $0.blogTitle }
-        let newBlogs: [EBBlog] = blogInfos.filter {
+        let newBlogs: [CompanyBlog] = blogInfos.filter {
           !currentBlogsTitles.contains($0.blogTitle)
         }
         // No update.
@@ -128,7 +128,7 @@ class EBRealmCompanyManager {
         try realm.write {
           let latestArticleTitle = newBlogs.first?.blogTitle
           newBlogs.reversed().forEach {
-            $0.blogID = EBRealmBlogManager.nextBlogID()
+            $0.blogID = RealmBlogManager.nextBlogID()
             realm.add($0, update: true)
             updateCompany.blogs.insert($0, at: 0)
           }
@@ -151,7 +151,7 @@ class EBRealmCompanyManager {
     realmQueue.async {
       do {
         let realm = try Realm()
-        guard let updateCompany = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+        guard let updateCompany = realm.objects(Company.self).filter("UUID = '\(UUID)'").first else {
           return
         }
         try realm.write {
@@ -187,16 +187,16 @@ class EBRealmCompanyManager {
 
   // MARK: - Queries
   /// Return all companies in this data base.
-  func allCompanies() -> Results<EBCompany>? {
+  func allCompanies() -> Results<Company>? {
     let realm = try! Realm()
-    return realm.objects(EBCompany.self)
+    return realm.objects(Company.self)
   }
 
   /// Detect whether or not a company existing.
   func existingCompany(UUID: String) -> Bool {
     do {
       let realm = try Realm()
-      guard let _ = realm.objects(EBCompany.self).filter("UUID = '\(UUID)'").first else {
+      guard let _ = realm.objects(Company.self).filter("UUID = '\(UUID)'").first else {
         return false
       }
       return true
@@ -220,7 +220,7 @@ class EBRealmCompanyManager {
               try! realm.write {
                 for company in companies {
                   if let aCompany = company as? NSDictionary, let name = aCompany["name"] as? String, let url = aCompany["blogURL"] as? String {
-                    let createdCompany = EBCompany()
+                    let createdCompany = Company()
                     createdCompany.companyName = name
                     createdCompany.blogURL = url
                     createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
@@ -262,7 +262,7 @@ class EBRealmCompanyManager {
                   if self.existingCompany(UUID: name + url) {
                     continue
                   }
-                  let createdCompany = EBCompany()
+                  let createdCompany = Company()
                   createdCompany.companyName = name
                   createdCompany.blogURL = url
                   createdCompany.UUID = createdCompany.companyName + createdCompany.blogURL
@@ -297,7 +297,7 @@ class EBRealmCompanyManager {
   }
 }
 
-extension EBRealmCompanyManager: TableViewManagerDataSource {
+extension RealmCompanyManager: TableViewManagerDataSource {
   // TODO(simonli): for now everytime we want to update tableViewManager's data we
   // fetch all the data. Need to figure out a more efficient way if needed.
   // E.g. Has an id and only fetch that data related to this id then add it to the table view

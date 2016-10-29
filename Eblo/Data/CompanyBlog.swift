@@ -1,5 +1,5 @@
 //
-//  EBBlog.swift
+//  CompanyBlog.swift
 //  Eblo
 //
 //  Created by yansong li on 2016-10-20.
@@ -10,7 +10,7 @@ import RealmSwift
 import Foundation
 
 /// Blog Model.
-class EBBlog: Object {
+class CompanyBlog: Object {
   dynamic var blogTitle = ""
   dynamic var blogURL = ""
   // Primary Key, an auto-incremented key.

@@ -1,5 +1,5 @@
 //
-//  EBCompanyArticleFetchOperation.swift
+//  CompanyArticleFetchOperation.swift
 //  Eblo
 //
 //  Created by yansong li on 2016-10-21.
@@ -11,7 +11,7 @@ import SiYuanKit
 import Ji
 
 /// A subclass of YSOperation, which is responsible for fetch article updates.
-class EBCompanyArticleFetchOperation: YSOperation {
+class CompanyArticleFetchOperation: YSOperation {
   let xPathArticleTitle: String
   let companyName: String
   let companyBlogURL: String
@@ -57,9 +57,9 @@ class EBCompanyArticleFetchOperation: YSOperation {
       return self.companyBlogURL
     }
 
-    var freshBlogs: [EBBlog] = []
+    var freshBlogs: [CompanyBlog] = []
     for i in 0..<freshTitles.count {
-      let blog = EBBlog()
+      let blog = CompanyBlog()
       blog.blogTitle = freshTitles[i]
       if self.needBlogBaseURL {
         // TODO(simonli): find a more general way to do this.
@@ -78,14 +78,14 @@ class EBCompanyArticleFetchOperation: YSOperation {
     }
     //Test Add new blog
 //    if self.companyName == "Facebook" {
-//      let testBlog = EBBlog()
+//      let testBlog = CompanyBlog()
 //      testBlog.blogTitle = "Right at here do you see me please see !!! "
 //      testBlog.blogURL = "http://www.google.com"
 //      freshBlogs.insert(testBlog, at: 0)
 //    }
 
     // TODO(simonli): update the object with the info we have
-    EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID: companyName + companyBlogURL, blogInfos: freshBlogs) { 
+    RealmCompanyManager.sharedInstance.updateCompanyWith(UUID: companyName + companyBlogURL, blogInfos: freshBlogs) { 
       self.finish()
     }
   }

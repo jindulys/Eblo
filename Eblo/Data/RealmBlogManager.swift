@@ -10,9 +10,9 @@ import RealmSwift
 import SiYuanKit
 
 /// The realm manager which is responsible for read/write management of Blog Object.
-class EBRealmBlogManager {
+class RealmBlogManager {
 
-  static let sharedInstance = EBRealmBlogManager()
+  static let sharedInstance = RealmBlogManager()
 
   /// Next Blog Model's ID, this one once set will be used in memory. This way to reduce
   /// the time of query nextBlogID everytime, which means in this lifecycle, if you want to
@@ -27,7 +27,7 @@ class EBRealmBlogManager {
     do {
       let realm = try Realm()
       let id =
-          realm.objects(EBBlog.self).sorted(byProperty: "blogID", ascending: true).last?.blogID ?? 0
+          realm.objects(CompanyBlog.self).sorted(byProperty: "blogID", ascending: true).last?.blogID ?? 0
       blogNextBlogID = id + 1
     } catch {
       // Error
