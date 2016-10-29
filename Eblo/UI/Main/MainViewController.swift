@@ -6,9 +6,10 @@
 //  Copyright © 2016 YANSONG LI. All rights reserved.
 //
 
-import UIKit
-import SiYuanKit
+import Crashlytics
 import Ji
+import SiYuanKit
+import UIKit
 
 
 class MainViewController: UIViewController {
@@ -68,6 +69,8 @@ class MainViewController: UIViewController {
   
   func functionTest() {
     RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
+    let a = [1, 6, 9]
+    print(a[10])
   }
 
   func testJi() {

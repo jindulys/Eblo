@@ -14,6 +14,10 @@ target 'Eblo' do
   # Pods for Realm
   pod 'RealmSwift'
 
+  # Pods for Crashlytics
+  pod 'Fabric'
+  pod 'Crashlytics'
+
   target 'EbloTests' do
     inherit! :search_paths
     # Pods for testing
