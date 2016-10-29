@@ -6,7 +6,7 @@ target 'Eblo' do
   use_frameworks!
 
   # Pods for Eblo
-  pod 'SiYuanKit', '~> 1.0'
+  pod 'SiYuanKit', :path=>'/Users/yansongli/Desktop/SiYuanKit/SiYuanKit'
   
   # Pods for Ji
   pod 'Ji', '~> 2.0.0' 

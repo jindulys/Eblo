@@ -29,7 +29,11 @@ PODS:
 DEPENDENCIES:
   - Ji (~> 2.0.0)
   - RealmSwift
-  - SiYuanKit (~> 1.0)
+  - SiYuanKit (from `/Users/yansongli/Desktop/SiYuanKit/SiYuanKit`)
+
+EXTERNAL SOURCES:
+  SiYuanKit:
+    :path: "/Users/yansongli/Desktop/SiYuanKit/SiYuanKit"
 
 SPEC CHECKSUMS:
   Ji: 6bb602a28dd08b804158f64990e6051ed5de0110
@@ -37,6 +41,6 @@ SPEC CHECKSUMS:
   RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
   SiYuanKit: b0c49a3a4b036c7a3f5ff6cae12c1311825eef4e
 
-PODFILE CHECKSUM: 3104a827b5b46e4232e0e4b439cdd86867a382d5
+PODFILE CHECKSUM: c06175e8bdc063a5a69f0085b92e55a964087e53
 
 COCOAPODS: 1.1.0.rc.2
