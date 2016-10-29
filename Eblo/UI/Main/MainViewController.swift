@@ -11,7 +11,6 @@ import Ji
 import SiYuanKit
 import UIKit
 
-
 class MainViewController: UIViewController {
 	var tableView: UITableView = UITableView()
 	
@@ -69,6 +68,7 @@ class MainViewController: UIViewController {
   
   func functionTest() {
     RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
+    print(self.sourceScreenName)
   }
 
   func testJi() {
@@ -86,5 +86,19 @@ class MainViewController: UIViewController {
 //    for title in titleNode! {
 //      print("\(title.content)")
 //    }
+  }
+}
+
+extension MainViewController: TransitionViewController {
+  var sourceScreenName: String {
+    return String(describing:type(of: self))
+  }
+
+  public var companyEntry: String {
+    return "companyBlogList"
+  }
+
+  public var editRecordEntry: String {
+    return "editRecord"
   }
 }

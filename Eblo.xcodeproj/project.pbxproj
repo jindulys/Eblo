@@ -16,6 +16,10 @@
 		0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */; };
 		0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */; };
 		0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */; };
+		0E5FF6691DC4E6A500006D6A /* ScreenTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */; };
+		0E5FF66B1DC4F6BA00006D6A /* String+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66A1DC4F6BA00006D6A /* String+Parse.swift */; };
+		0E5FF66D1DC4FAD000006D6A /* EbloStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66C1DC4FAD000006D6A /* EbloStringTests.swift */; };
+		0E5FF66F1DC50F0400006D6A /* ScreenTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */; };
 		0E610D291DC068260005CA9C /* hao.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D251DC068260005CA9C /* hao.json */; };
 		0E610D2A1DC068260005CA9C /* Lexi.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D261DC068260005CA9C /* Lexi.json */; };
 		0E610D2B1DC068260005CA9C /* xiaohao.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D271DC068260005CA9C /* xiaohao.json */; };
@@ -70,6 +74,10 @@
 		0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecordViewController.swift; sourceTree = "<group>"; };
 		0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmBlogManager.swift; sourceTree = "<group>"; };
 		0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
+		0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTransitionManager.swift; sourceTree = "<group>"; };
+		0E5FF66A1DC4F6BA00006D6A /* String+Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Parse.swift"; sourceTree = "<group>"; };
+		0E5FF66C1DC4FAD000006D6A /* EbloStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloStringTests.swift; sourceTree = "<group>"; };
+		0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTransitionTests.swift; sourceTree = "<group>"; };
 		0E610D251DC068260005CA9C /* hao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hao.json; sourceTree = "<group>"; };
 		0E610D261DC068260005CA9C /* Lexi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Lexi.json; sourceTree = "<group>"; };
 		0E610D271DC068260005CA9C /* xiaohao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xiaohao.json; sourceTree = "<group>"; };
@@ -175,6 +183,13 @@
 			path = EditRecord;
 			sourceTree = "<group>";
 		};
+		0E5FF6671DC4E3BD00006D6A /* Company */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Company;
+			sourceTree = "<group>";
+		};
 		0E69FFBD1D689CAD00D6C2E9 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */,
+				0E5FF66A1DC4F6BA00006D6A /* String+Parse.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -239,6 +255,7 @@
 			children = (
 				0E8BF04A1D61323D00E0AA08 /* AppManager.swift */,
 				0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */,
+				0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */,
 			);
 			path = AppManagement;
 			sourceTree = "<group>";
@@ -247,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
+				0E5FF6671DC4E3BD00006D6A /* Company */,
 				0E5FC56D1DB283D3003DF396 /* EditRecord */,
 				0E6BA7791D67F5C400B7575C /* Loading */,
 				0E54D0A01DB091E600DD7650 /* Main */,
@@ -300,6 +318,8 @@
 			children = (
 				0E9574181D4CDDCA00703C3A /* EbloTests.swift */,
 				0E95741A1D4CDDCA00703C3A /* Info.plist */,
+				0E5FF66C1DC4FAD000006D6A /* EbloStringTests.swift */,
+				0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */,
 			);
 			path = EbloTests;
 			sourceTree = "<group>";
@@ -650,8 +670,10 @@
 				0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */,
+				0E5FF66B1DC4F6BA00006D6A /* String+Parse.swift in Sources */,
 				0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */,
 				0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */,
+				0E5FF6691DC4E6A500006D6A /* ScreenTransitionManager.swift in Sources */,
 				0E610D2E1DC1C65A0005CA9C /* CompanyTableViewManager.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
@@ -669,6 +691,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E5FF66D1DC4FAD000006D6A /* EbloStringTests.swift in Sources */,
+				0E5FF66F1DC50F0400006D6A /* ScreenTransitionTests.swift in Sources */,
 				0E9574191D4CDDCA00703C3A /* EbloTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
