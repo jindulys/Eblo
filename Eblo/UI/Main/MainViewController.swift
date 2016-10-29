@@ -69,8 +69,6 @@ class MainViewController: UIViewController {
   
   func functionTest() {
     RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
-    let a = [1, 6, 9]
-    print(a[10])
   }
 
   func testJi() {
