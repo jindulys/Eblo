@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
 	let tableManager: CompanyTableViewManager = CompanyTableViewManager()
 
   // This is used for whether or not we finished first time fetch to avoid repeated annoyying fetch.
-  var firstFetch: Bool = false
+  var finishedFirstFetch: Bool = false
 	
 	override func loadView() {
 		super.loadView()
@@ -56,9 +56,9 @@ class MainViewController: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     //EBRealmCompanyManager.sharedInstance.deleteAllCompanies()
-    if !self.firstFetch {
+    if !self.finishedFirstFetch {
       tableManager.refreshData()
-      self.firstFetch = true
+      self.finishedFirstFetch = true
     }
   }
   

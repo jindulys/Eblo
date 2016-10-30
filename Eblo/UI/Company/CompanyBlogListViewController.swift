@@ -25,6 +25,9 @@ class CompanyBlogListViewController: UIViewController {
   /// The company for this view controller.
   var company: Company?
 
+  // This is used for whether or not we finished first time fetch to avoid repeated annoyying fetch.
+  var finishedFirstFetch: Bool = false
+
   init(companyUUID: String) {
     self.companyUUID = companyUUID
     super.init(nibName: nil, bundle: nil)
@@ -62,7 +65,10 @@ class CompanyBlogListViewController: UIViewController {
   }
 
   override func viewDidAppear(_ animated: Bool) {
-    tableManager.refreshData()
+    if !self.finishedFirstFetch {
+      tableManager.refreshData()
+      self.finishedFirstFetch = true
+    }
   }
 }
 
