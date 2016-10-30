@@ -18,6 +18,12 @@ protocol RealmCompanyManagerDelegate: class {
   func hasNewDataSet() -> Void
 }
 
+/// Protocol used for notify UI delegate UI events.
+protocol RealmCompanyManagerUIDelegate: class {
+  /// Tell the UI Delegate that row was tapped with necessary info.
+  func tappedRow(companyUUID: String)
+}
+
 /// The realm manager which is responsible for read/write management of Company Object.
 class RealmCompanyManager {
 
@@ -32,6 +38,9 @@ class RealmCompanyManager {
 
   /// Potentional subscriber, which will be notified when there have some updates of database.
   weak var subscriber: RealmCompanyManagerDelegate?
+
+  /// The UI Delegate which is responsible for touch event.
+  weak var uiDelegate: RealmCompanyManagerUIDelegate?
 
   /// This method updates the company's information(Blog).
   /// Current Design like this:
@@ -309,10 +318,9 @@ extension RealmCompanyManager: TableViewManagerDataSource {
       for company in companies {
         let rowAction = {
           self.clearNewArticlesFlagWith(UUID: company.UUID)
-          let openURL = company.blogs.first?.blogURL ?? company.blogURL
-          let svc = SFSafariViewController(url: NSURL(string: openURL)! as URL)
-          svc.title = company.companyName
-          AppManager.sharedInstance.presentToNavTop(controller: svc)
+          if let uiDelegate = self.uiDelegate {
+            uiDelegate.tappedRow(companyUUID: company.UUID)
+          }
         }
         let currentRow =
           Row(title: company.companyName,

@@ -43,6 +43,7 @@ class MainViewController: UIViewController {
     tableManager.dataSource = RealmCompanyManager.sharedInstance
     // 3. Set dataSource's subscriber to its upper level to initiatively report data change.
     RealmCompanyManager.sharedInstance.subscriber = tableManager
+    RealmCompanyManager.sharedInstance.uiDelegate = self
 
     // TODO(simonli): might need to remove this one.
     RealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile()
@@ -101,5 +102,15 @@ extension MainViewController: TransitionViewController {
 
   public var editRecordEntry: String {
     return "editRecord"
+  }
+}
+
+extension MainViewController: RealmCompanyManagerUIDelegate {
+  func tappedRow(companyUUID: String) {
+    print("pressed \(companyUUID)")
+//    let openURL = company.blogs.first?.blogURL ?? company.blogURL
+//    let svc = SFSafariViewController(url: NSURL(string: openURL)! as URL)
+//    svc.title = company.companyName
+//    AppManager.sharedInstance.presentToNavTop(controller: svc)
   }
 }
