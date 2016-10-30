@@ -8,7 +8,7 @@
 
 import SiYuanKit
 
-extension TableViewManager: RealmCompanyManagerDelegate {
+extension TableViewManager: InitiatedDataManagerSubScriberDelegate {
   func hasNewDataSet() {
     self.refreshData()
   }

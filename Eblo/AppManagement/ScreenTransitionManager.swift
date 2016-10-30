@@ -35,7 +35,7 @@ class ScreenTransitionManager {
   /// Transition Routes Table all the transition management are here.
   static let transitionRoutesTable =
     [ "MainViewController" :
-        ["companyBlogList" : (TransitionMethod.NAV, "EditRecordViewController"),
+        ["companyBlogList" : (TransitionMethod.NAV, "CompanyBlogListViewController"),
          "editRecord" : (TransitionMethod.POP, "EditRecordViewController")]
   ]
 
@@ -52,7 +52,7 @@ class ScreenTransitionManager {
     // NOTE: append destination view controller name.
     baseURI.append("\(toViewController)/")
     // NOTE: append action.
-    baseURI.append("action=\(transitionMethod.rawValue)")
+    baseURI.append("action=\(transitionMethod.rawValue)&")
     if let passedParams = params {
       baseURI.append(passedParams)
     }

@@ -8,15 +8,8 @@
 
 import RealmSwift
 import SiYuanKit
-import SafariServices
 
 let localJSONGotIn = "localJSONGotIn"
-
-/// Protocol to notify the subscripter the event of this Manager.
-protocol RealmCompanyManagerDelegate: class {
-  /// This company manager has produced a new set of data.
-  func hasNewDataSet() -> Void
-}
 
 /// Protocol used for notify UI delegate UI events.
 protocol RealmCompanyManagerUIDelegate: class {
@@ -25,7 +18,7 @@ protocol RealmCompanyManagerUIDelegate: class {
 }
 
 /// The realm manager which is responsible for read/write management of Company Object.
-class RealmCompanyManager {
+class RealmCompanyManager: InitiatedDataManager {
 
   /// The shared singleton.
   static let sharedInstance = RealmCompanyManager()
@@ -35,9 +28,6 @@ class RealmCompanyManager {
 
   /// An operation Queue used for company's update.
   private let companyUpdateOperationQueue = YSOperationQueue()
-
-  /// Potentional subscriber, which will be notified when there have some updates of database.
-  weak var subscriber: RealmCompanyManagerDelegate?
 
   /// The UI Delegate which is responsible for touch event.
   weak var uiDelegate: RealmCompanyManagerUIDelegate?
@@ -201,6 +191,21 @@ class RealmCompanyManager {
     return realm.objects(Company.self)
   }
 
+  /// Return a company specified by UUID or nil.
+  func companyWith(UUID: String) -> Company? {
+    do {
+      let realm = try Realm()
+      guard let updateCompany = realm.objects(Company.self).filter("UUID = '\(UUID)'").first else {
+        return nil
+      }
+      return updateCompany
+    } catch {
+      // TODO(simonli): fix error case
+      print("Realm Write Error!")
+      return nil
+    }
+  }
+
   /// Detect whether or not a company existing.
   func existingCompany(UUID: String) -> Bool {
     do {
@@ -292,15 +297,6 @@ class RealmCompanyManager {
       } catch {
         // TODO(simonli:) handle local file error.
         print("Error happened")
-      }
-    }
-  }
-
-  /// Notify the subscriber that data has changed.
-  func notifySubscriber() {
-    GCDQueue.main.async {
-      if let subscriber = self.subscriber {
-        subscriber.hasNewDataSet()
       }
     }
   }

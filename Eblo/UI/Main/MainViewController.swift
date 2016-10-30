@@ -108,6 +108,9 @@ extension MainViewController: TransitionViewController {
 extension MainViewController: RealmCompanyManagerUIDelegate {
   func tappedRow(companyUUID: String) {
     print("pressed \(companyUUID)")
+    ScreenTransitionManager.transitionScreenWith(viewController: self,
+                                                 entryPoint: self.companyEntry,
+                                                 params: "uuid=\(companyUUID)")
 //    let openURL = company.blogs.first?.blogURL ?? company.blogURL
 //    let svc = SFSafariViewController(url: NSURL(string: openURL)! as URL)
 //    svc.title = company.companyName
