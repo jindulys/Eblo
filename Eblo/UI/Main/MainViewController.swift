@@ -28,10 +28,9 @@ class MainViewController: UIViewController {
 		super.viewDidLoad()
     self.title = "Eng Blogs"
     self.navigationItem.rightBarButtonItem =
-      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
-    // NOTE: uncomment following when want to test
-    self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(functionTest))
+    self.navigationItem.leftBarButtonItem =
+      UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(clearAllNewArticles))
     self.navigationItem.backBarButtonItem =
       UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
     // 1. Set tableView property on for tableManager. so view controller could use its lower
@@ -62,14 +61,13 @@ class MainViewController: UIViewController {
     }
   }
   
-  func addNewRecord() {
-    self.navigationController?.pushViewController(EditRecordViewController(), animated: true)
+  func clearAllNewArticles() {
+    RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
   }
   
   func functionTest() {
-    RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
     // TEST: screenTransition manager.
-    //ScreenTransitionManager.transitionScreenWith(viewController: self, entryPoint: self.editRecordEntry)
+    ScreenTransitionManager.transitionScreenWith(viewController: self, entryPoint: self.editRecordEntry)
   }
 
   func testJi() {

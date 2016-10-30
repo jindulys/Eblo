@@ -36,7 +36,7 @@ class ScreenTransitionManager {
   static let transitionRoutesTable =
     [ "MainViewController" :
         ["companyBlogList" : (TransitionMethod.NAV, "CompanyBlogListViewController"),
-         "editRecord" : (TransitionMethod.POP, "EditRecordViewController")]
+         "editRecord" : (TransitionMethod.NAV, "EditRecordViewController")]
   ]
 
   /// Transition screen with source view controller, entryPoint, and params.
