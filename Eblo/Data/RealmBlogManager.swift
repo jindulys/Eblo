@@ -14,6 +14,9 @@ class RealmBlogManager {
 
   static let sharedInstance = RealmBlogManager()
 
+  /// A lock to guard reads and writes to the `blogNextBlogID` property.
+  private static let nextIDLock = NSLock()
+
   /// Next Blog Model's ID, this one once set will be used in memory. This way to reduce
   /// the time of query nextBlogID everytime, which means in this lifecycle, if you want to
   /// save BlogID, you must guarantee you did not modify this one in a thread-unsafe way.
@@ -36,8 +39,10 @@ class RealmBlogManager {
   }
 
   static func nextBlogID() -> Int {
+    self.nextIDLock.lock()
     let retVal = self.sharedInstance.blogNextBlogID
     self.sharedInstance.blogNextBlogID += 1
+    self.nextIDLock.unlock()
     return retVal
   }
 }
