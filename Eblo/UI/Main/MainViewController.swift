@@ -52,7 +52,6 @@ class MainViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-    self.testJi()
   }
 
   override func viewDidAppear(_ animated: Bool) {
