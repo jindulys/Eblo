@@ -75,7 +75,18 @@ extension CompanyBlogListViewController: TransitionViewController {
 extension CompanyBlogListViewController: RealmBlogManagerUIDelegate {
   /// Tell the UI Delegate that row was tapped with necessary info.
   func tappedRow(blogURLString: String) {
-    let svc = SFSafariViewController(url: NSURL(string: blogURLString)! as URL)
+    var toOpenString = blogURLString
+    // TODO(simonli): handle this case
+    if let name = self.company?.companyName, name == "LINE" {
+      if let decodeString = blogURLString.removingPercentEncoding {
+        toOpenString = decodeString
+      }
+    }
+    guard let validURL = NSURL(string: toOpenString) as? URL else {
+      print("Problematic URL")
+      return
+    }
+    let svc = SFSafariViewController(url: validURL)
     svc.title = self.company?.companyName
     AppManager.sharedInstance.presentToNavTop(controller: svc)
   }
