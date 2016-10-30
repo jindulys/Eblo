@@ -15,9 +15,6 @@ class MainViewController: UIViewController {
 	var tableView: UITableView = UITableView()
 	
 	let tableManager: CompanyTableViewManager = CompanyTableViewManager()
-
-  // This is used for whether or not we finished first time fetch to avoid repeated annoyying fetch.
-  var finishedFirstFetch: Bool = false
 	
 	override func loadView() {
 		super.loadView()
@@ -45,20 +42,16 @@ class MainViewController: UIViewController {
     RealmCompanyManager.sharedInstance.uiDelegate = self
 
     // TODO(simonli): might need to remove this one.
-    RealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile()
+    RealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile {
+      GCDQueue.main.async {
+        self.tableManager.refreshData()
+      }
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-  }
-
-  override func viewDidAppear(_ animated: Bool) {
-    //EBRealmCompanyManager.sharedInstance.deleteAllCompanies()
-    if !self.finishedFirstFetch {
-      tableManager.refreshData()
-      self.finishedFirstFetch = true
-    }
   }
   
   func clearAllNewArticles() {

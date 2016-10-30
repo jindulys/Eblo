@@ -262,7 +262,7 @@ class RealmCompanyManager: InitiatedDataManager {
   }
 
   /// This helper method could use to add new entities from 'companies.json' repeatedly.
-  func repeatedWriteWithLocalFile() {
+  func repeatedWriteWithLocalFile(completion:(() -> ())? = nil) {
     if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
       do {
         let data = try NSData(contentsOfFile: path ,options: .dataReadingMapped)
@@ -290,6 +290,9 @@ class RealmCompanyManager: InitiatedDataManager {
                   realm.add(createdCompany, update: true)
                 }
               }
+            }
+            if let completion = completion {
+              completion()
             }
             //self.notifySubscriber()
           }
