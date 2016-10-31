@@ -54,14 +54,21 @@
                  "name" : "8th Light",
                  "blogURL" : "http://blog.8thlight.com/",
                  "xPathArticleTitle" : "/html//article/h2/a",
-                 "xPathArticleURL" : "/html//article/h2/a/@hrefs",
+                 "xPathArticleURL" : "/html//article/h2/a/@href",
                  "needBaseBlogURL" : "1"
                  },
                  {
                  "name" : "AdRoll",
                  "blogURL" : "http://tech.adroll.com/blog/",
                  "xPathArticleTitle" : "/html//article//h2/a",
-                 "xPathArticleURL" : "/html//article//h2/a/@hrefs",
+                 "xPathArticleURL" : "/html//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Advanced Web Machinery",
+                 "blogURL" : "https://advancedweb.hu/",
+                 "xPathArticleTitle" : "//article//h3/a",
+                 "xPathArticleURL" : "//article//h3/a/@href",
                  "needBaseBlogURL" : "1"
                  }
              ]
