@@ -15,6 +15,12 @@
                  "needBaseBlogURL" : "1"
                  },
                  {
+                 "name" : "Indeed",
+                 "blogURL" : "http://engineering.indeedblog.com/blog/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 },
+                 {
                  "name" : "Artsy",
                  "blogURL" : "https://artsy.github.io/",
                  "xPathArticleTitle" : "//*[@id='content']/div/article/div/div[1]/header/a/h2",
@@ -26,6 +32,19 @@
                  "blogURL" : "https://blogs.dropbox.com/tech/",
                  "xPathArticleTitle" : "/html//article//h1[@class='entry-title']/a",
                  "xPathArticleURL" : "/html//article//h1[@class='entry-title']/a/@href",
+                 },
+                 {
+                 "name" : "Pinterest",
+                 "blogURL" : "https://engineering.pinterest.com/blog",
+                 "xPathArticleTitle" : "//span[@class='title']",
+                 "xPathArticleURL" : "//span[@class='field-content']/a/@href"
+                 },
+                 {
+                 "name" : "theScore",
+                 "blogURL" : "http://techblog.thescore.com",
+                 "xPathArticleTitle" : "//article/section/div/h2/a",
+                 "xPathArticleURL" : "//article/section/div/h2/a/@href",
+                 "needBaseBlogURL" : "1"
                  },
                  {
                  "name" : "Gilt",
@@ -57,6 +76,18 @@
                  "blogURL" : "https://labs.spotify.com",
                  "xPathArticleTitle" : "/html//article//h1/a",
                  "xPathArticleURL" : "/html//article//h1//a/@href"
+                 },
+                 {
+                 "name" : "Google Online Security",
+                 "blogURL" : "https://security.googleblog.com/",
+                 "xPathArticleTitle" : "//div[@class='post']/h2/a",
+                 "xPathArticleURL" : "//div[@class='post']/h2/a/@href"
+                 },
+                 {
+                 "name" : "Google Research",
+                 "blogURL" : "https://research.googleblog.com/",
+                 "xPathArticleTitle" : "//div[@class='post']/h2/a",
+                 "xPathArticleURL" : "//div[@class='post']/h2/a/@href"
                  },
                  {
                  "name" : "Stripe",
@@ -159,7 +190,58 @@
                  "xPathArticleTitle" : "//article//h3/a",
                  "xPathArticleURL" : "//article//h3/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Algolia",
+                 "blogURL" : "https://blog.algolia.com",
+                 "xPathArticleTitle" : "//article/header//h1/a",
+                 "xPathArticleURL" : "//article/header//h1/a/@href"
+                 },
+                 {
+                 "name" : "Appnexus",
+                 "blogURL" : "http://techblog.appnexus.com",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Codelitt",
+                 "blogURL" : "http://www.codelitt.com/blog",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "DeferPanic",
+                 "blogURL" : "https://deferpanic.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='post']//a",
+                 "xPathArticleURL" : "//div[@class='post']//a/@href"
+                 },
+                 {
+                 "name" : "Eventbrite",
+                 "blogURL" : "http://www.eventbrite.com/engineering/",
+                 "xPathArticleTitle" : "//article/header/h1/a",
+                 "xPathArticleURL" : "//article/header/h1/a/@href"
+                 },
+                 {
+                 "name" : "Gusto",
+                 "blogURL" : "http://engineering.gusto.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Hootsuite",
+                 "blogURL" : "http://code.hootsuite.com/",
+                 "xPathArticleTitle" : "//article//h3/a",
+                 "xPathArticleURL" : "//article//h3/a/@href"
+                 },
+                 {
+                 "name" : "Jolly Good Code",
+                 "blogURL" : "https://jollygoodcode.github.io/",
+                 "xPathArticleTitle" : "//div[@class='post']//a",
+                 "xPathArticleURL" : "//div[@class='post']//a/@href",
+                 "needBaseBlogURL" : "1"
                  }
-                 
 	]
 }

@@ -35,6 +35,11 @@ class CompanyArticleFetchOperation: YSOperation {
     let blogDoc = Ji(htmlURL: URL(string: companyBlogURL)!)
     let titleNodes = blogDoc?.xPath(xPathArticleTitle)
     let urlNodes = blogDoc?.xPath(xPathArticleURL)
+    
+    if companyName == "Quora" {
+      print("u")
+    }
+     
     guard let resultNodes = titleNodes,
       let resultURLs = urlNodes,
       resultNodes.count == resultURLs.count || xPathArticleURL == "ITN" else {
