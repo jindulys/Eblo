@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
     self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(functionTest))
     self.navigationItem.leftBarButtonItem =
-      UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(clearAllNewArticles))
+      UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(clearAllNewArticles))
     self.navigationItem.backBarButtonItem =
       UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
     // 1. Set tableView property on for tableManager. so view controller could use its lower
