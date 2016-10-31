@@ -42,7 +42,7 @@ class CompanyArticleFetchOperation: YSOperation {
     }
 
     // Remove nil.
-    let freshTitles = resultNodes.flatMap { $0.content }
+    let freshTitles = resultNodes.flatMap { $0.content?.trimmingCharacters(in: .whitespacesAndNewlines) }
     let freshURLs = resultURLs.flatMap { $0.content }
 
     guard freshTitles.count == freshURLs.count || xPathArticleURL == "ITN" else {
