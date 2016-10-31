@@ -98,7 +98,7 @@ class EditRecordViewController: UIViewController {
 
     self.promptLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
     self.promptLabel.topAnchor.constraint(equalTo: self.resultTextView.bottomAnchor, constant: 12.0).isActive = true
-    self.promptLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+    self.promptLabel.heightAnchor.constraint(equalToConstant: 56.0).isActive = true
 
     self.doneButton.widthAnchor.constraint(equalToConstant: 180.0).isActive = true
     self.doneButton.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
@@ -151,13 +151,26 @@ class EditRecordViewController: UIViewController {
     let testDoc = Ji(htmlURL: validUrl)
     let testNode = testDoc?.xPath(titleXpath)
     var result = "Title: \n"
-    for t in testNode! {
-      result.append("\(t.content)\n")
+    var testOutput = ""
+    if let validTestNode = testNode {
+      for t in validTestNode {
+        result.append("\(t.content)\n")
+      }
+    } else {
+      testOutput.append("Seems your title xPath has some problem!\n")
     }
     result.append("URLs: \n")
     let urlNodes = testDoc?.xPath(urlXpath)
-    for u in urlNodes! {
-      print("\(u.content)\n")
+    if let validURLNode = urlNodes {
+      for u in validURLNode {
+        print("\(u.content)\n")
+      }
+    } else {
+      testOutput.append("as well as url xPath")
+    }
+    if testOutput.characters.count > 0 {
+      promptLabel.text = testOutput
+      promptLabel.backgroundColor = UIColor.red
     }
     resultTextView.text = result
   }
