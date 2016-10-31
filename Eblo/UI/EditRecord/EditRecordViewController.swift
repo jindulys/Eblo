@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import Ji
 
+/// Quite Awesome debug view controller.
 class EditRecordViewController: UIViewController {
   let companyNameTextField = UITextField()
   let urlTextField = UITextField()
