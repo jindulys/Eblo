@@ -77,6 +77,12 @@
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Airbnb",
+                 "blogURL" : "http://nerds.airbnb.com/",
+                 "xPathArticleTitle" : "/html//div[@class='row row-space-3']//a//div/h3/strong",
+                 "xPathArticleURL" : "/html//div[@class='row row-space-3']//a/@href"
                  }
              ]
 }
