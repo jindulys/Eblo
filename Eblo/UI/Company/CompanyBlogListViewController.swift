@@ -83,7 +83,7 @@ extension CompanyBlogListViewController: RealmBlogManagerUIDelegate {
   func tappedRow(blogURLString: String) {
     var toOpenString = blogURLString
     // TODO(simonli): handle this case
-    if let name = self.company?.companyName, name == "LINE" {
+    if let name = self.company?.companyName, name == "LINE" || name == "Instagram" {
       if let decodeString = blogURLString.removingPercentEncoding {
         toOpenString = decodeString
       }

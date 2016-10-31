@@ -56,6 +56,7 @@ class MainViewController: UIViewController {
   
   func clearAllNewArticles() {
     RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
+    //testJi()
   }
   
   func functionTest() {
@@ -64,10 +65,10 @@ class MainViewController: UIViewController {
   }
 
   func testJi() {
-    let testDoc = Ji(htmlURL: URL(string: "https://developers.500px.com/")!)
+    let testDoc = Ji(htmlURL: URL(string: "https://tech.just-eat.com/")!)
     //let titleNode = testDoc?.xPath("//article//h3//a")
     //let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
-    let testNode = testDoc?.xPath("/html/body//h3/a")
+    let testNode = testDoc?.xPath("/html/body/main/div[1]/div/div[1]/article/div/div[2]/h2")
     for t in testNode! {
       print("\(t.content)")
     }
