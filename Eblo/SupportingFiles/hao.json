@@ -43,6 +43,12 @@
                  "blogURL" : "https://developers.500px.com/",
                  "xPathArticleTitle" : "/html/body//h3/a",
                  "xPathArticleURL" : "/html/body//h3/a/@href"
+                 },
+                 {
+                 "name" : "Nextdoor",
+                 "blogURL" : "https://engblog.nextdoor.com/",
+                 "xPathArticleTitle" : "/html//div[@class='u-relative']/h3/div",
+                 "xPathArticleURL" : "/html//div[@class='u-relative']/div/a/@href"
                  }
              ]
 }
