@@ -70,6 +70,13 @@
                  "xPathArticleTitle" : "//article//h3/a",
                  "xPathArticleURL" : "//article//h3/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Adzerk",
+                 "blogURL" : "http://adzerk.com/tech/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
