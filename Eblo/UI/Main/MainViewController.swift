@@ -6,18 +6,15 @@
 //  Copyright © 2016 YANSONG LI. All rights reserved.
 //
 
-import UIKit
-import SiYuanKit
+import Crashlytics
 import Ji
-
+import SiYuanKit
+import UIKit
 
 class MainViewController: UIViewController {
 	var tableView: UITableView = UITableView()
 	
 	let tableManager: CompanyTableViewManager = CompanyTableViewManager()
-
-  // This is used for whether or not we finished first time fetch to avoid repeated annoyying fetch.
-  var firstFetch: Bool = false
 	
 	override func loadView() {
 		super.loadView()
@@ -28,10 +25,9 @@ class MainViewController: UIViewController {
 		super.viewDidLoad()
     self.title = "Eng Blogs"
     self.navigationItem.rightBarButtonItem =
-      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecord))
-    // NOTE: uncomment following when want to test
-    self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(functionTest))
+    self.navigationItem.leftBarButtonItem =
+      UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(clearAllNewArticles))
     self.navigationItem.backBarButtonItem =
       UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
     // 1. Set tableView property on for tableManager. so view controller could use its lower
@@ -43,38 +39,36 @@ class MainViewController: UIViewController {
     tableManager.dataSource = RealmCompanyManager.sharedInstance
     // 3. Set dataSource's subscriber to its upper level to initiatively report data change.
     RealmCompanyManager.sharedInstance.subscriber = tableManager
+    RealmCompanyManager.sharedInstance.uiDelegate = self
 
     // TODO(simonli): might need to remove this one.
-    RealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile()
+    RealmCompanyManager.sharedInstance.repeatedWriteWithLocalFile {
+      GCDQueue.main.async {
+        self.tableManager.refreshData()
+      }
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-    self.testJi()
-  }
-
-  override func viewDidAppear(_ animated: Bool) {
-    //EBRealmCompanyManager.sharedInstance.deleteAllCompanies()
-    if !self.firstFetch {
-      tableManager.refreshData()
-      self.firstFetch = true
-    }
   }
   
-  func addNewRecord() {
-    self.navigationController?.pushViewController(EditRecordViewController(), animated: true)
+  func clearAllNewArticles() {
+    RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
+    //testJi()
   }
   
   func functionTest() {
-    RealmCompanyManager.sharedInstance.clearAllNewArticlesFlag()
+    // TEST: screenTransition manager.
+    ScreenTransitionManager.transitionScreenWith(viewController: self, entryPoint: self.editRecordEntry)
   }
 
   func testJi() {
-    let testDoc = Ji(htmlURL: URL(string: "https://developers.500px.com/")!)
+    let testDoc = Ji(htmlURL: URL(string: "https://tech.just-eat.com/")!)
     //let titleNode = testDoc?.xPath("//article//h3//a")
     //let titleNode = testDoc?.xPath("/html//article//h3//a | /html//article//div[@class='post-preview']//a/@href")
-    let testNode = testDoc?.xPath("/html/body//h3/a")
+    let testNode = testDoc?.xPath("/html/body/main/div[1]/div/div[1]/article/div/div[2]/h2")
     for t in testNode! {
       print("\(t.content)")
     }
@@ -85,5 +79,32 @@ class MainViewController: UIViewController {
 //    for title in titleNode! {
 //      print("\(title.content)")
 //    }
+  }
+}
+
+extension MainViewController: TransitionViewController {
+  var sourceScreenName: String {
+    return String(describing:type(of: self))
+  }
+
+  public var companyEntry: String {
+    return "companyBlogList"
+  }
+
+  public var editRecordEntry: String {
+    return "editRecord"
+  }
+}
+
+extension MainViewController: RealmCompanyManagerUIDelegate {
+  func tappedRow(companyUUID: String) {
+    print("pressed \(companyUUID)")
+    ScreenTransitionManager.transitionScreenWith(viewController: self,
+                                                 entryPoint: self.companyEntry,
+                                                 params: "uuid=\(companyUUID)")
+//    let openURL = company.blogs.first?.blogURL ?? company.blogURL
+//    let svc = SFSafariViewController(url: NSURL(string: openURL)! as URL)
+//    svc.title = company.companyName
+//    AppManager.sharedInstance.presentToNavTop(controller: svc)
   }
 }

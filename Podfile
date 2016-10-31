@@ -6,13 +6,17 @@ target 'Eblo' do
   use_frameworks!
 
   # Pods for Eblo
-  pod 'SiYuanKit', '~> 1.0'
+  pod 'SiYuanKit', :path=>'/Users/yansongli/Desktop/SiYuanKit/SiYuanKit'
   
   # Pods for Ji
   pod 'Ji', '~> 2.0.0' 
 
   # Pods for Realm
   pod 'RealmSwift'
+
+  # Pods for Crashlytics
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'EbloTests' do
     inherit! :search_paths

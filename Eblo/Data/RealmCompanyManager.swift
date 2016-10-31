@@ -8,18 +8,17 @@
 
 import RealmSwift
 import SiYuanKit
-import SafariServices
 
 let localJSONGotIn = "localJSONGotIn"
 
-/// Protocol to notify the subscripter the event of this Manager.
-protocol RealmCompanyManagerDelegate: class {
-  /// This company manager has produced a new set of data.
-  func hasNewDataSet() -> Void
+/// Protocol used for notify UI delegate UI events.
+protocol RealmCompanyManagerUIDelegate: class {
+  /// Tell the UI Delegate that row was tapped with necessary info.
+  func tappedRow(companyUUID: String)
 }
 
 /// The realm manager which is responsible for read/write management of Company Object.
-class RealmCompanyManager {
+class RealmCompanyManager: InitiatedDataManager {
 
   /// The shared singleton.
   static let sharedInstance = RealmCompanyManager()
@@ -30,8 +29,8 @@ class RealmCompanyManager {
   /// An operation Queue used for company's update.
   private let companyUpdateOperationQueue = YSOperationQueue()
 
-  /// Potentional subscriber, which will be notified when there have some updates of database.
-  weak var subscriber: RealmCompanyManagerDelegate?
+  /// The UI Delegate which is responsible for touch event.
+  weak var uiDelegate: RealmCompanyManagerUIDelegate?
 
   /// This method updates the company's information(Blog).
   /// Current Design like this:
@@ -192,6 +191,21 @@ class RealmCompanyManager {
     return realm.objects(Company.self)
   }
 
+  /// Return a company specified by UUID or nil.
+  func companyWith(UUID: String) -> Company? {
+    do {
+      let realm = try Realm()
+      guard let updateCompany = realm.objects(Company.self).filter("UUID = '\(UUID)'").first else {
+        return nil
+      }
+      return updateCompany
+    } catch {
+      // TODO(simonli): fix error case
+      print("Realm Write Error!")
+      return nil
+    }
+  }
+
   /// Detect whether or not a company existing.
   func existingCompany(UUID: String) -> Bool {
     do {
@@ -248,7 +262,7 @@ class RealmCompanyManager {
   }
 
   /// This helper method could use to add new entities from 'companies.json' repeatedly.
-  func repeatedWriteWithLocalFile() {
+  func repeatedWriteWithLocalFile(completion:(() -> ())? = nil) {
     if let path = Bundle.main.path(forResource: "companies", ofType: "json") {
       do {
         let data = try NSData(contentsOfFile: path ,options: .dataReadingMapped)
@@ -277,21 +291,15 @@ class RealmCompanyManager {
                 }
               }
             }
+            if let completion = completion {
+              completion()
+            }
             //self.notifySubscriber()
           }
         }
       } catch {
         // TODO(simonli:) handle local file error.
         print("Error happened")
-      }
-    }
-  }
-
-  /// Notify the subscriber that data has changed.
-  func notifySubscriber() {
-    GCDQueue.main.async {
-      if let subscriber = self.subscriber {
-        subscriber.hasNewDataSet()
       }
     }
   }
@@ -309,10 +317,9 @@ extension RealmCompanyManager: TableViewManagerDataSource {
       for company in companies {
         let rowAction = {
           self.clearNewArticlesFlagWith(UUID: company.UUID)
-          let openURL = company.blogs.first?.blogURL ?? company.blogURL
-          let svc = SFSafariViewController(url: NSURL(string: openURL)! as URL)
-          svc.title = company.companyName
-          AppManager.sharedInstance.presentToNavTop(controller: svc)
+          if let uiDelegate = self.uiDelegate {
+            uiDelegate.tappedRow(companyUUID: company.UUID)
+          }
         }
         let currentRow =
           Row(title: company.companyName,

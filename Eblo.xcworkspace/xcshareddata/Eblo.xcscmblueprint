@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7D20C7F63D2CACE58A0E529028E5A809A2C912CF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AFBDD38F41FF71F9BAB79C1AC1899DC92E4260B4" : 9223372036854775807,
+    "7D20C7F63D2CACE58A0E529028E5A809A2C912CF" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EDB27E82-78B2-4251-8650-C3E5D6A95455",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AFBDD38F41FF71F9BAB79C1AC1899DC92E4260B4" : "..\/SiYuanKit\/SiYuanKit",
+    "7D20C7F63D2CACE58A0E529028E5A809A2C912CF" : "Eblo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Eblo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Eblo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jindulys\/Eblo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7D20C7F63D2CACE58A0E529028E5A809A2C912CF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:jindulys\/SiYuanKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AFBDD38F41FF71F9BAB79C1AC1899DC92E4260B4"
+    }
+  ]
+}

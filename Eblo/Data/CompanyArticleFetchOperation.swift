@@ -37,7 +37,7 @@ class CompanyArticleFetchOperation: YSOperation {
     let urlNodes = blogDoc?.xPath(xPathArticleURL)
     guard let resultNodes = titleNodes,
       let resultURLs = urlNodes,
-      resultNodes.count == resultURLs.count else {
+      resultNodes.count == resultURLs.count || xPathArticleURL == "ITN" else {
       return
     }
 
@@ -45,14 +45,16 @@ class CompanyArticleFetchOperation: YSOperation {
     let freshTitles = resultNodes.flatMap { $0.content }
     let freshURLs = resultURLs.flatMap { $0.content }
 
-    guard freshTitles.count == freshURLs.count else {
+    guard freshTitles.count == freshURLs.count || xPathArticleURL == "ITN" else {
       return
     }
 
     // NOTE: Before we generate URL, make it encoded first.
     let encodedURLs = freshURLs.map { url -> String in
-      if let encoded = url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
-        return encoded
+      if xPathArticleURL != "ITN" {
+        if let encoded = url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+          return encoded
+        }
       }
       return self.companyBlogURL
     }

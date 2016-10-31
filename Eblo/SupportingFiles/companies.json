@@ -40,12 +40,6 @@
                  "xPathArticleURL" : "/html//div[@class='postArticle postArticle--short is-withAccentColors']//div[@class='postArticle-readMore']/a/@href",
                  },
                  {
-                 "name" : "Just Eat",
-                 "blogURL" : "https://tech.just-eat.com/",
-                 "xPathArticleTitle" : "/html//div[@class='desc  no-post-thumbnail']//a//h3",
-                 "xPathArticleURL" : "/html//div[@class='desc  no-post-thumbnail']/a/@href"
-                 },
-                 {
                  "name" : "LinkedIn",
                  "blogURL" : "https://engineering.linkedin.com/blog",
                  "xPathArticleTitle" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a",
@@ -132,6 +126,12 @@
                  "blogURL" : "http://blog.apps.npr.org/",
                  "xPathArticleTitle" : "/html//article/h3/a",
                  "xPathArticleURL" : "/html//article/h3/a/@href"
+                 },
+                 {
+                 "name" : "500px",
+                 "blogURL" : "https://developers.500px.com/",
+                 "xPathArticleTitle" : "/html/body//h3/a",
+                 "xPathArticleURL" : "/html/body//h3/a/@href"
                  }
                  
 	]

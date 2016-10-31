@@ -16,6 +16,14 @@
 		0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */; };
 		0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */; };
 		0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */; };
+		0E5FF6691DC4E6A500006D6A /* ScreenTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */; };
+		0E5FF66B1DC4F6BA00006D6A /* String+Eblo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */; };
+		0E5FF66D1DC4FAD000006D6A /* EbloStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66C1DC4FAD000006D6A /* EbloStringTests.swift */; };
+		0E5FF66F1DC50F0400006D6A /* ScreenTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */; };
+		0E5FF6711DC5313900006D6A /* URIMatcherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6701DC5313900006D6A /* URIMatcherManager.swift */; };
+		0E5FF6731DC6789000006D6A /* CompanyBlogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6721DC6789000006D6A /* CompanyBlogListViewController.swift */; };
+		0E5FF6751DC6854B00006D6A /* InitiatedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6741DC6854B00006D6A /* InitiatedDataManager.swift */; };
+		0E5FF6771DC68CA600006D6A /* BlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6761DC68CA600006D6A /* BlogCell.swift */; };
 		0E610D291DC068260005CA9C /* hao.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D251DC068260005CA9C /* hao.json */; };
 		0E610D2A1DC068260005CA9C /* Lexi.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D261DC068260005CA9C /* Lexi.json */; };
 		0E610D2B1DC068260005CA9C /* xiaohao.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D271DC068260005CA9C /* xiaohao.json */; };
@@ -27,7 +35,7 @@
 		0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */; };
 		0E7A60CC1DB2C577003EB738 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60CB1DB2C577003EB738 /* Company.swift */; };
 		0E7A60D11DB3EA2A003EB738 /* companies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A60D01DB3EA2A003EB738 /* companies.json */; };
-		0E7A60D61DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */; };
+		0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
 		0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574031D4CDDCA00703C3A /* AppDelegate.swift */; };
 		0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574051D4CDDCA00703C3A /* ViewController.swift */; };
@@ -70,6 +78,14 @@
 		0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecordViewController.swift; sourceTree = "<group>"; };
 		0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmBlogManager.swift; sourceTree = "<group>"; };
 		0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
+		0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTransitionManager.swift; sourceTree = "<group>"; };
+		0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Eblo.swift"; sourceTree = "<group>"; };
+		0E5FF66C1DC4FAD000006D6A /* EbloStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloStringTests.swift; sourceTree = "<group>"; };
+		0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTransitionTests.swift; sourceTree = "<group>"; };
+		0E5FF6701DC5313900006D6A /* URIMatcherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URIMatcherManager.swift; sourceTree = "<group>"; };
+		0E5FF6721DC6789000006D6A /* CompanyBlogListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyBlogListViewController.swift; sourceTree = "<group>"; };
+		0E5FF6741DC6854B00006D6A /* InitiatedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiatedDataManager.swift; sourceTree = "<group>"; };
+		0E5FF6761DC68CA600006D6A /* BlogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogCell.swift; sourceTree = "<group>"; };
 		0E610D251DC068260005CA9C /* hao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hao.json; sourceTree = "<group>"; };
 		0E610D261DC068260005CA9C /* Lexi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Lexi.json; sourceTree = "<group>"; };
 		0E610D271DC068260005CA9C /* xiaohao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xiaohao.json; sourceTree = "<group>"; };
@@ -84,7 +100,7 @@
 		0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCompanyManager.swift; sourceTree = "<group>"; };
 		0E7A60CB1DB2C577003EB738 /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		0E7A60D01DB3EA2A003EB738 /* companies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = companies.json; sourceTree = "<group>"; };
-		0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewManager+EBRealmCompanyManager.swift"; sourceTree = "<group>"; };
+		0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewManager+InitiatedDataManager.swift"; sourceTree = "<group>"; };
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		0E9574001D4CDDCA00703C3A /* Eblo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eblo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574031D4CDDCA00703C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +191,15 @@
 			path = EditRecord;
 			sourceTree = "<group>";
 		};
+		0E5FF6671DC4E3BD00006D6A /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				0E5FF6721DC6789000006D6A /* CompanyBlogListViewController.swift */,
+				0E5FF6761DC68CA600006D6A /* BlogCell.swift */,
+			);
+			path = Company;
+			sourceTree = "<group>";
+		};
 		0E69FFBD1D689CAD00D6C2E9 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +234,7 @@
 				0EB5AC7C1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift */,
 				0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */,
 				0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */,
+				0E5FF6741DC6854B00006D6A /* InitiatedDataManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -229,7 +255,8 @@
 		0E7A60D21DB43092003EB738 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				0E7A60D51DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift */,
+				0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */,
+				0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -239,6 +266,8 @@
 			children = (
 				0E8BF04A1D61323D00E0AA08 /* AppManager.swift */,
 				0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */,
+				0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */,
+				0E5FF6701DC5313900006D6A /* URIMatcherManager.swift */,
 			);
 			path = AppManagement;
 			sourceTree = "<group>";
@@ -247,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
+				0E5FF6671DC4E3BD00006D6A /* Company */,
 				0E5FC56D1DB283D3003DF396 /* EditRecord */,
 				0E6BA7791D67F5C400B7575C /* Loading */,
 				0E54D0A01DB091E600DD7650 /* Main */,
@@ -300,6 +330,8 @@
 			children = (
 				0E9574181D4CDDCA00703C3A /* EbloTests.swift */,
 				0E95741A1D4CDDCA00703C3A /* Info.plist */,
+				0E5FF66C1DC4FAD000006D6A /* EbloStringTests.swift */,
+				0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */,
 			);
 			path = EbloTests;
 			sourceTree = "<group>";
@@ -498,7 +530,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 50817088fa4713ab10aa8a21bbb1ea98d765917c b33980febf615fd4bd4ee7a91894decc08010020ec91f9640b57202f79096bb3";
 		};
 		18FA90EAA115E51B993743D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -643,15 +675,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */,
-				0E7A60D61DB44363003EB738 /* TableViewManager+EBRealmCompanyManager.swift in Sources */,
+				0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */,
 				0EB5AC7B1DB9C87300ACD9EE /* CompanyBlog.swift in Sources */,
 				0E6BA7801D67F64100B7575C /* PortalViewController.swift in Sources */,
 				0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */,
 				0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */,
+				0E5FF66B1DC4F6BA00006D6A /* String+Eblo.swift in Sources */,
+				0E5FF6751DC6854B00006D6A /* InitiatedDataManager.swift in Sources */,
 				0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */,
 				0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */,
+				0E5FF6691DC4E6A500006D6A /* ScreenTransitionManager.swift in Sources */,
+				0E5FF6711DC5313900006D6A /* URIMatcherManager.swift in Sources */,
 				0E610D2E1DC1C65A0005CA9C /* CompanyTableViewManager.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
@@ -659,9 +695,11 @@
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
 				0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */,
 				0E7A60CC1DB2C577003EB738 /* Company.swift in Sources */,
+				0E5FF6731DC6789000006D6A /* CompanyBlogListViewController.swift in Sources */,
 				0E6BA77D1D67F5EA00B7575C /* LoadingViewController.swift in Sources */,
 				0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */,
 				0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */,
+				0E5FF6771DC68CA600006D6A /* BlogCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +707,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E5FF66D1DC4FAD000006D6A /* EbloStringTests.swift in Sources */,
+				0E5FF66F1DC50F0400006D6A /* ScreenTransitionTests.swift in Sources */,
 				0E9574191D4CDDCA00703C3A /* EbloTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,7 +771,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -808,6 +848,7 @@
 			baseConfigurationReference = F1A6D301C8567DE7DA3ED4D0 /* Pods-Eblo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -825,6 +866,7 @@
 			baseConfigurationReference = 17990CD8E61CD9A6FC2580ED /* Pods-Eblo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
