@@ -24,7 +24,7 @@ public class CompanyCell: UITableViewCell {
   let badgeSize: CGFloat = 20
 
   /// The company data with this cell.
-  var company: EBCompany? = nil
+  var company: Company? = nil
 
   /// The company context for this cell.
   private var companyContext = 0
@@ -73,46 +73,6 @@ public class CompanyCell: UITableViewCell {
     newBadgeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12).isActive = true
   }
 
-  deinit {
-    self.company?.removeObserver(self, forKeyPath: "hasNewArticlesToRead")
-    self.company?.removeObserver(self, forKeyPath: "latestArticleTitle")
-  }
-
-  // MARK: -
-  func configureCompany(_ company : EBCompany) {
-    if let oldCompany = self.company {
-      if oldCompany.UUID != company.UUID {
-        oldCompany.removeObserver(self, forKeyPath: "hasNewArticlesToRead")
-        self.addObserverWithCompany(company)
-      }
-    } else {
-      // New one, we could directly add observer.
-      self.addObserverWithCompany(company)
-    }
-  }
-  
-  func addObserverWithCompany(_ company: EBCompany) {
-    self.company = company
-    company.addObserver(self, forKeyPath: "hasNewArticlesToRead", options: .new, context: &self.companyContext)
-    company.addObserver(self, forKeyPath: "latestArticleTitle", options: .new, context: &self.companyArticleContext)
-  }
-
-  public override func observeValue(forKeyPath keyPath: String?,
-                                    of object: Any?,
-                                    change: [NSKeyValueChangeKey : Any]?,
-                                    context: UnsafeMutableRawPointer?) {
-    if context == &self.companyContext {
-      if let newValue = change?[NSKeyValueChangeKey.newKey] as? Bool {
-        animateNewBadge(on: newValue)
-      }
-    }
-    if context == &self.companyArticleContext {
-      if let newValue = change?[NSKeyValueChangeKey.newKey] as? String {
-        animateNewArticle(newValue)
-      }
-    }
-  }
-
   func animateNewBadge(on: Bool) {
     // NOTE: I find that animation directly inside a cell has no effect.
     self.newBadgeView.alpha = on ? 1.0 : 0.0
@@ -127,12 +87,11 @@ public class CompanyCell: UITableViewCell {
 
 extension CompanyCell: StaticCellType {
   public func configure(row: Row) {
-    if let company = row.customData as? EBCompany {
+    if let company = row.customData as? Company {
       // NOTE: use company as the actually data source, since company is a realm object and it is
       // keep sync with the actually database update.
       self.titleLabel.text = company.companyName
       self.bodyLabel.text = company.latestArticleTitle
-      self.configureCompany(company)
       self.newBadgeView.alpha = company.hasNewArticlesToRead ? 1.0 : 0.0
     }
   }

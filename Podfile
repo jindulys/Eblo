@@ -9,7 +9,10 @@ target 'Eblo' do
   pod 'SiYuanKit', '~> 1.0'
   
   # Pods for Ji
-  pod 'Ji', '~> 2.0.0'  
+  pod 'Ji', '~> 2.0.0' 
+
+  # Pods for Realm
+  pod 'RealmSwift'
 
   target 'EbloTests' do
     inherit! :search_paths

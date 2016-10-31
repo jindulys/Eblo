@@ -21,7 +21,7 @@ public enum TableViewData {
 }
 
 /// Manager to handle TableView related events.
-public class TableViewManager: NSObject {
+open class TableViewManager: NSObject {
   
   /// The Identifiers registered to the `tableView`.
   public var registeredCellIdentifiers: [String] = []
@@ -29,6 +29,12 @@ public class TableViewManager: NSObject {
   /// The potential data source that provide data to this table view manager.
   public weak var dataSource: TableViewManagerDataSource?
   
+  /// This is used to control whether or not we will refresh data when new data comes.
+  /// This variable existing because we have two ways to refresh Table.
+  /// The first one is when data is set
+  /// The second one is when rows get stale and need updateStaledRows.
+  public var banRefreshTableWhenNewDataCome: Bool = false
+
   /**
     tableView object managed by this Manager.
    */
@@ -46,10 +52,19 @@ public class TableViewManager: NSObject {
   /// The data for this tableViewManager.
   public var data: TableViewData = .SingleSection([]) {
     didSet {
-      refreshTableView(oldData: oldValue)
+      dataValueUpdate(from: oldValue, to: data)
     }
   }
   
+  /// This method will be called every time the data of this tableViewManager changed.
+  /// SubClass could subclass this method to get the entry point to configure the data.
+  /// MUST CALL SUPER.
+  open func dataValueUpdate(from: TableViewData?, to: TableViewData?) {
+    if !banRefreshTableWhenNewDataCome {
+      refreshTableView(oldData: from)
+    }
+  }
+
   /// Require this table view manager to refresh its data.
   public func refreshData() {
     guard let dataSource = dataSource else {
@@ -64,8 +79,8 @@ extension TableViewManager {
 
   /// Reload tableView and register cell.
   fileprivate func refreshTableView(oldData: TableViewData? = nil) {
-    updateTableViewLayout(oldData: oldData)
     refreshRegisteredCells()
+    updateTableViewLayout(oldData: oldData)
   }
 
   private func updateTableViewLayout(oldData: TableViewData? = nil) {
@@ -94,8 +109,97 @@ extension TableViewManager {
         tableView?.reloadSections(IndexSet(integersIn: 0..<commonCount), with: .fade)
       }
       tableView?.endUpdates()
+    case (.SingleSection(let oldRows),
+          .SingleSection(let newRows)):
+      let oldRowsCount = oldRows.count
+      let newRowsCount = newRows.count
+      let delta = newRowsCount - oldRowsCount
+
+      tableView?.beginUpdates()
+      if delta == 0 {
+        var needUpdatedIndexPaths: [IndexPath] = []
+        for i in 0..<oldRowsCount {
+          needUpdatedIndexPaths.append(IndexPath(row: i, section: 0))
+        }
+        tableView?.reloadRows(at: needUpdatedIndexPaths, with: .automatic)
+      } else {
+        if delta > 0 {
+          var needInsertedIndexPaths: [IndexPath] = []
+          for i in oldRowsCount..<newRowsCount {
+            needInsertedIndexPaths.append(IndexPath(row: i, section: 0))
+          }
+          tableView?.insertRows(at: needInsertedIndexPaths, with: .fade)
+        } else {
+          var needDeletedIndexPaths: [IndexPath] = []
+          for i in newRowsCount..<oldRowsCount {
+            needDeletedIndexPaths.append(IndexPath(row: i, section: 0))
+          }
+          tableView?.deleteRows(at: needDeletedIndexPaths, with: .right)
+        }
+        let commonCount = min(oldRowsCount, newRowsCount)
+        var needReloadedIndexPaths: [IndexPath] = []
+        for i in 0..<commonCount {
+          needReloadedIndexPaths.append(IndexPath(row: i, section: 0))
+        }
+        tableView?.reloadRows(at: needReloadedIndexPaths, with: .automatic)
+      }
+      tableView?.endUpdates()
     default:
       tableView?.reloadData()
+    }
+  }
+
+  /// Reload the staled rows once your data get stale and need refresh.
+  public func updateStaledRows(byReloadTableData reload: Bool = false) {
+    switch data {
+    case .SingleSection(var rows):
+      var staledRowIndexPaths: [IndexPath] = []
+      /// NOTE: this is important, we need this newRows to get the new state change, and assign it back
+      /// The reason is that self.data is a enum and it is a value type.
+      var newRows: [Row] = rows
+      for i in 0..<rows.count {
+        if rows[i].getStale {
+          staledRowIndexPaths.append(IndexPath(row: i, section: 0))
+          newRows[i].getStale = false
+        }
+      }
+      // NOTE: set the ban refresh flag on so that we could ban the update from the data and only
+      // use update animation for the get stale one.
+      self.banRefreshTableWhenNewDataCome = true
+      self.data = .SingleSection(newRows)
+      self.banRefreshTableWhenNewDataCome = false
+
+      if staledRowIndexPaths.count == 0 {
+        break
+      }
+      if !reload {
+        tableView?.beginUpdates()
+        tableView?.reloadRows(at: staledRowIndexPaths, with: .fade)
+        tableView?.endUpdates()
+      } else {
+        tableView?.reloadData()
+      }
+    case .MultiSection(var sections):
+      var staledRowIndexPaths: [IndexPath] = []
+      for i in 0..<sections.count {
+        for j in 0..<sections[i].rows.count {
+          if sections[i].rows[j].getStale {
+            staledRowIndexPaths.append(IndexPath(row: j, section: i))
+            sections[i].rows[j].getStale = false
+          }
+        }
+      }
+      if staledRowIndexPaths.count == 0 {
+        break
+      }
+      if !reload {
+        tableView?.beginUpdates()
+        tableView?.reloadRows(at: staledRowIndexPaths, with: .fade)
+        tableView?.endUpdates()
+      } else {
+        tableView?.reloadData()
+      }
+      break
     }
   }
 
@@ -139,7 +243,7 @@ extension TableViewManager {
 
 extension TableViewManager: UITableViewDataSource {
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
       numberOfRowsInSection section: Int) -> Int {
     switch data {
     case .SingleSection(let r):
@@ -149,7 +253,7 @@ extension TableViewManager: UITableViewDataSource {
     }
   }
   
-  public func numberOfSections(in tableView: UITableView) -> Int {
+  open func numberOfSections(in tableView: UITableView) -> Int {
     switch data {
     case .SingleSection(_):
       return 1
@@ -158,7 +262,7 @@ extension TableViewManager: UITableViewDataSource {
     }
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let row = rowForIndexPath(indexPath) {
       let cell = tableView.dequeueReusableCell(withIdentifier: row.cellIdentifier,
@@ -171,7 +275,7 @@ extension TableViewManager: UITableViewDataSource {
     return UITableViewCell()
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
     titleForHeaderInSection section: Int) -> String? {
     switch data {
     case .SingleSection(_):
@@ -181,24 +285,24 @@ extension TableViewManager: UITableViewDataSource {
     }
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
    heightForHeaderInSection section: Int) -> CGFloat {
     return UITableViewAutomaticDimension
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
    heightForFooterInSection section: Int) -> CGFloat {
     return UITableViewAutomaticDimension
   }
   
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
     titleForFooterInSection section: Int) -> String? {
     return nil
   }
 }
 
 extension TableViewManager: UITableViewDelegate {
-  public func tableView(_ tableView: UITableView,
+  open func tableView(_ tableView: UITableView,
            didSelectRowAt indexPath: IndexPath) {
     if let row = self.rowForIndexPath(indexPath) {
       row.action?()

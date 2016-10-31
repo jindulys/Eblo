@@ -14,19 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
     AppManager.sharedInstance.createRootNavigationControllerWithAppDelegate(self)
     AppManager.sharedInstance.allowNavigation()
     AppManager.sharedInstance.goToMainWith(URI: nil)
     // TODO(simonli): move company update to correct place
     GCDQueue.main.after(when: 3) {
-      EBRealmCompanyManager.sharedInstance.updateCompanyArticles()
+      RealmCompanyManager.sharedInstance.updateCompanyArticles()
     }
     
     // Fake test for article update.
 //    GCDQueue.main.after(when: 15) {
-//      let testBlog = EBBlog()
+//      let testBlog = CompanyBlog()
 //      testBlog.blogTitle = "lololol,hahdhahahdkfjasjdfioajsdfkl"
 //      testBlog.blogURL = "test"
 //      EBRealmCompanyManager.sharedInstance.updateCompanyWith(UUID:"Yelphttps://engineeringblog.yelp.com/",blogInfos:[testBlog])

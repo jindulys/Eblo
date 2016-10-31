@@ -4,31 +4,39 @@ PODS:
   - Ji/Ji (2.0.1):
     - Ji/Ji-libxml
   - Ji/Ji-libxml (2.0.1)
-  - SiYuanKit (1.2.16):
-    - SiYuanKit/DispatchQueue (= 1.2.16)
-    - SiYuanKit/Extension (= 1.2.16)
-    - SiYuanKit/StaticTableView (= 1.2.16)
-    - SiYuanKit/Then (= 1.2.16)
-    - SiYuanKit/Utilities (= 1.2.16)
-    - SiYuanKit/YSOperations (= 1.2.16)
-  - SiYuanKit/DispatchQueue (1.2.16)
-  - SiYuanKit/Extension (1.2.16)
-  - SiYuanKit/StaticTableView (1.2.16):
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
+  - SiYuanKit (1.2.23):
+    - SiYuanKit/DispatchQueue (= 1.2.23)
+    - SiYuanKit/Extension (= 1.2.23)
+    - SiYuanKit/StaticTableView (= 1.2.23)
+    - SiYuanKit/Then (= 1.2.23)
+    - SiYuanKit/Utilities (= 1.2.23)
+    - SiYuanKit/YSOperations (= 1.2.23)
+  - SiYuanKit/DispatchQueue (1.2.23)
+  - SiYuanKit/Extension (1.2.23)
+  - SiYuanKit/StaticTableView (1.2.23):
     - SiYuanKit/Extension
-  - SiYuanKit/Then (1.2.16)
-  - SiYuanKit/Utilities (1.2.16):
+  - SiYuanKit/Then (1.2.23)
+  - SiYuanKit/Utilities (1.2.23):
     - SiYuanKit/DispatchQueue
-  - SiYuanKit/YSOperations (1.2.16):
+  - SiYuanKit/YSOperations (1.2.23):
     - SiYuanKit/DispatchQueue
 
 DEPENDENCIES:
   - Ji (~> 2.0.0)
+  - RealmSwift
   - SiYuanKit (~> 1.0)
 
 SPEC CHECKSUMS:
   Ji: 6bb602a28dd08b804158f64990e6051ed5de0110
-  SiYuanKit: bfb712efa5d644bac91ccc9e785e618d62059d06
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+  SiYuanKit: b0c49a3a4b036c7a3f5ff6cae12c1311825eef4e
 
-PODFILE CHECKSUM: f3618ffc91f1e648363f734802d60e8131162d51
+PODFILE CHECKSUM: 3104a827b5b46e4232e0e4b439cdd86867a382d5
 
 COCOAPODS: 1.1.0.rc.2

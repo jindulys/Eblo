@@ -31,6 +31,8 @@ public struct Row {
   public let cellIdentifier: String
   /// The customData for this row.
   public let customData: Any?
+  /// Whether or not this Row's info gets stale.
+  public var getStale: Bool = false
   
   public init(title: String,
        description: String? = nil,

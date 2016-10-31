@@ -50,7 +50,7 @@ public final class AppManager: NSObject {
       self.rootController?.navigationBar.isTranslucent = false
 			// CONFIGURE POINT: set the view controller you want as the first view controller
 			// on screen.
-      self.rootController?.setViewControllers([EBLoadingViewController()],
+      self.rootController?.setViewControllers([LoadingViewController()],
                                               animated: true)
       appdelegate.window??.rootViewController = self.rootController!
       appdelegate.window??.makeKeyAndVisible()
@@ -69,14 +69,14 @@ public final class AppManager: NSObject {
     // Add in loading view controller to smooth the screen transition.
     self.waitForAnimationAndExecute { 
       if self.rootController?.viewControllers.count == 1 &&
-        self.rootController?.viewControllers[0] is EBLoadingViewController {
+        self.rootController?.viewControllers[0] is LoadingViewController {
         return
       }
       // NOTE: WOW, swift type checking could work directly with optional!
-      if self.topController() is EBLoadingViewController {
+      if self.topController() is LoadingViewController {
         return
       }
-      self.replaceRootWithControllers([EBLoadingViewController()], animated: true)
+      self.replaceRootWithControllers([LoadingViewController()], animated: true)
     }
     // TODO(simonli): Following part might involve network request to get correct 
     // instructions about next step. Stay tuned.
@@ -84,7 +84,7 @@ public final class AppManager: NSObject {
     GCDQueue.main.after(when: 1.2) {
       // COFIGURE POINT
       self.waitForAnimationAndExecute(block: { 
-        self.replaceRootWithControllers([EBPortalViewController()], animated: true)
+        self.replaceRootWithControllers([PortalViewController()], animated: true)
       })
     }
   }
@@ -99,9 +99,9 @@ public final class AppManager: NSObject {
     }
     // Try to find a kind of `mainController`.
     var mainController: UIViewController = (self.rootController?.viewControllers.first)!
-    if (mainController is EBMainViewController) == false {
+    if (mainController is MainViewController) == false {
       // CONFIGURE POINT
-      mainController = EBMainViewController()
+      mainController = MainViewController()
     }
     // Top most view controller dismiss itself.
     // Usually do not need to do this.
@@ -116,7 +116,7 @@ public final class AppManager: NSObject {
     // TODO(simonli): Following part might involve network request to get correct
     // instructions about next step. Stay tuned.
     // NOTE: for now I am using a fake wait then navigate to Main Screen.
-    GCDQueue.main.after(when: 1.2) {
+    GCDQueue.main.after(when: 0.2) {
       let newControllers: [UIViewController] = [mainController]
       self.waitForAnimationAndExecute(block: { 
         self.replaceRootWithControllers(newControllers, animated: false)
