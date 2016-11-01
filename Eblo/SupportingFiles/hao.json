@@ -89,6 +89,12 @@
                  "blogURL" : "https://www.airpair.com/software-experts",
                  "xPathArticleTitle" : "//article/a/div/h2",
                  "xPathArticleURL" : "//article/a/@href"
+                 },
+                 {
+                 "name" : "Algolia",
+                 "blogURL" : "https://blog.algolia.com/",
+                 "xPathArticleTitle" : "//article/header/h1/a",
+                 "xPathArticleURL" : "//article/header/h1/a/@href"
                  }
              ]
 }
