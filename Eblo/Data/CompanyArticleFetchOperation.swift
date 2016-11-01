@@ -35,6 +35,7 @@ class CompanyArticleFetchOperation: YSOperation {
     let blogDoc = Ji(htmlURL: URL(string: companyBlogURL)!)
     let titleNodes = blogDoc?.xPath(xPathArticleTitle)
     let urlNodes = blogDoc?.xPath(xPathArticleURL)
+     
     guard let resultNodes = titleNodes,
       let resultURLs = urlNodes,
       resultNodes.count == resultURLs.count || xPathArticleURL == "ITN" else {
@@ -42,7 +43,7 @@ class CompanyArticleFetchOperation: YSOperation {
     }
 
     // Remove nil.
-    let freshTitles = resultNodes.flatMap { $0.content }
+    let freshTitles = resultNodes.flatMap { $0.content?.trimmingCharacters(in: .whitespacesAndNewlines) }
     let freshURLs = resultURLs.flatMap { $0.content }
 
     guard freshTitles.count == freshURLs.count || xPathArticleURL == "ITN" else {
