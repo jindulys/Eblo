@@ -117,6 +117,13 @@
                  "xPathArticleTitle" : "//article//header/a/h2",
                  "xPathArticleURL" : "//article//header/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Atlassian",
+                 "blogURL" : "https://developer.atlassian.com/blog",
+                 "xPathArticleTitle" : "//div[@class='aui-page-header']//h2",
+                 "xPathArticleURL" : "//div[@class='aui-page-header']//h2/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
