@@ -124,6 +124,12 @@
                  "xPathArticleTitle" : "//div[@class='aui-page-header']//h2",
                  "xPathArticleURL" : "//div[@class='aui-page-header']//h2/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Atomic Object",
+                 "blogURL" : "https://spin.atomicobject.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
