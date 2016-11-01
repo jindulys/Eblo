@@ -91,10 +91,11 @@
                  "xPathArticleURL" : "//article/a/@href"
                  },
                  {
-                 "name" : "Algolia",
-                 "blogURL" : "https://blog.algolia.com/",
-                 "xPathArticleTitle" : "//article/header/h1/a",
-                 "xPathArticleURL" : "//article/header/h1/a/@href"
+                 "name" : "Allegro.tech",
+                 "blogURL" : "http://allegro.tech",
+                 "xPathArticleTitle" : "//div[@class='content']//time/a",
+                 "xPathArticleURL" : "//div[@class='content']//time/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
