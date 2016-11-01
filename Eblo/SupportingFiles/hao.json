@@ -89,6 +89,13 @@
                  "blogURL" : "https://www.airpair.com/software-experts",
                  "xPathArticleTitle" : "//article/a/div/h2",
                  "xPathArticleURL" : "//article/a/@href"
+                 },
+                 {
+                 "name" : "AlphaSights",
+                 "blogURL" : "http://engineering-blog.alphasights.com",
+                 "xPathArticleTitle" : "//article/h1/a",
+                 "xPathArticleURL" : "//article/h1/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
