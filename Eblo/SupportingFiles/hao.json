@@ -103,6 +103,26 @@
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Arkency",
+                 "blogURL" : "http://blog.arkency.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 }, 
+                 {
+                 "name" : "Atlassian",
+                 "blogURL" : "https://developer.atlassian.com/blog",
+                 "xPathArticleTitle" : "//div[@class='aui-page-header']//h2",
+                 "xPathArticleURL" : "//div[@class='aui-page-header']//h2/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Atomic Object",
+                 "blogURL" : "https://spin.atomicobject.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
