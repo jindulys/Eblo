@@ -123,6 +123,13 @@
                  "blogURL" : "https://spin.atomicobject.com/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Auth0",
+                 "blogURL" : "https://auth0.com/blog",
+                 "xPathArticleTitle" : "//article//div[@class='text-container']/a/h1",
+                 "xPathArticleURL" : "//article//div[@class='text-container']/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
