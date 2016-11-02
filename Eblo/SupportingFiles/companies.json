@@ -15,6 +15,13 @@
                  "needBaseBlogURL" : "1"
                  },
                  {
+                 "name" : "Realm.io",
+                 "blogURL" : "https://realm.io/news",
+                 "xPathArticleTitle" : "//div[@class='article-block']/h4",
+                 "xPathArticleURL" : "//div[@class='article col-xs-12 card js-post-toggle']/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
                  "name" : "Indeed",
                  "blogURL" : "http://engineering.indeedblog.com/blog/",
                  "xPathArticleTitle" : "//article//h1/a",
@@ -242,6 +249,45 @@
                  "xPathArticleTitle" : "//div[@class='post']//a",
                  "xPathArticleURL" : "//div[@class='post']//a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Adzerk",
+                 "blogURL" : "http://adzerk.com/tech",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Airbnb",
+                 "blogURL" : "http://nerds.airbnb.com/",
+                 "xPathArticleTitle" : "/html//div[@class='row row-space-3']//a//div/h3/strong",
+                 "xPathArticleURL" : "/html//div[@class='row row-space-3']//a/@href"
+                 },
+                 {
+                 "name" : "AirPair",
+                 "blogURL" : "https://www.airpair.com/software-experts",
+                 "xPathArticleTitle" : "//article/a/div/h2",
+                 "xPathArticleURL" : "//article/a/@href"
+                 },
+                 {
+                 "name" : "Arkency",
+                 "blogURL" : "http://blog.arkency.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Atlassian",
+                 "blogURL" : "https://developer.atlassian.com/blog",
+                 "xPathArticleTitle" : "//div[@class='aui-page-header']//h2/a",
+                 "xPathArticleURL" : "//div[@class='aui-page-header']//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Atomic Object",
+                 "blogURL" : "https://spin.atomicobject.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
 	]
 }

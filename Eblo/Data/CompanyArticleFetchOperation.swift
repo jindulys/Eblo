@@ -71,6 +71,11 @@ class CompanyArticleFetchOperation: YSOperation {
           var removedURL = self.companyBlogURL
           removedURL.removeSubrange(companyBlogRange)
           blog.blogURL = removedURL + encodedURLs[i]
+        } else if self.companyBlogURL.hasSuffix("/news") && freshURLs[i].hasPrefix("/news"),
+          let companyBlogRange = self.companyBlogURL.range(of: "/news") {
+            var removedURL = self.companyBlogURL
+            removedURL.removeSubrange(companyBlogRange)
+            blog.blogURL = removedURL + encodedURLs[i]
         } else {
           blog.blogURL = self.companyBlogURL + encodedURLs[i]
         }
