@@ -22,6 +22,13 @@
                  "needBaseBlogURL" : "1"
                  },
                  {
+                 "name" : "Glow团队技术博客",
+                 "blogURL" : "http://tech.glowing.com/cn/",
+                 "xPathArticleTitle" : "//article/header//a",
+                 "xPathArticleURL" : "//article/header//a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
                  "name" : "Indeed",
                  "blogURL" : "http://engineering.indeedblog.com/blog/",
                  "xPathArticleTitle" : "//article//h1/a",
