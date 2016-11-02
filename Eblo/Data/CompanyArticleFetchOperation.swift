@@ -65,21 +65,7 @@ class CompanyArticleFetchOperation: YSOperation {
       let blog = CompanyBlog()
       blog.blogTitle = freshTitles[i]
       if self.needBlogBaseURL {
-        // TODO(simonli): find a more general way to do this.
-//        if self.companyBlogURL.hasSuffix("/blog") && freshURLs[i].hasPrefix("/blog"),
-//          let companyBlogRange = self.companyBlogURL.range(of: "/blog") {
-//          var removedURL = self.companyBlogURL
-//          removedURL.removeSubrange(companyBlogRange)
-//          blog.blogURL = removedURL + encodedURLs[i]
-//        } else if self.companyBlogURL.hasSuffix("/news") && freshURLs[i].hasPrefix("/news"),
-//          let companyBlogRange = self.companyBlogURL.range(of: "/news") {
-//            var removedURL = self.companyBlogURL
-//            removedURL.removeSubrange(companyBlogRange)
-//            blog.blogURL = removedURL + encodedURLs[i]
-//        } else {
-//          blog.blogURL = self.companyBlogURL + encodedURLs[i]
-//        }
-        let resultBlogURL = String.concatenateTwoStringWithoutRepeatedCharactersAtTheJointPoint(firstString: self.companyBlogURL, secondeString: encodedURLs[i])
+        let resultBlogURL = self.companyBlogURL.appendTrimmedRepeatedElementString(encodedURLs[i])
         blog.blogURL = resultBlogURL
       } else {
         blog.blogURL = encodedURLs[i]

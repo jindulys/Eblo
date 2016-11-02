@@ -59,6 +59,29 @@ extension String {
     let fixed = String(secondeString.characters.dropFirst(potentialRepeatedEndIndex))
     return firstString + fixed
   }
+  
+  func appendTrimmedRepeatedElementString(_ sec: String) -> String {
+    if self.characters.count == 0 {
+      return sec
+    }
+    if sec.characters.count == 0 {
+      return self
+    }
+    var potentialRepeatedEndIndex = 0
+    var longestCommonPartIndex = 0
+    while potentialRepeatedEndIndex < sec.characters.count {
+      potentialRepeatedEndIndex += 1
+      let currentPrefix = String(sec.characters.prefix(potentialRepeatedEndIndex))
+      if !self.contains(currentPrefix) {
+        break
+      }
+      if self.hasSuffix(currentPrefix) {
+        longestCommonPartIndex = potentialRepeatedEndIndex
+      }
+    }
+    let fixed = String(sec.characters.dropFirst(longestCommonPartIndex))
+    return self + fixed
+  }
 }
 
 extension String: URISource {
