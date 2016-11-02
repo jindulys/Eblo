@@ -15,6 +15,20 @@
                  "needBaseBlogURL" : "1"
                  },
                  {
+                 "name" : "Realm.io",
+                 "blogURL" : "https://realm.io/news/",
+                 "xPathArticleTitle" : "//div[@class='article-block']/h4",
+                 "xPathArticleURL" : "//div[@class='article col-xs-12 card js-post-toggle']/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Glow团队技术博客",
+                 "blogURL" : "http://tech.glowing.com/cn/",
+                 "xPathArticleTitle" : "//article/header//a",
+                 "xPathArticleURL" : "//article/header//a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
                  "name" : "Indeed",
                  "blogURL" : "http://engineering.indeedblog.com/blog/",
                  "xPathArticleTitle" : "//article//h1/a",
@@ -60,7 +74,7 @@
                  },
                  {
                  "name" : "LinkedIn",
-                 "blogURL" : "https://engineering.linkedin.com/blog",
+                 "blogURL" : "https://engineering.linkedin.com/blog/",
                  "xPathArticleTitle" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a",
                  "xPathArticleURL" : "//*[@id='post-list-component']/ul/li/div[2]/div[1]/div[1]/h2/a/@href",
                  "needBaseBlogURL" : "1"
@@ -91,7 +105,7 @@
                  },
                  {
                  "name" : "Stripe",
-                 "blogURL" : "https://stripe.com/blog",
+                 "blogURL" : "https://stripe.com/blog/",
                  "xPathArticleTitle" : "/html//article[not (@class='link')]/header/h1/a",
                  "xPathArticleURL" : "/html//article[not (@class='link')]/header/h1/a/@href",
                  "needBaseBlogURL" : "1"
@@ -117,7 +131,7 @@
                  },
                  {
                  "name" : "Made Tech",
-                 "blogURL" : "https://www.madetech.com/blog",
+                 "blogURL" : "https://www.madetech.com/blog/",
                  "xPathArticleTitle" : "/html//article/h3/a",
                  "xPathArticleURL" : "/html//article/h3/a/@href",
                  "needBaseBlogURL" : "1"
@@ -165,13 +179,6 @@
                  "xPathArticleURL" : "/html/body//h3/a/@href"
                  },
                  {
-                 "name" : "8th Light",
-                 "blogURL" : "http://blog.8thlight.com",
-                 "xPathArticleTitle" : "/html/body/section/div/div/article/h2/a",
-                 "xPathArticleURL" : "/html/body/section/div/div/article/h2/a/@href",
-                 "needBaseBlogURL" : "1"
-                 },
-                 {
                  "name" : "Nextdoor",
                  "blogURL" : "https://engblog.nextdoor.com/",
                  "xPathArticleTitle" : "/html//div[@class='u-relative']//h3/div",
@@ -179,7 +186,7 @@
                  },
                  {
                  "name" : "AdRoll",
-                 "blogURL" : "http://tech.adroll.com/blog",
+                 "blogURL" : "http://tech.adroll.com/blog/",
                  "xPathArticleTitle" : "/html//article//h2/a",
                  "xPathArticleURL" : "/html//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
@@ -199,14 +206,14 @@
                  },
                  {
                  "name" : "Appnexus",
-                 "blogURL" : "http://techblog.appnexus.com",
+                 "blogURL" : "http://techblog.appnexus.com/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
                  },
                  {
                  "name" : "Codelitt",
-                 "blogURL" : "http://www.codelitt.com/blog",
+                 "blogURL" : "http://www.codelitt.com/blog/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
@@ -225,7 +232,7 @@
                  },
                  {
                  "name" : "Gusto",
-                 "blogURL" : "http://engineering.gusto.com",
+                 "blogURL" : "http://engineering.gusto.com/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href",
                  "needBaseBlogURL" : "1"
@@ -242,6 +249,45 @@
                  "xPathArticleTitle" : "//div[@class='post']//a",
                  "xPathArticleURL" : "//div[@class='post']//a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Adzerk",
+                 "blogURL" : "http://adzerk.com/tech/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Airbnb",
+                 "blogURL" : "http://nerds.airbnb.com/",
+                 "xPathArticleTitle" : "/html//div[@class='row row-space-3']//a//div/h3/strong",
+                 "xPathArticleURL" : "/html//div[@class='row row-space-3']//a/@href"
+                 },
+                 {
+                 "name" : "AirPair",
+                 "blogURL" : "https://www.airpair.com/software-experts",
+                 "xPathArticleTitle" : "//article/a/div/h2",
+                 "xPathArticleURL" : "//article/a/@href"
+                 },
+                 {
+                 "name" : "Arkency",
+                 "blogURL" : "http://blog.arkency.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Atlassian",
+                 "blogURL" : "https://developer.atlassian.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='aui-page-header']//h2/a",
+                 "xPathArticleURL" : "//div[@class='aui-page-header']//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Atomic Object",
+                 "blogURL" : "https://spin.atomicobject.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
 	]
 }
