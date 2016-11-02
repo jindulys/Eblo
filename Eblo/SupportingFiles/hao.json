@@ -130,6 +130,12 @@
                  "xPathArticleTitle" : "//article//div[@class='text-container']/a/h1",
                  "xPathArticleURL" : "//article//div[@class='text-container']/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Autodesk",
+                 "blogURL" : "http://cloudengineering.autodesk.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='entru-inner']/h3/a",
+                 "xPathArticleURL" : "//div[@class='entru-inner']/h3/a/@href"
                  }
              ]
 }
