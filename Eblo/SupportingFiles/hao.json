@@ -136,6 +136,12 @@
                  "blogURL" : "http://cloudengineering.autodesk.com/blog/",
                  "xPathArticleTitle" : "//div[@class='entru-inner']/h3/a",
                  "xPathArticleURL" : "//div[@class='entru-inner']/h3/a/@href"
+                 },
+                 {
+                 "name" : "AWS",
+                 "blogURL" : "https://aws.amazon.com/blogs/aws/",
+                 "xPathArticleTitle" : "//article/h2/a",
+                 "xPathArticleURL" : "//article/h2/a/@href"
                  }
              ]
 }
