@@ -32,6 +32,33 @@ extension String {
     }
     return queryDicts
   }
+  
+  static func concatenateTwoStringWithoutRepeatedCharactersAtTheJointPoint(firstString: String,
+                                                                           secondeString: String) -> String {
+    if firstString.characters.count == 0 {
+      return secondeString
+    }
+    if secondeString.characters.count == 0 {
+      return firstString
+    }
+    var potentialRepeatedEndIndex = 1
+    var findPotentialEnd = false
+    while potentialRepeatedEndIndex <= secondeString.characters.count {
+      let currentPrefix = String(secondeString.characters.prefix(potentialRepeatedEndIndex))
+      if !firstString.hasSuffix(currentPrefix) && findPotentialEnd {
+        potentialRepeatedEndIndex -= 1
+        break
+      } else if potentialRepeatedEndIndex != 1 && firstString.hasSuffix(currentPrefix) {
+        findPotentialEnd = true
+      }
+      potentialRepeatedEndIndex += 1
+    }
+    if findPotentialEnd == false {
+      potentialRepeatedEndIndex = 1
+    }
+    let fixed = String(secondeString.characters.dropFirst(potentialRepeatedEndIndex))
+    return firstString + fixed
+  }
 }
 
 extension String: URISource {

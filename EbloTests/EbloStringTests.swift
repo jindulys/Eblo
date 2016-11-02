@@ -32,6 +32,15 @@ class EbloStringTests: XCTestCase {
       }
       XCTAssert(true)
     }
+  
+  func testConcatenate() {
+    let base = "http://abc/blog/"
+    let blogURL = "/blog/article"
+    XCTAssert("http://abc/blog/article" == String.concatenateTwoStringWithoutRepeatedCharactersAtTheJointPoint(firstString: base, secondeString: blogURL))
+    let randomPre = "random/"
+    let randomPost = "/lol"
+    XCTAssert("random/lol" == String.concatenateTwoStringWithoutRepeatedCharactersAtTheJointPoint(firstString: randomPre, secondeString: randomPost))
+  }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
