@@ -123,6 +123,38 @@
                  "blogURL" : "https://spin.atomicobject.com/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Auth0",
+                 "blogURL" : "https://auth0.com/blog",
+                 "xPathArticleTitle" : "//article//div[@class='text-container']/a/h1",
+                 "xPathArticleURL" : "//article//div[@class='text-container']/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Autodesk",
+                 "blogURL" : "http://cloudengineering.autodesk.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='entru-inner']/h3/a",
+                 "xPathArticleURL" : "//div[@class='entru-inner']/h3/a/@href"
+                 },
+                 {
+                 "name" : "AWS",
+                 "blogURL" : "https://aws.amazon.com/blogs/aws/",
+                 "xPathArticleTitle" : "//article/h2/a",
+                 "xPathArticleURL" : "//article/h2/a/@href"
+                 },
+                 {
+                 "name" : "Azavea",
+                 "blogURL" : "https://www.azavea.com/blog/category/software-development/",
+                 "xPathArticleTitle" : "//article/h3/a",
+                 "xPathArticleURL" : "//article/h3/a/@href"
+                 },
+                 {
+                 "name" : "Backtrace",
+                 "blogURL" : "https://backtrace.io/blog",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
