@@ -82,11 +82,9 @@ extension CompanyBlogListViewController: RealmBlogManagerUIDelegate {
   /// Tell the UI Delegate that row was tapped with necessary info.
   func tappedRow(blogURLString: String) {
     var toOpenString = blogURLString
-    // TODO(simonli): handle this case
-    if let name = self.company?.companyName, name == "LINE" || name == "Instagram" || name == "500px" {
-      if let decodeString = blogURLString.removingPercentEncoding {
-        toOpenString = decodeString
-      }
+    if let decodeString = blogURLString.removingPercentEncoding,
+      let encoded = decodeString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed.union(CharacterSet(charactersIn:"?"))){
+      toOpenString = encoded
     }
     guard let validURL = NSURL(string: toOpenString) as? URL else {
       print("Problematic URL")
