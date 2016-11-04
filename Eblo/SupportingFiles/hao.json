@@ -163,5 +163,11 @@
                  "xPathArticleURL" : "//section/header/h2/a/@href",
                  "needBaseBlogURL" : "1"
                  }
+                 {
+                 "name" : "Base Lab",
+                 "blogURL" : "https://lab.getbase.com/category/engineering/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
+                 }
              ]
 }
