@@ -181,6 +181,13 @@
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Bigcommerce",
+                 "blogURL" : "http://www.bigeng.io",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
