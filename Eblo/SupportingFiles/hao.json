@@ -194,6 +194,12 @@
                  "blogURL" : "http://binary-studio.com/blog/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Bitly",
+                 "blogURL" : "http://word.bitly.com/",
+                 "xPathArticleTitle" : "//div[@class='text post']/h1/a",
+                 "xPathArticleURL" : "//div[@class='text post']/h1/a/@href"
                  }
              ]
 }
