@@ -158,16 +158,22 @@
                  },
                  {
                  "name" : "Badoo",
-                 "blogURL" : "https://techblog.badoo.com/",
+                 "blogURL" : "https://techblog.badoo.com",
                  "xPathArticleTitle" : "//section/header/h2/a",
                  "xPathArticleURL" : "//section/header/h2/a/@href",
                  "needBaseBlogURL" : "1"
-                 }
+                 },
                  {
                  "name" : "Base Lab",
                  "blogURL" : "https://lab.getbase.com/category/engineering/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Bazaarvoice",
+                 "blogURL" : "http://blog.developer.bazaarvoice.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
