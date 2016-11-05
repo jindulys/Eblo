@@ -288,6 +288,83 @@
                  "blogURL" : "https://spin.atomicobject.com/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Auth0",
+                 "blogURL" : "https://auth0.com/blog/",
+                 "xPathArticleTitle" : "//article[@class='post ']//div[@class='text-container']/a//h1",
+                 "xPathArticleURL" : "//article[@class='post ']//div[@class='text-container']/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Autodesk",
+                 "blogURL" : "http://cloudengineering.autodesk.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='entry-inner']/h3/a",
+                 "xPathArticleURL" : "//div[@class='entry-inner']/h3/a/@href"
+                 },
+                 {
+                 "name" : "AWS",
+                 "blogURL" : "https://aws.amazon.com/blogs/aws/",
+                 "xPathArticleTitle" : "//article/h2/a",
+                 "xPathArticleURL" : "//article/h2/a/@href"
+                 },
+                 {
+                 "name" : "Azavea",
+                 "blogURL" : "https://www.azavea.com/blog/category/software-development/",
+                 "xPathArticleTitle" : "//article//h3/a",
+                 "xPathArticleURL" : "//article//h3/a/@href"
+                 },
+                 {
+                 "name" : "Backtrace",
+                 "blogURL" : "https://backtrace.io/blog/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Badoo",
+                 "blogURL" : "https://techblog.badoo.com/",
+                 "xPathArticleTitle" : "//section/header/h2/a",
+                 "xPathArticleURL" : "//section/header/h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Base Lab",
+                 "blogURL" : "https://lab.getbase.com/category/engineering/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Bazaarvoice",
+                 "blogURL" : "http://blog.developer.bazaarvoice.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Benchling",
+                 "blogURL" : "http://benchling.engineering",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Bigcommerce",
+                 "blogURL" : "http://www.bigeng.io",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Binary Studio",
+                 "blogURL" : "http://binary-studio.com/blog/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Bitly",
+                 "blogURL" : "http://word.bitly.com/",
+                 "xPathArticleTitle" : "//div[@class='text post']/h1/a",
+                 "xPathArticleURL" : "//div[@class='text post']/h1/a/@href"
                  }
 	]
 }
