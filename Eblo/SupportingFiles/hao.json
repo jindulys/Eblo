@@ -207,6 +207,12 @@
                  "xPathArticleTitle" : "//u1[@class='list-unstyled']/li/a",
                  "xPathArticleURL" : "//u1[@class='list-unstyled']/li/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "BlackRock",
+                 "blogURL" : "http://rockthecode.io/",
+                 "xPathArticleTitle" : "//article/div/a",
+                 "xPathArticleURL" : "//article/div/a/@href"
                  }
              ]
 }
