@@ -220,6 +220,12 @@
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "BloomReach",
+                 "blogURL" : "http://engineering.bloomreach.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
