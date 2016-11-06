@@ -213,6 +213,13 @@
                  "blogURL" : "http://rockthecode.io/",
                  "xPathArticleTitle" : "//article/div/a",
                  "xPathArticleURL" : "//article/div/a/@href"
+                 },
+                 {
+                 "name" : "Blogfoster",
+                 "blogURL" : "http://engineering.blogfoster.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
