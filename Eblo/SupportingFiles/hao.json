@@ -200,6 +200,32 @@
                  "blogURL" : "http://word.bitly.com/",
                  "xPathArticleTitle" : "//div[@class='text post']/h1/a",
                  "xPathArticleURL" : "//div[@class='text post']/h1/a/@href"
+                 },
+                 {
+                 "name" : "BlaBlaCar",
+                 "blogURL" : "http://blablatech.com/blog",
+                 "xPathArticleTitle" : "//u1[@class='list-unstyled']/li/a",
+                 "xPathArticleURL" : "//u1[@class='list-unstyled']/li/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "BlackRock",
+                 "blogURL" : "http://rockthecode.io/",
+                 "xPathArticleTitle" : "//article/div/a",
+                 "xPathArticleURL" : "//article/div/a/@href"
+                 },
+                 {
+                 "name" : "Blogfoster",
+                 "blogURL" : "http://engineering.blogfoster.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "BloomReach",
+                 "blogURL" : "http://engineering.bloomreach.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
