@@ -200,6 +200,13 @@
                  "blogURL" : "http://word.bitly.com/",
                  "xPathArticleTitle" : "//div[@class='text post']/h1/a",
                  "xPathArticleURL" : "//div[@class='text post']/h1/a/@href"
+                 },
+                 {
+                 "name" : "BlaBlaCar",
+                 "blogURL" : "http://blablatech.com/blog",
+                 "xPathArticleTitle" : "//u1[@class='list-unstyled']/li/a",
+                 "xPathArticleURL" : "//u1[@class='list-unstyled']/li/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
