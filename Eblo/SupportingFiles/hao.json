@@ -233,6 +233,12 @@
                  "xPathArticleTitle" : "//div[@class='title']/a",
                  "xPathArticleURL" : "//div[@class='title']/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Boxever",
+                 "blogURL" : "http://www.boxever.com/tech-blog",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
