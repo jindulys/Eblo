@@ -17,8 +17,8 @@ public class CompanyCell: UITableViewCell {
   /// Body label.
   let bodyLabel: UILabel
 
-  /// The new badge view.
-  let newBadgeView: UILabel
+  /// The new badge indicator
+  let newBadgeIndicator: ColorCornerView
 
   /// The new badge size.
   let badgeSize: CGFloat = 20
@@ -35,7 +35,8 @@ public class CompanyCell: UITableViewCell {
   public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     titleLabel = UILabel()
     bodyLabel = UILabel()
-    newBadgeView = UILabel()
+    newBadgeIndicator = ColorCornerView(color: UIColor.red, position: .topRight, triangleSize: 24)
+    newBadgeIndicator.contentMode = .redraw
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setupViews()
     buildConstraints()
@@ -52,11 +53,7 @@ public class CompanyCell: UITableViewCell {
     
     bodyLabel.numberOfLines = 0
     self.contentView.addAutoLayoutSubView(bodyLabel)
-
-    newBadgeView.text = "新"
-    newBadgeView.textColor = UIColor.black
-    newBadgeView.alpha = 0.0
-    self.contentView.addAutoLayoutSubView(newBadgeView)
+    self.contentView.addAutoLayoutSubView(newBadgeIndicator)
   }
 
   private func buildConstraints() {
@@ -67,21 +64,10 @@ public class CompanyCell: UITableViewCell {
     bodyLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12).isActive = true
     bodyLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
     bodyLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12).isActive = true
-    newBadgeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
-    newBadgeView.widthAnchor.constraint(equalToConstant: 36).isActive = true
-    newBadgeView.heightAnchor.constraint(equalToConstant: self.badgeSize).isActive = true
-    newBadgeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12).isActive = true
-  }
-
-  func animateNewBadge(on: Bool) {
-    // NOTE: I find that animation directly inside a cell has no effect.
-    self.newBadgeView.alpha = on ? 1.0 : 0.0
-  }
-
-  func animateNewArticle(_ article: String) {
-    // TODO(simonli): after test, I found that tableview cell will not update view hierarchy layout
-    // might need a way to delegate up to table view manager to trigger a specific update for this cell.
-    self.bodyLabel.text = article
+    newBadgeIndicator.widthAnchor.constraint(equalTo: self.contentView.widthAnchor).isActive = true
+    newBadgeIndicator.heightAnchor.constraint(equalTo: self.contentView.heightAnchor).isActive = true
+    newBadgeIndicator.rightAnchor.constraint(equalTo: self.contentView.rightAnchor).isActive = true
+    newBadgeIndicator.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
   }
 }
 
@@ -92,7 +78,7 @@ extension CompanyCell: StaticCellType {
       // keep sync with the actually database update.
       self.titleLabel.text = company.companyName
       self.bodyLabel.text = company.latestArticleTitle
-      self.newBadgeView.alpha = company.hasNewArticlesToRead ? 1.0 : 0.0
+      self.newBadgeIndicator.alpha = company.hasNewArticlesToRead ? 1.0 : 0.0
     }
   }
 }

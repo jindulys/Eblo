@@ -37,6 +37,7 @@
 		0E7A60D11DB3EA2A003EB738 /* companies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A60D01DB3EA2A003EB738 /* companies.json */; };
 		0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
+		0E94D62B1DCFC49F000271F8 /* ColorCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D62A1DCFC49F000271F8 /* ColorCornerView.swift */; };
 		0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574031D4CDDCA00703C3A /* AppDelegate.swift */; };
 		0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574051D4CDDCA00703C3A /* ViewController.swift */; };
 		0E95740B1D4CDDCA00703C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740A1D4CDDCA00703C3A /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		0E7A60D01DB3EA2A003EB738 /* companies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = companies.json; sourceTree = "<group>"; };
 		0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewManager+InitiatedDataManager.swift"; sourceTree = "<group>"; };
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		0E94D62A1DCFC49F000271F8 /* ColorCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCornerView.swift; sourceTree = "<group>"; };
 		0E9574001D4CDDCA00703C3A /* Eblo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eblo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574031D4CDDCA00703C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9574051D4CDDCA00703C3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../ViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		0E8BF04C1D6138D500E0AA08 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0E94D6291DCFC484000271F8 /* Base */,
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
 				0E5FF6671DC4E3BD00006D6A /* Company */,
 				0E5FC56D1DB283D3003DF396 /* EditRecord */,
@@ -284,6 +287,14 @@
 				0E554FA61D680020009F4AE5 /* Test */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		0E94D6291DCFC484000271F8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D62A1DCFC49F000271F8 /* ColorCornerView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		0E9573F71D4CDDCA00703C3A = {
@@ -683,6 +694,7 @@
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */,
 				0E5FF66B1DC4F6BA00006D6A /* String+Eblo.swift in Sources */,
+				0E94D62B1DCFC49F000271F8 /* ColorCornerView.swift in Sources */,
 				0E5FF6751DC6854B00006D6A /* InitiatedDataManager.swift in Sources */,
 				0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */,
 				0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */,
