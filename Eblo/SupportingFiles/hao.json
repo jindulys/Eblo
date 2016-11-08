@@ -239,6 +239,13 @@
                  "blogURL" : "http://www.boxever.com/tech-blog",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Brandwatch",
+                 "blogURL" : "http://engineering.brandwatch.com",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
