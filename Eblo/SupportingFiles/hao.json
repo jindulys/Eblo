@@ -246,6 +246,13 @@
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Buzzfeed",
+                 "blogURL" : "https://www.buzzfeed.com/techblog",
+                 "xPathArticleTitle" : "//li//h2/a",
+                 "xPathArticleURL" : "//li//h2/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
