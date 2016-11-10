@@ -253,6 +253,38 @@
                  "xPathArticleTitle" : "//li//h2/a",
                  "xPathArticleURL" : "//li//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Canva",
+                 "blogURL" : "https://engineering.canva.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Carbon Five",
+                 "blogURL" : "http://blog.carbonfive.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Cerner",
+                 "blogURL" : "http://engineering.cerner.com",
+                 "xPathArticleTitle" : "//article//h1",
+                 "xPathArticleURL" : "//article//footer/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Chaps",
+                 "blogURL" : "https://blog.chaps.io",
+                 "xPathArticleTitle" : "//div[@class='ui text container post']/h1/a",
+                 "xPathArticleURL" : "//div[@class='ui text container post']/h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Chef",
+                 "blogURL" : "https://www.chef.io/blog/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
              ]
 }
