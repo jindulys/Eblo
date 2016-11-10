@@ -303,6 +303,13 @@
                  "blogURL" : "http://blog.cloudera.com/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Cloudflare",
+                 "blogURL" : "https://blog.cloudflare.com",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
