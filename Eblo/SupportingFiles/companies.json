@@ -365,6 +365,84 @@
                  "blogURL" : "http://word.bitly.com/",
                  "xPathArticleTitle" : "//div[@class='text post']/h1/a",
                  "xPathArticleURL" : "//div[@class='text post']/h1/a/@href"
+                 },
+                 {
+                 "name" : "BlackRock",
+                 "blogURL" : "http://rockthecode.io/",
+                 "xPathArticleTitle" : "//article//header/h1/a",
+                 "xPathArticleURL" : "//article//header/h1/a/@href"
+                 },
+                 {
+                 "name" : "Blogfoster",
+                 "blogURL" : "http://engineering.blogfoster.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "BloomReach",
+                 "blogURL" : "http://engineering.bloomreach.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Box",
+                 "blogURL" : "https://www.box.com/blog/engineering",
+                 "xPathArticleTitle" : "//div[@class='title']/a",
+                 "xPathArticleURL" : "//div[@class='title']/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Boxever",
+                 "blogURL" : "http://www.boxever.com/tech-blog",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Brandwatch",
+                 "blogURL" : "http://engineering.brandwatch.com",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Buzzfeed",
+                 "blogURL" : "https://www.buzzfeed.com/techblog",
+                 "xPathArticleTitle" : "//li//h2/a",
+                 "xPathArticleURL" : "//li//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Canva",
+                 "blogURL" : "https://engineering.canva.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Carbon Five",
+                 "blogURL" : "http://blog.carbonfive.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Cerner",
+                 "blogURL" : "http://engineering.cerner.com",
+                 "xPathArticleTitle" : "//article//h1",
+                 "xPathArticleURL" : "//article//footer/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Chaps",
+                 "blogURL" : "https://blog.chaps.io",
+                 "xPathArticleTitle" : "//div[@class='ui text container post']/h1/a",
+                 "xPathArticleURL" : "//div[@class='ui text container post']/h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Chef",
+                 "blogURL" : "https://www.chef.io/blog/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
 	]
 }
