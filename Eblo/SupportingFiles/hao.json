@@ -279,6 +279,12 @@
                  "xPathArticleTitle" : "//div[@class='ui text container post']/h1/a",
                  "xPathArticleURL" : "//div[@class='ui text container post']/h1/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Chef",
+                 "blogURL" : "https://www.chef.io/blog/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
              ]
 }
