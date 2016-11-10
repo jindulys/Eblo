@@ -291,6 +291,12 @@
                  "blogURL" : "http://engineering.clever.com/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "CleverTap",
+                 "blogURL" : "https://blog.clevertap.com/category/engineering/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
              ]
 }
