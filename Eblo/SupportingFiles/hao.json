@@ -285,6 +285,12 @@
                  "blogURL" : "https://www.chef.io/blog/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Clever",
+                 "blogURL" : "http://engineering.clever.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
