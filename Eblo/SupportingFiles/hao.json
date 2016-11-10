@@ -253,6 +253,12 @@
                  "xPathArticleTitle" : "//li//h2/a",
                  "xPathArticleURL" : "//li//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Canva",
+                 "blogURL" : "https://engineering.canva.com",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
