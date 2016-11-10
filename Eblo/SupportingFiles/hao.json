@@ -310,6 +310,13 @@
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "ClusterHQ",
+                 "blogURL" : "https://clusterhq.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='col-md-3 col-sm-6 col-xs-12']//a/div",
+                 "xPathArticleURL" : "//div[@class='col-md-3 col-sm-6 col-xs-12']//a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
