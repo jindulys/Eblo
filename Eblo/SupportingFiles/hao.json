@@ -259,6 +259,12 @@
                  "blogURL" : "https://engineering.canva.com",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Carbon Five",
+                 "blogURL" : "http://blog.carbonfive.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
