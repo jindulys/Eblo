@@ -297,6 +297,12 @@
                  "blogURL" : "https://blog.clevertap.com/category/engineering/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Cloudera",
+                 "blogURL" : "http://blog.cloudera.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
                  }
              ]
 }
