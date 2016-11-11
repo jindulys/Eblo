@@ -323,6 +323,13 @@
                  "blogURL" : "http://www.cockroachlabs.com/blog/",
                  "xPathArticleTitle" : "//article//h1/a",
                  "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Code School",
+                 "blogURL" : "https://www.codeschool.com/blog/categories/development",
+                 "xPathArticleTitle" : "//article//h1",
+                 "xPathArticleURL" : "//article//a/@gref",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
