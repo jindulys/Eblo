@@ -337,6 +337,13 @@
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Codementor",
+                 "blogURL" : "https://www.codementor.io/tutorial",
+                 "xPathArticleTitle" : "//a[@class='post-link']//span[@class='post-title']",
+                 "xPathArticleURL" : "//a[@class='post-link']/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
