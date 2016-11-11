@@ -285,6 +285,38 @@
                  "blogURL" : "https://www.chef.io/blog/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Clever",
+                 "blogURL" : "http://engineering.clever.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "CleverTap",
+                 "blogURL" : "https://blog.clevertap.com/category/engineering/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Cloudera",
+                 "blogURL" : "http://blog.cloudera.com/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Cloudflare",
+                 "blogURL" : "https://blog.cloudflare.com",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "ClusterHQ",
+                 "blogURL" : "https://clusterhq.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='col-md-3 col-sm-6 col-xs-12']//a/div",
+                 "xPathArticleURL" : "//div[@class='col-md-3 col-sm-6 col-xs-12']//a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
