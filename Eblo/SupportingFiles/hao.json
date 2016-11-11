@@ -328,7 +328,14 @@
                  "name" : "Code School",
                  "blogURL" : "https://www.codeschool.com/blog/categories/development",
                  "xPathArticleTitle" : "//article//h1",
-                 "xPathArticleURL" : "//article//a/@gref",
+                 "xPathArticleURL" : "//article//a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Codelitt",
+                 "blogURL" : "http://www.codelitt.com/blog",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
                  }
              ]
