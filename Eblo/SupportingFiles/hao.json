@@ -317,6 +317,33 @@
                  "xPathArticleTitle" : "//div[@class='col-md-3 col-sm-6 col-xs-12']//a/div",
                  "xPathArticleURL" : "//div[@class='col-md-3 col-sm-6 col-xs-12']//a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "CockroachDB",
+                 "blogURL" : "http://www.cockroachlabs.com/blog/",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href"
+                 },
+                 {
+                 "name" : "Code School",
+                 "blogURL" : "https://www.codeschool.com/blog/categories/development",
+                 "xPathArticleTitle" : "//article//h1",
+                 "xPathArticleURL" : "//article//a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Codelitt",
+                 "blogURL" : "http://www.codelitt.com/blog",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Codementor",
+                 "blogURL" : "https://www.codementor.io/tutorial",
+                 "xPathArticleTitle" : "//a[@class='post-link']//span[@class='post-title']",
+                 "xPathArticleURL" : "//a[@class='post-link']/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
