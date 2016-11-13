@@ -370,6 +370,12 @@
                  "blogURL" : "http://www.confluent.io/blog",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Coolblue",
+                 "blogURL" : "http://devblog.coolblue.nl/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
              ]
 }
