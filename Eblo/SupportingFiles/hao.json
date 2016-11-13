@@ -364,6 +364,12 @@
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Confluent",
+                 "blogURL" : "http://www.confluent.io/blog",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
              ]
 }
