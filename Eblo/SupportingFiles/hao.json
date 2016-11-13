@@ -351,6 +351,12 @@
                  "xPathArticleTitle" : "//div[@class='entry-title']/h2/a",
                  "xPathArticleURL" : "//div[@class='entry-title']/h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Codeship",
+                 "blogURL" : "http://blog.codeship.com/",
+                 "xPathArticleTitle" : "//article//a/h2",
+                 "xPathArticleURL" : "//article//a/@href"
                  }
              ]
 }
