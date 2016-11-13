@@ -344,6 +344,13 @@
                  "xPathArticleTitle" : "//a[@class='post-link']//span[@class='post-title']",
                  "xPathArticleURL" : "//a[@class='post-link']/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "CodeName One",
+                 "blogURL" : "http://www.codenameone.com/blog.html",
+                 "xPathArticleTitle" : "//div[@class='entry-title']/h2/a",
+                 "xPathArticleURL" : "//div[@class='entry-title']/h2/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
