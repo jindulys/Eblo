@@ -344,6 +344,38 @@
                  "xPathArticleTitle" : "//a[@class='post-link']//span[@class='post-title']",
                  "xPathArticleURL" : "//a[@class='post-link']/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "CodeName One",
+                 "blogURL" : "http://www.codenameone.com/blog.html",
+                 "xPathArticleTitle" : "//div[@class='entry-title']/h2/a",
+                 "xPathArticleURL" : "//div[@class='entry-title']/h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Codeship",
+                 "blogURL" : "http://blog.codeship.com/",
+                 "xPathArticleTitle" : "//article//a/h2",
+                 "xPathArticleURL" : "//article//a/@href"
+                 },
+                 {
+                 "name" : "Condé Nast",
+                 "blogURL" : "https://engineering.condenast.io",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Confluent",
+                 "blogURL" : "http://www.confluent.io/blog",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Coolblue",
+                 "blogURL" : "http://devblog.coolblue.nl/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
              ]
 }
