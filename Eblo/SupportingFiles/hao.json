@@ -376,6 +376,32 @@
                  "blogURL" : "http://devblog.coolblue.nl/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Dailymotion",
+                 "blogURL" : "http://engineering.dailymotion.com",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Data Artisans",
+                 "blogURL" : "http://data-artisans.com/blog/",
+                 "xPathArticleTitle" : "//article/h2/a",
+                 "xPathArticleURL" : "//article/h2/a/@href"
+                 },
+                 {
+                 "name" : "DataFox",
+                 "blogURL" : "http://eng.datafox.co",
+                 "xPathArticleTitle" : "//li//a",
+                 "xPathArticleURL" : "//li//a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "DeferPanic",
+                 "blogURL" : "https://deferpanic.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='post']/h1/a",
+                 "xPathArticleURL" : "//div[@class='post']/h1/a/@href"
                  }
              ]
 }
