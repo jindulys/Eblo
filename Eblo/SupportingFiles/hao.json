@@ -396,6 +396,12 @@
                  "xPathArticleTitle" : "//li//a",
                  "xPathArticleURL" : "//li//a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "DeferPanic",
+                 "blogURL" : "https://deferpanic.com/blog/",
+                 "xPathArticleTitle" : "//div[@class='post']/h1/a",
+                 "xPathArticleURL" : "//div[@class='post']/h1/a/@href"
                  }
              ]
 }
