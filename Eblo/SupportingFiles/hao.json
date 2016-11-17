@@ -383,6 +383,12 @@
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href",
                  "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Data Artisans",
+                 "blogURL" : "http://data-artisans.com/blog/",
+                 "xPathArticleTitle" : "//article/h2/a",
+                 "xPathArticleURL" : "//article/h2/a/@href"
                  }
              ]
 }
