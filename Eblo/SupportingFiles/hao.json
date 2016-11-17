@@ -389,6 +389,13 @@
                  "blogURL" : "http://data-artisans.com/blog/",
                  "xPathArticleTitle" : "//article/h2/a",
                  "xPathArticleURL" : "//article/h2/a/@href"
+                 },
+                 {
+                 "name" : "DataFox",
+                 "blogURL" : "http://eng.datafox.co",
+                 "xPathArticleTitle" : "//li//a",
+                 "xPathArticleURL" : "//li//a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
