@@ -376,6 +376,13 @@
                  "blogURL" : "http://devblog.coolblue.nl/",
                  "xPathArticleTitle" : "//article//h2/a",
                  "xPathArticleURL" : "//article//h2/a/@href"
+                 },
+                 {
+                 "name" : "Dailymotion",
+                 "blogURL" : "http://engineering.dailymotion.com",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href",
+                 "needBaseBlogURL" : "1"
                  }
              ]
 }
