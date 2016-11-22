@@ -402,6 +402,26 @@
                  "blogURL" : "https://deferpanic.com/blog/",
                  "xPathArticleTitle" : "//div[@class='post']/h1/a",
                  "xPathArticleURL" : "//div[@class='post']/h1/a/@href"
+                 },
+                 {
+                 "name" : "Deis",
+                 "blogURL" : "https://deis.com/blog",
+                 "xPathArticleTitle" : "//article//h1/a",
+                 "xPathArticleURL" : "//article//h1/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "DigitalOcean",
+                 "blogURL" : "https://www.digitalocean.com/community/tutorials",
+                 "xPathArticleTitle" : "//li//h3/a",
+                 "xPathArticleURL" : "//li//h3/a/@href",
+                 "needBaseBlogURL" : "1"
+                 },
+                 {
+                 "name" : "Docker",
+                 "blogURL" : "https://blog.docker.com/category/engineering/",
+                 "xPathArticleTitle" : "//article//h2/a",
+                 "xPathArticleURL" : "//article//h2/a/@href"
                  }
              ]
 }
