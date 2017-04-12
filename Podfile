@@ -5,8 +5,8 @@ target 'Eblo' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Eblo
-  pod 'SiYuanKit', :path=>'/Users/yansongli/Desktop/iOS'
+  # Pods for SiYuanKit
+  pod 'SiYuanKit', :path=>'/Users/yansongli/Desktop/SiYuanKit/'
   
   # Pods for Ji
   pod 'Ji', '~> 2.0.0' 
