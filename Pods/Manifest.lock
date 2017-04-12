@@ -34,11 +34,11 @@ DEPENDENCIES:
   - Fabric
   - Ji (~> 2.0.0)
   - RealmSwift
-  - SiYuanKit (from `/Users/yansongli/Desktop/SiYuanKit/SiYuanKit`)
+  - SiYuanKit (from `/Users/yansongli/Desktop/iOS`)
 
 EXTERNAL SOURCES:
   SiYuanKit:
-    :path: "/Users/yansongli/Desktop/SiYuanKit/SiYuanKit"
+    :path: /Users/yansongli/Desktop/iOS
 
 SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
@@ -48,6 +48,6 @@ SPEC CHECKSUMS:
   RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
   SiYuanKit: b0c49a3a4b036c7a3f5ff6cae12c1311825eef4e
 
-PODFILE CHECKSUM: 79bddccd16db7f23ed1c2f1c1210635c693e6394
+PODFILE CHECKSUM: 6305f371c5b029c8a63c3728302e6331f4df0336
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.1.1
