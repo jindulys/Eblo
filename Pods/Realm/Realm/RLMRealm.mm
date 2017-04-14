@@ -32,7 +32,8 @@
 #import "RLMQueryUtil.hpp"
 #import "RLMRealmUtil.hpp"
 #import "RLMSchema_Private.hpp"
-#import "RLMSyncManager_Private.hpp"
+#import "RLMSyncManager_Private.h"
+#import "RLMThreadSafeReference_Private.hpp"
 #import "RLMUpdateChecker.hpp"
 #import "RLMUtil.hpp"
 
@@ -42,13 +43,19 @@
 #include "shared_realm.hpp"
 
 #include <realm/disable_sync_to_disk.hpp>
+#include <realm/util/scope_exit.hpp>
 #include <realm/version.hpp>
 
 using namespace realm;
 using util::File;
 
+@interface RLMRealmNotificationToken : RLMNotificationToken
+@property (nonatomic, strong) RLMRealm *realm;
+@property (nonatomic, copy) RLMNotificationBlock block;
+@end
+
 @interface RLMRealm ()
-@property (nonatomic, strong) NSHashTable *notificationHandlers;
+@property (nonatomic, strong) NSHashTable<RLMRealmNotificationToken *> *notificationHandlers;
 - (void)sendNotifications:(RLMNotification)notification;
 @end
 
@@ -56,18 +63,27 @@ void RLMDisableSyncToDisk() {
     realm::disable_sync_to_disk();
 }
 
-// Notification Token
-@interface RLMRealmNotificationToken : RLMNotificationToken
-@property (nonatomic, strong) RLMRealm *realm;
-@property (nonatomic, copy) RLMNotificationBlock block;
-@end
-
 @implementation RLMRealmNotificationToken
 - (void)stop {
     [_realm verifyThread];
     [_realm.notificationHandlers removeObject:self];
     _realm = nil;
     _block = nil;
+}
+
+- (void)suppressNextNotification {
+    // Temporarily replace the block with one which restores the old block
+    // rather than producing a notification.
+
+    // This briefly creates a retain cycle but it's fine because the block will
+    // be synchronously called shortly after this method is called. Unlike with
+    // collection notifications, this does not have to go through the object
+    // store or do fancy things to handle transaction coalescing because it's
+    // called synchronously by the obj-c code and not by the object store.
+    auto notificationBlock = _block;
+    _block = ^(RLMNotification, RLMRealm *) {
+        _block = notificationBlock;
+    };
 }
 
 - (void)dealloc {
@@ -102,7 +118,8 @@ NSData *RLMRealmValidatedEncryptionKey(NSData *key) {
 }
 
 @implementation RLMRealm {
-    NSHashTable *_collectionEnumerators;
+    NSHashTable<RLMFastEnumerator *> *_collectionEnumerators;
+    bool _sendingNotifications;
 }
 
 + (BOOL)isCoreDebug {
@@ -120,12 +137,22 @@ NSData *RLMRealmValidatedEncryptionKey(NSData *key) {
     RLMSendAnalytics();
 }
 
+- (instancetype)initPrivate {
+    self = [super init];
+    return self;
+}
+
 - (BOOL)isEmpty {
     return realm::ObjectStore::is_empty(self.group);
 }
 
 - (void)verifyThread {
-    _realm->verify_thread();
+    try {
+        _realm->verify_thread();
+    }
+    catch (std::exception const& e) {
+        @throw RLMException(e);
+    }
 }
 
 - (BOOL)inWriteTransaction {
@@ -144,10 +171,6 @@ NSData *RLMRealmValidatedEncryptionKey(NSData *key) {
     _realm->set_auto_refresh(autorefresh);
 }
 
-+ (NSString *)writeableTemporaryPathForFile:(NSString *)fileName {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
-}
-
 + (instancetype)defaultRealm {
     return [RLMRealm realmWithConfiguration:[RLMRealmConfiguration rawDefaultConfiguration] error:nil];
 }
@@ -160,21 +183,17 @@ NSData *RLMRealmValidatedEncryptionKey(NSData *key) {
 // ARC tries to eliminate calls to autorelease when the value is then immediately
 // returned, but this results in significantly different semantics between debug
 // and release builds for RLMRealm, so force it to always autorelease.
-static id RLMAutorelease(id value) {
+static id RLMAutorelease(__unsafe_unretained id value) {
     // +1 __bridge_retained, -1 CFAutorelease
     return value ? (__bridge id)CFAutorelease((__bridge_retained CFTypeRef)value) : nil;
 }
 
-static void RLMRealmSetSchemaAndAlign(RLMRealm *realm, RLMSchema *targetSchema) {
-    realm.schema = targetSchema;
-    realm->_info = RLMSchemaInfo(realm, targetSchema, realm->_realm->schema());
-}
-
 + (instancetype)realmWithSharedRealm:(SharedRealm)sharedRealm schema:(RLMSchema *)schema {
-    RLMRealm *realm = [RLMRealm new];
+    RLMRealm *realm = [[RLMRealm alloc] initPrivate];
     realm->_realm = sharedRealm;
     realm->_dynamic = YES;
-    RLMRealmSetSchemaAndAlign(realm, schema);
+    realm->_schema = schema;
+    realm->_info = RLMSchemaInfo(realm);
     return RLMAutorelease(realm);
 }
 
@@ -204,6 +223,16 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
             case RealmFileException::Kind::Exists:
                 RLMSetErrorOrThrow(RLMMakeError(RLMErrorFileExists, ex), error);
                 break;
+            case RealmFileException::Kind::BadHistoryError: {
+                NSString *err = @"Realm file's history format is incompatible with the "
+                                 "settings in the configuration object being used to open "
+                                 "the Realm. Note that Realms configured for sync cannot be "
+                                 "opened as non-synced Realms, and vice versa. Otherwise, the "
+                                 "file may be corrupt.";
+                RLMSetErrorOrThrow(RLMMakeError(RLMErrorFileAccess,
+                                                File::AccessError(err.UTF8String, ex.path())), error);
+                break;
+            }
             case RealmFileException::Kind::AccessError:
                 RLMSetErrorOrThrow(RLMMakeError(RLMErrorFileAccess, ex), error);
                 break;
@@ -231,13 +260,14 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
 
 + (instancetype)realmWithConfiguration:(RLMRealmConfiguration *)configuration error:(NSError **)error {
     bool dynamic = configuration.dynamic;
+    bool cache = configuration.cache;
     bool readOnly = configuration.readOnly;
 
     {
         Realm::Config& config = configuration.config;
 
         // try to reuse existing realm first
-        if (config.cache || dynamic) {
+        if (cache || dynamic) {
             if (RLMRealm *realm = RLMGetThreadLocalCachedRealmForPath(config.path)) {
                 auto const& old_config = realm->_realm->config();
                 if (old_config.read_only() != config.read_only()) {
@@ -260,11 +290,11 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
     configuration = [configuration copy];
     Realm::Config& config = configuration.config;
 
-    RLMRealm *realm = [RLMRealm new];
+    RLMRealm *realm = [[RLMRealm alloc] initPrivate];
     realm->_dynamic = dynamic;
 
     // protects the realm cache and accessors cache
-    static std::mutex initLock;
+    static std::mutex& initLock = *new std::mutex();
     std::lock_guard<std::mutex> lock(initLock);
 
     try {
@@ -275,12 +305,21 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
         return nil;
     }
 
-    // if we have a cached realm on another thread, copy without a transaction
-    if (RLMRealm *cachedRealm = RLMGetAnyCachedRealmForPath(config.path)) {
-        RLMRealmSetSchemaAndAlign(realm, cachedRealm.schema);
+    // if we have a cached realm on another thread we can skip a few steps and
+    // just grab its schema
+    @autoreleasepool {
+        // ensure that cachedRealm doesn't end up in this thread's autorelease pool
+        if (auto cachedRealm = RLMGetAnyCachedRealmForPath(config.path)) {
+            realm->_realm->set_schema_subset(cachedRealm->_realm->schema());
+            realm->_schema = cachedRealm.schema;
+            realm->_info = cachedRealm->_info.clone(cachedRealm->_realm->schema(), realm);
+        }
     }
+
+    if (realm->_schema) { }
     else if (dynamic) {
-        RLMRealmSetSchemaAndAlign(realm, [RLMSchema dynamicSchemaFromObjectStoreSchema:realm->_realm->schema()]);
+        realm->_schema = [RLMSchema dynamicSchemaFromObjectStoreSchema:realm->_realm->schema()];
+        realm->_info = RLMSchemaInfo(realm);
     }
     else {
         // set/align schema or perform migration if needed
@@ -315,7 +354,8 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
             return nil;
         }
 
-        RLMRealmSetSchemaAndAlign(realm, schema);
+        realm->_schema = schema;
+        realm->_info = RLMSchemaInfo(realm);
         RLMRealmCreateAccessors(realm.schema);
 
         if (!readOnly) {
@@ -324,12 +364,13 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
         }
     }
 
-    if (config.cache) {
+    if (cache) {
         RLMCacheRealm(config.path, realm);
     }
 
     if (!readOnly) {
         realm->_realm->m_binding_context = RLMCreateBindingContext(realm);
+        realm->_realm->m_binding_context->realm = realm->_realm;
     }
 
     return RLMAutorelease(realm);
@@ -372,12 +413,20 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
 
 - (void)sendNotifications:(RLMNotification)notification {
     NSAssert(!_realm->config().read_only(), @"Read-only realms do not have notifications");
-
+    if (_sendingNotifications) {
+        return;
+    }
     NSUInteger count = _notificationHandlers.count;
     if (count == 0) {
         return;
     }
-    // call this realms notification blocks
+
+    _sendingNotifications = true;
+    auto cleanup = realm::util::make_scope_exit([&]() noexcept {
+        _sendingNotifications = false;
+    });
+
+    // call this realm's notification blocks
     if (count == 1) {
         if (auto block = [_notificationHandlers.anyObject block]) {
             block(notification, self);
@@ -420,6 +469,24 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
     }
     catch (...) {
         RLMRealmTranslateException(outError);
+        return NO;
+    }
+}
+
+- (BOOL)commitWriteTransactionWithoutNotifying:(NSArray<RLMNotificationToken *> *)tokens error:(NSError **)error {
+    for (RLMNotificationToken *token in tokens) {
+        if (token.realm != self) {
+            @throw RLMException(@"Incorrect Realm: only notifications for the Realm being modified can be skipped.");
+        }
+        [token suppressNextNotification];
+    }
+
+    try {
+        _realm->commit_transaction();
+        return YES;
+    }
+    catch (...) {
+        RLMRealmTranslateException(error);
         return NO;
     }
 }
@@ -470,20 +537,24 @@ REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
     }
 }
 
+- (nullable id)resolveThreadSafeReference:(RLMThreadSafeReference *)reference {
+    return [reference resolveReferenceInRealm:self];
+}
+
 /**
  Replaces all string columns in this Realm with a string enumeration column and compacts the
  database file.
- 
+
  Cannot be called from a write transaction.
 
  Compaction will not occur if other `RLMRealm` instances exist.
- 
+
  While compaction is in progress, attempts by other threads or processes to open the database will
  wait.
- 
+
  Be warned that resource requirements for compaction is proportional to the amount of live data in
  the database.
- 
+
  Compaction works by writing the database contents to a temporary database file and then replacing
  the database with the temporary one. The name of the temporary file is formed by appending
  `.tmp_compaction_space` to the name of the database.

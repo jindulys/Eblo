@@ -19,21 +19,60 @@
 #import <Foundation/Foundation.h>
 
 #import "RLMSyncUtil_Private.hpp"
+#import "RLMSyncUser_Private.hpp"
+#import "RLMRealmConfiguration+Sync.h"
+#import "RLMRealmConfiguration_Private.hpp"
+#import "RLMSyncPermission.h"
+#import "RLMSyncPermissionChange.h"
+#import "RLMSyncPermissionOffer.h"
+#import "RLMSyncPermissionOfferResponse.h"
+
+static RLMRealmConfiguration *RLMRealmSpecialPurposeConfiguration(RLMSyncUser *user, NSString *realmName) {
+    NSURLComponents *components = [NSURLComponents componentsWithURL:user.authenticationServer resolvingAgainstBaseURL:NO];
+    if ([components.scheme isEqualToString:@"https"]) {
+        components.scheme = @"realms";
+    } else {
+        components.scheme = @"realm";
+    }
+    components.path = [NSString stringWithFormat:@"/~/%@", realmName];
+    NSURL *realmURL = components.URL;
+    RLMSyncConfiguration *syncConfig = [[RLMSyncConfiguration alloc] initWithUser:user realmURL:realmURL];
+    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    config.syncConfiguration = syncConfig;
+    return config;
+}
+
+@implementation RLMRealmConfiguration (RealmSync)
++ (instancetype)managementConfigurationForUser:(RLMSyncUser *)user {
+    RLMRealmConfiguration *config = RLMRealmSpecialPurposeConfiguration(user, @"__management");
+    config.objectClasses = @[RLMSyncPermissionChange.class, RLMSyncPermissionOffer.class, RLMSyncPermissionOfferResponse.class];
+    return config;
+}
+
++ (instancetype)permissionConfigurationForUser:(RLMSyncUser *)user {
+    RLMRealmConfiguration *config = RLMRealmSpecialPurposeConfiguration(user, @"__permission");
+    config.objectClasses = @[RLMSyncPermission.class];
+    return config;
+}
+@end
 
 RLMIdentityProvider const RLMIdentityProviderAccessToken = @"_access_token";
 
 NSString *const RLMSyncErrorDomain = @"io.realm.sync";
 
+NSString *const kRLMSyncPathOfRealmBackupCopyKey            = @"recovered_realm_location_path";
+NSString *const kRLMSyncInitiateClientResetBlockKey         = @"initiate_client_reset_block";
+
 NSString *const kRLMSyncAppIDKey                = @"app_id";
 NSString *const kRLMSyncDataKey                 = @"data";
 NSString *const kRLMSyncErrorJSONKey            = @"json";
+NSString *const kRLMSyncErrorStatusCodeKey      = @"statusCode";
 NSString *const kRLMSyncIdentityKey             = @"identity";
 NSString *const kRLMSyncPasswordKey             = @"password";
 NSString *const kRLMSyncPathKey                 = @"path";
 NSString *const kRLMSyncProviderKey             = @"provider";
 NSString *const kRLMSyncRegisterKey             = @"register";
 NSString *const kRLMSyncUnderlyingErrorKey      = @"underlying_error";
-NSString *const kRLMSyncActionsKey              = @"actions";
 
 namespace realm {
 
@@ -56,4 +95,14 @@ RLMSyncStopPolicy translateStopPolicy(SyncSessionStopPolicy stop_policy)
     REALM_UNREACHABLE();
 }
 
+}
+
+RLMSyncManagementObjectStatus RLMMakeSyncManagementObjectStatus(NSNumber<RLMInt> *statusCode) {
+    if (!statusCode) {
+        return RLMSyncManagementObjectStatusNotProcessed;
+    }
+    if (statusCode.integerValue == 0) {
+        return RLMSyncManagementObjectStatusSuccess;
+    }
+    return RLMSyncManagementObjectStatusError;
 }

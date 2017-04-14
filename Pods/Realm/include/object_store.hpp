@@ -47,6 +47,12 @@ public:
     // get the last set schema version
     static uint64_t get_schema_version(Group const& group);
 
+    // set the schema version without any checks
+    // and the tables for the schema version and the primary key are created if they don't exist
+    // NOTE: must be performed within a write transaction
+    // FIXME remove this after integrating OS's migration related logic into Realm java
+    static void set_schema_version(Group& group, uint64_t version);
+
     // check if all of the changes in the list can be applied automatically, or
     // throw if any of them require a schema version bump and migration function
     static void verify_no_migration_required(std::vector<SchemaChange> const& changes);
@@ -56,7 +62,16 @@ public:
 
     // check if any of the schema changes in the list are forbidden in
     // additive-only mode, and if any are throw an exception
-    static void verify_valid_additive_changes(std::vector<SchemaChange> const& changes);
+    // returns true if any of the changes are not no-ops
+    static bool verify_valid_additive_changes(std::vector<SchemaChange> const& changes,
+                                              bool update_indexes=false);
+
+    // check if the schema changes made by a different process made any changes
+    // which will prevent us from being able to continue (such as removing a
+    // property we were relying on)
+    static void verify_valid_external_changes(std::vector<SchemaChange> const& changes);
+
+    static void verify_compatible_for_read_only(std::vector<SchemaChange> const& changes);
 
     // check if changes is empty, and throw an exception if not
     static void verify_no_changes_required(std::vector<SchemaChange> const& changes);
@@ -65,8 +80,8 @@ public:
     // passed in target schema is updated with the correct column mapping
     // optionally runs migration function if schema is out of date
     // NOTE: must be performed within a write transaction
-    static void apply_schema_changes(Group& group, Schema& schema, uint64_t& schema_version,
-                                     Schema const& target_schema, uint64_t target_schema_version,
+    static void apply_schema_changes(Group& group, uint64_t schema_version,
+                                     Schema& target_schema, uint64_t target_schema_version,
                                      SchemaMode mode, std::vector<SchemaChange> const& changes,
                                      std::function<void()> migration_function={});
 

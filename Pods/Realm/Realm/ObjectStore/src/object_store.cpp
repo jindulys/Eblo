@@ -50,14 +50,12 @@ const size_t c_zeroRowIndex = 0;
 const char c_object_table_prefix[] = "class_";
 
 void create_metadata_tables(Group& group) {
-    TableRef table = group.get_or_add_table(c_primaryKeyTableName);
-    if (table->get_column_count() == 0) {
-        table->add_column(type_String, c_primaryKeyObjectClassColumnName);
-        table->add_column(type_String, c_primaryKeyPropertyNameColumnName);
-    }
-    table->add_search_index(table->get_column_index(c_primaryKeyObjectClassColumnName));
-
-    table = group.get_or_add_table(c_metadataTableName);
+    // FIXME: the order of the creation of the two tables seems to
+    // matter for some Android devices. The reason is unclear, and
+    // further investigation is required.
+    // See https://github.com/realm/realm-java/issues/3651
+    
+    TableRef table = group.get_or_add_table(c_metadataTableName);
     if (table->get_column_count() == 0) {
         table->add_column(type_Int, c_versionColumnName);
 
@@ -65,6 +63,13 @@ void create_metadata_tables(Group& group) {
         table->add_empty_row();
         table->set_int(c_versionColumnIndex, c_zeroRowIndex, ObjectStore::NotVersioned);
     }
+
+    table = group.get_or_add_table(c_primaryKeyTableName);
+    if (table->get_column_count() == 0) {
+        table->add_column(type_String, c_primaryKeyObjectClassColumnName);
+        table->add_column(type_String, c_primaryKeyPropertyNameColumnName);
+    }
+    table->add_search_index(table->get_column_index(c_primaryKeyObjectClassColumnName));
 }
 
 void set_schema_version(Group& group, uint64_t version) {
@@ -93,6 +98,10 @@ void add_index(Table& table, size_t col)
 
 void insert_column(Group& group, Table& table, Property const& property, size_t col_ndx)
 {
+    // Cannot directly insert a LinkingObjects column (a computed property).
+    // LinkingObjects must be an artifact of an existing link column.
+    REALM_ASSERT(property.type != PropertyType::LinkingObjects);
+
     if (property.type == PropertyType::Object || property.type == PropertyType::Array) {
         auto target_name = ObjectStore::table_name_for_object_type(property.object_type);
         TableRef link_table = group.get_or_add_table(target_name);
@@ -203,6 +212,12 @@ void validate_primary_column_uniqueness(Group const& group)
     }
 }
 } // anonymous namespace
+
+// FIXME remove this after integrating OS's migration related logic into Realm java
+void ObjectStore::set_schema_version(Group& group, uint64_t version) {
+    ::create_metadata_tables(group);
+    ::set_schema_version(group, version);
+}
 
 uint64_t ObjectStore::get_schema_version(Group const& group) {
     ConstTableRef table = group.get_table(c_metadataTableName);
@@ -400,15 +415,48 @@ void ObjectStore::verify_no_migration_required(std::vector<SchemaChange> const& 
     verify_no_errors<SchemaMismatchException>(verifier, changes);
 }
 
-void ObjectStore::verify_valid_additive_changes(std::vector<SchemaChange> const& changes)
+bool ObjectStore::verify_valid_additive_changes(std::vector<SchemaChange> const& changes, bool update_indexes)
 {
     using namespace schema_change;
     struct Verifier : SchemaDifferenceExplainer {
         using SchemaDifferenceExplainer::operator();
 
+        bool index_changes = false;
+        bool other_changes = false;
+
         // Additive mode allows adding things, extra columns, and adding/removing indexes
+        void operator()(AddTable) { other_changes = true; }
+        void operator()(AddProperty) { other_changes = true; }
+        void operator()(RemoveProperty) { }
+        void operator()(AddIndex) { index_changes = true; }
+        void operator()(RemoveIndex) { index_changes = true; }
+    } verifier;
+    verify_no_errors<InvalidSchemaChangeException>(verifier, changes);
+    return verifier.other_changes || (verifier.index_changes && update_indexes);
+}
+
+void ObjectStore::verify_valid_external_changes(std::vector<SchemaChange> const& changes)
+{
+    using namespace schema_change;
+    struct Verifier : SchemaDifferenceExplainer {
+        using SchemaDifferenceExplainer::operator();
+
+        // Adding new things is fine
         void operator()(AddTable) { }
         void operator()(AddProperty) { }
+        void operator()(AddIndex) { }
+        void operator()(RemoveIndex) { }
+    } verifier;
+    verify_no_errors<InvalidSchemaChangeException>(verifier, changes);
+}
+
+void ObjectStore::verify_compatible_for_read_only(std::vector<SchemaChange> const& changes)
+{
+    using namespace schema_change;
+    struct Verifier : SchemaDifferenceExplainer {
+        using SchemaDifferenceExplainer::operator();
+
+        void operator()(AddTable) { }
         void operator()(RemoveProperty) { }
         void operator()(AddIndex) { }
         void operator()(RemoveIndex) { }
@@ -460,8 +508,7 @@ static void create_initial_tables(Group& group, std::vector<SchemaChange> const&
 
         void operator()(ChangePropertyType op)
         {
-            insert_column(group, table(op.object), *op.new_property, op.old_property->table_column);
-            table(op.object).remove_column(op.old_property->table_column + 1);
+            replace_column(group, table(op.object), *op.old_property, *op.new_property);
         }
     } applier{group};
 
@@ -474,7 +521,8 @@ static void apply_additive_changes(Group& group, std::vector<SchemaChange> const
 {
     using namespace schema_change;
     struct Applier {
-        Applier(Group& group, bool update_indexes) : group{group}, table{group}, update_indexes{update_indexes} { }
+        Applier(Group& group, bool update_indexes)
+        : group{group}, table{group}, update_indexes{update_indexes} { }
         Group& group;
         TableHelper table;
         bool update_indexes;
@@ -511,7 +559,7 @@ static void apply_pre_migration_changes(Group& group, std::vector<SchemaChange> 
         void operator()(ChangePropertyType op) { replace_column(group, table(op.object), *op.old_property, *op.new_property); }
         void operator()(MakePropertyNullable op) { make_property_optional(group, table(op.object), *op.property); }
         void operator()(MakePropertyRequired op) { make_property_required(group, table(op.object), *op.property); }
-        void operator()(ChangePrimaryKey op) { ObjectStore::set_primary_key_for_object(group, op.object->name, op.property ? op.property->name : ""); }
+        void operator()(ChangePrimaryKey op) { ObjectStore::set_primary_key_for_object(group, op.object->name.c_str(), op.property ? op.property->name.c_str() : ""); }
         void operator()(AddIndex op) { add_index(table(op.object), op.property->table_column); }
         void operator()(RemoveIndex op) { table(op.object).remove_search_index(op.property->table_column); }
     } applier{group};
@@ -560,8 +608,8 @@ static void apply_post_migration_changes(Group& group, std::vector<SchemaChange>
     }
 }
 
-void ObjectStore::apply_schema_changes(Group& group, Schema& schema, uint64_t& schema_version,
-                                       Schema const& target_schema, uint64_t target_schema_version,
+void ObjectStore::apply_schema_changes(Group& group, uint64_t schema_version,
+                                       Schema& target_schema, uint64_t target_schema_version,
                                        SchemaMode mode, std::vector<SchemaChange> const& changes,
                                        std::function<void()> migration_function)
 {
@@ -570,9 +618,7 @@ void ObjectStore::apply_schema_changes(Group& group, Schema& schema, uint64_t& s
     if (schema_version == ObjectStore::NotVersioned) {
         create_initial_tables(group, changes);
         set_schema_version(group, target_schema_version);
-        schema_version = target_schema_version;
-        schema = target_schema;
-        set_schema_columns(group, schema);
+        set_schema_columns(group, target_schema);
         return;
     }
 
@@ -584,75 +630,44 @@ void ObjectStore::apply_schema_changes(Group& group, Schema& schema, uint64_t& s
             set_schema_version(group, target_schema_version);
         }
 
-        schema = target_schema;
-        set_schema_columns(group, schema);
+        set_schema_columns(group, target_schema);
         return;
     }
 
     if (mode == SchemaMode::Manual) {
-        // Have to update the schema on the Realm before calling the migration
-        // function as the migration will need it
-        auto old_version = schema_version;
-        auto old_schema = schema;
-        schema_version = target_schema_version;
-        schema = target_schema;
-        set_schema_columns(group, schema);
+        set_schema_columns(group, target_schema);
+        migration_function();
 
-        try {
-            migration_function();
-            verify_no_changes_required(schema_from_group(group).compare(schema));
-            validate_primary_column_uniqueness(group);
-        }
-        catch (...) {
-            schema = move(old_schema);
-            schema_version = old_version;
-            throw;
-        }
-
-        set_schema_columns(group, schema);
+        verify_no_changes_required(schema_from_group(group).compare(target_schema));
+        validate_primary_column_uniqueness(group);
+        set_schema_columns(group, target_schema);
         set_schema_version(group, target_schema_version);
         return;
     }
 
     if (schema_version == target_schema_version) {
         apply_non_migration_changes(group, changes);
-        schema = target_schema;
-        set_schema_columns(group, schema);
+        set_schema_columns(group, target_schema);
         return;
     }
 
+    auto old_schema = schema_from_group(group);
     apply_pre_migration_changes(group, changes);
     if (migration_function) {
-        // Have to update the schema on the Realm before calling the migration
-        // function as the migration will need it
-        auto old_version = schema_version;
-        auto old_schema = schema;
-        schema_version = target_schema_version;
-        schema = target_schema;
-        set_schema_columns(group, schema);
+        set_schema_columns(group, target_schema);
+        migration_function();
 
-        try {
-            migration_function();
-
-            // Migration function may have changed the schema, so we need to re-read it
-            schema = schema_from_group(group);
-            apply_post_migration_changes(group, schema.compare(target_schema), old_schema);
-            validate_primary_column_uniqueness(group);
-        }
-        catch (...) {
-            schema = move(old_schema);
-            schema_version = old_version;
-            throw;
-        }
+        // Migration function may have changed the schema, so we need to re-read it
+        auto schema = schema_from_group(group);
+        apply_post_migration_changes(group, schema.compare(target_schema), old_schema);
+        validate_primary_column_uniqueness(group);
     }
     else {
         apply_post_migration_changes(group, changes, {});
     }
 
     set_schema_version(group, target_schema_version);
-    schema_version = target_schema_version;
-    schema = target_schema;
-    set_schema_columns(group, schema);
+    set_schema_columns(group, target_schema);
 }
 
 Schema ObjectStore::schema_from_group(Group const& group) {

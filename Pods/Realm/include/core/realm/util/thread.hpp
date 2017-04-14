@@ -21,7 +21,11 @@
 
 #include <exception>
 
+#ifdef _WIN32
+#include <win32/pthread/pthread.h>
+#else
 #include <pthread.h>
+#endif
 
 // Use below line to enable a thread bug detection tool. Note: Will make program execution slower.
 // #include <../test/pthread_test.hpp>
@@ -54,6 +58,12 @@ public:
 
     template <class F>
     explicit Thread(F func);
+
+    // Disable copying. It is an error to copy this Thread class.
+    Thread(const Thread&) = delete;
+    Thread& operator=(const Thread&) = delete;
+
+    Thread(Thread&&);
 
     /// This method is an extension of the API provided by
     /// std::thread. This method exists because proper move semantics
@@ -111,6 +121,10 @@ public:
     /// or deleting the file) without first calling the destructor is
     /// legal and will not cause any system resources to be leaked.
     Mutex(process_shared_tag);
+
+    // Disable copying.
+    Mutex(const Mutex&) = delete;
+    Mutex& operator=(const Mutex&) = delete;
 
     friend class LockGuard;
     friend class UniqueLock;
@@ -331,6 +345,13 @@ inline Thread::Thread(F func)
     std::unique_ptr<F> func2(new F(func));       // Throws
     start(&Thread::entry_point<F>, func2.get()); // Throws
     func2.release();
+}
+
+inline Thread::Thread(Thread&& thread)
+{
+    m_id = thread.m_id;
+    m_joinable = thread.m_joinable;
+    thread.m_joinable = false;
 }
 
 template <class F>

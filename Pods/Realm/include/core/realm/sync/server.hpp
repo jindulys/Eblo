@@ -35,6 +35,8 @@ namespace sync {
 
 class Server {
 public:
+    class Clock;
+
     struct Config {
         Config() {}
 
@@ -42,6 +44,11 @@ public:
         /// concurrently by this server. The server keeps a cache of open Realm
         /// files for efficiency reasons.
         long max_open_files = 256;
+
+        /// An optional time provider to be used by the server.
+        /// If no time provider is specified, the server will use the
+        /// system clock.
+        Clock* clock = nullptr;
 
         /// An optional logger to be used by the server. If no logger is
         /// specified, the server will use an instance of util::StderrLogger
@@ -52,34 +59,9 @@ public:
         util::Logger* logger = nullptr;
 
         /// An optional sink for recording metrics about the internal operation
-        /// of the server. Below is a list of counters and gauges that are
-        /// updated by the server. The server may or may not update additional
-        /// counters and gauges.
-        ///
-        ///     Statistics counters         Incremented when
-        ///     ------------------------------------------------------------------------
-        ///     server.started              The server was started
-        ///     connection.started          A new client connection was established
-        ///     connection.terminated       A client connection was terminated
-        ///     session.started             A new session was started
-        ///     session.terminated          A session was terminated
-        ///     connection.read.failed      A connection was closed due to read error
-        ///     connection.write.failed     A connection was closed due to write error
-        ///     protocol.upload.received    An UPLOAD message was received
-        ///     protocol.download.sent      A DOWNLOAD message was sent
-        ///     protocol.connection.errored Connection level protocol error occurred
-        ///     protocol.session.errored    Session level protocol error occurred
-        ///
-        ///     Statistics gauges           Continuously updated to reflect
-        ///     --------------------------------------------------------------------------
-        ///     connection.opened           The current total number of connections
-        ///     session.opened              The current total number of sessions
-        ///
+        /// of the server. For the list of counters and gauges see
+        /// "doc/monitoring.md".
         Metrics* metrics = nullptr;
-
-        /// FIXME: This seems to be related to the dashboard feature, but it
-        /// would be nice with some additional explanation (Sebastian).
-        const char* stats_db = nullptr;
 
         /// The address at which the listening socket is bound.
         /// The address can be a name or on numerical form.
@@ -114,9 +96,16 @@ public:
         ///
         /// This option is ignore if `ssl` is false.
         std::string ssl_certificate_key_path;
+
+        // A connection which has not been sending any messages or pings for
+        // `idle_timeout_ms` is considered idle and will be dropped by the server.
+        uint_fast64_t idle_timeout_ms = 1800000;
+
+        // How often the server scans through the connection list to drop idle ones.
+        uint_fast64_t drop_period_ms = 60000;
     };
 
-    Server(const std::string& root_dir, util::Optional<PKey> public_key, Config = Config());
+    Server(const std::string& root_dir, util::Optional<PKey> public_key, Config = {});
     Server(Server&&) noexcept;
     ~Server() noexcept;
 
@@ -154,10 +143,22 @@ public:
     /// root_path prior to instantiating the \c Server object.
     static void init_directory_structure(const std::string& root_path, util::Logger& logger);
 
+    // A connection which has not been sending any messages or pings for
+    // `idle_timeout_ms` is considered idle and will be dropped by the server.
+    void set_idle_timeout_ms(uint_fast64_t idle_timeout_ms);
+
 
 private:
     class Implementation;
     std::unique_ptr<Implementation> m_impl;
+};
+
+
+class Server::Clock {
+public:
+    virtual int_fast64_t now() = 0;
+
+    virtual ~Clock() {}
 };
 
 } // namespace sync

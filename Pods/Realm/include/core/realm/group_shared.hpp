@@ -54,6 +54,16 @@ struct IncompatibleLockFile : std::runtime_error {
     }
 };
 
+/// Thrown by SharedGroup::open() if the realm database was generated with a
+/// format for Realm Mobile Platform but is being opened as a Realm Mobile
+/// Database or vice versa, or of the history schema in the Realm file could not
+/// be upgraded to the needed version.
+struct IncompatibleHistories : util::File::AccessError {
+    IncompatibleHistories(const std::string& msg, const std::string& path)
+        : util::File::AccessError("Incompatible histories. " + msg, path)
+    {
+    }
+};
 
 /// A SharedGroup facilitates transactions.
 ///
@@ -161,6 +171,11 @@ public:
     SharedGroup(unattached_tag) noexcept;
 
     ~SharedGroup() noexcept;
+
+    // Disable copying to prevent accessor errors. If you really want another
+    // instance, open another SharedGroup object on the same file.
+    SharedGroup(const SharedGroup&) = delete;
+    SharedGroup& operator=(const SharedGroup&) = delete;
 
     /// Attach this SharedGroup instance to the specified database file.
     ///
@@ -343,7 +358,13 @@ public:
     Group& begin_write();
     version_type commit();
     void rollback() noexcept;
-
+    // report statistics of last commit done on THIS shared group.
+    // The free space reported is what can be expected to be freed
+    // by compact(). This may not correspond to the space which is free
+    // at the point where get_stats() is called, since that will include
+    // memory required to hold older versions of data, which still
+    // needs to be available.
+    void get_stats(size_t& free_space, size_t& used_space);
     //@}
 
     enum TransactStage {
@@ -513,6 +534,8 @@ private:
     class ReadLockUnlockGuard;
 
     // Member variables
+    size_t m_free_space = 0;
+    size_t m_used_space = 0;
     Group m_group;
     ReadLockInfo m_read_lock;
     uint_fast32_t m_local_max_entry;
@@ -538,6 +561,7 @@ private:
     util::InterprocessCondVar m_daemon_becomes_ready;
 #endif
     util::InterprocessCondVar m_new_commit_available;
+    util::InterprocessCondVar m_pick_next_writer;
 #endif
     std::function<void(int, int)> m_upgrade_callback;
 
@@ -598,7 +622,9 @@ private:
 
     void do_async_commits();
 
-    void upgrade_file_format(bool allow_file_format_upgrade, int target_file_format_version);
+    /// Upgrade file format and/or history schema
+    void upgrade_file_format(bool allow_file_format_upgrade, int target_file_format_version,
+                             int current_hist_schema_version, int target_hist_schema_version);
 
     //@{
     /// See LangBindHelper.
@@ -627,6 +653,12 @@ private:
 };
 
 
+inline void SharedGroup::get_stats(size_t& free_space, size_t& used_space) {
+    free_space = m_free_space;
+    used_space = m_used_space;
+}
+
+
 class ReadTransaction {
 public:
     ReadTransaction(SharedGroup& sg)
@@ -653,12 +685,6 @@ public:
     ConstTableRef get_table(StringData name) const
     {
         return get_group().get_table(name); // Throws
-    }
-
-    template <class T>
-    BasicTableRef<const T> get_table(StringData name) const
-    {
-        return get_group().get_table<T>(name); // Throws
     }
 
     const Group& get_group() const noexcept;
@@ -708,24 +734,6 @@ public:
     TableRef get_or_add_table(StringData name, bool* was_added = nullptr) const
     {
         return get_group().get_or_add_table(name, was_added); // Throws
-    }
-
-    template <class T>
-    BasicTableRef<T> get_table(StringData name) const
-    {
-        return get_group().get_table<T>(name); // Throws
-    }
-
-    template <class T>
-    BasicTableRef<T> add_table(StringData name, bool require_unique_name = true) const
-    {
-        return get_group().add_table<T>(name, require_unique_name); // Throws
-    }
-
-    template <class T>
-    BasicTableRef<T> get_or_add_table(StringData name, bool* was_added = nullptr) const
-    {
-        return get_group().get_or_add_table<T>(name, was_added); // Throws
     }
 
     Group& get_group() const noexcept;
@@ -1016,6 +1024,11 @@ inline bool SharedGroup::do_advance_read(O* observer, VersionID version_id, _imp
         version_type new_version = new_read_lock.m_version;
         size_t new_file_size = new_read_lock.m_file_size;
         ref_type new_top_ref = new_read_lock.m_top_ref;
+
+        // Synchronize readers view of the file
+        SlabAlloc& alloc = m_group.m_alloc;
+        alloc.update_reader_view(new_file_size);
+
         hist.update_early_from_top_ref(new_version, new_file_size, new_top_ref); // Throws
     }
 

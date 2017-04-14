@@ -1,5 +1,5 @@
 PODS:
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
   - Ji (2.0.1):
@@ -7,11 +7,11 @@ PODS:
   - Ji/Ji (2.0.1):
     - Ji/Ji-libxml
   - Ji/Ji-libxml (2.0.1)
-  - Realm (2.0.3):
-    - Realm/Headers (= 2.0.3)
-  - Realm/Headers (2.0.3)
-  - RealmSwift (2.0.3):
-    - Realm (= 2.0.3)
+  - Realm (2.5.1):
+    - Realm/Headers (= 2.5.1)
+  - Realm/Headers (2.5.1)
+  - RealmSwift (2.5.1):
+    - Realm (= 2.5.1)
   - SiYuanKit (1.2.23):
     - SiYuanKit/DispatchQueue (= 1.2.23)
     - SiYuanKit/Extension (= 1.2.23)
@@ -34,20 +34,20 @@ DEPENDENCIES:
   - Fabric
   - Ji (~> 2.0.0)
   - RealmSwift
-  - SiYuanKit (from `/Users/yansongli/Desktop/iOS`)
+  - SiYuanKit (from `/Users/yansongli/Desktop/SiYuanKit/`)
 
 EXTERNAL SOURCES:
   SiYuanKit:
-    :path: /Users/yansongli/Desktop/iOS
+    :path: /Users/yansongli/Desktop/SiYuanKit/
 
 SPEC CHECKSUMS:
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Ji: 6bb602a28dd08b804158f64990e6051ed5de0110
-  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
-  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+  Realm: 32f86104d37c8521f864d4274050b38ba6190733
+  RealmSwift: f719e7511c902b8908593e8f143f59e47931bdb6
   SiYuanKit: b0c49a3a4b036c7a3f5ff6cae12c1311825eef4e
 
-PODFILE CHECKSUM: 6305f371c5b029c8a63c3728302e6331f4df0336
+PODFILE CHECKSUM: 4da0e3bd4d00552ef19046f5a84d6ad394379ab8
 
 COCOAPODS: 1.1.1

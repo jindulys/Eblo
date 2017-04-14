@@ -34,6 +34,8 @@ class ObjectSchema {
 public:
     ObjectSchema();
     ObjectSchema(std::string name, std::initializer_list<Property> persisted_properties);
+    ObjectSchema(std::string name, std::initializer_list<Property> persisted_properties,
+                 std::initializer_list<Property> computed_properties);
     ~ObjectSchema();
 
     // create object schema from existing table
@@ -53,6 +55,7 @@ public:
     const Property *primary_key_property() const {
         return property_for_name(primary_key);
     }
+    bool property_is_computed(Property const& property) const;
 
     void validate(Schema const& schema, std::vector<ObjectSchemaValidationException>& exceptions) const;
 

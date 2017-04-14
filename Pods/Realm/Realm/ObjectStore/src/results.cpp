@@ -33,42 +33,44 @@ using namespace realm;
 Results::Results() = default;
 Results::~Results() = default;
 
-Results::Results(SharedRealm r, Query q, SortDescriptor s)
+Results::Results(SharedRealm r, Query q, SortDescriptor s, SortDescriptor d)
 : m_realm(std::move(r))
 , m_query(std::move(q))
-, m_table(m_query.get_table().get())
+, m_table(m_query.get_table())
 , m_sort(std::move(s))
+, m_distinct(std::move(d))
 , m_mode(Mode::Query)
 {
 }
 
 Results::Results(SharedRealm r, Table& table)
 : m_realm(std::move(r))
-, m_table(&table)
 , m_mode(Mode::Table)
 {
+    m_table.reset(&table);
 }
 
 Results::Results(SharedRealm r, LinkViewRef lv, util::Optional<Query> q, SortDescriptor s)
 : m_realm(std::move(r))
 , m_link_view(lv)
-, m_table(&lv->get_target_table())
 , m_sort(std::move(s))
 , m_mode(Mode::LinkView)
 {
+    m_table.reset(&lv->get_target_table());
     if (q) {
         m_query = std::move(*q);
         m_mode = Mode::Query;
     }
 }
 
-Results::Results(SharedRealm r, TableView tv, SortDescriptor s)
+Results::Results(SharedRealm r, TableView tv, SortDescriptor s, SortDescriptor d)
 : m_realm(std::move(r))
 , m_table_view(std::move(tv))
-, m_table(&m_table_view.get_parent())
 , m_sort(std::move(s))
+, m_distinct(std::move(d))
 , m_mode(Mode::TableView)
 {
+    m_table.reset(&m_table_view.get_parent());
 }
 
 Results::Results(const Results&) = default;
@@ -80,8 +82,9 @@ Results::Results(Results&& other)
 , m_query(std::move(other.m_query))
 , m_table_view(std::move(other.m_table_view))
 , m_link_view(std::move(other.m_link_view))
-, m_table(other.m_table)
+, m_table(std::move(other.m_table))
 , m_sort(std::move(other.m_sort))
+, m_distinct(std::move(other.m_distinct))
 , m_notifier(std::move(other.m_notifier))
 , m_mode(other.m_mode)
 , m_update_policy(other.m_update_policy)
@@ -134,7 +137,9 @@ size_t Results::size()
         case Mode::LinkView: return m_link_view->size();
         case Mode::Query:
             m_query.sync_view_if_needed();
-            return m_query.count();
+            if (!m_distinct)
+                return m_query.count();
+            REALM_FALLTHROUGH;
         case Mode::TableView:
             update_tableview();
             return m_table_view.size();
@@ -210,7 +215,11 @@ util::Optional<RowExpr> Results::first()
         case Mode::Query:
         case Mode::TableView:
             update_tableview();
-            return m_table_view.size() == 0 ? util::none : util::make_optional(m_table_view.front());
+            if (m_table_view.size() == 0)
+                return util::none;
+            else if (m_update_policy == UpdatePolicy::Never && !m_table_view.is_row_attached(0))
+                return RowExpr();
+            return m_table_view.front();
     }
     REALM_UNREACHABLE();
 }
@@ -230,7 +239,12 @@ util::Optional<RowExpr> Results::last()
         case Mode::Query:
         case Mode::TableView:
             update_tableview();
-            return m_table_view.size() == 0 ? util::none : util::make_optional(m_table_view.back());
+            auto s = m_table_view.size();
+            if (s == 0)
+                return util::none;
+            else if (m_update_policy == UpdatePolicy::Never && !m_table_view.is_row_attached(s - 1))
+                return RowExpr();
+            return m_table_view.back();
     }
     REALM_UNREACHABLE();
 }
@@ -239,7 +253,7 @@ bool Results::update_linkview()
 {
     REALM_ASSERT(m_update_policy == UpdatePolicy::Auto);
 
-    if (m_sort) {
+    if (m_sort || m_distinct) {
         m_query = get_query();
         m_mode = Mode::Query;
         update_tableview();
@@ -265,6 +279,9 @@ void Results::update_tableview(bool wants_notifications)
             m_table_view = m_query.find_all();
             if (m_sort) {
                 m_table_view.sort(m_sort);
+            }
+            if (m_distinct) {
+                m_table_view.distinct(m_distinct);
             }
             m_mode = Mode::TableView;
             REALM_FALLTHROUGH;
@@ -316,7 +333,7 @@ size_t Results::index_of(size_t row_ndx)
 }
 
 template<typename Int, typename Float, typename Double, typename Timestamp>
-util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_empty,
+util::Optional<Mixed> Results::aggregate(size_t column,
                                          const char* name,
                                          Int agg_int, Float agg_float,
                                          Double agg_double, Timestamp agg_timestamp)
@@ -332,8 +349,6 @@ util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_emp
             case Mode::Empty:
                 return none;
             case Mode::Table:
-                if (return_none_for_empty && m_table->size() == 0)
-                    return none;
                 return util::Optional<Mixed>(getter(*m_table));
             case Mode::LinkView:
                 m_query = this->get_query();
@@ -342,10 +357,9 @@ util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_emp
             case Mode::Query:
             case Mode::TableView:
                 this->update_tableview();
-                if (return_none_for_empty && m_table_view.size() == 0)
-                    return none;
                 return util::Optional<Mixed>(getter(m_table_view));
         }
+
         REALM_UNREACHABLE();
     };
 
@@ -356,44 +370,51 @@ util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_emp
         case type_Float: return do_agg(agg_float);
         case type_Int: return do_agg(agg_int);
         default:
-            throw UnsupportedColumnTypeException{column, m_table, name};
+            throw UnsupportedColumnTypeException{column, m_table.get(), name};
     }
 }
 
 util::Optional<Mixed> Results::max(size_t column)
 {
-    return aggregate(column, true, "max",
-                     [=](auto const& table) { return table.maximum_int(column); },
-                     [=](auto const& table) { return table.maximum_float(column); },
-                     [=](auto const& table) { return table.maximum_double(column); },
-                     [=](auto const& table) { return table.maximum_timestamp(column); });
+    size_t return_ndx = npos;
+    auto results = aggregate(column, "max",
+                             [&](auto const& table) { return table.maximum_int(column, &return_ndx); },
+                             [&](auto const& table) { return table.maximum_float(column, &return_ndx); },
+                             [&](auto const& table) { return table.maximum_double(column, &return_ndx); },
+                             [&](auto const& table) { return table.maximum_timestamp(column, &return_ndx); });
+    return return_ndx == npos ? none : results;
 }
 
 util::Optional<Mixed> Results::min(size_t column)
 {
-    return aggregate(column, true, "min",
-                     [=](auto const& table) { return table.minimum_int(column); },
-                     [=](auto const& table) { return table.minimum_float(column); },
-                     [=](auto const& table) { return table.minimum_double(column); },
-                     [=](auto const& table) { return table.minimum_timestamp(column); });
+    size_t return_ndx = npos;
+    auto results = aggregate(column, "min",
+                             [&](auto const& table) { return table.minimum_int(column, &return_ndx); },
+                             [&](auto const& table) { return table.minimum_float(column, &return_ndx); },
+                             [&](auto const& table) { return table.minimum_double(column, &return_ndx); },
+                             [&](auto const& table) { return table.minimum_timestamp(column, &return_ndx); });
+    return return_ndx == npos ? none : results;
 }
 
 util::Optional<Mixed> Results::sum(size_t column)
 {
-    return aggregate(column, false, "sum",
+    return aggregate(column, "sum",
                      [=](auto const& table) { return table.sum_int(column); },
                      [=](auto const& table) { return table.sum_float(column); },
                      [=](auto const& table) { return table.sum_double(column); },
-                     [=](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table, "sum"}; });
+                     [=](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table.get(), "sum"}; });
 }
 
 util::Optional<Mixed> Results::average(size_t column)
 {
-    return aggregate(column, true, "average",
-                     [=](auto const& table) { return table.average_int(column); },
-                     [=](auto const& table) { return table.average_float(column); },
-                     [=](auto const& table) { return table.average_double(column); },
-                     [=](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table, "average"}; });
+    // Initial value to make gcc happy
+    size_t value_count = 0;
+    auto results = aggregate(column, "average",
+                             [&](auto const& table) { return table.average_int(column, &value_count); },
+                             [&](auto const& table) { return table.average_float(column, &value_count); },
+                             [&](auto const& table) { return table.average_double(column, &value_count); },
+                             [&](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table.get(), "average"}; });
+    return value_count == 0 ? none : results;
 }
 
 void Results::clear()
@@ -483,12 +504,24 @@ TableView Results::get_tableview()
 
 Results Results::sort(realm::SortDescriptor&& sort) const
 {
-    return Results(m_realm, get_query(), std::move(sort));
+    return Results(m_realm, get_query(), std::move(sort), m_distinct);
 }
 
 Results Results::filter(Query&& q) const
 {
-    return Results(m_realm, get_query().and_query(std::move(q)), m_sort);
+    return Results(m_realm, get_query().and_query(std::move(q)), m_sort, m_distinct);
+}
+
+
+// FIXME: The current implementation of distinct() breaks the Results API.
+// This is tracked by the following issues:
+// - https://github.com/realm/realm-object-store/issues/266
+// - https://github.com/realm/realm-core/issues/2332
+Results Results::distinct(realm::SortDescriptor&& uniqueness)
+{
+    auto tv = get_tableview();
+    tv.distinct(uniqueness);
+    return Results(m_realm, std::move(tv), m_sort, std::move(uniqueness));
 }
 
 Results Results::snapshot() const &
@@ -524,6 +557,9 @@ Results Results::snapshot() &&
 
 void Results::prepare_async()
 {
+    if (m_notifier) {
+        return;
+    }
     if (m_realm->config().read_only()) {
         throw InvalidTransactionException("Cannot create asynchronous query for read-only Realms");
     }
@@ -534,11 +570,9 @@ void Results::prepare_async()
         throw std::logic_error("Cannot create asynchronous query for snapshotted Results.");
     }
 
-    if (!m_notifier) {
-        m_wants_background_updates = true;
-        m_notifier = std::make_shared<_impl::ResultsNotifier>(*this);
-        _impl::RealmCoordinator::register_notifier(m_notifier);
-    }
+    m_wants_background_updates = true;
+    m_notifier = std::make_shared<_impl::ResultsNotifier>(*this);
+    _impl::RealmCoordinator::register_notifier(m_notifier);
 }
 
 NotificationToken Results::async(std::function<void (std::exception_ptr)> target)
@@ -548,7 +582,7 @@ NotificationToken Results::async(std::function<void (std::exception_ptr)> target
     return {m_notifier, m_notifier->add_callback(wrap)};
 }
 
-NotificationToken Results::add_notification_callback(CollectionChangeCallback cb)
+NotificationToken Results::add_notification_callback(CollectionChangeCallback cb) &
 {
     prepare_async();
     return {m_notifier, m_notifier->add_callback(std::move(cb))};

@@ -31,12 +31,16 @@
 namespace realm {
 using RowExpr = BasicRowExpr<Table>;
 
-class AnyThreadConfined;
 class ObjectSchema;
 class Query;
 class Realm;
 class Results;
 class SortDescriptor;
+template <typename T> class ThreadSafeReference;
+
+namespace _impl {
+class ListNotifier;
+}
 
 class List {
 public:
@@ -81,7 +85,7 @@ public:
 
     bool operator==(List const& rgt) const noexcept;
 
-    NotificationToken add_notification_callback(CollectionChangeCallback cb);
+    NotificationToken add_notification_callback(CollectionChangeCallback cb) &;
 
     // These are implemented in object_accessor.hpp
     template <typename ValueType, typename ContextType>
@@ -108,12 +112,12 @@ public:
     };
 
 private:
-    friend AnyThreadConfined;
+    friend ThreadSafeReference<List>;
 
     std::shared_ptr<Realm> m_realm;
     mutable const ObjectSchema* m_object_schema = nullptr;
     LinkViewRef m_link_view;
-    _impl::CollectionNotifier::Handle<_impl::CollectionNotifier> m_notifier;
+    _impl::CollectionNotifier::Handle<_impl::ListNotifier> m_notifier;
 
     void verify_valid_row(size_t row_ndx, bool insertion = false) const;
 
