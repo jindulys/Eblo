@@ -21,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     AppManager.sharedInstance.createRootNavigationControllerWithAppDelegate(self)
     AppManager.sharedInstance.allowNavigation()
-    AppManager.sharedInstance.goToMainWith(URI: nil)
+    // To old main screen.
+    //AppManager.sharedInstance.goToMainWith(URI: nil)
+    // To new eblo screen.
+    AppManager.sharedInstance.goToEbloWith(URI: nil)
     // TODO(simonli): move company update to correct place
     GCDQueue.main.after(when: 3) {
       RealmCompanyManager.sharedInstance.updateCompanyArticles()

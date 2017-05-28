@@ -10,6 +10,7 @@
 		0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */; };
 		0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */; };
 		0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */; };
+		0E24F8191EDB63C1008F0DC8 /* EbloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E24F8181EDB63C1008F0DC8 /* EbloViewController.swift */; };
 		0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D0A11DB0924900DD7650 /* MainViewController.swift */; };
 		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */; };
@@ -73,6 +74,7 @@
 		0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraPageViewController.swift; sourceTree = "<group>"; };
 		0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraAnimationController.swift; sourceTree = "<group>"; };
 		0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraDismissAnimationController.swift; sourceTree = "<group>"; };
+		0E24F8181EDB63C1008F0DC8 /* EbloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloViewController.swift; sourceTree = "<group>"; };
 		0E54D0A11DB0924900DD7650 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
 		0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraArticleViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,14 @@
 				0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */,
 			);
 			path = AnimationTransition;
+			sourceTree = "<group>";
+		};
+		0E24F8171EDB6328008F0DC8 /* Eblo */ = {
+			isa = PBXGroup;
+			children = (
+				0E24F8181EDB63C1008F0DC8 /* EbloViewController.swift */,
+			);
+			path = Eblo;
 			sourceTree = "<group>";
 		};
 		0E54D0A01DB091E600DD7650 /* Main */ = {
@@ -277,9 +287,10 @@
 		0E8BF04C1D6138D500E0AA08 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0E94D6291DCFC484000271F8 /* Base */,
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
+				0E94D6291DCFC484000271F8 /* Base */,
 				0E5FF6671DC4E3BD00006D6A /* Company */,
+				0E24F8171EDB6328008F0DC8 /* Eblo */,
 				0E5FC56D1DB283D3003DF396 /* EditRecord */,
 				0E6BA7791D67F5C400B7575C /* Loading */,
 				0E54D0A01DB091E600DD7650 /* Main */,
@@ -701,6 +712,7 @@
 				0E5FF6691DC4E6A500006D6A /* ScreenTransitionManager.swift in Sources */,
 				0E5FF6711DC5313900006D6A /* URIMatcherManager.swift in Sources */,
 				0E610D2E1DC1C65A0005CA9C /* CompanyTableViewManager.swift in Sources */,
+				0E24F8191EDB63C1008F0DC8 /* EbloViewController.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
 				0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */,
