@@ -15,6 +15,13 @@ class EbloViewController: UIViewController {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.white
     self.title = "Eng Blogs"
+    let testFetch = EbloService()
+    testFetch.fetchBlogs { (finished, blogs) in
+      if let fetchedBlogs = blogs {
+        print("Fetched blogs \(fetchedBlogs.count)")
+        print("\(fetchedBlogs)")
+      }
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
