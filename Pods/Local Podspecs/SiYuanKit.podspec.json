@@ -1,6 +1,6 @@
 {
   "name": "SiYuanKit",
-  "version": "1.2.23",
+  "version": "1.2.35",
   "summary": "SiYuanKit is a personal swift toolbox.",
   "description": "SiYuanKit is a personal swift toolbox. Treasures.",
   "homepage": "https://github.com/jindulys/SiYuanKit",
@@ -13,10 +13,11 @@
   },
   "source": {
     "git": "https://github.com/jindulys/SiYuanKit.git",
-    "tag": "1.2.23"
+    "tag": "1.2.35"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "10.0",
+    "osx": "10.10"
   },
   "requires_arc": true,
   "subspecs": [
@@ -30,20 +31,10 @@
     },
     {
       "name": "YSOperations",
-      "dependencies": {
-        "SiYuanKit/DispatchQueue": [
-
-        ]
-      },
       "source_files": "Sources/YSOperations/**/*.*"
     },
     {
       "name": "Utilities",
-      "dependencies": {
-        "SiYuanKit/DispatchQueue": [
-
-        ]
-      },
       "source_files": "Sources/Utilities/*.*"
     },
     {
@@ -58,6 +49,10 @@
         ]
       },
       "source_files": "Sources/UI/StaticTableView/**/*.*"
+    },
+    {
+      "name": "Algorithms",
+      "source_files": "Sources/Algorithms/*.*"
     }
   ]
 }

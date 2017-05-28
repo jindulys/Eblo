@@ -14,6 +14,9 @@ target 'Eblo' do
   # Pods for Realm
   pod 'RealmSwift'
 
+  # Pods for IGListKit
+  pod 'IGListKit', '~> 3.0'
+
   # Pods for Crashlytics
   pod 'Fabric'
   pod 'Crashlytics'
