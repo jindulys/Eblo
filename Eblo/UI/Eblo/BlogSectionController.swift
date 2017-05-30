@@ -6,8 +6,9 @@
 //  Copyright © 2017 YANSONG LI. All rights reserved.
 //
 
-import UIKit
 import IGListKit
+import SafariServices
+import UIKit
 
 /// Section controller for blog.
 final class BlogSectionController: ListSectionController {
@@ -38,5 +39,17 @@ final class BlogSectionController: ListSectionController {
   
   override func didSelectItem(at index: Int) {
     print("Currently select \(blog.title)")
+    var toOpenString = blog.urlString
+    if let decodeString = toOpenString.removingPercentEncoding,
+      let encoded = decodeString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed.union(CharacterSet(charactersIn:"?"))){
+      toOpenString = encoded
+    }
+    guard let validURL = URL(string: toOpenString) else {
+      print("Problematic URL")
+      return
+    }
+    let svc = SFSafariViewController(url: validURL)
+    svc.title = blog.companyName
+    AppManager.sharedInstance.presentToNavTop(controller: svc)
   }
 }
