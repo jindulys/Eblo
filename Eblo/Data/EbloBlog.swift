@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IGListKit
 
 /// Class represents a blog.
 public final class EbloBlog {
@@ -52,6 +53,20 @@ public final class EbloBlog {
 extension EbloBlog: Unique {
   public func identifier() -> String {
     return self.title + self.companyName
+  }
+}
+
+extension EbloBlog: ListDiffable {
+  
+  public func diffIdentifier() -> NSObjectProtocol {
+    return self.identifier() as NSString
+  }
+  
+  public func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+    guard let other = object as? EbloBlog else {
+      return false
+    }
+    return self.identifier() == other.identifier()
   }
 }
 

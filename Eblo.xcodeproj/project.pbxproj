@@ -42,6 +42,9 @@
 		0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
 		0E94D62B1DCFC49F000271F8 /* ColorCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D62A1DCFC49F000271F8 /* ColorCornerView.swift */; };
+		0E95153E1EDD0147006D0587 /* BlogSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E95153D1EDD0147006D0587 /* BlogSectionController.swift */; };
+		0E9515401EDD01DC006D0587 /* EbloBlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E95153F1EDD01DC006D0587 /* EbloBlogCell.swift */; };
+		0E9515431EDD2074006D0587 /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9515421EDD2074006D0587 /* TextSize.swift */; };
 		0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574031D4CDDCA00703C3A /* AppDelegate.swift */; };
 		0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574051D4CDDCA00703C3A /* ViewController.swift */; };
 		0E95740B1D4CDDCA00703C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740A1D4CDDCA00703C3A /* Assets.xcassets */; };
@@ -112,6 +115,9 @@
 		0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewManager+InitiatedDataManager.swift"; sourceTree = "<group>"; };
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		0E94D62A1DCFC49F000271F8 /* ColorCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCornerView.swift; sourceTree = "<group>"; };
+		0E95153D1EDD0147006D0587 /* BlogSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogSectionController.swift; sourceTree = "<group>"; };
+		0E95153F1EDD01DC006D0587 /* EbloBlogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloBlogCell.swift; sourceTree = "<group>"; };
+		0E9515421EDD2074006D0587 /* TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
 		0E9574001D4CDDCA00703C3A /* Eblo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eblo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574031D4CDDCA00703C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9574051D4CDDCA00703C3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../ViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				0E24F8181EDB63C1008F0DC8 /* EbloViewController.swift */,
+				0E95153D1EDD0147006D0587 /* BlogSectionController.swift */,
+				0E95153F1EDD01DC006D0587 /* EbloBlogCell.swift */,
 			);
 			path = Eblo;
 			sourceTree = "<group>";
@@ -317,6 +325,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		0E9515411EDD205C006D0587 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0E9515421EDD2074006D0587 /* TextSize.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		0E9573F71D4CDDCA00703C3A = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +359,7 @@
 		0E9574021D4CDDCA00703C3A /* Eblo */ = {
 			isa = PBXGroup;
 			children = (
+				0E9515411EDD205C006D0587 /* Utilities */,
 				0E7A60D21DB43092003EB738 /* Extension */,
 				0E7A60CD1DB3E8D4003EB738 /* SupportingFiles */,
 				0E7A60C81DB2C157003EB738 /* Data */,
@@ -724,9 +741,12 @@
 				0E25471B1EDB7D0000A018E2 /* EbloBlog.swift in Sources */,
 				0E5FF6711DC5313900006D6A /* URIMatcherManager.swift in Sources */,
 				0E610D2E1DC1C65A0005CA9C /* CompanyTableViewManager.swift in Sources */,
+				0E95153E1EDD0147006D0587 /* BlogSectionController.swift in Sources */,
 				0E24F8191EDB63C1008F0DC8 /* EbloViewController.swift in Sources */,
+				0E9515431EDD2074006D0587 /* TextSize.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
+				0E9515401EDD01DC006D0587 /* EbloBlogCell.swift in Sources */,
 				0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
 				0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */,
