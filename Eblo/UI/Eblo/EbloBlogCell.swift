@@ -27,12 +27,23 @@ final class EbloBlogCell: UICollectionViewCell {
     return label
   }()
   
-  private let publishDateLabel: UILabel = UILabel()
+  private let publishDateLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 14)
+    return label
+  }()
   
   private let authorNameLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .right
+    label.font = UIFont.systemFont(ofSize: 14)
     return label
+  }()
+  
+  private let divider: UIView = {
+    let view = UIView()
+    view.backgroundColor = .gray
+    return view
   }()
   
   override init(frame: CGRect) {
@@ -42,6 +53,7 @@ final class EbloBlogCell: UICollectionViewCell {
     contentView.addAutoLayoutSubView(companyLabel)
     contentView.addAutoLayoutSubView(publishDateLabel)
     contentView.addAutoLayoutSubView(authorNameLabel)
+    contentView.addAutoLayoutSubView(divider)
     self.buildConstraints()
   }
   
@@ -62,6 +74,10 @@ final class EbloBlogCell: UICollectionViewCell {
     authorNameLabel.topAnchor.constraint(greaterThanOrEqualTo: companyLabel.bottomAnchor, constant: 16).isActive = true
     authorNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
     authorNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
+    divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+    divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+    divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+    divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
     blogNameLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
     companyLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
@@ -96,7 +112,6 @@ final class EbloBlogCell: UICollectionViewCell {
     EbloBlogCell.heightCalculationCell.companyLabel.preferredMaxLayoutWidth = companyNameWidth
     EbloBlogCell.heightCalculationCell.blogNameLabel.preferredMaxLayoutWidth = width - 12 - 24 - 12 - companyNameWidth
     let size = EbloBlogCell.heightCalculationCell.systemLayoutSizeFitting(CGSize(width: width, height:999))
-    print(size)
     return size
   }
 }
