@@ -36,8 +36,10 @@ class ScreenTransitionManager {
   static let transitionRoutesTable =
     [ "MainViewController" :
         ["companyBlogList" : (TransitionMethod.NAV, "CompanyBlogListViewController"),
-         "editRecord" : (TransitionMethod.NAV, "EditRecordViewController")]
-  ]
+         "editRecord" : (TransitionMethod.NAV, "EditRecordViewController")],
+      "EbloCompanyViewController":
+        ["ebloBlogList" : (TransitionMethod.NAV, "EbloBlogViewController")]
+    ]
 
   /// Transition screen with source view controller, entryPoint, and params.
   @discardableResult public static func transitionScreenWith(viewController: TransitionViewController,

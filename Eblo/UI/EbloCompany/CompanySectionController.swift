@@ -10,10 +10,17 @@ import IGListKit
 import SafariServices
 import UIKit
 
+/// Company section controller delegate.
+protocol CompanySectionControllerDelegate: class {
+  func didTapCompanyWith(id: Int) -> Void
+}
+
 /// Section controller for company.
 final class CompanySectionController: ListSectionController {
   
   var company: EbloCompany!
+  
+  weak var delegate: CompanySectionControllerDelegate?
   
   override func sizeForItem(at index: Int) -> CGSize {
     guard let context = collectionContext, let company = company else {
@@ -38,18 +45,8 @@ final class CompanySectionController: ListSectionController {
   }
   
   override func didSelectItem(at index: Int) {
-    print("Currently select \(company.companyName)")
-//    var toOpenString = blog.urlString
-//    if let decodeString = toOpenString.removingPercentEncoding,
-//      let encoded = decodeString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed.union(CharacterSet(charactersIn:"?"))){
-//      toOpenString = encoded
-//    }
-//    guard let validURL = URL(string: toOpenString) else {
-//      print("Problematic URL")
-//      return
-//    }
-//    let svc = SFSafariViewController(url: validURL)
-//    svc.title = blog.companyName
-//    AppManager.sharedInstance.presentToNavTop(controller: svc)
+    if let validDelegate = delegate {
+      validDelegate.didTapCompanyWith(id: company.companyID)
+    }
   }
 }

@@ -22,6 +22,8 @@ class EbloCompanyViewController: UIViewController {
   
   var companyList: [EbloCompany]?
   
+  var companySectionController: CompanySectionController?
+  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     collectionView.frame = view.bounds
@@ -65,10 +67,31 @@ extension EbloCompanyViewController: ListAdapterDataSource {
   }
   
   func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-    return CompanySectionController()
+    let companySectionController = CompanySectionController()
+    self.companySectionController = companySectionController
+    companySectionController.delegate = self
+    return companySectionController
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
     return nil
+  }
+}
+
+extension EbloCompanyViewController: CompanySectionControllerDelegate {
+  func didTapCompanyWith(id: Int) {
+    ScreenTransitionManager.transitionScreenWith(viewController: self,
+                                                 entryPoint: self.blogEntry,
+                                                 params: "id=\(id)")
+  }
+}
+
+extension EbloCompanyViewController: TransitionViewController {
+  var sourceScreenName: String {
+    return String(describing:type(of: self))
+  }
+  
+  public var blogEntry: String {
+    return "ebloBlogList"
   }
 }

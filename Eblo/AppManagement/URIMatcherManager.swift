@@ -65,7 +65,8 @@ extension URIMatcher {
 class URIMatcherManager {
   static func matchers() -> [URIMatcher.Type] {
     return [EditRecordScreenMatcher.self,
-            CompanyBlogListScreenMatcher.self]
+            CompanyBlogListScreenMatcher.self,
+            EbloBlogListScreenMatcher.self]
   }
 }
 
@@ -98,5 +99,23 @@ class CompanyBlogListScreenMatcher: URIMatcher {
 
   static var matchScreenName: String {
     return "CompanyBlogListViewController"
+  }
+}
+
+/// The eblo blog list view controller matcher.
+class EbloBlogListScreenMatcher: URIMatcher {
+  static func matchURI(_ uri: URISource) -> UIViewController? {
+    if uri.URI.hasPrefix("Eblo/\(self.matchScreenName)") {
+      guard let paramDict = self.retreiveParamsFromURI(uri).queryKeysAndValues(),
+        let companyID = paramDict["id"] else {
+          return nil
+      }
+      return EbloBlogViewController(companyID: companyID)
+    }
+    return nil
+  }
+  
+  static var matchScreenName: String {
+    return "EbloBlogViewController"
   }
 }
