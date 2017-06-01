@@ -16,6 +16,10 @@
 		0E2838DF1EDF9DEE006E93A0 /* BlogSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838DC1EDF9DEE006E93A0 /* BlogSectionController.swift */; };
 		0E2838E01EDF9DEE006E93A0 /* EbloBlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838DD1EDF9DEE006E93A0 /* EbloBlogCell.swift */; };
 		0E2838E11EDF9DEE006E93A0 /* EbloBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838DE1EDF9DEE006E93A0 /* EbloBlogViewController.swift */; };
+		0E2838E41EDFA87E006E93A0 /* EbloCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E31EDFA87E006E93A0 /* EbloCompanyViewController.swift */; };
+		0E2838E61EDFA8C4006E93A0 /* EbloCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E51EDFA8C4006E93A0 /* EbloCompany.swift */; };
+		0E2838E81EDFB029006E93A0 /* CompanySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E71EDFB029006E93A0 /* CompanySectionController.swift */; };
+		0E2838EA1EDFB08F006E93A0 /* EbloCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E91EDFB08F006E93A0 /* EbloCompanyCell.swift */; };
 		0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D0A11DB0924900DD7650 /* MainViewController.swift */; };
 		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */; };
@@ -86,6 +90,10 @@
 		0E2838DC1EDF9DEE006E93A0 /* BlogSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlogSectionController.swift; path = Eblo/UI/EbloBlog/BlogSectionController.swift; sourceTree = SOURCE_ROOT; };
 		0E2838DD1EDF9DEE006E93A0 /* EbloBlogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EbloBlogCell.swift; path = Eblo/UI/EbloBlog/EbloBlogCell.swift; sourceTree = SOURCE_ROOT; };
 		0E2838DE1EDF9DEE006E93A0 /* EbloBlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EbloBlogViewController.swift; path = Eblo/UI/EbloBlog/EbloBlogViewController.swift; sourceTree = SOURCE_ROOT; };
+		0E2838E31EDFA87E006E93A0 /* EbloCompanyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompanyViewController.swift; sourceTree = "<group>"; };
+		0E2838E51EDFA8C4006E93A0 /* EbloCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompany.swift; sourceTree = "<group>"; };
+		0E2838E71EDFB029006E93A0 /* CompanySectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanySectionController.swift; sourceTree = "<group>"; };
+		0E2838E91EDFB08F006E93A0 /* EbloCompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompanyCell.swift; sourceTree = "<group>"; };
 		0E54D0A11DB0924900DD7650 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
 		0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraArticleViewController.swift; sourceTree = "<group>"; };
@@ -186,8 +194,17 @@
 				0E2838DD1EDF9DEE006E93A0 /* EbloBlogCell.swift */,
 				0E2838DE1EDF9DEE006E93A0 /* EbloBlogViewController.swift */,
 			);
-			name = EbloBlog;
-			path = Eblo;
+			path = EbloBlog;
+			sourceTree = "<group>";
+		};
+		0E2838E21EDFA1E0006E93A0 /* EbloCompany */ = {
+			isa = PBXGroup;
+			children = (
+				0E2838E31EDFA87E006E93A0 /* EbloCompanyViewController.swift */,
+				0E2838E71EDFB029006E93A0 /* CompanySectionController.swift */,
+				0E2838E91EDFB08F006E93A0 /* EbloCompanyCell.swift */,
+			);
+			path = EbloCompany;
 			sourceTree = "<group>";
 		};
 		0E54D0A01DB091E600DD7650 /* Main */ = {
@@ -264,6 +281,7 @@
 				0E5FF6741DC6854B00006D6A /* InitiatedDataManager.swift */,
 				0E2547181EDB769A00A018E2 /* EbloService.swift */,
 				0E25471A1EDB7D0000A018E2 /* EbloBlog.swift */,
+				0E2838E51EDFA8C4006E93A0 /* EbloCompany.swift */,
 				0E25471C1EDB7D8200A018E2 /* Unique.swift */,
 			);
 			path = Data;
@@ -305,6 +323,7 @@
 		0E8BF04C1D6138D500E0AA08 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0E2838E21EDFA1E0006E93A0 /* EbloCompany */,
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
 				0E94D6291DCFC484000271F8 /* Base */,
 				0E5FF6671DC4E3BD00006D6A /* Company */,
@@ -728,9 +747,11 @@
 				0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */,
 				0EB5AC7B1DB9C87300ACD9EE /* CompanyBlog.swift in Sources */,
 				0E6BA7801D67F64100B7575C /* PortalViewController.swift in Sources */,
+				0E2838E61EDFA8C4006E93A0 /* EbloCompany.swift in Sources */,
 				0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */,
 				0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */,
 				0E25471D1EDB7D8200A018E2 /* Unique.swift in Sources */,
+				0E2838E41EDFA87E006E93A0 /* EbloCompanyViewController.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */,
 				0E5FF66B1DC4F6BA00006D6A /* String+Eblo.swift in Sources */,
@@ -749,12 +770,14 @@
 				0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
 				0E2838E01EDF9DEE006E93A0 /* EbloBlogCell.swift in Sources */,
+				0E2838E81EDFB029006E93A0 /* CompanySectionController.swift in Sources */,
 				0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */,
 				0E7A60CC1DB2C577003EB738 /* Company.swift in Sources */,
 				0E2838E11EDF9DEE006E93A0 /* EbloBlogViewController.swift in Sources */,
 				0E5FF6731DC6789000006D6A /* CompanyBlogListViewController.swift in Sources */,
 				0E6BA77D1D67F5EA00B7575C /* LoadingViewController.swift in Sources */,
 				0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */,
+				0E2838EA1EDFB08F006E93A0 /* EbloCompanyCell.swift in Sources */,
 				0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */,
 				0E5FF6771DC68CA600006D6A /* BlogCell.swift in Sources */,
 			);

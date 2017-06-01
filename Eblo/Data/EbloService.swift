@@ -12,11 +12,14 @@ import Foundation
 class EbloService {
   
   /// The blogs URL string.
-  static let blogsURLString = "https://ebloserver.herokuapp.com/blog/test"
+  static let allCompanyURLString = "https://ebloserver.herokuapp.com/company/all"
+  
+  /// The company url string.
+  static let companyBlogsURLString = "https://ebloserver.herokuapp.com/company"
   
   /// Fetch blogs with a completion handler.
-  func fetchBlogs(completion: @escaping (Bool, [EbloBlog]?) -> ()) {
-    guard let requestURL = URL(string: EbloService.blogsURLString) else {
+  func fetchBlogs(companyID: String, completion: @escaping (Bool, [EbloBlog]?) -> ()) {
+    guard let requestURL = URL(string: EbloService.companyBlogsURLString+"/"+companyID+"/blogs") else {
       print("URLString is not valid")
       completion(false, nil)
       return
@@ -55,6 +58,45 @@ class EbloService {
             }
           }
           completion(true, parsedBlogs)
+        }
+      } catch {
+        print("Could not properly parse data")
+        completion(false, nil)
+      }
+    }
+    task.resume()
+  }
+  
+  /// Fetch company list.
+  func fetchCompanyList(completion: @escaping(Bool, [EbloCompany]?) -> ()) {
+    guard let requestURL = URL(string: EbloService.allCompanyURLString) else {
+      print("URLString is not valid")
+      completion(false, nil)
+      return
+    }
+    let request = URLRequest(url: requestURL)
+    let session = URLSession.shared
+    let task = session.dataTask(with: request) { (data, response, error) in
+      guard let res = response as? HTTPURLResponse,
+        res.statusCode == 200,
+        let validData = data else {
+          print("Did not get valid response")
+          return
+      }
+      do {
+        let json = try JSONSerialization.jsonObject(with: validData, options: .allowFragments)
+        if let companies = json as? [[String: Any]] {
+          var parsedCompany = [EbloCompany]()
+          for company in companies {
+            if let companyName = company["companyname"] as? String,
+              let companyURLString = company["companyurlstring"] as? String,
+              let companyID = company["id"] as? Int {
+              let result =
+                  EbloCompany(companyName: companyName, urlString: companyURLString, companyID: companyID)
+              parsedCompany.append(result)
+            }
+          }
+          completion(true, parsedCompany)
         }
       } catch {
         print("Could not properly parse data")

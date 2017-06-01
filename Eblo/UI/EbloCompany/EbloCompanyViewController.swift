@@ -1,8 +1,8 @@
 //
-//  EbloViewController.swift
+//  EbloCompanyViewController.swift
 //  Eblo
 //
-//  Created by yansong li on 2017-05-28.
+//  Created by yansong li on 2017-05-31.
 //  Copyright © 2017 YANSONG LI. All rights reserved.
 //
 
@@ -10,10 +10,7 @@ import IGListKit
 import UIKit
 
 /// The view controller for engineering blogs list.
-class EbloBlogViewController: UIViewController {
-  
-  /// The company id for this blog view controller.
-  let companyID: String
+class EbloCompanyViewController: UIViewController {
   
   let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -23,20 +20,7 @@ class EbloBlogViewController: UIViewController {
   
   var adapter: ListAdapter?
   
-  var blogs: [EbloBlog]?
-  
-  init(companyID: String) {
-    self.companyID = companyID
-    super.init(nibName: nil, bundle: nil)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  override convenience init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    self.init(companyID: "1")
-  }
+  var companyList: [EbloCompany]?
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
@@ -56,9 +40,9 @@ class EbloBlogViewController: UIViewController {
     
     self.title = "Eng Blogs"
     let testFetch = EbloService()
-    testFetch.fetchBlogs(companyID: self.companyID) { [weak self](finished, blogs) in
-      if let fetchedBlogs = blogs {
-        self?.blogs = fetchedBlogs
+    testFetch.fetchCompanyList { [weak self](finished, companyList) in
+      if let fetched = companyList {
+        self?.companyList = fetched
         DispatchQueue.main.async {
           self?.adapter?.performUpdates(animated: true)
         }
@@ -72,16 +56,16 @@ class EbloBlogViewController: UIViewController {
   }
 }
 
-extension EbloBlogViewController: ListAdapterDataSource {
+extension EbloCompanyViewController: ListAdapterDataSource {
   func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-    guard let blogs = self.blogs else {
+    guard let companyList = self.companyList else {
       return []
     }
-    return blogs
+    return companyList
   }
   
   func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-    return BlogSectionController()
+    return CompanySectionController()
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
