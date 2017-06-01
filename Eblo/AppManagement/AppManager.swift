@@ -134,9 +134,9 @@ public final class AppManager: NSObject {
     }
     // Try to find a kind of `mainController`.
     var controller: UIViewController = (self.rootController?.viewControllers.first)!
-    if !(controller is EbloViewController) {
+    if !(controller is EbloBlogViewController) {
       // CONFIGURE POINT
-      controller = EbloViewController()
+      controller = EbloBlogViewController()
     }
     // Top most view controller dismiss itself.
     // Usually do not need to do this.

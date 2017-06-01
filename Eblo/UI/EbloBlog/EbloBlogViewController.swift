@@ -10,7 +10,7 @@ import IGListKit
 import UIKit
 
 /// The view controller for engineering blogs list.
-class EbloViewController: UIViewController {
+class EbloBlogViewController: UIViewController {
   
   let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -56,7 +56,7 @@ class EbloViewController: UIViewController {
   }
 }
 
-extension EbloViewController: ListAdapterDataSource {
+extension EbloBlogViewController: ListAdapterDataSource {
   func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
     guard let blogs = self.blogs else {
       return []

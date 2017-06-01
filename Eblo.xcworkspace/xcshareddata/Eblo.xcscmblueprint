@@ -5,17 +5,24 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "AFBDD38F41FF71F9BAB79C1AC1899DC92E4260B4" : 9223372036854775807,
+    "437F9726E89FDD4D0872A9E68E8A59FE0BEAE0E2" : 9223372036854775807,
     "7D20C7F63D2CACE58A0E529028E5A809A2C912CF" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EDB27E82-78B2-4251-8650-C3E5D6A95455",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "AFBDD38F41FF71F9BAB79C1AC1899DC92E4260B4" : "iOS\/",
+    "AFBDD38F41FF71F9BAB79C1AC1899DC92E4260B4" : "SiYuanKit\/",
+    "437F9726E89FDD4D0872A9E68E8A59FE0BEAE0E2" : "scripts\/EbloVaporServer\/EbloVaporServer\/",
     "7D20C7F63D2CACE58A0E529028E5A809A2C912CF" : "Eblo\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Eblo",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Eblo.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:jindulys\/EbloVaporServer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "437F9726E89FDD4D0872A9E68E8A59FE0BEAE0E2"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jindulys\/Eblo.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
