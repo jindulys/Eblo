@@ -10,6 +10,8 @@
 		0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */; };
 		0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */; };
 		0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */; };
+		0E128B4B1EE0E9720045CCAD /* RootTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B4A1EE0E9720045CCAD /* RootTabViewController.swift */; };
+		0E128B4D1EE0F26F0045CCAD /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B4C1EE0F26F0045CCAD /* UIImage+Images.swift */; };
 		0E2547191EDB769A00A018E2 /* EbloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2547181EDB769A00A018E2 /* EbloService.swift */; };
 		0E25471B1EDB7D0000A018E2 /* EbloBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E25471A1EDB7D0000A018E2 /* EbloBlog.swift */; };
 		0E25471D1EDB7D8200A018E2 /* Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E25471C1EDB7D8200A018E2 /* Unique.swift */; };
@@ -84,6 +86,8 @@
 		0E10ADE11D6A042B00E15C9C /* QuoraPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraPageViewController.swift; sourceTree = "<group>"; };
 		0E10ADE41D6A391300E15C9C /* QuoraAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraAnimationController.swift; sourceTree = "<group>"; };
 		0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraDismissAnimationController.swift; sourceTree = "<group>"; };
+		0E128B4A1EE0E9720045CCAD /* RootTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabViewController.swift; sourceTree = "<group>"; };
+		0E128B4C1EE0F26F0045CCAD /* UIImage+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
 		0E2547181EDB769A00A018E2 /* EbloService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloService.swift; sourceTree = "<group>"; };
 		0E25471A1EDB7D0000A018E2 /* EbloBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloBlog.swift; sourceTree = "<group>"; };
 		0E25471C1EDB7D8200A018E2 /* Unique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unique.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 			children = (
 				0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */,
 				0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */,
+				0E128B4C1EE0F26F0045CCAD /* UIImage+Images.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 		0E8BF04C1D6138D500E0AA08 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0E128B4A1EE0E9720045CCAD /* RootTabViewController.swift */,
 				0E2838E21EDFA1E0006E93A0 /* EbloCompany */,
 				0E10ADE31D6A38BF00E15C9C /* AnimationTransition */,
 				0E94D6291DCFC484000271F8 /* Base */,
@@ -743,6 +749,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */,
+				0E128B4D1EE0F26F0045CCAD /* UIImage+Images.swift in Sources */,
 				0E2547191EDB769A00A018E2 /* EbloService.swift in Sources */,
 				0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */,
 				0EB5AC7B1DB9C87300ACD9EE /* CompanyBlog.swift in Sources */,
@@ -769,6 +776,7 @@
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
 				0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
+				0E128B4B1EE0E9720045CCAD /* RootTabViewController.swift in Sources */,
 				0E2838E01EDF9DEE006E93A0 /* EbloBlogCell.swift in Sources */,
 				0E2838E81EDFB029006E93A0 /* CompanySectionController.swift in Sources */,
 				0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */,

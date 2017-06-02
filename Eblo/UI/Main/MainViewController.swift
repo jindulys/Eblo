@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-    self.title = "Eng Blogs"
+    self.title = "Old Eng Blogs"
     self.navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(functionTest))
     self.navigationItem.leftBarButtonItem =

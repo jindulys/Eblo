@@ -30,6 +30,10 @@ public final class AppManager: NSObject {
   /// This guys is the boss who manages this App's screen.
   private var rootController: UINavigationController?
   
+  /// The rootTabController which will be the first controller of rootController when app in normal
+  /// state.
+  private var rootTabController: RootTabViewController?
+  
   /// The animationTimer to reset `animating` after a short period of time.
   private var animationTimer: Timer = Timer()
 
@@ -148,6 +152,56 @@ public final class AppManager: NSObject {
     if let topVisibleViewController = self.topVisibleController() {
       topVisibleViewController.dismiss(animated: true, completion: nil)
     }
+    // TODO(simonli): Following part might involve network request to get correct
+    // instructions about next step. Stay tuned.
+    // NOTE: for now I am using a fake wait then navigate to Main Screen.
+    GCDQueue.main.after(when: 0.2) {
+      let newControllers: [UIViewController] = [controller]
+      self.waitForAnimationAndExecute(block: {
+        self.replaceRootWithControllers(newControllers, animated: false)
+      })
+    }
+  }
+  
+  /// Nav to Root tab Screen and Nav to URI if presents.
+  public func goToRootTabWith(URI: URISource?) {
+    guard self.canNavigate else {
+      print("Should call `allowNavigation()` before doing any UI related operation.")
+      return
+    }
+    // Try to find a kind of `mainController`.
+    var controller: UIViewController = (self.rootController?.viewControllers.first)!
+    if !(controller is RootTabViewController) {
+      // CONFIGURE POINT
+      controller = RootTabViewController()
+    }
+    // Top most view controller dismiss itself.
+    // Usually do not need to do this.
+    // The special case here is that:
+    // A view controller custom presents an other view controller
+    // use the following method to find the top most non-nav view controller(since this is the
+    // view controller take over the full screen). then let it do custom dismiss.
+    // Otherwise we will get a black screen since view hierarchy is not add to window.(Weired though)
+    if let topVisibleViewController = self.topVisibleController() {
+      topVisibleViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    if let rootTab = controller as? RootTabViewController {
+      let companyListNav = self.createRootNavigationController()
+      companyListNav.setViewControllers([EbloCompanyViewController()], animated: false)
+      companyListNav.tabBarItem = UITabBarItem(title: "Eng Blogs",
+                                               image: UIImage.homeTab,
+                                               selectedImage: nil)
+      let oldListNav = self.createRootNavigationController()
+      oldListNav.setViewControllers([MainViewController()], animated: false)
+      oldListNav.tabBarItem = UITabBarItem(title: "Old Eng Blogs",
+                                           image: UIImage.newspaparTab,
+                                           selectedImage: nil)
+      rootTab.setViewControllers([companyListNav, oldListNav], animated: false)
+      UITabBarItem.appearance()
+        .setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.black], for: .normal)
+    }
+    
     // TODO(simonli): Following part might involve network request to get correct
     // instructions about next step. Stay tuned.
     // NOTE: for now I am using a fake wait then navigate to Main Screen.
