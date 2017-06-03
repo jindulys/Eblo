@@ -37,7 +37,7 @@ class RealmCompanyManager: InitiatedDataManager {
   ///
   /// Each app launch time, this method will be called, and this method should not block UI operation.
   /// I'll use operation to update each company's info serially and run in back ground.
-  /// Each time a company's update finished, it will be update UI.
+  /// Each time a company's update finished, it will update UI.
   ///
   /// Future work. 1. Batch Update.
   ///              2. A notification when all the update finished.
@@ -50,10 +50,10 @@ class RealmCompanyManager: InitiatedDataManager {
             let urlPath = company.xPathArticleURL {
             let updateOperation =
                 CompanyArticleFetchOperation(companyName: company.companyName,
-                                               companyBlogURL: company.blogURL,
-                                               xPathArticleTitle: titlePath,
-                                               xPathArticleURL: urlPath,
-                                               needBlogBaseURL: company.articleURLNeedBlogURL)
+                                             companyBlogURL: company.blogURL,
+                                             xPathArticleTitle: titlePath,
+                                             xPathArticleURL: urlPath,
+                                             needBlogBaseURL: company.articleURLNeedBlogURL)
             self.companyUpdateOperationQueue.addOperation(updateOperation)
           }
         }

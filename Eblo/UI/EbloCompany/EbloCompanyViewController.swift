@@ -24,6 +24,9 @@ class EbloCompanyViewController: UIViewController {
   
   var companySectionController: CompanySectionController?
   
+  /// The data store of eblo company.
+  let ebloCompanyDataStore = EbloCompanyRealmService()
+  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     collectionView.frame = view.bounds
@@ -34,20 +37,20 @@ class EbloCompanyViewController: UIViewController {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.white
     self.view.addSubview(self.collectionView)
+    self.title = "Eng Blogs"
     
     let updater = ListAdapterUpdater()
     self.adapter = ListAdapter(updater: updater, viewController: self, workingRangeSize: 0)
     adapter?.collectionView = self.collectionView
     adapter?.dataSource = self
     
-    self.title = "Eng Blogs"
-    let testFetch = EbloService()
-    testFetch.fetchCompanyList { [weak self](finished, companyList) in
-      if let fetched = companyList {
-        self?.companyList = fetched
-        DispatchQueue.main.async {
-          self?.adapter?.performUpdates(animated: true)
-        }
+    self.companyList = ebloCompanyDataStore.allCompany()
+    self.adapter?.performUpdates(animated: true)
+    
+    self.ebloCompanyDataStore.fetchNewCompanies { [weak self] companies in
+      DispatchQueue.main.async {
+        self?.companyList = companies
+        self?.adapter?.performUpdates(animated: true)
       }
     }
   }

@@ -8,25 +8,25 @@
 
 import Foundation
 import IGListKit
+import RealmSwift
 
 /// Class represents a company.
-public final class EbloCompany {
+public final class EbloCompany: Object {
   
   /// Blog's company name.
-  public var companyName: String
+  dynamic var companyName: String = ""
   
   /// url string for this company.
-  public var urlString: String
+  dynamic var urlString: String = ""
   
   /// The companyid
-  public var companyID: Int
+  dynamic var companyID: Int = 0
   
-  public init(companyName: String,
-              urlString: String,
-              companyID: Int) {
-    self.companyName = companyName
-    self.urlString = urlString
-    self.companyID = companyID
+  /// This field is used for positioning this company object.
+  dynamic var positionIndex: Int = 0
+  
+  override public static func primaryKey() -> String? {
+    return "companyID"
   }
 }
 
@@ -47,11 +47,5 @@ extension EbloCompany: ListDiffable {
       return false
     }
     return self.identifier() == other.identifier()
-  }
-}
-
-extension EbloCompany: CustomDebugStringConvertible {
-  public var debugDescription: String {
-    return "company \(self.companyName), companyURL \(self.urlString)"
   }
 }

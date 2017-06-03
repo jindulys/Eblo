@@ -12,21 +12,28 @@
 		0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */; };
 		0E128B4B1EE0E9720045CCAD /* RootTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B4A1EE0E9720045CCAD /* RootTabViewController.swift */; };
 		0E128B4D1EE0F26F0045CCAD /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B4C1EE0F26F0045CCAD /* UIImage+Images.swift */; };
-		0E2547191EDB769A00A018E2 /* EbloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2547181EDB769A00A018E2 /* EbloService.swift */; };
-		0E25471B1EDB7D0000A018E2 /* EbloBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E25471A1EDB7D0000A018E2 /* EbloBlog.swift */; };
+		0E128B531EE2538F0045CCAD /* EbloBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B501EE2538F0045CCAD /* EbloBlog.swift */; };
+		0E128B541EE2538F0045CCAD /* EbloCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B511EE2538F0045CCAD /* EbloCompany.swift */; };
+		0E128B551EE2538F0045CCAD /* EbloDataFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B521EE2538F0045CCAD /* EbloDataFetchService.swift */; };
+		0E128B5C1EE2539B0045CCAD /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B561EE2539B0045CCAD /* Company.swift */; };
+		0E128B5D1EE2539B0045CCAD /* CompanyArticleFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B571EE2539B0045CCAD /* CompanyArticleFetchOperation.swift */; };
+		0E128B5E1EE2539B0045CCAD /* CompanyBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B581EE2539B0045CCAD /* CompanyBlog.swift */; };
+		0E128B5F1EE2539B0045CCAD /* InitiatedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B591EE2539B0045CCAD /* InitiatedDataManager.swift */; };
+		0E128B601EE2539B0045CCAD /* RealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B5A1EE2539B0045CCAD /* RealmBlogManager.swift */; };
+		0E128B611EE2539B0045CCAD /* RealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B5B1EE2539B0045CCAD /* RealmCompanyManager.swift */; };
+		0E128B631EE255700045CCAD /* EbloCompanyRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B621EE255700045CCAD /* EbloCompanyRealmService.swift */; };
+		0E128B651EE266E60045CCAD /* RealmList+Eblo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E128B641EE266E60045CCAD /* RealmList+Eblo.swift */; };
 		0E25471D1EDB7D8200A018E2 /* Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E25471C1EDB7D8200A018E2 /* Unique.swift */; };
 		0E2838DF1EDF9DEE006E93A0 /* BlogSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838DC1EDF9DEE006E93A0 /* BlogSectionController.swift */; };
 		0E2838E01EDF9DEE006E93A0 /* EbloBlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838DD1EDF9DEE006E93A0 /* EbloBlogCell.swift */; };
 		0E2838E11EDF9DEE006E93A0 /* EbloBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838DE1EDF9DEE006E93A0 /* EbloBlogViewController.swift */; };
 		0E2838E41EDFA87E006E93A0 /* EbloCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E31EDFA87E006E93A0 /* EbloCompanyViewController.swift */; };
-		0E2838E61EDFA8C4006E93A0 /* EbloCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E51EDFA8C4006E93A0 /* EbloCompany.swift */; };
 		0E2838E81EDFB029006E93A0 /* CompanySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E71EDFB029006E93A0 /* CompanySectionController.swift */; };
 		0E2838EA1EDFB08F006E93A0 /* EbloCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2838E91EDFB08F006E93A0 /* EbloCompanyCell.swift */; };
 		0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D0A11DB0924900DD7650 /* MainViewController.swift */; };
 		0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */; };
 		0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */; };
 		0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */; };
-		0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */; };
 		0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */; };
 		0E5FF6691DC4E6A500006D6A /* ScreenTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */; };
 		0E5FF66B1DC4F6BA00006D6A /* String+Eblo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */; };
@@ -34,7 +41,6 @@
 		0E5FF66F1DC50F0400006D6A /* ScreenTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */; };
 		0E5FF6711DC5313900006D6A /* URIMatcherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6701DC5313900006D6A /* URIMatcherManager.swift */; };
 		0E5FF6731DC6789000006D6A /* CompanyBlogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6721DC6789000006D6A /* CompanyBlogListViewController.swift */; };
-		0E5FF6751DC6854B00006D6A /* InitiatedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6741DC6854B00006D6A /* InitiatedDataManager.swift */; };
 		0E5FF6771DC68CA600006D6A /* BlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5FF6761DC68CA600006D6A /* BlogCell.swift */; };
 		0E610D291DC068260005CA9C /* hao.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D251DC068260005CA9C /* hao.json */; };
 		0E610D2A1DC068260005CA9C /* Lexi.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E610D261DC068260005CA9C /* Lexi.json */; };
@@ -44,8 +50,6 @@
 		0E65CC791DBDCF2300C47E1B /* companiesBackup.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E65CC781DBDCF2300C47E1B /* companiesBackup.json */; };
 		0E6BA77D1D67F5EA00B7575C /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77C1D67F5EA00B7575C /* LoadingViewController.swift */; };
 		0E6BA7801D67F64100B7575C /* PortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BA77F1D67F64100B7575C /* PortalViewController.swift */; };
-		0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */; };
-		0E7A60CC1DB2C577003EB738 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60CB1DB2C577003EB738 /* Company.swift */; };
 		0E7A60D11DB3EA2A003EB738 /* companies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A60D01DB3EA2A003EB738 /* companies.json */; };
 		0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */; };
 		0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8BF04A1D61323D00E0AA08 /* AppManager.swift */; };
@@ -57,8 +61,6 @@
 		0E95740E1D4CDDCA00703C3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */; };
 		0E9574191D4CDDCA00703C3A /* EbloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574181D4CDDCA00703C3A /* EbloTests.swift */; };
 		0E9574241D4CDDCA00703C3A /* EbloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574231D4CDDCA00703C3A /* EbloUITests.swift */; };
-		0EB5AC7B1DB9C87300ACD9EE /* CompanyBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7A1DB9C87300ACD9EE /* CompanyBlog.swift */; };
-		0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5AC7C1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift */; };
 		62723F355E76895E6881CC81 /* Pods_Eblo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */; };
 		DEEA18CAF66C5B6F4F10CE8C /* Pods_EbloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7482E46ADC65D359853C5 /* Pods_EbloTests.framework */; };
 		F9F4CE422CC52F07DF145C4C /* Pods_EbloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */; };
@@ -88,21 +90,28 @@
 		0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraDismissAnimationController.swift; sourceTree = "<group>"; };
 		0E128B4A1EE0E9720045CCAD /* RootTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabViewController.swift; sourceTree = "<group>"; };
 		0E128B4C1EE0F26F0045CCAD /* UIImage+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
-		0E2547181EDB769A00A018E2 /* EbloService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloService.swift; sourceTree = "<group>"; };
-		0E25471A1EDB7D0000A018E2 /* EbloBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloBlog.swift; sourceTree = "<group>"; };
+		0E128B501EE2538F0045CCAD /* EbloBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloBlog.swift; sourceTree = "<group>"; };
+		0E128B511EE2538F0045CCAD /* EbloCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompany.swift; sourceTree = "<group>"; };
+		0E128B521EE2538F0045CCAD /* EbloDataFetchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloDataFetchService.swift; sourceTree = "<group>"; };
+		0E128B561EE2539B0045CCAD /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		0E128B571EE2539B0045CCAD /* CompanyArticleFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyArticleFetchOperation.swift; sourceTree = "<group>"; };
+		0E128B581EE2539B0045CCAD /* CompanyBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyBlog.swift; sourceTree = "<group>"; };
+		0E128B591EE2539B0045CCAD /* InitiatedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiatedDataManager.swift; sourceTree = "<group>"; };
+		0E128B5A1EE2539B0045CCAD /* RealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmBlogManager.swift; sourceTree = "<group>"; };
+		0E128B5B1EE2539B0045CCAD /* RealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCompanyManager.swift; sourceTree = "<group>"; };
+		0E128B621EE255700045CCAD /* EbloCompanyRealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompanyRealmService.swift; sourceTree = "<group>"; };
+		0E128B641EE266E60045CCAD /* RealmList+Eblo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmList+Eblo.swift"; sourceTree = "<group>"; };
 		0E25471C1EDB7D8200A018E2 /* Unique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unique.swift; sourceTree = "<group>"; };
 		0E2838DC1EDF9DEE006E93A0 /* BlogSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlogSectionController.swift; path = Eblo/UI/EbloBlog/BlogSectionController.swift; sourceTree = SOURCE_ROOT; };
 		0E2838DD1EDF9DEE006E93A0 /* EbloBlogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EbloBlogCell.swift; path = Eblo/UI/EbloBlog/EbloBlogCell.swift; sourceTree = SOURCE_ROOT; };
 		0E2838DE1EDF9DEE006E93A0 /* EbloBlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EbloBlogViewController.swift; path = Eblo/UI/EbloBlog/EbloBlogViewController.swift; sourceTree = SOURCE_ROOT; };
 		0E2838E31EDFA87E006E93A0 /* EbloCompanyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompanyViewController.swift; sourceTree = "<group>"; };
-		0E2838E51EDFA8C4006E93A0 /* EbloCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompany.swift; sourceTree = "<group>"; };
 		0E2838E71EDFB029006E93A0 /* CompanySectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanySectionController.swift; sourceTree = "<group>"; };
 		0E2838E91EDFB08F006E93A0 /* EbloCompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloCompanyCell.swift; sourceTree = "<group>"; };
 		0E54D0A11DB0924900DD7650 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0E554FA41D67FA31009F4AE5 /* EBURIResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBURIResolver.swift; sourceTree = "<group>"; };
 		0E58D3921D694A400017C40E /* QuoraArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoraArticleViewController.swift; sourceTree = "<group>"; };
 		0E5FC56E1DB28419003DF396 /* EditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecordViewController.swift; sourceTree = "<group>"; };
-		0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmBlogManager.swift; sourceTree = "<group>"; };
 		0E5FE1771DBDAFD300FC2906 /* CompanyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		0E5FF6681DC4E6A500006D6A /* ScreenTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTransitionManager.swift; sourceTree = "<group>"; };
 		0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Eblo.swift"; sourceTree = "<group>"; };
@@ -110,7 +119,6 @@
 		0E5FF66E1DC50F0400006D6A /* ScreenTransitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTransitionTests.swift; sourceTree = "<group>"; };
 		0E5FF6701DC5313900006D6A /* URIMatcherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URIMatcherManager.swift; sourceTree = "<group>"; };
 		0E5FF6721DC6789000006D6A /* CompanyBlogListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyBlogListViewController.swift; sourceTree = "<group>"; };
-		0E5FF6741DC6854B00006D6A /* InitiatedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiatedDataManager.swift; sourceTree = "<group>"; };
 		0E5FF6761DC68CA600006D6A /* BlogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogCell.swift; sourceTree = "<group>"; };
 		0E610D251DC068260005CA9C /* hao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hao.json; sourceTree = "<group>"; };
 		0E610D261DC068260005CA9C /* Lexi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Lexi.json; sourceTree = "<group>"; };
@@ -123,8 +131,6 @@
 		0E69FFC01D689D6A00D6C2E9 /* Eblo-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Eblo-Release.xcconfig"; sourceTree = "<group>"; };
 		0E6BA77C1D67F5EA00B7575C /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		0E6BA77F1D67F64100B7575C /* PortalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalViewController.swift; sourceTree = "<group>"; };
-		0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCompanyManager.swift; sourceTree = "<group>"; };
-		0E7A60CB1DB2C577003EB738 /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		0E7A60D01DB3EA2A003EB738 /* companies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = companies.json; sourceTree = "<group>"; };
 		0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewManager+InitiatedDataManager.swift"; sourceTree = "<group>"; };
 		0E8BF04A1D61323D00E0AA08 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -142,8 +148,6 @@
 		0E95741F1D4CDDCA00703C3A /* EbloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EbloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574231D4CDDCA00703C3A /* EbloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbloUITests.swift; sourceTree = "<group>"; };
 		0E9574251D4CDDCA00703C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EB5AC7A1DB9C87300ACD9EE /* CompanyBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyBlog.swift; sourceTree = "<group>"; };
-		0EB5AC7C1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyArticleFetchOperation.swift; sourceTree = "<group>"; };
 		17990CD8E61CD9A6FC2580ED /* Pods-Eblo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eblo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eblo/Pods-Eblo.release.xcconfig"; sourceTree = "<group>"; };
 		413048EE4F3C7FD3A886F081 /* Pods-EbloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EbloUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EbloUITests/Pods-EbloUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EbloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +193,30 @@
 				0E10ADE61D6A4CF500E15C9C /* QuoraDismissAnimationController.swift */,
 			);
 			path = AnimationTransition;
+			sourceTree = "<group>";
+		};
+		0E128B4E1EE253670045CCAD /* old */ = {
+			isa = PBXGroup;
+			children = (
+				0E128B561EE2539B0045CCAD /* Company.swift */,
+				0E128B571EE2539B0045CCAD /* CompanyArticleFetchOperation.swift */,
+				0E128B581EE2539B0045CCAD /* CompanyBlog.swift */,
+				0E128B591EE2539B0045CCAD /* InitiatedDataManager.swift */,
+				0E128B5A1EE2539B0045CCAD /* RealmBlogManager.swift */,
+				0E128B5B1EE2539B0045CCAD /* RealmCompanyManager.swift */,
+			);
+			path = old;
+			sourceTree = "<group>";
+		};
+		0E128B4F1EE253700045CCAD /* new */ = {
+			isa = PBXGroup;
+			children = (
+				0E128B501EE2538F0045CCAD /* EbloBlog.swift */,
+				0E128B511EE2538F0045CCAD /* EbloCompany.swift */,
+				0E128B521EE2538F0045CCAD /* EbloDataFetchService.swift */,
+				0E128B621EE255700045CCAD /* EbloCompanyRealmService.swift */,
+			);
+			path = new;
 			sourceTree = "<group>";
 		};
 		0E24F8171EDB6328008F0DC8 /* EbloBlog */ = {
@@ -277,15 +305,8 @@
 		0E7A60C81DB2C157003EB738 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0EB5AC7A1DB9C87300ACD9EE /* CompanyBlog.swift */,
-				0E7A60CB1DB2C577003EB738 /* Company.swift */,
-				0EB5AC7C1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift */,
-				0E5FE1751DBBA51100FC2906 /* RealmBlogManager.swift */,
-				0E7A60C91DB2C19A003EB738 /* RealmCompanyManager.swift */,
-				0E5FF6741DC6854B00006D6A /* InitiatedDataManager.swift */,
-				0E2547181EDB769A00A018E2 /* EbloService.swift */,
-				0E25471A1EDB7D0000A018E2 /* EbloBlog.swift */,
-				0E2838E51EDFA8C4006E93A0 /* EbloCompany.swift */,
+				0E128B4F1EE253700045CCAD /* new */,
+				0E128B4E1EE253670045CCAD /* old */,
 				0E25471C1EDB7D8200A018E2 /* Unique.swift */,
 			);
 			path = Data;
@@ -310,6 +331,7 @@
 				0E7A60D51DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift */,
 				0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */,
 				0E128B4C1EE0F26F0045CCAD /* UIImage+Images.swift */,
+				0E128B641EE266E60045CCAD /* RealmList+Eblo.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -750,44 +772,46 @@
 			files = (
 				0E5FC56F1DB28419003DF396 /* EditRecordViewController.swift in Sources */,
 				0E128B4D1EE0F26F0045CCAD /* UIImage+Images.swift in Sources */,
-				0E2547191EDB769A00A018E2 /* EbloService.swift in Sources */,
 				0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */,
-				0EB5AC7B1DB9C87300ACD9EE /* CompanyBlog.swift in Sources */,
 				0E6BA7801D67F64100B7575C /* PortalViewController.swift in Sources */,
-				0E2838E61EDFA8C4006E93A0 /* EbloCompany.swift in Sources */,
+				0E128B601EE2539B0045CCAD /* RealmBlogManager.swift in Sources */,
+				0E128B651EE266E60045CCAD /* RealmList+Eblo.swift in Sources */,
 				0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */,
 				0E5FE1781DBDAFD300FC2906 /* CompanyCell.swift in Sources */,
 				0E25471D1EDB7D8200A018E2 /* Unique.swift in Sources */,
+				0E128B5F1EE2539B0045CCAD /* InitiatedDataManager.swift in Sources */,
 				0E2838E41EDFA87E006E93A0 /* EbloCompanyViewController.swift in Sources */,
 				0E8BF04B1D61323D00E0AA08 /* AppManager.swift in Sources */,
 				0E58D3931D694A400017C40E /* QuoraArticleViewController.swift in Sources */,
+				0E128B631EE255700045CCAD /* EbloCompanyRealmService.swift in Sources */,
 				0E5FF66B1DC4F6BA00006D6A /* String+Eblo.swift in Sources */,
+				0E128B551EE2538F0045CCAD /* EbloDataFetchService.swift in Sources */,
+				0E128B541EE2538F0045CCAD /* EbloCompany.swift in Sources */,
+				0E128B611EE2539B0045CCAD /* RealmCompanyManager.swift in Sources */,
 				0E94D62B1DCFC49F000271F8 /* ColorCornerView.swift in Sources */,
-				0E5FF6751DC6854B00006D6A /* InitiatedDataManager.swift in Sources */,
 				0E10ADE51D6A391300E15C9C /* QuoraAnimationController.swift in Sources */,
 				0E10ADE71D6A4CF500E15C9C /* QuoraDismissAnimationController.swift in Sources */,
 				0E5FF6691DC4E6A500006D6A /* ScreenTransitionManager.swift in Sources */,
-				0E25471B1EDB7D0000A018E2 /* EbloBlog.swift in Sources */,
+				0E128B531EE2538F0045CCAD /* EbloBlog.swift in Sources */,
+				0E128B5C1EE2539B0045CCAD /* Company.swift in Sources */,
 				0E5FF6711DC5313900006D6A /* URIMatcherManager.swift in Sources */,
 				0E610D2E1DC1C65A0005CA9C /* CompanyTableViewManager.swift in Sources */,
 				0E2838DF1EDF9DEE006E93A0 /* BlogSectionController.swift in Sources */,
 				0E9515431EDD2074006D0587 /* TextSize.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
-				0EB5AC7D1DB9D1D000ACD9EE /* CompanyArticleFetchOperation.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
 				0E128B4B1EE0E9720045CCAD /* RootTabViewController.swift in Sources */,
+				0E128B5D1EE2539B0045CCAD /* CompanyArticleFetchOperation.swift in Sources */,
 				0E2838E01EDF9DEE006E93A0 /* EbloBlogCell.swift in Sources */,
 				0E2838E81EDFB029006E93A0 /* CompanySectionController.swift in Sources */,
-				0E7A60CA1DB2C19A003EB738 /* RealmCompanyManager.swift in Sources */,
-				0E7A60CC1DB2C577003EB738 /* Company.swift in Sources */,
 				0E2838E11EDF9DEE006E93A0 /* EbloBlogViewController.swift in Sources */,
 				0E5FF6731DC6789000006D6A /* CompanyBlogListViewController.swift in Sources */,
 				0E6BA77D1D67F5EA00B7575C /* LoadingViewController.swift in Sources */,
-				0E5FE1761DBBA51100FC2906 /* RealmBlogManager.swift in Sources */,
 				0E2838EA1EDFB08F006E93A0 /* EbloCompanyCell.swift in Sources */,
 				0E554FA51D67FA31009F4AE5 /* EBURIResolver.swift in Sources */,
 				0E5FF6771DC68CA600006D6A /* BlogCell.swift in Sources */,
+				0E128B5E1EE2539B0045CCAD /* CompanyBlog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

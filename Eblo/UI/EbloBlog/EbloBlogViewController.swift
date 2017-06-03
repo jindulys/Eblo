@@ -55,7 +55,7 @@ class EbloBlogViewController: UIViewController {
     adapter?.dataSource = self
     
     self.title = "Eng Blogs"
-    let testFetch = EbloService()
+    let testFetch = EbloDataFetchService()
     testFetch.fetchBlogs(companyID: self.companyID) { [weak self](finished, blogs) in
       if let fetchedBlogs = blogs {
         self?.blogs = fetchedBlogs

@@ -1,5 +1,5 @@
 //
-//  EbloService.swift
+//  EbloDataFetchService.swift
 //  Eblo
 //
 //  Created by yansong li on 2017-05-28.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// The class that provides eblo data.
-class EbloService {
+class EbloDataFetchService {
   
   /// The blogs URL string.
   static let allCompanyURLString = "https://ebloserver.herokuapp.com/company/all"
@@ -19,7 +19,7 @@ class EbloService {
   
   /// Fetch blogs with a completion handler.
   func fetchBlogs(companyID: String, completion: @escaping (Bool, [EbloBlog]?) -> ()) {
-    guard let requestURL = URL(string: EbloService.companyBlogsURLString+"/"+companyID+"/blogs") else {
+    guard let requestURL = URL(string: EbloDataFetchService.companyBlogsURLString+"/"+companyID+"/blogs") else {
       print("URLString is not valid")
       completion(false, nil)
       return
@@ -69,7 +69,7 @@ class EbloService {
   
   /// Fetch company list.
   func fetchCompanyList(completion: @escaping(Bool, [EbloCompany]?) -> ()) {
-    guard let requestURL = URL(string: EbloService.allCompanyURLString) else {
+    guard let requestURL = URL(string: EbloDataFetchService.allCompanyURLString) else {
       print("URLString is not valid")
       completion(false, nil)
       return
@@ -91,9 +91,12 @@ class EbloService {
             if let companyName = company["companyname"] as? String,
               let companyURLString = company["companyurlstring"] as? String,
               let companyID = company["id"] as? Int {
-              let result =
-                  EbloCompany(companyName: companyName, urlString: companyURLString, companyID: companyID)
-              parsedCompany.append(result)
+              let newCompany = EbloCompany()
+              newCompany.companyName = companyName
+              newCompany.companyID = companyID
+              newCompany.urlString = companyURLString
+              newCompany.positionIndex = 0
+              parsedCompany.append(newCompany)
             }
           }
           completion(true, parsedCompany)
