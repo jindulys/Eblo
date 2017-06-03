@@ -41,14 +41,18 @@ class EbloCompanyRealmService {
         positionIndex += 1
       }
       // Update existing companies' positionIndex
-      existingCompanies.forEach { company in
-        company.positionIndex += positionIndex
-      }
-      // Merge new companies with updated existing companies.
-      let updatedCompanies = newCompanies + existingCompanies
-      // Update database's data.
       do {
         let realm = try! Realm()
+        // NOTE: All changes to an object(addition, modification and deletion) must be don within a
+        // write transaction.
+        try realm.write {
+          existingCompanies.forEach { company in
+            company.positionIndex += positionIndex
+          }
+        }
+        // Merge new companies with updated existing companies.
+        let updatedCompanies = newCompanies + existingCompanies
+        // Update database's data.
         try realm.write {
           updatedCompanies.forEach { company in
             realm.add(company, update: true)
