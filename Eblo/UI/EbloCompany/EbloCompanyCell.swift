@@ -12,6 +12,8 @@ import UIKit
 /// The cell for eblo company.
 final class EbloCompanyCell: UICollectionViewCell {
   
+  static let heightCalculationCell = EbloCompanyCell()
+  
   private let companyLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.systemFont(ofSize: 18)
@@ -25,11 +27,28 @@ final class EbloCompanyCell: UICollectionViewCell {
     return view
   }()
   
+  private let newDotView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .red
+    view.layer.cornerRadius = 6
+    view.isHidden = true
+    return view
+  }()
+  
+  private let firstBlogTitleLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 16)
+    label.numberOfLines = 0
+    return label
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentView.backgroundColor = .white
     contentView.addAutoLayoutSubView(companyLabel)
     contentView.addAutoLayoutSubView(divider)
+    contentView.addAutoLayoutSubView(firstBlogTitleLabel)
+    contentView.addAutoLayoutSubView(newDotView)
     self.buildConstraints()
   }
   
@@ -41,7 +60,17 @@ final class EbloCompanyCell: UICollectionViewCell {
     companyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
     companyLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
     companyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24).isActive = true
-    companyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
+    companyLabel.bottomAnchor.constraint(equalTo: firstBlogTitleLabel.topAnchor, constant: -12).isActive = true
+
+    firstBlogTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
+    firstBlogTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24).isActive = true
+    firstBlogTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
+
+    newDotView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6.0).isActive = true
+    newDotView.widthAnchor.constraint(equalToConstant: 12.0).isActive = true
+    newDotView.heightAnchor.constraint(equalToConstant: 12.0).isActive = true
+    newDotView.centerYAnchor.constraint(equalTo: companyLabel.centerYAnchor).isActive = true
+
     divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
     divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
@@ -50,13 +79,15 @@ final class EbloCompanyCell: UICollectionViewCell {
   
   func populate(company: EbloCompany) {
     companyLabel.text = company.companyName
+    firstBlogTitleLabel.text = company.firstBlogTitle
+    newDotView.isHidden = !company.hasUpdated
   }
   
   static func cellSize(width: CGFloat, company: EbloCompany) -> CGSize {
-    let size = TextSize.size(company.companyName,
-                             font: UIFont.systemFont(ofSize: 18),
-                             width: width,
-                             insets: UIEdgeInsetsMake(12, 24, 12, 24))
-    return size.size
+    EbloCompanyCell.heightCalculationCell.populate(company: company)
+    EbloCompanyCell.heightCalculationCell.companyLabel.preferredMaxLayoutWidth = width - 24
+    EbloCompanyCell.heightCalculationCell.firstBlogTitleLabel.preferredMaxLayoutWidth = width - 24
+    let size = EbloCompanyCell.heightCalculationCell.systemLayoutSizeFitting(CGSize(width: width, height: 999))
+    return size
   }
 }

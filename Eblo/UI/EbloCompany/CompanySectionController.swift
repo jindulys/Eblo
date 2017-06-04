@@ -45,8 +45,15 @@ final class CompanySectionController: ListSectionController {
   }
   
   override func didSelectItem(at index: Int) {
-    if let validDelegate = delegate {
-      validDelegate.didTapCompanyWith(id: company.companyID)
-    }
+    let companyService = EbloCompanyRealmService()
+    companyService.clearCompanyUpdate(company: company)
+    self.collectionContext?.performBatch(animated: true
+      , updates: { context in
+        context.reload(self)
+    }, completion: { success in
+      if let validDelegate = self.delegate {
+        validDelegate.didTapCompanyWith(id: self.company.companyID)
+      }
+    })
   }
 }

@@ -38,6 +38,7 @@ class EbloCompanyRealmService {
       // Update new companies' positonIndex since by default it is 0.
       newCompanies.forEach { company in
         company.positionIndex = positionIndex
+        company.hasUpdated = true
         positionIndex += 1
       }
       // Update existing companies' positionIndex
@@ -48,6 +49,13 @@ class EbloCompanyRealmService {
         try realm.write {
           existingCompanies.forEach { company in
             company.positionIndex += positionIndex
+            let matchedArray = fetchedCompanies.filter { fetched -> Bool in
+              fetched.identifier() == company.identifier()
+            }
+            if let matched = matchedArray.first, matched.firstBlogTitle != company.firstBlogTitle {
+              company.firstBlogTitle = matched.firstBlogTitle
+              company.hasUpdated = true
+            }
           }
         }
         // Merge new companies with updated existing companies.
@@ -58,6 +66,7 @@ class EbloCompanyRealmService {
             realm.add(company, update: true)
           }
         }
+        realm.refresh()
         GCDQueue.main.async {
           // NOTE: According to realm model's restriction, you can only use an object on
           // the thread which it was created, here since we have a thread switch, I create
@@ -67,6 +76,18 @@ class EbloCompanyRealmService {
       } catch {
         print("Realm Write Error")
       }
+    }
+  }
+  
+  /// Clear company's update state.
+  func clearCompanyUpdate(company: EbloCompany) {
+    do {
+      let realm = try! Realm()
+      try realm.write {
+        company.hasUpdated = false
+      }
+    } catch {
+      print("Realm Write Error")
     }
   }
 }

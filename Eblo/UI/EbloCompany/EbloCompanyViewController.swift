@@ -8,6 +8,7 @@
 
 import IGListKit
 import UIKit
+import SiYuanKit
 
 /// The view controller for engineering blogs list.
 class EbloCompanyViewController: UIViewController {
@@ -43,12 +44,17 @@ class EbloCompanyViewController: UIViewController {
     self.adapter = ListAdapter(updater: updater, viewController: self, workingRangeSize: 0)
     adapter?.collectionView = self.collectionView
     adapter?.dataSource = self
-    
+
     self.companyList = ebloCompanyDataStore.allCompany()
     self.adapter?.performUpdates(animated: true)
     
     self.ebloCompanyDataStore.fetchNewCompanies { [weak self] companies in
-      DispatchQueue.main.async {
+      // Uncomment when test.
+//      GCDQueue.main.after(when: 6, execute: { 
+//        self?.companyList = companies
+//        self?.adapter?.performUpdates(animated: true)
+//      })
+      GCDQueue.main.async {
         self?.companyList = companies
         self?.adapter?.performUpdates(animated: true)
       }

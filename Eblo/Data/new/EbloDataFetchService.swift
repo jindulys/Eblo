@@ -102,6 +102,10 @@ class EbloDataFetchService {
               newCompany.companyID = companyID
               newCompany.urlString = companyURLString
               newCompany.positionIndex = 0
+              if let blogTitle = company["firstblogtitle"] as? String {
+                newCompany.firstBlogTitle = blogTitle
+              }
+              newCompany.hasUpdated = false
               parsedCompany.append(newCompany)
             }
           }

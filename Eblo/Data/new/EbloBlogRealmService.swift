@@ -60,6 +60,8 @@ class EbloBlogRealmService {
           // NOTE: According to realm model's restriction, you can only use an object on
           // the thread which it was created, here since we have a thread switch, I create
           // a new set of fetched companies.
+          let realm = try! Realm()
+          realm.refresh()
           completion(self.blogsWith(companyID: companyID))
         }
       } catch {

@@ -25,6 +25,12 @@ public final class EbloCompany: Object {
   /// This field is used for positioning this company object.
   dynamic var positionIndex: Int = 0
   
+  /// The first blog title.
+  dynamic var firstBlogTitle: String = ""
+  
+  /// Whether or not this company has update.
+  dynamic var hasUpdated: Bool = false
+  
   override public static func primaryKey() -> String? {
     return "companyID"
   }
