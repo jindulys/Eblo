@@ -63,8 +63,26 @@ class EbloBlogViewController: UIViewController {
     
     self.blogsService.fetchNewBlogs(companyID: self.companyID) { [weak self] blogs in
       DispatchQueue.main.async {
+        let visibleCells = self?.collectionView.visibleCells
+        var previousOriginY: CGFloat = 0.0
+        var previousVisibleBlogIdentifier: String = ""
+        if let topMostVisibleCell = visibleCells?.first,
+          let topMostIndex = self?.collectionView.indexPath(for: topMostVisibleCell),
+          let frameAttributes = self?.collectionView.collectionViewLayout.layoutAttributesForItem(at: topMostIndex),
+          let topVisibleBlog = self?.blogs?[topMostIndex.section] {
+          previousOriginY = frameAttributes.frame.origin.y
+          previousVisibleBlogIdentifier = topVisibleBlog.identifier()
+        }
         self?.blogs = blogs
-        self?.adapter?.performUpdates(animated: true)
+        self?.adapter?.performUpdates(animated: false) { _ in
+          if let currentTopVisibleCompanyIndex = self?.blogs?.index(where: { company -> Bool in
+            company.identifier() == previousVisibleBlogIdentifier
+          }),
+            let newFrameAttributes = self?.collectionView.collectionViewLayout.layoutAttributesForItem(at: IndexPath(row:0 , section: currentTopVisibleCompanyIndex)) {
+            let newOriginY = newFrameAttributes.frame.origin.y
+            self?.collectionView.contentOffset.y += newOriginY - previousOriginY
+          }
+        }
       }
     }
   }

@@ -37,6 +37,7 @@ class EbloCompanyViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.white
+    self.navigationController?.navigationBar.isTranslucent = false
     self.view.addSubview(self.collectionView)
     self.title = "Eng Blogs"
     
@@ -49,14 +50,29 @@ class EbloCompanyViewController: UIViewController {
     self.adapter?.performUpdates(animated: true)
     
     self.ebloCompanyDataStore.fetchNewCompanies { [weak self] companies in
-      // Uncomment when test.
-//      GCDQueue.main.after(when: 6, execute: { 
-//        self?.companyList = companies
-//        self?.adapter?.performUpdates(animated: true)
-//      })
+      // NOTE: Keep scroll position
+      // https://github.com/Instagram/IGListKit/issues/644#issuecomment-294359113
       GCDQueue.main.async {
+        let visibleCells = self?.collectionView.visibleCells
+        var previousOriginY: CGFloat = 0.0
+        var previousVisibleCompanyIdentifier: String = ""
+        if let topMostVisibleCell = visibleCells?.first,
+          let topMostIndex = self?.collectionView.indexPath(for: topMostVisibleCell),
+          let frameAttributes = self?.collectionView.collectionViewLayout.layoutAttributesForItem(at: topMostIndex),
+          let topVisibleCompany = self?.companyList?[topMostIndex.section] {
+          previousOriginY = frameAttributes.frame.origin.y
+          previousVisibleCompanyIdentifier = topVisibleCompany.identifier()
+        }
         self?.companyList = companies
-        self?.adapter?.performUpdates(animated: true)
+        self?.adapter?.performUpdates(animated: false) { _ in
+          if let currentTopVisibleCompanyIndex = self?.companyList?.index(where: { company -> Bool in
+            company.identifier() == previousVisibleCompanyIdentifier
+            }),
+            let newFrameAttributes = self?.collectionView.collectionViewLayout.layoutAttributesForItem(at: IndexPath(row:0 , section: currentTopVisibleCompanyIndex)) {
+            let newOriginY = newFrameAttributes.frame.origin.y
+            self?.collectionView.contentOffset.y += newOriginY - previousOriginY
+          }
+        }
       }
     }
   }
