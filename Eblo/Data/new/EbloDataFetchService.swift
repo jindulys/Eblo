@@ -40,8 +40,14 @@ class EbloDataFetchService {
           for blog in blogs {
             if let title = blog["title"] as? String,
               let urlString = blog["urlstring"] as? String,
-              let company = blog["company"] as? String {
-              let parsedBlog = EbloBlog(title: title, urlString: urlString, companyName: company)
+              let company = blog["company"] as? String,
+              let blogID = blog["id"] as? Int {
+              let parsedBlog = EbloBlog()
+              parsedBlog.title = title
+              parsedBlog.urlString = urlString
+              parsedBlog.companyName = company
+              parsedBlog.blogID = blogID
+              parsedBlog.companyID = companyID
               if let publishDateString = blog["publishdate"] as? String {
                 parsedBlog.publishDate = publishDateString
               }

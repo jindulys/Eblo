@@ -61,6 +61,7 @@
 		0E95740E1D4CDDCA00703C3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E95740C1D4CDDCA00703C3A /* LaunchScreen.storyboard */; };
 		0E9574191D4CDDCA00703C3A /* EbloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574181D4CDDCA00703C3A /* EbloTests.swift */; };
 		0E9574241D4CDDCA00703C3A /* EbloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574231D4CDDCA00703C3A /* EbloUITests.swift */; };
+		0EAC4F891EE4541000B563AE /* EbloBlogRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC4F881EE4541000B563AE /* EbloBlogRealmService.swift */; };
 		62723F355E76895E6881CC81 /* Pods_Eblo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */; };
 		DEEA18CAF66C5B6F4F10CE8C /* Pods_EbloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7482E46ADC65D359853C5 /* Pods_EbloTests.framework */; };
 		F9F4CE422CC52F07DF145C4C /* Pods_EbloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */; };
@@ -148,6 +149,7 @@
 		0E95741F1D4CDDCA00703C3A /* EbloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EbloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9574231D4CDDCA00703C3A /* EbloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbloUITests.swift; sourceTree = "<group>"; };
 		0E9574251D4CDDCA00703C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EAC4F881EE4541000B563AE /* EbloBlogRealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloBlogRealmService.swift; sourceTree = "<group>"; };
 		17990CD8E61CD9A6FC2580ED /* Pods-Eblo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eblo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eblo/Pods-Eblo.release.xcconfig"; sourceTree = "<group>"; };
 		413048EE4F3C7FD3A886F081 /* Pods-EbloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EbloUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EbloUITests/Pods-EbloUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EbloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 				0E128B501EE2538F0045CCAD /* EbloBlog.swift */,
 				0E128B511EE2538F0045CCAD /* EbloCompany.swift */,
 				0E128B521EE2538F0045CCAD /* EbloDataFetchService.swift */,
+				0EAC4F881EE4541000B563AE /* EbloBlogRealmService.swift */,
 				0E128B621EE255700045CCAD /* EbloCompanyRealmService.swift */,
 			);
 			path = new;
@@ -799,6 +802,7 @@
 				0E2838DF1EDF9DEE006E93A0 /* BlogSectionController.swift in Sources */,
 				0E9515431EDD2074006D0587 /* TextSize.swift in Sources */,
 				0E9574061D4CDDCA00703C3A /* ViewController.swift in Sources */,
+				0EAC4F891EE4541000B563AE /* EbloBlogRealmService.swift in Sources */,
 				0E10ADE21D6A042B00E15C9C /* QuoraPageViewController.swift in Sources */,
 				0E9574041D4CDDCA00703C3A /* AppDelegate.swift in Sources */,
 				0E128B4B1EE0E9720045CCAD /* RootTabViewController.swift in Sources */,

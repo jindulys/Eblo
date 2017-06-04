@@ -25,6 +25,9 @@ class EbloBlogViewController: UIViewController {
   
   var blogs: [EbloBlog]?
   
+  /// The blog service.
+  let blogsService = EbloBlogRealmService()
+  
   init(companyID: String) {
     self.companyID = companyID
     super.init(nibName: nil, bundle: nil)
@@ -46,6 +49,7 @@ class EbloBlogViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.title = "Eng Blogs"
     self.view.backgroundColor = UIColor.white
     self.view.addSubview(self.collectionView)
     
@@ -54,14 +58,13 @@ class EbloBlogViewController: UIViewController {
     adapter?.collectionView = self.collectionView
     adapter?.dataSource = self
     
-    self.title = "Eng Blogs"
-    let testFetch = EbloDataFetchService()
-    testFetch.fetchBlogs(companyID: self.companyID) { [weak self](finished, blogs) in
-      if let fetchedBlogs = blogs {
-        self?.blogs = fetchedBlogs
-        DispatchQueue.main.async {
-          self?.adapter?.performUpdates(animated: true)
-        }
+    self.blogs = self.blogsService.blogsWith(companyID: self.companyID)
+    self.adapter?.performUpdates(animated: true)
+    
+    self.blogsService.fetchNewBlogs(companyID: self.companyID) { [weak self] blogs in
+      DispatchQueue.main.async {
+        self?.blogs = blogs
+        self?.adapter?.performUpdates(animated: true)
       }
     }
   }

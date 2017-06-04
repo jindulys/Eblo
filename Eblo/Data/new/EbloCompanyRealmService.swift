@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import SiYuanKit
 
-/// The class for realm interaction of company object.
+/// The class for company object's realm interaction.
 class EbloCompanyRealmService {
   
   /// Return all companies.
@@ -21,7 +21,7 @@ class EbloCompanyRealmService {
     return companies.toArray()
   }
   
-  /// Fetch new companies and store the update result in database.
+  /// Fetch new companies and store the update result to database.
   func fetchNewCompanies(completion: @escaping ([EbloCompany]) -> Void) {
     let companyFetchService = EbloDataFetchService()
     // Fetch new companies.

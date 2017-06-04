@@ -8,45 +8,43 @@
 
 import Foundation
 import IGListKit
+import RealmSwift
 
 /// Class represents a blog.
-public final class EbloBlog {
+public final class EbloBlog: Object {
 
   /// Title for this blog.
-  public var title: String
+  dynamic var title: String = ""
   
   /// url string for this blog.
-  public var urlString: String
+  dynamic var urlString: String = ""
   
   /// Blog's company name.
-  public var companyName: String
+  dynamic var companyName: String = ""
   
   /// the author name.
-  public var authorName: String
+  dynamic var authorName: String = ""
   
   /// the author avatar url.
-  public var authorAvatar: String
+  dynamic var authorAvatar: String = ""
   
   /// the publish date.
-  public var publishDate: String
+  dynamic var publishDate: String = ""
   
   /// The publish date time interval.
-  public var publishDateInterval: Double
+  dynamic var publishDateInterval: Double = 0.0
   
-  public init(title: String,
-              urlString: String,
-              companyName: String,
-              authorName: String = "",
-              authorAvatar: String = "",
-              publishDate: String = "",
-              publishDateInterval: Double = 0.0) {
-    self.title = title
-    self.urlString = urlString
-    self.companyName = companyName
-    self.authorAvatar = authorAvatar
-    self.authorName = authorName
-    self.publishDate = publishDate
-    self.publishDateInterval = publishDateInterval
+  /// Whether or not this blog get favourited.
+  dynamic var favourite: Bool = false
+  
+  /// The blogID.
+  dynamic var blogID: Int = 0
+  
+  /// The company's id, which this blog belongs to.
+  dynamic var companyID: String = ""
+  
+  override public static func primaryKey() -> String? {
+    return "blogID"
   }
 }
 
@@ -69,10 +67,3 @@ extension EbloBlog: ListDiffable {
     return self.identifier() == other.identifier()
   }
 }
-
-extension EbloBlog: CustomDebugStringConvertible {
-  public var debugDescription: String {
-    return "title \(self.title), companyName \(self.companyName)"
-  }
-}
-
