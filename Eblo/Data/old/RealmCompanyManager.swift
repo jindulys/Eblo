@@ -137,6 +137,8 @@ class RealmCompanyManager: InitiatedDataManager {
         }
         completion()
         // We remove this for now, since we use KVO, the company tableView manager will update related cell(which get stale) correctly.
+        // NOTE: According to Realm, KVO also works for different thread, means your object can get
+        // a KVO change even when that cahange happens at a different thread.
         //self.notifySubscriber()
       } catch {
         // TODO(simonli): fix error case
