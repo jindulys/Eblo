@@ -13,7 +13,11 @@ import SiYuanKit
 class InsetButton: UIButton {
   
   /// The image view.
-  let innerImageView: UIImageView
+  var innerImageView: UIImageView {
+    didSet {
+      self.buildConstraints()
+    }
+  }
   
   /// The inset around an image.
   let contentInset: UIEdgeInsets

@@ -23,7 +23,7 @@ final class EbloBlogCell: UICollectionViewCell {
   private let companyLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .right
-    label.font = UIFont.systemFont(ofSize: 18)
+    label.font = UIFont.systemFont(ofSize: 14)
     return label
   }()
   
@@ -46,6 +46,13 @@ final class EbloBlogCell: UICollectionViewCell {
     return view
   }()
   
+  public let favouriteButton: InsetButton = {
+    let button = InsetButton(image: UIImage.heartOff,
+                             contentInset: UIEdgeInsetsMake(12, 12, 12, 12),
+                             imageSize: CGSize(width: 18, height: 18))
+    return button
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentView.backgroundColor = .white
@@ -54,6 +61,7 @@ final class EbloBlogCell: UICollectionViewCell {
     contentView.addAutoLayoutSubView(publishDateLabel)
     contentView.addAutoLayoutSubView(authorNameLabel)
     contentView.addAutoLayoutSubView(divider)
+    contentView.addAutoLayoutSubView(favouriteButton)
     self.buildConstraints()
   }
   
@@ -64,38 +72,38 @@ final class EbloBlogCell: UICollectionViewCell {
   func buildConstraints() {
     blogNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
     blogNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
-    companyLabel.leadingAnchor.constraint(equalTo: blogNameLabel.trailingAnchor, constant: 24).isActive = true
-    companyLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
-    companyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
-    publishDateLabel.topAnchor.constraint(equalTo: blogNameLabel.bottomAnchor, constant: 12).isActive = true
-    publishDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
-    publishDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
+    blogNameLabel.trailingAnchor.constraint(equalTo: favouriteButton.leadingAnchor, constant: 0).isActive = true
+
+    favouriteButton.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+    favouriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+    favouriteButton.widthAnchor.constraint(equalToConstant: 42).isActive = true
+    favouriteButton.heightAnchor.constraint(equalToConstant: 42).isActive = true
+
+    companyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+    companyLabel.topAnchor.constraint(equalTo: blogNameLabel.bottomAnchor, constant: 12).isActive = true
+    companyLabel.trailingAnchor.constraint(equalTo: publishDateLabel.leadingAnchor, constant: -12).isActive = true
+    companyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
+
+    publishDateLabel.topAnchor.constraint(equalTo: companyLabel.topAnchor).isActive = true
+    publishDateLabel.bottomAnchor.constraint(equalTo: companyLabel.bottomAnchor).isActive = true
+
     authorNameLabel.leadingAnchor.constraint(equalTo: publishDateLabel.trailingAnchor, constant: 24).isActive = true
-    authorNameLabel.topAnchor.constraint(greaterThanOrEqualTo: companyLabel.bottomAnchor, constant: 16).isActive = true
+    authorNameLabel.topAnchor.constraint(greaterThanOrEqualTo: companyLabel.topAnchor).isActive = true
     authorNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
-    authorNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
+    authorNameLabel.bottomAnchor.constraint(equalTo: companyLabel.bottomAnchor).isActive = true
+
     divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
     divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
-    blogNameLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
     companyLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-
-    blogNameLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .horizontal)
-    companyLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
-
-    blogNameLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .vertical)
-    publishDateLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .vertical)
-
     publishDateLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
     authorNameLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
 
+    companyLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
     publishDateLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
     authorNameLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .horizontal)
-
-    blogNameLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
-    publishDateLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
   }
   
   func populate(blog: EbloBlog) {
@@ -107,10 +115,8 @@ final class EbloBlogCell: UICollectionViewCell {
   
   static func cellSize(width: CGFloat, blog: EbloBlog) -> CGSize {
     EbloBlogCell.heightCalculationCell.populate(blog: blog)
-    // We still need to set label's preferredMaxLayoutWidth to correct calculate the size.
-    let companyNameWidth = TextSize.size(blog.companyName, font: UIFont.systemFont(ofSize: 18), width: width).size.width
-    EbloBlogCell.heightCalculationCell.companyLabel.preferredMaxLayoutWidth = companyNameWidth
-    EbloBlogCell.heightCalculationCell.blogNameLabel.preferredMaxLayoutWidth = width - 12 - 24 - 12 - companyNameWidth
+    EbloBlogCell.heightCalculationCell.blogNameLabel.preferredMaxLayoutWidth = width - 12 - 42 - 12
+    EbloBlogCell.heightCalculationCell.companyLabel.preferredMaxLayoutWidth = width
     let size = EbloBlogCell.heightCalculationCell.systemLayoutSizeFitting(CGSize(width: width, height:999))
     return size
   }
