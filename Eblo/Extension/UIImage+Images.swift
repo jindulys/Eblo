@@ -22,4 +22,11 @@ extension UIImage {
     return #imageLiteral(resourceName: "star")
   }
   
+  static var heartOn: UIImage {
+    return #imageLiteral(resourceName: "heart_pin_on")
+  }
+  
+  static var heartOff: UIImage {
+    return #imageLiteral(resourceName: "heart_pin_off")
+  }
 }
