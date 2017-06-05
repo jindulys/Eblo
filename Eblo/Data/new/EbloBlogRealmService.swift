@@ -36,6 +36,13 @@ class EbloBlogRealmService {
     return blogs
   }
   
+  /// Return all favourited blogs.
+  func favouriteBlogs() -> [EbloBlog] {
+    let realm = try! Realm()
+    let blogs = realm.objects(EbloBlog.self).filter("favourite == true")
+    return blogs.toArray()
+  }
+  
   /// Fetch new blogs with a companyID and store the update result to database.
   func fetchNewBlogs(companyID: String, completion: @escaping ([EbloBlog]) -> Void) {
     let blogFetchService = EbloDataFetchService()

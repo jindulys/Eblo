@@ -192,12 +192,17 @@ public final class AppManager: NSObject {
       companyListNav.tabBarItem = UITabBarItem(title: "Eng Blogs",
                                                image: UIImage.homeTab,
                                                selectedImage: nil)
+      let favNav = self.createRootNavigationController()
+      favNav.setViewControllers([EbloFavBlogViewController()], animated: false)
+      favNav.tabBarItem = UITabBarItem(title: "Fav",
+                                       image: UIImage.star,
+                                       selectedImage: nil)
       let oldListNav = self.createRootNavigationController()
       oldListNav.setViewControllers([MainViewController()], animated: false)
       oldListNav.tabBarItem = UITabBarItem(title: "Old Eng Blogs",
                                            image: UIImage.newspaparTab,
                                            selectedImage: nil)
-      rootTab.setViewControllers([companyListNav, oldListNav], animated: false)
+      rootTab.setViewControllers([companyListNav, favNav, oldListNav], animated: false)
       UITabBarItem.appearance()
         .setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.black], for: .normal)
     }
