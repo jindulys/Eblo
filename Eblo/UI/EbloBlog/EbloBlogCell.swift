@@ -111,6 +111,7 @@ final class EbloBlogCell: UICollectionViewCell {
     companyLabel.text = blog.companyName
     publishDateLabel.text = blog.publishDate
     authorNameLabel.text = blog.authorName
+    favouriteButton.changeImageWithImage(blog.favourite ? UIImage.heartOn : UIImage.heartOff)
   }
   
   static func cellSize(width: CGFloat, blog: EbloBlog) -> CGSize {

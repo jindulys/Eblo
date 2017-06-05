@@ -28,6 +28,7 @@ final class BlogSectionController: ListSectionController {
   override func cellForItem(at index: Int) -> UICollectionViewCell {
     let cell = collectionContext!.dequeueReusableCell(of: EbloBlogCell.self, for: self, at: index)
     if let blogCell = cell as? EbloBlogCell {
+      blogCell.favouriteButton.addTarget(self, action: #selector(tappedFavourite), for: .touchUpInside)
       blogCell.populate(blog: blog)
     }
     return cell
@@ -35,6 +36,15 @@ final class BlogSectionController: ListSectionController {
   
   override func didUpdate(to object: Any) {
     blog = object as? EbloBlog
+  }
+  
+  func tappedFavourite() {
+    let blogService = EbloBlogRealmService()
+    blogService.changeBlogFavouriteState(blog: self.blog)
+    self.collectionContext?.performBatch(animated: false
+      , updates: { context in
+        context.reload(self)
+    })
   }
   
   override func didSelectItem(at index: Int) {

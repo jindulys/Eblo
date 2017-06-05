@@ -13,11 +13,7 @@ import SiYuanKit
 class InsetButton: UIButton {
   
   /// The image view.
-  var innerImageView: UIImageView {
-    didSet {
-      self.buildConstraints()
-    }
-  }
+  var innerImageView: UIImageView
   
   /// The inset around an image.
   let contentInset: UIEdgeInsets
@@ -25,7 +21,7 @@ class InsetButton: UIButton {
   /// The image size.
   let imageSize: CGSize
   
-  init(image:UIImage, contentInset: UIEdgeInsets, imageSize: CGSize) {
+  init(image: UIImage, contentInset: UIEdgeInsets, imageSize: CGSize) {
     self.innerImageView = UIImageView()
     self.innerImageView.contentMode = .scaleAspectFit
     self.innerImageView.image = image
@@ -40,6 +36,10 @@ class InsetButton: UIButton {
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  func changeImageWithImage(_ image: UIImage) {
+    self.innerImageView.image = image
   }
   
   func buildConstraints() {

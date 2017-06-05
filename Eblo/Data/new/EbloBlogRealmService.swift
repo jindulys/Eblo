@@ -69,4 +69,16 @@ class EbloBlogRealmService {
       }
     }
   }
+  
+  /// Change blog favourite state.
+  func changeBlogFavouriteState(blog: EbloBlog) {
+    do {
+      let realm = try! Realm()
+      try realm.write {
+        blog.favourite = !blog.favourite
+      }
+    } catch {
+      print("Realm Write Error")
+    }
+  }
 }

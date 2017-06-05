@@ -48,6 +48,7 @@ class EbloDataFetchService {
               parsedBlog.companyName = company
               parsedBlog.blogID = blogID
               parsedBlog.companyID = companyID
+              parsedBlog.favourite = false
               if let publishDateString = blog["publishdate"] as? String {
                 parsedBlog.publishDate = publishDateString
               }
