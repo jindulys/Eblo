@@ -74,7 +74,7 @@ final class EbloCompanyCell: UICollectionViewCell {
     divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
     divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-    divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    divider.heightAnchor.constraint(equalToConstant: UIView.screenScale()).isActive = true
   }
   
   func populate(company: EbloCompany) {

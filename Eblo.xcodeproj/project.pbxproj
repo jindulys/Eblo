@@ -63,6 +63,7 @@
 		0E9574241D4CDDCA00703C3A /* EbloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9574231D4CDDCA00703C3A /* EbloUITests.swift */; };
 		0EAC4F891EE4541000B563AE /* EbloBlogRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC4F881EE4541000B563AE /* EbloBlogRealmService.swift */; };
 		0EAC4F8D1EE4F07F00B563AE /* InsetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC4F8C1EE4F07F00B563AE /* InsetButton.swift */; };
+		0EAC4F8F1EE50DCF00B563AE /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC4F8E1EE50DCF00B563AE /* UIView+Helper.swift */; };
 		62723F355E76895E6881CC81 /* Pods_Eblo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011AEC4E4BABB8D43810F4ED /* Pods_Eblo.framework */; };
 		DEEA18CAF66C5B6F4F10CE8C /* Pods_EbloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7482E46ADC65D359853C5 /* Pods_EbloTests.framework */; };
 		F9F4CE422CC52F07DF145C4C /* Pods_EbloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */; };
@@ -152,6 +153,7 @@
 		0E9574251D4CDDCA00703C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EAC4F881EE4541000B563AE /* EbloBlogRealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EbloBlogRealmService.swift; sourceTree = "<group>"; };
 		0EAC4F8C1EE4F07F00B563AE /* InsetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetButton.swift; sourceTree = "<group>"; };
+		0EAC4F8E1EE50DCF00B563AE /* UIView+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
 		17990CD8E61CD9A6FC2580ED /* Pods-Eblo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eblo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eblo/Pods-Eblo.release.xcconfig"; sourceTree = "<group>"; };
 		413048EE4F3C7FD3A886F081 /* Pods-EbloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EbloUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EbloUITests/Pods-EbloUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67C85DB028C3D2F272E8D5F6 /* Pods_EbloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EbloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +339,7 @@
 				0E5FF66A1DC4F6BA00006D6A /* String+Eblo.swift */,
 				0E128B4C1EE0F26F0045CCAD /* UIImage+Images.swift */,
 				0E128B641EE266E60045CCAD /* RealmList+Eblo.swift */,
+				0EAC4F8E1EE50DCF00B563AE /* UIView+Helper.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				0E128B4D1EE0F26F0045CCAD /* UIImage+Images.swift in Sources */,
 				0E7A60D61DB44363003EB738 /* TableViewManager+InitiatedDataManager.swift in Sources */,
 				0E6BA7801D67F64100B7575C /* PortalViewController.swift in Sources */,
+				0EAC4F8F1EE50DCF00B563AE /* UIView+Helper.swift in Sources */,
 				0E128B601EE2539B0045CCAD /* RealmBlogManager.swift in Sources */,
 				0E128B651EE266E60045CCAD /* RealmList+Eblo.swift in Sources */,
 				0E54D0A21DB0924900DD7650 /* MainViewController.swift in Sources */,

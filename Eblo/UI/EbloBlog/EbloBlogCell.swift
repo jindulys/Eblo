@@ -95,7 +95,7 @@ final class EbloBlogCell: UICollectionViewCell {
     divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
     divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-    divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    divider.heightAnchor.constraint(equalToConstant: UIView.screenScale()).isActive = true
 
     companyLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
     publishDateLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
