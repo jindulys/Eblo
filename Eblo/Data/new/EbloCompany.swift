@@ -38,7 +38,7 @@ public final class EbloCompany: Object {
 
 extension EbloCompany: Unique {
   public func identifier() -> String {
-    return self.companyName + self.urlString
+    return self.companyName
   }
 }
 

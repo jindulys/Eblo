@@ -28,6 +28,9 @@ class EbloCompanyViewController: UIViewController {
   /// The data store of eblo company.
   let ebloCompanyDataStore = EbloCompanyRealmService()
   
+  /// refresh control.
+  var refreshControl: UIRefreshControl!
+  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     collectionView.frame = view.bounds
@@ -36,10 +39,15 @@ class EbloCompanyViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.title = "Eng Blogs"
     self.view.backgroundColor = UIColor.white
     self.navigationController?.navigationBar.isTranslucent = false
     self.view.addSubview(self.collectionView)
-    self.title = "Eng Blogs"
+    let refresher = UIRefreshControl()
+    refresher.tintColor = UIColor.gray
+    refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+    self.refreshControl = refresher
+    self.collectionView.addSubview(refresher)
     
     let updater = ListAdapterUpdater()
     self.adapter = ListAdapter(updater: updater, viewController: self, workingRangeSize: 0)
@@ -80,6 +88,17 @@ class EbloCompanyViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
+  }
+  
+  func loadData() {
+    self.ebloCompanyDataStore.fetchNewCompanies { [weak self] companies in
+      GCDQueue.main.async {
+        self?.companyList = companies
+        self?.adapter?.performUpdates(animated: true, completion: { _ in
+          self?.refreshControl.endRefreshing()
+        })
+      }
+    }
   }
 }
 

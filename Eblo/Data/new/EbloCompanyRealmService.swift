@@ -52,9 +52,15 @@ class EbloCompanyRealmService {
             let matchedArray = fetchedCompanies.filter { fetched -> Bool in
               fetched.identifier() == company.identifier()
             }
-            if let matched = matchedArray.first, matched.firstBlogTitle != company.firstBlogTitle {
-              company.firstBlogTitle = matched.firstBlogTitle
-              company.hasUpdated = true
+            if let matched = matchedArray.first{
+              if matched.firstBlogTitle != company.firstBlogTitle {
+                company.firstBlogTitle = matched.firstBlogTitle
+                company.hasUpdated = true
+              }
+              // Update company url string if needed.
+              if matched.urlString != company.urlString {
+                company.urlString = matched.urlString
+              }
             }
           }
         }

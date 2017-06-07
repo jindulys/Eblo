@@ -21,6 +21,9 @@ class EbloFavBlogViewController: UIViewController {
   
   var blogs: [EbloBlog]?
   
+  /// refresh control.
+  var refreshControl: UIRefreshControl!
+  
   /// The blog service.
   let blogsService = EbloBlogRealmService()
   
@@ -35,6 +38,11 @@ class EbloFavBlogViewController: UIViewController {
     self.title = "Favourite Blogs"
     self.view.backgroundColor = UIColor.white
     self.view.addSubview(self.collectionView)
+    let refresher = UIRefreshControl()
+    refresher.tintColor = UIColor.gray
+    refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+    self.refreshControl = refresher
+    self.collectionView.addSubview(refresher)
     
     let updater = ListAdapterUpdater()
     self.adapter = ListAdapter(updater: updater, viewController: self, workingRangeSize: 0)
@@ -47,6 +55,13 @@ class EbloFavBlogViewController: UIViewController {
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     self.blogs = self.blogsService.favouriteBlogs()
     self.adapter?.performUpdates(animated: true)
+  }
+  
+  func loadData() {
+    self.blogs = self.blogsService.favouriteBlogs()
+    self.adapter?.performUpdates(animated: true) { _ in
+      self.refreshControl.endRefreshing()
+    }
   }
 }
 
