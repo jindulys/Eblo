@@ -11,7 +11,7 @@ import SafariServices
 import UIKit
 
 /// Section controller for blog.
-final class BlogSectionController: ListSectionController {
+final class BlogSectionController: ListSectionController, EbloCellDelegate {
   
   var blog: EbloBlog!
   
@@ -28,7 +28,7 @@ final class BlogSectionController: ListSectionController {
   override func cellForItem(at index: Int) -> UICollectionViewCell {
     let cell = collectionContext!.dequeueReusableCell(of: EbloBlogCell.self, for: self, at: index)
     if let blogCell = cell as? EbloBlogCell {
-      blogCell.favouriteButton.addTarget(self, action: #selector(tappedFavourite), for: .touchUpInside)
+      blogCell.delegate = self
       blogCell.populate(blog: blog)
     }
     return cell
@@ -36,15 +36,6 @@ final class BlogSectionController: ListSectionController {
   
   override func didUpdate(to object: Any) {
     blog = object as? EbloBlog
-  }
-  
-  func tappedFavourite() {
-    let blogService = EbloBlogRealmService()
-    blogService.changeBlogFavouriteState(blog: self.blog)
-    self.collectionContext?.performBatch(animated: false
-      , updates: { context in
-        context.reload(self)
-    })
   }
   
   override func didSelectItem(at index: Int) {
@@ -61,5 +52,12 @@ final class BlogSectionController: ListSectionController {
     let svc = SFSafariViewController(url: validURL)
     svc.title = blog.companyName
     AppManager.sharedInstance.presentToNavTop(controller: svc)
+  }
+  
+  // MARK: EbloCellDelegate
+  func cellContentChanged(_ cell: EbloBlogCell) {
+    self.collectionContext?.performBatch(animated: false, updates: { context in
+      context.reload(self)
+    })
   }
 }

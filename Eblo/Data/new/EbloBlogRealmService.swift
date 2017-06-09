@@ -78,7 +78,7 @@ class EbloBlogRealmService {
   }
   
   /// Change blog favourite state.
-  func changeBlogFavouriteState(blog: EbloBlog) {
+  static func changeBlogFavouriteState(blog: EbloBlog) {
     do {
       let realm = try! Realm()
       try realm.write {

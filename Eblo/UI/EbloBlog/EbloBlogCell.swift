@@ -9,10 +9,18 @@
 import SiYuanKit
 import UIKit
 
+protocol EbloCellDelegate: class {
+  func cellContentChanged(_ cell: EbloBlogCell)
+}
+
 /// The cell for blog.
 final class EbloBlogCell: UICollectionViewCell {
   
   static let heightCalculationCell = EbloBlogCell()
+  
+  weak var delegate: EbloCellDelegate?
+  
+  var blog: EbloBlog? = nil
   
   private let blogNameLabel: UILabel = {
     let label = UILabel()
@@ -56,6 +64,7 @@ final class EbloBlogCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentView.backgroundColor = .white
+    favouriteButton.addTarget(self, action: #selector(favouriteTapped(_:)), for: .touchUpInside)
     contentView.addAutoLayoutSubView(blogNameLabel)
     contentView.addAutoLayoutSubView(companyLabel)
     contentView.addAutoLayoutSubView(publishDateLabel)
@@ -112,6 +121,7 @@ final class EbloBlogCell: UICollectionViewCell {
     publishDateLabel.text = blog.publishDate
     authorNameLabel.text = blog.authorName
     favouriteButton.changeImageWithImage(blog.favourite ? UIImage.heartOn : UIImage.heartOff)
+    self.blog = blog
   }
   
   static func cellSize(width: CGFloat, blog: EbloBlog) -> CGSize {
@@ -120,5 +130,12 @@ final class EbloBlogCell: UICollectionViewCell {
     EbloBlogCell.heightCalculationCell.companyLabel.preferredMaxLayoutWidth = width
     let size = EbloBlogCell.heightCalculationCell.systemLayoutSizeFitting(CGSize(width: width, height:999))
     return size
+  }
+  
+  func favouriteTapped(_ button: UIButton) {
+    if let blog = self.blog {
+      EbloBlogRealmService.changeBlogFavouriteState(blog: blog)
+    }
+    delegate?.cellContentChanged(self)
   }
 }
