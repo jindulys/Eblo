@@ -56,8 +56,8 @@ final class EbloBlogCell: UICollectionViewCell {
   
   public let favouriteButton: InsetButton = {
     let button = InsetButton(image: UIImage.heartOff,
-                             contentInset: UIEdgeInsetsMake(12, 12, 12, 12),
-                             imageSize: CGSize(width: 18, height: 18))
+                             contentInset: UIEdgeInsetsMake(10, 11, 10, 11),
+                             imageSize: CGSize(width: 26, height: 23))
     return button
   }()
   
@@ -85,8 +85,8 @@ final class EbloBlogCell: UICollectionViewCell {
 
     favouriteButton.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
     favouriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
-    favouriteButton.widthAnchor.constraint(equalToConstant: 42).isActive = true
-    favouriteButton.heightAnchor.constraint(equalToConstant: 42).isActive = true
+//    favouriteButton.widthAnchor.constraint(equalToConstant: ).isActive = true
+//    favouriteButton.heightAnchor.constraint(equalToConstant: 42).isActive = true
 
     companyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
     companyLabel.topAnchor.constraint(equalTo: blogNameLabel.bottomAnchor, constant: 12).isActive = true

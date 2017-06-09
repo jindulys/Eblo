@@ -195,14 +195,9 @@ public final class AppManager: NSObject {
       let favNav = self.createRootNavigationController()
       favNav.setViewControllers([EbloFavBlogViewController()], animated: false)
       favNav.tabBarItem = UITabBarItem(title: "Fav",
-                                       image: UIImage.star,
+                                       image: UIImage.starTab,
                                        selectedImage: nil)
-      let oldListNav = self.createRootNavigationController()
-      oldListNav.setViewControllers([MainViewController()], animated: false)
-      oldListNav.tabBarItem = UITabBarItem(title: "Old Eng Blogs",
-                                           image: UIImage.newspaparTab,
-                                           selectedImage: nil)
-      rootTab.setViewControllers([companyListNav, favNav, oldListNav], animated: false)
+      rootTab.setViewControllers([companyListNav, favNav], animated: false)
       UITabBarItem.appearance()
         .setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.black], for: .normal)
     }

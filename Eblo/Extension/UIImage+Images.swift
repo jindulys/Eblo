@@ -11,22 +11,22 @@ import UIKit
 extension UIImage {
   
   static var homeTab: UIImage {
-    return #imageLiteral(resourceName: "home_tab")
+    return #imageLiteral(resourceName: "house_icon")
   }
   
   static var newspaparTab: UIImage {
     return #imageLiteral(resourceName: "newspaper_tab")
   }
   
-  static var star: UIImage {
-    return #imageLiteral(resourceName: "star")
+  static var starTab: UIImage {
+    return #imageLiteral(resourceName: "heart_icon")
   }
   
   static var heartOn: UIImage {
-    return #imageLiteral(resourceName: "heart_pin_on")
+    return #imageLiteral(resourceName: "favourite_heart")
   }
   
   static var heartOff: UIImage {
-    return #imageLiteral(resourceName: "heart_pin_off")
+    return #imageLiteral(resourceName: "unfav_heart")
   }
 }
