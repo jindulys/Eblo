@@ -34,6 +34,11 @@ public final class EbloCompany: Object {
   override public static func primaryKey() -> String? {
     return "companyID"
   }
+  
+  /// The ui identifier.
+  public var uiIdentifier: String {
+    return companyName + firstBlogTitle
+  }
 }
 
 extension EbloCompany: Unique {
@@ -45,13 +50,13 @@ extension EbloCompany: Unique {
 extension EbloCompany: ListDiffable {
   
   public func diffIdentifier() -> NSObjectProtocol {
-    return self.identifier() as NSString
+    return self.uiIdentifier as NSString
   }
   
   public func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
     guard let other = object as? EbloCompany else {
       return false
     }
-    return self.identifier() == other.identifier()
+    return self.uiIdentifier == other.uiIdentifier
   }
 }
