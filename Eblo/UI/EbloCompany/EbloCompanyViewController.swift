@@ -12,17 +12,17 @@ import SiYuanKit
 
 /// The view controller for engineering blogs list.
 class EbloCompanyViewController: UIViewController {
-  
+
   let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     return collectionView
   }()
-  
+
   var adapter: ListAdapter?
-  
+
   var companyList: [EbloCompany]?
-  
+
   var companySectionController: CompanySectionController?
   
   /// The data store of eblo company.
@@ -30,7 +30,7 @@ class EbloCompanyViewController: UIViewController {
   
   /// refresh control.
   var refreshControl: UIRefreshControl!
-  
+
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     collectionView.frame = view.bounds
@@ -48,7 +48,7 @@ class EbloCompanyViewController: UIViewController {
     refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
     self.refreshControl = refresher
     self.collectionView.addSubview(refresher)
-    
+
     let updater = ListAdapterUpdater()
     self.adapter = ListAdapter(updater: updater, viewController: self, workingRangeSize: 0)
     adapter?.collectionView = self.collectionView
@@ -56,7 +56,7 @@ class EbloCompanyViewController: UIViewController {
 
     self.companyList = ebloCompanyDataStore.allCompany()
     self.adapter?.performUpdates(animated: true)
-    
+
     self.ebloCompanyDataStore.fetchNewCompanies { [weak self] companies in
       // NOTE: Keep scroll position
       // https://github.com/Instagram/IGListKit/issues/644#issuecomment-294359113
@@ -84,12 +84,12 @@ class EbloCompanyViewController: UIViewController {
       }
     }
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: false)
   }
-  
+
   func loadData() {
     self.ebloCompanyDataStore.fetchNewCompanies { [weak self] companies in
       GCDQueue.main.async {
@@ -109,14 +109,14 @@ extension EbloCompanyViewController: ListAdapterDataSource {
     }
     return companyList
   }
-  
+
   func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
     let companySectionController = CompanySectionController()
     self.companySectionController = companySectionController
     companySectionController.delegate = self
     return companySectionController
   }
-  
+
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
     return nil
   }
