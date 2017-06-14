@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(iOS)
+
 // MARK: Auto layout.
 extension UIView {
   /// Add a view as subview, turn off autoresizingmask.
@@ -16,3 +18,5 @@ extension UIView {
     self.addSubview(view)
   }
 }
+
+#endif

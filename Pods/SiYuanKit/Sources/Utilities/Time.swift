@@ -14,11 +14,13 @@ public struct Time {
   
   /// This method will run a specific time until time expire, this will block your current thread.
   public static func longRun(duration: Double) {
-    let localConcurrentQueue = GCDQueue.concurrent("localConcurrent", .utility)
+    let localConcurrentQueue = DispatchQueue(label: "localConcurrent", attributes: .concurrent)
     localConcurrentQueue.sync {
       wastingTimeGroup.enter()
     }
-    localConcurrentQueue.after(when: duration) { 
+    
+    let delayTime = DispatchTime.now() + duration
+    localConcurrentQueue.asyncAfter(deadline: delayTime) {
       wastingTimeGroup.leave()
     }
     wastingTimeGroup.wait()

@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(iOS)
+
 /// The action block to be executed when cell is selected.
 public typealias RowAction = () -> ()
 
@@ -64,3 +66,5 @@ extension Row: Hashable {
     return UUID.hashValue
   }
 }
+
+#endif

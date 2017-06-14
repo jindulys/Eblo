@@ -13,8 +13,8 @@ import Foundation
  `Operation`'s lifecycle.
  */
 struct BlockObserver: OperationObserver {
-  // MARK: Properties
   
+  // MARK: Properties
   private let startHandler: ((YSOperation) -> Void)?
   private let produceHandler: ((YSOperation, Operation) -> Void)?
   private let finishHandler: ((YSOperation, [Error]) -> Void)?

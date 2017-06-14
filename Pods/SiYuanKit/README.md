@@ -27,3 +27,16 @@ pod 'SiYuanKit', '~> 1.0'
 
 Run `pod install`.
 
+### Swift Package Manager
+
+   
+    import PackageDescription
+
+    let package = Package(
+      name: "EbloServer",
+      targets: [],
+      dependencies: [
+        .Package(url: "git@github.com:jindulys/SiYuanKit.git", majorVersion: 1),
+      ]
+    )
+

@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(iOS)
+
 /// This cell is used to display a normal item, a title and a body.
 public class ItemCell: UITableViewCell {
   /// Title label.
@@ -53,3 +55,5 @@ extension ItemCell: StaticCellType {
     self.bodyLabel.text = row.description
   }
 }
+
+#endif

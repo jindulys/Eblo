@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(iOS)
+
 /// A Protocol Defines a data source that provides data to display for this tableViewManager.
 public protocol TableViewManagerDataSource: class {
   /// The data that is needed by a tableViewManager.
@@ -310,3 +312,5 @@ extension TableViewManager: UITableViewDelegate {
     tableView.deselectRow(at: indexPath, animated: true)
   }
 }
+
+#endif

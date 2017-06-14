@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(iOS)
+
 /// Protocol used to define the behaviour a cell should have to use `Row`.
 public protocol StaticCellType: class {
   
@@ -22,3 +24,5 @@ extension StaticCellType where Self: UITableViewCell {
     imageView?.image = row.image
   }
 }
+
+#endif

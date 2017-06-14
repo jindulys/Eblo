@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(iOS)
+
 public class Value1Cell: UITableViewCell, StaticCellType {
   public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: .value1, reuseIdentifier: reuseIdentifier)
@@ -17,3 +19,6 @@ public class Value1Cell: UITableViewCell, StaticCellType {
     fatalError("init(coder:) has not been implemented")
   }
 }
+
+
+#endif

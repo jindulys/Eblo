@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(iOS)
+
 /// Section structure, represents a section in a tableView.
 public struct Section {
   /// rows for this section.
@@ -39,3 +41,5 @@ extension Section: Equatable { }
 public func ==(lhs: Section, rhs: Section) -> Bool {
   return lhs.UUID == rhs.UUID
 }
+
+#endif

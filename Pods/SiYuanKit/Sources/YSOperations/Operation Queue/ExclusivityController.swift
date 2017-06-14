@@ -19,7 +19,7 @@ class ExclusivityController {
   static let sharedExclusivityController = ExclusivityController()
   
   /// Private Queue for execution.
-  private let serialQueue = GCDQueue.serial("exclusiveQueue", .utility)
+  private let serialQueue = DispatchQueue(label: "exclusiveQueue")
   
   /// Dictionary for storing categories and operation list.
   private var operations: [String: [YSOperation]] = [:]
