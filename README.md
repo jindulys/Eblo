@@ -5,6 +5,30 @@ This is the iOS Client for my [Eblo](https://github.com/jindulys/EbloVaporServer
 
 This project is built with **Realm**, **IGListKit**.
 
-<img src="https://raw.githubusercontent.com/jindulys/Eblo/master/Images/home.png" alt="home" title="home" width="500"/>
-<img src="https://raw.githubusercontent.com/jindulys/Eblo/master/Images/company.png" alt="company" title="company" width="500"/>
-<img src="https://raw.githubusercontent.com/jindulys/Eblo/master/Images/fav.png" alt="fav" title="fav" width="500"/>
+Home page |   Company |  Favs
+:-------------------------:|:-------------------------:|:-------------------:
+![](https://raw.githubusercontent.com/jindulys/Eblo/master/Images/home.png)  |  ![](https://raw.githubusercontent.com/jindulys/Eblo/master/Images/company.png) | ![](https://raw.githubusercontent.com/jindulys/Eblo/master/Images/fav.png)
+
+## Installation
+
+Clone this project and then update pods.
+
+    git clone https://github.com/jindulys/Eblo.git
+    pod update
+    
+## Currently Supported Companies
+
+Supported companies         | 
+---------------- |
+[Yelp](https://engineeringblog.yelp.com/) |
+[Artsy](https://artsy.github.io/) |
+[Gilt](http://tech.gilt.com) |
+[Uber](http://eng.uber.com/) |
+[Gusto](http://engineering.gusto.com/) |
+[Glow团队技术博客](http://tech.glowing.com/cn/) |
+[LinkedIn](https://engineering.linkedin.com/blog) |
+[Made Tech](https://www.madetech.com/blog) |
+[Azavea](https://www.azavea.com/blog/category/software-development/) |
+[Indeed](http://engineering.indeedblog.com/blog/) |
+[Spotify](https://labs.spotify.com) |
+   
