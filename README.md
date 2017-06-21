@@ -32,3 +32,8 @@ Supported companies         |
 [Indeed](http://engineering.indeedblog.com/blog/) |
 [Spotify](https://labs.spotify.com) |
    
+To be continued...
+
+## Contribute
+If you are interested to help, you can add to this wechat group, or email me at liyansong.edw@gmail.com
+
