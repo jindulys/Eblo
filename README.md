@@ -1,4 +1,7 @@
-# Eblo
+<h3 align="center">
+    <img src="Images/eblo.png" width=540 alt="Ji: a Swift XML/HTML parser" />
+</h3>
+# Eblo Client
 A Fancy Engineering Blogs Reader.
 
 This is the iOS Client for my [Eblo](https://github.com/jindulys/EbloVaporServer) project.
