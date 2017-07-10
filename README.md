@@ -39,7 +39,5 @@ Supported companies         |
 To be continued...
 
 ## Contribute
-If you are interested to help, you can add to this wechat group, or email me at liyansong.edw@gmail.com
-
-<img src="https://raw.githubusercontent.com/jindulys/Eblo/master/Images/wechat.JPG" alt="logone" title="logone" width="300"/>
+If you are interested to help, you can email me at liyansong.edw@gmail.com
 
