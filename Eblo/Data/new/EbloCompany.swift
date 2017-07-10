@@ -57,6 +57,6 @@ extension EbloCompany: ListDiffable {
     guard let other = object as? EbloCompany else {
       return false
     }
-    return self.uiIdentifier == other.uiIdentifier
+    return (self.uiIdentifier == other.uiIdentifier) && (self.hasUpdated == other.hasUpdated)
   }
 }
